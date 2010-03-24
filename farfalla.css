@@ -1,0 +1,110 @@
+/* CORE */
+html{
+padding: 0;
+margin: 0;
+}
+
+body{
+padding: 0;
+margin: 0;
+}
+
+.highlighter{
+border: 2px solid red;
+display:none;
+margin: 0;
+position: absolute;
+z-index: 20000;
+}
+
+.monitor{
+border: 2px solid #000;
+background: #333;
+color: #fff;
+display:none;
+font-family: Helvetica,Arial,sans;
+font-size: 20pt;
+font-weight: bold;
+line-height: 1.4em;
+margin: 0 0 0 50%;
+padding: 1ex;
+position: absolute;
+width: 46%;
+z-index: 20000;
+}
+
+.monitor font{
+color: #fff;
+}
+
+.monitor_left{
+margin: 1em 0 0 0;
+}
+
+.monitor a:link{
+color: #0f0;
+}
+
+.monitor a:visited{
+color: orange;
+}
+
+.monitor img{
+width: 100%;
+height: inherit;
+}
+
+.toolbar{
+border: 2px solid #000;
+background: #333;
+color: #fff;
+height: 1em;
+line-height: 1.4em;
+margin: 0;
+padding: 0;
+position: relative;
+width: 100%;
+z-index: 20000;
+}
+
+.toolbar_explode{
+width: 5em;
+}
+
+/* PLUGINS */
+
+.farfalla_red,a:link.farfalla_red, a:visited.farfalla_red{
+border: 2px solid #f00;
+}
+
+
+.ui-keyboard{
+background:#999;
+border: 1px solid #666;
+padding: .3em;
+position: absolute;
+z-index: 16000;
+}
+
+.ui-keyboard-button{
+background: white;
+border: 1px solid #666;
+height: 3em;
+margin: .1em;
+width: 3em;
+}
+
+.ui-keyboard-actionkey{
+background: #eee;
+width: 4em;
+}
+
+.ui-keyboard-space{
+background: #fff;
+width: 15em;
+}
+
+.ui-keyboard-preview{
+text-align: left;
+width: 100%;
+}
