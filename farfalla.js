@@ -1,3 +1,5 @@
+// this is a comment
+
 $(function() {
 
 	$('<div id="monitor">')
