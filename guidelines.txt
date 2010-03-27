@@ -1,0 +1,41 @@
+﻿COSE DA FARE
+
+1. Database con le preferenze degli utenti
+	- MySQL come database relazionale;
+	- PHP per costruire l'interfaccia web di gestione, utilizzando il framework CakePHP;
+
+2. sistema di iniezione del codice, con metodi alternativi da usare in diverse situazioni, in base al livello di permessi sulla macchina
+	- Bookmarklet in Javascript;
+	- plugin per i differenti browser (script di GreaseMonkey/GreaseKit, plugin per Firefox in XUL, plugin per Explorer);
+	- Proxy trasparente basato su Squid oppure scritto ad hoc (in Ruby o in altro linguaggio di programmazione).
+
+3. overlay da applicare ai siti visitati
+	- interfaccia di attivazione dei plugin in jQuery+CSS;
+	- plugin in jQuery+CSS+altri eventuali linguaggi di scripting web (di preferenza PHP, ma attraverso chiamate AJAX sarà possibile includere virtualmente qualsiasi applicazione web)
+	
+	
+QUALI PLUGIN?
+
+- Tastiera virtuale: 
+	una tastiera virtuale permette la digitazione attraverso il solo uso di un sistema di puntamento (mouse, trackball o altro). 
+	È necessario attivare la tastiera virtuale ogni volta che l'utente clicca su di una casella di testo (elementi INPUT e TEXTAREA).
+		+ Problema: alcuni siti usano caselle di testo non standard, ad esempio per le ricerca di contenuti, in ajax o altro. 
+		+ Possibile soluzione: posizionamento in un punto fisso dello schermo di un elemento che, al click, generi una tastiera virtuale non collegata ad alcun elemento standard in cui si possa scrivere per poi copiare e incollare il testo scritto.
+
+- Magnifier:
+	un magnifier, o ingranditore, permette l'ingrandimento selettivo di un'area dello schermo di difficile lettura.
+	Esistono diversi approcci all'ingrandimento: l'area ingrandita può essere fissa o mobile, può seguire il movimento del puntatore del mouse e/o il focus oppure spostarsi automaticamente in un'area libera dello schermo.
+	L'ingranditore può limitarsi a riproporre un frammento dell'immagine dello schermo ingrandito, oppure può rendere il solo testo con un contrasto molto alto tra corpo del testo e sfondo.
+	
+- Mousekeys:
+	i maggiori sistemi operativi permettono  di controllare il puntatore del mouse attraverso il tastierino numerico (funzione nota come "Mousekeys" perlappunto). 
+		+ Problema: Non è possibile controllare lo spostamento del mouse attraverso jQuery e le altre tecnologie del web. 
+		+ Possibile soluzione: si potrebbe muovere sopra la pagina un elemento aggiunto, che raffiguri un puntatore dalla forma personalizzabile, simulando click del mouse in corrispondenza del punto in cui si trova quando viene premuto un particolare tasto. I tasti associati a questo movimento potrebbero essere a loro volta configurabili, in modo da permettere la massima libertà di personalizzazione a utenti con possibilità d'uso delle mani molto ristrette
+
+- Text to Speech
+	il text-to-speech è una tecnologia usata prevalentemente dai non vedenti (ma che può essere molto utile anche a ipovedenti, dislessici o a persone con altre patologie che in qualche modo condizionano la percezione del testo). La traduzione di un testo in audio è possibile attraverso vari software. 
+	Esiste già un plugin di jQuery (http://www.jtalkplugin.com/) in grado di restituire un file audio contenente la lettura di una stringa. 
+	Questo plugin va integrato in Farfalla.
+	Per permettere una lettura più agevole è necessario fornire agli utenti una serie di scorciatoie da tastiera sull'esempio di JAWS, NVDA e ORCA, i tre maggiori sw di lettura dello schermo esistenti.
+		+ Lista di scorciatoie usate da Jaws (il più diffuso..):
+		http://www.keyxl.com/aaadc6c/406/jaws-keyboard-shortcuts.htm
