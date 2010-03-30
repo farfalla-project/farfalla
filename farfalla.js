@@ -1,79 +1,49 @@
-// this is a comment
-
 $(function() {
 
-	$('<div id="monitor">')
-	.html('<p>This page is now farfallized</p>')
-	.addClass('monitor')
-	.prependTo('body')
-	.fadeIn(3000)
-		.hover(
-		function(){ $(this).toggleClass('monitor_left'); }
-	);
+// Creazione interfaccia accesso alla selezione della configurazione
 
-	$(window).scroll(function(){
-		if($('#monitor').height()<$(window).height()){
-			$('#monitor')
-			.css('margin-top', ($(window).scrollTop()) + 'px');
-//		.animate({'marginTop': ($(window).scrollTop() + 30) + 'px'}, 'fast' );
-		}
-	});
-	
-/*	$('<div id="highlighter">')
-	.addClass('highlighter')
-	.appendTo('body')
-	.fadeIn(3000);
-*/	
-/*	$('<div id="toolbar">')
-	.addClass('toolbar')
-	.prependTo('body')
-	.show('blind', { direction: 'vertical' }, 1000)
-	.click(
-		function(){ $(this).toggleClass('toolbar_explode'); }
-	);
-*/
+	$('<div id="farfalla_auth">').addClass('toolbar').prependTo('body').fadeIn(3000);
 
-//	$('#monitor').show('blind', { direction: 'vertical' }, 1000);
-//	$('#monitor').fadeIn(3000);	
+	$('<form id="farfalla_auth_form" action="#">').prependTo('#farfalla_auth');
+
+	$('<input type="input" id="farfalla_profile">').val('pluto').appendTo('#farfalla_auth_form');
+
+	$('<input type="submit" id="farfalla_activator">').val('get preferences').appendTo('#farfalla_auth_form');
 
 
-/*	$('#monitor').hover(
-		function() {
-			$(this).hide('blind', { direction: 'vertical' }, 1000);
-		});
-*/
+	$('<p id="farfalla_active">').appendTo('#farfalla_auth');
 
 	
-// Highlight elements...
 
-	$('h1, h2, h3, p, li, a, input, textarea, th, td, pre').each(function() {
-		$(this).hover(
-			function() {
-				$(this).addClass('farfalla_red');
-				$(this).parents().removeClass('farfalla_red');
+// Richiamo delle impostazioni dal db centrale
 
-/*				$('#highlighter')
-					.width($(this).width()+'px')
-					.height($(this).height()+'px')
-					.css('top', $(this).offset().top+'px')
-					.css('left', $(this).offset().left+'px');
-*/
-				$('#monitor')
-					.html($(this).html()+$(this).val());
+	$("#farfalla_activator").click(function() {
 
+		$.getJSON(
+			"http://localhost/farfalla/json.php?callback=?",
+			{
+					"profile": $('#farfalla_profile').val()
 			},
-			function() {
-				$(this).removeClass('farfalla_red');
-			})
-		});
 
-// Virtual Keyboard
-	
-	$('input[type=text], input[class=lst], input[type=password], textarea')
-		.keyboard({
-			layout:'qwerty'
-		});
-		
-		
+// Richiamo dei plugin
+
+			function(data) {
+				$.each(data.plugins, function(i,plugin){
+		     		$('<script type="text/javascript" src="http://localhost/farfalla/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js">')
+					.appendTo('head');
+					$("#farfalla_active").append(' | '+plugin.name);
+		     	});				
+			}
+		);
+
+		// impediamo l'invocazione della action del form
+		return false;                    
 	});
+
+
+
+
+
+		
+});
 	
