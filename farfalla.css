@@ -91,6 +91,7 @@ border: 1px solid #666;
 padding: .3em;
 position: absolute;
 z-index: 16000;
+width:800px;
 }
 
 .ui-keyboard-button{
@@ -113,5 +114,12 @@ width: 15em;
 
 .ui-keyboard-preview{
 text-align: left;
-width: 100%;
+width:780px;
+}
+
+#farfalla_active li{
+display: inline;
+padding: 0;
+margin:0;
+top:0;
 }
