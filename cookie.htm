@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery Cookie Plugin</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+        <script src="jquery.cookie.js"></script>
+        <script>
+            $(function() {
+                var COOKIE_NAME = 'test_cookie';
+                var ADDITIONAL_COOKIE_NAME = 'additional';
+                var options = { path: '/', expires: 10 };
+
+                // set cookie by number of days
+                $('a').eq(0).click(function() {
+                    $.cookie(COOKIE_NAME, 'test', options);
+                    return false;
+                });
+
+                // set cookie by date
+                $('a').eq(1).click(function() {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (3 * 24 * 60 * 60 * 1000));
+                    $.cookie(COOKIE_NAME, 'test', { path: '/', expires: date });
+                    return false;
+                });
+
+                // get cookie
+                $('a').eq(2).click(function() {
+                    alert($.cookie(COOKIE_NAME));
+                    return false;
+                });
+
+                // delete cookie
+                $('a').eq(3).click(function() {
+                    $.cookie(COOKIE_NAME, null, options);
+                    return false;
+                });
+
+                // set a second cookie
+                $('a').eq(4).click(function() {
+                    $.cookie(ADDITIONAL_COOKIE_NAME, 'äöüß;foo=bar', { expires: 10 });
+                    return false;
+                });
+
+                // get second cookie
+                $('a').eq(5).click(function() {
+                    alert($.cookie(ADDITIONAL_COOKIE_NAME));
+                    return false;
+                });
+
+                // delete second cookie
+                $('a').eq(6).click(function() {
+                    $.cookie(ADDITIONAL_COOKIE_NAME, null);
+                    return false;
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <p>
+            <a href="#">Set cookie (by number of days == 10)</a><br>
+            <a href="#">Set cookie (by date == 3 days)</a><br>
+            <a href="#">Get cookie</a><br>
+            <a href="#">Delete cookie</a><br>
+            <a href="#">Set additional cookie</a><br>
+            <a href="#">Get additional cookie</a><br>
+            <a href="#">Delete additional cookie</a>
+        </p>
+    </body>
+</html>
