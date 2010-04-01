@@ -85,21 +85,10 @@ border: 4px solid #f00;
 }
 
 
-.ui-keyboard{
-background:#999;
-border: 1px solid #666;
-padding: .3em;
-position: absolute;
-z-index: 16000;
-width:800px;
-}
 
 .ui-keyboard-button{
-background: white;
 border: 1px solid #666;
-height: 3em;
 margin: .1em;
-width: 3em;
 }
 
 .ui-keyboard-actionkey{
@@ -114,7 +103,6 @@ width: 15em;
 
 .ui-keyboard-preview{
 text-align: left;
-width:780px;
 }
 
 #farfalla_active li{
@@ -122,4 +110,8 @@ display: inline;
 padding: 0;
 margin:0;
 top:0;
+}
+
+#change_profile{
+float:right;
 }

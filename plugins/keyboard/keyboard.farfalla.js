@@ -392,4 +392,11 @@ $(function() {
 			layout:'qwerty'
 		});
 
+	$('.ui-keyboard').css('width', '600px').css('background','#999').css('border','1px solid #666').css('padding','.3em').css('position','absolute').css('z-index','16000');
+	$('.ui-keyboard-preview').css('width', '580px').css('margin','.1em');
+
+	$('.ui-keyboard-button').css('width', '3em').css('height', '3em').css('margin','.1em').css('display','inline');
+	$('.ui-keyboard-actionkey').css('width', '4em');
+	$('.ui-keyboard-space').css('width', '15em');
+
 });
