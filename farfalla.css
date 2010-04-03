@@ -55,7 +55,7 @@ width: 100%;
 height: inherit;
 }
 
-.toolbar{
+.farfalla_toolbar{
 border: 2px solid #000;
 background: #333;
 color: #fff;
@@ -66,15 +66,15 @@ width: 100%;
 z-index: 20000;
 }
 
-.toolbar form{
+.farfalla_toolbar form{
 display: inline
 }
 
-.toolbar p{
+.farfalla_toolbar p{
 display: inline
 }
 
-.toolbar_explode{
+.farfalla_toolbar_explode{
 width: 5em;
 }
 
@@ -105,7 +105,7 @@ width: 15em;
 text-align: left;
 }
 
-#farfalla_active li{
+#farfalla_active ul li{
 display: inline;
 padding: 0;
 margin:0;

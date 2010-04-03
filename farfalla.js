@@ -57,7 +57,7 @@ $(function() {
 
 // Create a configuration selection form
 
-	$('<div>').attr('id','farfalla_auth').addClass('toolbar').prependTo('body').fadeIn(3000);
+	$('<div>').attr('id','farfalla_auth').addClass('farfalla_toolbar').prependTo('body').fadeIn(3000);
 	$('<div>').attr('id','farfalla_active').appendTo('#farfalla_auth');
 
 	if(!$.cookie('farfalla_plugins_cookie')){
@@ -111,6 +111,7 @@ $(function() {
 
 	
 	});
+
 
 		
 });
