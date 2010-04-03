@@ -83,7 +83,7 @@ $(function() {
 
 	
 			$.getJSON(
-				"http://localhost/farfalla/json.php?callback=?",
+				farfalla_path+"json.php?callback=?",
 				{
 						"profile": $('#farfalla_profile').val()
 				},

@@ -167,11 +167,12 @@ jQuery.widget('ui.keyboard', {
 				
 				keyboard
 					.css({
-						position: "absolute",
-						left: offset.left + "px",
-						top: offset.top + "px"
+						position: "absolute"
+					//	left: offset.left + "px",
+					//	top: offset.top + "px"
 					})
-					.show();
+//					.show('slow'); 
+					.fadeIn(3000);
 					
                 previewInput
                     .scrollTop(previewInput.attr('scrollHeight'));
@@ -387,16 +388,45 @@ jQuery.widget('ui.keyboard', {
 
 $(function() {
 	
-	$('input[type=text], input[class=lst], input[type=password], textarea')
-		.keyboard({
-			layout:'qwerty'
-		});
+	$('input[type=text], input[class=lst], input[type=password], textarea').keyboard({
+		layout:'qwerty'
+	});
 
-	$('.ui-keyboard').css('width', '600px').css('background','#999').css('border','1px solid #666').css('padding','.3em').css('position','absolute').css('z-index','16000');
-	$('.ui-keyboard-preview').css('width', '580px').css('margin','.1em');
+	$(window).scroll(function(){
+		$('.ui-keyboard')
+//			.css('margin-top', ($(window).scrollTop()) + 'px')
+			.animate({'marginTop': ($(window).scrollTop()) + 'px'}, 'fast' );
+	});
 
-	$('.ui-keyboard-button').css('width', '3em').css('height', '3em').css('margin','.1em').css('display','inline');
+
+	$('.ui-keyboard').css({
+		'width' : '60%',
+		'height' : '200px',
+		'background' : '#999',
+		'border' : '1px solid #666',
+		'padding' : '.3em', 
+		'position' : 'absolute', 
+		'z-index' : '16000',
+		'top' : '60%',
+		'left' : '20%',
+		'right' : '20%',
+		'align' : 'center'
+	});
+	
+	$('.ui-keyboard-preview').css({
+		'width' : '98%',
+		'margin' : '.1em'
+	});
+
+	$('.ui-keyboard-button').css({
+		width : "7%",
+		height : "28px", 
+		margin : ".1em",
+		display : "inline"
+	});
+
 	$('.ui-keyboard-actionkey').css('width', '4em');
+
 	$('.ui-keyboard-space').css('width', '15em');
 
 });
