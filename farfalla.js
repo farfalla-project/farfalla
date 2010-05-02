@@ -47,7 +47,7 @@ $(function() {
 
 // Inclusion of the needed libraries and css stylesheets
 
-	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'farfalla.css').prependTo($('head'));
+	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'farfalla.css?_='+Math.random()).prependTo($('head'));
 	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'jquery-ui-1.7.2.custom.css').prependTo($('head'));
 
 // Set a cookie with the path
@@ -57,13 +57,13 @@ $(function() {
 
 // Create a configuration selection form
 
-	$('<div>').attr('id','farfalla_auth').addClass('farfalla_toolbar').prependTo('body').fadeIn(3000);
-	$('<div>').attr('id','farfalla_active').appendTo('#farfalla_auth');
+	$('<div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').prependTo('body').fadeIn(3000);
+	$('<div>').attr('id','farfalla_active').appendTo('#farfalla_toolbar');
 
 	if(!$.cookie('farfalla_plugins_cookie')){
-		$('<form>').attr('id','farfalla_auth_form').attr('action','#').prependTo('#farfalla_auth');
-		$('<input>').attr('type','input').attr('id','farfalla_profile').val('mouseonly').appendTo('#farfalla_auth_form');
-		$('<input>').attr('type','submit').attr('id','farfalla_activator').val('get preferences').appendTo('#farfalla_auth_form');
+		$('<form>').attr('id','farfalla_toolbar_form').attr('action','#').prependTo('#farfalla_toolbar');
+		$('<input>').attr('type','input').attr('id','farfalla_profile').val('mouseonly').appendTo('#farfalla_toolbar_form');
+		$('<input>').attr('type','submit').attr('id','farfalla_activator').val('get preferences').appendTo('#farfalla_toolbar_form');
 	}else{
 		$('<ul>').appendTo('#farfalla_active').hide();
 		$.each($.JSONCookie('farfalla_plugins_cookie').plugins, function(i,plugin){
@@ -91,7 +91,7 @@ $(function() {
 // Richiamo dei plugin
 
 				function(data) {
-					$('#farfalla_auth_form').fadeOut(1000);
+					$('#farfalla_toolbar_form').fadeOut(1000);
 					$('<ul>').appendTo('#farfalla_active').hide();
 					$.each(data.plugins, function(i,plugin){
 				 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
