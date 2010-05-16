@@ -60,17 +60,19 @@ height: inherit;
 border: 2px solid #000;
 background: #333;
 color: #fff;
-height: 50px;
-line-height: 50px;
-margin: 0;
+height: 30px;
+line-height: 30px;
+margin: 0 10%;
 padding: 0;
-top: 0;
-position: absolute;
-width: 100%;
+bottom: 0px;
+position: fixed;
+width: 80%;
 z-index: 20000;
 }
 
 .farfalla_toolbar form{
+font-family: Helvetica, Calibri, sans;
+font-size: 12pt;
 display: inline
 }
 
@@ -82,13 +84,35 @@ display: inline
 width: 5em;
 }
 
+#farfalla_active{
+font-family: Helvetica, Calibri, sans;
+font-size: 12pt;
+}
+
+#farfalla_active ul{
+text-align: left;
+padding: 0;
+margin:0;
+top:0;
+}
+
+#farfalla_active ul li{
+display: inline;
+padding: 4px;
+margin:0;
+top:0;
+}
+
+#change_profile{
+/*float:right;*/
+padding: 4px;
+}
+
 /* PLUGINS */
 
 .farfalla_red,a:link.farfalla_red, a:visited.farfalla_red{
 border: 4px solid #f00;
 }
-
-
 
 .ui-keyboard-button{
 border: 1px solid #666;
@@ -109,13 +133,4 @@ width: 15em;
 text-align: left;
 }
 
-#farfalla_active ul li{
-display: inline;
-padding: 0;
-margin:0;
-top:0;
-}
 
-#change_profile{
-float:right;
-}

@@ -158,21 +158,18 @@ jQuery.widget('ui.keyboard', {
 				elementPosition = jQuery.datepicker._findPos(element.get(0));
 				
 				offset = {
-					left : elementPosition[0],
-					top : elementPosition[1]
+//					left : elementPosition[0],
+//					top : elementPosition[1]
 				};
 				
 				//and this one too
 				offset = jQuery.datepicker._checkOffset({dpDiv:keyboard, settings:{}}, offset, false);
 				
-				keyboard
-					.css({
-						position: "absolute"
-					//	left: offset.left + "px",
-					//	top: offset.top + "px"
-					})
-//					.show('slow'); 
-					.fadeIn(3000);
+				keyboard.fadeIn('fast'); 
+//					.css({
+//						position: "absolute",
+//						bottom: "36px",
+//					})					
 					
                 previewInput
                     .scrollTop(previewInput.attr('scrollHeight'));
@@ -401,16 +398,16 @@ $(function() {
 
 	$('.ui-keyboard').css({
 		'width' : '60%',
-		'height' : '200px',
 		'background' : '#999',
 		'border' : '1px solid #666',
-		'padding' : '.3em', 
-		'position' : 'absolute', 
+		'position' : 'fixed', 
 		'z-index' : '16000',
-		'top' : '60%',
 		'left' : '20%',
 		'right' : '20%',
-		'align' : 'center'
+		'align' : 'center',
+		'padding' : '1ex',
+		'bottom' : "36px"
+
 	});
 	
 	$('.ui-keyboard-preview').css({

@@ -62,13 +62,14 @@ $(function() {
 
 	if(!$.cookie('farfalla_plugins_cookie')){
 		$('<form>').attr('id','farfalla_toolbar_form').attr('action','#').prependTo('#farfalla_toolbar');
-		$('<input>').attr('type','input').attr('id','farfalla_profile').val('mouseonly').appendTo('#farfalla_toolbar_form');
+		$('<input>').attr('type','input').attr('id','farfalla_profile').val('all').appendTo('#farfalla_toolbar_form');
 		$('<input>').attr('type','submit').attr('id','farfalla_activator').val('get preferences').appendTo('#farfalla_toolbar_form');
 	}else{
 		$('<ul>').appendTo('#farfalla_active').hide();
 		$.each($.JSONCookie('farfalla_plugins_cookie').plugins, function(i,plugin){
 	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
 			$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
+			$('#farfalla_active ul').append('<li> | </li>');					
 		});				
 		$('#farfalla_active ul').fadeIn(1000);
 		$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
@@ -88,7 +89,7 @@ $(function() {
 						"profile": $('#farfalla_profile').val()
 				},
 
-// Richiamo dei plugin
+// Recall the plugins
 
 				function(data) {
 					$('#farfalla_toolbar_form').fadeOut(1000);
@@ -97,6 +98,7 @@ $(function() {
 				 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
 						$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');
 						$('#farfalla_active ul').fadeIn(1000);
+						$('#farfalla_active ul').append('<li> | </li>');
 						
 			 		});				
 					$.cookie('farfalla_plugins_cookie', JSON.stringify(data), { path: '/', expires: 10 });
