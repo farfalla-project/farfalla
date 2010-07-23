@@ -203,7 +203,7 @@ $(function() {
 // Inclusion of the needed css stylesheets
 
 	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'jquery-ui-1.7.2.custom.css').prependTo($('head'));
-	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'farfalla.css').prependTo($('head'));
+	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'farfalla.css?updated='+Math.random()).prependTo($('head'));
 
 
 // determine wether to add the toolbar or not
@@ -218,7 +218,7 @@ $(function() {
 
 // Load the configuration selection form
 
-			$('<iframe>').attr('src',farfalla_path+'form.html').attr('id','farfalla_iframe').prependTo('#farfalla_toolbar');
+			$('<iframe>').attr('src',farfalla_path+'form.html?updated='+Math.random()).attr('id','farfalla_iframe').prependTo('#farfalla_toolbar');
 
 	}
 				
@@ -226,12 +226,11 @@ $(function() {
 		
 
 
-
 		pm.bind("pass-cookie", function(data) {
 			$('<ul>').appendTo('#farfalla_active').hide();			
 
 			$.each(data.plugins, function(i,plugin){
-		 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+		 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?updated='+Math.random());
 				$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
 				$('#farfalla_active ul').append('<li> | </li>');					
 			});

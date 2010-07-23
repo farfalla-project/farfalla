@@ -12,6 +12,16 @@ if($_GET['profile']=='mouseonly'){
 	});');
 }
 
+if($_GET['profile']=='magnifier'){
+	echo ($_GET['callback'] .'({
+		"plugins" : [
+			{
+				"name" : "magnifier",
+				"options" : {"ratio" : "2x"}
+			}
+		]
+	});');
+}
 
 if($_GET['profile']=='all'){
 	echo ($_GET['callback'] .'({
