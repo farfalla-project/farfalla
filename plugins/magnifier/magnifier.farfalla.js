@@ -4,12 +4,7 @@ $(function() {
 	.html('<p>The Magnification plugin is now active</p>')
 	.addClass('monitor')
 	.prependTo('body')
-	.hover( 
-		function(){ $(this).animate({'marginLeft': 0 }, 'fast'); },
-		function(){ $(this).animate({'marginLeft': '50%' }, 'fast'); }
-
-	) 
-	.fadeIn(3000);
+	.fadeIn(300);
 
 	$(window).scroll(function(){
 		if($('#monitor').height()<$(window).height()){
@@ -19,9 +14,21 @@ $(function() {
 		}
 	});
 	
-//	$('.monitor_left').hover(
-//		function(){ $(this).removeClass(); }	
-//	);  
+	$('#monitor').mouseover( 
+		function(){ 
+		$(this).toggleClass('monitor_left')
+/*
+			if($(this).hasClass('monitor_left')){
+				$(this).animate({'marginLeft': '50%' }, 'fast'); 
+				$(this).removeClass('monitor_left');
+			} else {
+				alert('no monitor_left');
+				$(this).animate({'marginLeft': 0 }, 'fast'); 
+				$(this).addClass('monitor_left');
+			}
+*/		}
+	);
+
 	
 	
 	// Highlight elements...
