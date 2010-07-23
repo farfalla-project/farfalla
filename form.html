@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+
+	<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="json2.js"></script>
+	<script type="text/javascript" src="jquery.cookie.js"></script>
+	<script type="text/javascript" src="jquery.jsoncookie.js"></script>
+	<script type="text/javascript">
+
+	$(function(){
+
+		if($.cookie('farfalla_plugins_cookie')){
+			window.location = 'toolbar.html';
+		}
+
+
+		// Recall user's configuration from central db
+
+	$("#farfalla_activator").click(function() {
+	
+			$.getJSON(
+				farfalla_path+"json.php?callback=?",
+				{
+						"profile": $('#farfalla_profile').val()
+				},
+
+// Recall the plugins
+
+				function(data) {
+					$('#farfalla_toolbar_form').fadeOut(1000);
+					$('<ul>').appendTo('#farfalla_active').hide();
+/*					$.each(data.plugins, function(i,plugin){
+						$('<script>').attr('src',farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js').attr('type','text/javascript').appendTo('head', top.document)
+				 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+						$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');
+						$('#farfalla_active ul').fadeIn(1000);
+						$('#farfalla_active ul').append('<li> | </li>');
+						
+			 		});				*/
+					$.cookie('farfalla_plugins_cookie', JSON.stringify(data), { path: '/', expires: 10 });z
+					$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
+					$('#change_profile').click(function(){$.cookie('farfalla_plugins_cookie', null, { path: '/' }); location.reload();});
+				}
+			);
+
+
+			// stop the call to the form "action"
+			return false;					
+
+	});
+
+	
+	});
+
+	</script> 
+</head>
+	<body>
+		<form id="farfalla_toolbar_form" action="#">
+		<input type="input" id="farfalla_profile" value="all" />
+		<input type="submit" id="farfalla_activator" value="get preferences" />
+		</form>
+	<body>
+</html>

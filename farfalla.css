@@ -18,42 +18,10 @@ position: absolute;
 z-index: 20000;
 }
 
-
-.monitor{
-border: 2px solid #000;
-background: #333;
-color: #fff;
-display:none;
-font-family: Helvetica,Arial,sans;
-font-size: 20pt;
-font-weight: bold;
-line-height: 1.4em;
-margin: 0 0 0 50%;
-padding: 1ex;
-position: absolute;
-width: 46%;
-z-index: 30000;
-}
-
-.monitor font{
-color: #fff;
-}
-
-.monitor_left{
-margin: 1em 0 0 0;
-}
-
-.monitor a:link{
-color: #0f0;
-}
-
-.monitor a:visited{
-color: orange;
-}
-
-.monitor img{
+#farfalla_iframe{
 width: 100%;
-height: inherit;
+height: 30px;
+border: none;
 }
 
 .farfalla_toolbar{
@@ -101,6 +69,7 @@ display: inline;
 padding: 4px;
 margin:0;
 top:0;
+color: #fff;
 }
 
 #change_profile{
@@ -110,9 +79,13 @@ padding: 4px;
 
 /* PLUGINS */
 
+/* Plugins > General purpose highlighter */
+
 .farfalla_red,a:link.farfalla_red, a:visited.farfalla_red{
 border: 4px solid #f00;
 }
+
+/* Plugins > Virtual keyboard */
 
 .ui-keyboard-button{
 border: 1px solid #666;
@@ -134,3 +107,44 @@ text-align: left;
 }
 
 
+/* Plugins > Magnifier */
+
+.monitor{
+border: 4px solid #0f0;
+background: #333;
+color: #fff;
+display:none;
+font-family: Helvetica,Arial,sans;
+font-size: 30pt;
+font-weight: bold;
+line-height: 1.4em;
+margin: 0 0 0 50%;
+padding: 1ex;
+position: absolute;
+width: 46%;
+z-index: 30000;
+clear: both;
+}
+
+.monitor font{
+color: #fff;
+}
+
+.monitor_left{
+margin: 1em 0 0 0;
+
+}
+
+.monitor a:link{
+color: #0f0;
+}
+
+.monitor a:visited{
+color: #ff0;
+}
+
+
+.monitor img{
+width: 100%;
+height: inherit;
+}
