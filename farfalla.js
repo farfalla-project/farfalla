@@ -200,6 +200,8 @@ headID.appendChild(farfallaCss);
 
 $(function() {
 	
+//	pm.origin = farfalla_path;
+	
 // Inclusion of the needed css stylesheets
 
 	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'jquery-ui-1.7.2.custom.css').prependTo($('head'));
@@ -222,9 +224,7 @@ $(function() {
 
 	}
 				
-// end "if" to determine wether to add the toolbar or not
-		
-
+// end "if" to determine wether to add the toolbar or not		
 
 		pm.bind("pass-cookie", function(data) {
 			$('<ul>').appendTo('#farfalla_active').hide();			
@@ -241,6 +241,9 @@ $(function() {
 
 		});
 	
-
+		pm.bind("force-reload",function(){
+			window.location.reload();
+			
+		});
 });
 	

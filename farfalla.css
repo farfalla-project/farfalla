@@ -82,7 +82,8 @@ padding: 4px;
 /* Plugins > General purpose highlighter */
 
 .farfalla_red,a:link.farfalla_red, a:visited.farfalla_red{
-border: 4px solid #f00;
+/* border: 4px solid #f00; */
+background: #f66;
 }
 
 /* Plugins > Virtual keyboard */
@@ -131,7 +132,7 @@ color: #fff;
 }
 
 .monitor_left{
-margin: 1em 0 0 0;
+margin: 0;
 
 }
 

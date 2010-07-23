@@ -15,18 +15,7 @@ $(function() {
 	});
 	
 	$('#monitor').mouseover( 
-		function(){ 
-		$(this).toggleClass('monitor_left')
-/*
-			if($(this).hasClass('monitor_left')){
-				$(this).animate({'marginLeft': '50%' }, 'fast'); 
-				$(this).removeClass('monitor_left');
-			} else {
-				alert('no monitor_left');
-				$(this).animate({'marginLeft': 0 }, 'fast'); 
-				$(this).addClass('monitor_left');
-			}
-*/		}
+		function(){ $(this).toggleClass('monitor_left') }
 	);
 
 	

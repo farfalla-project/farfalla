@@ -5,11 +5,12 @@
 	<script type="text/javascript" src="postmessage.js"></script>
 	<script type="text/javascript" src="jquery.cookie.js"></script>
 	<script type="text/javascript" src="jquery.jsoncookie.js"></script>
+    <script type="text/javascript" src="postmessage.js"></script>
 	
 	<script type="text/javascript">
 	
 	$(function(){
-	
+		
 		pm({
 			target: window.parent,
 			type: "pass-cookie", 
@@ -23,9 +24,14 @@
 				$('#farfalla_active ul').append('<li> | </li>');					
 			});
 
+
 			$('#farfalla_active ul').show();
 			$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
-			$('#change_profile').click(function(){$.cookie('farfalla_plugins_cookie', null, { path: '/' }); window.location.reload();});
+			$('#change_profile').click(
+				function(){
+					$.cookie('farfalla_plugins_cookie', null, { path: '/' }); 
+					window.location = 'form.html';
+				});
 
 	});
 
