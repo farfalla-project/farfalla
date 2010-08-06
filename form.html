@@ -8,13 +8,16 @@
 	<script type="text/javascript" src="postmessage.js"></script>
 	<script type="text/javascript">
 
+
 	$(function(){
+
 
 		if($.cookie('farfalla_plugins_cookie')){
 			window.location = 'toolbar.html?update='+Math.random();
 		}
 
-
+	var farfalla_path = 'http://localhost/farfalla/';
+	
 		// Recall user's configuration from central db
 
 	$("#farfalla_activator").click(function() {
