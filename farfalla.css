@@ -20,7 +20,7 @@ z-index: 20000;
 
 #farfalla_iframe{
 width: 100%;
-height: 30px;
+height: 40px;
 border: none;
 }
 
@@ -28,8 +28,8 @@ border: none;
 border: 2px solid #000;
 background: #333;
 color: #fff;
-height: 30px;
-line-height: 30px;
+height: 40px;
+line-height: 40px;
 margin: 0 10%;
 padding: 0;
 bottom: 0px;

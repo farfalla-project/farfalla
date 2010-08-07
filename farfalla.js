@@ -200,7 +200,7 @@ headID.appendChild(farfallaCss);
 
 $(function() {
 	
-//	$.pm.origin = farfalla_path;
+//	pm.origin = farfalla_path;
 	
 // Inclusion of the needed css stylesheets
 

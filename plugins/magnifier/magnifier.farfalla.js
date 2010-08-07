@@ -48,7 +48,7 @@ $(function() {
 	
 	// Highlight elements...
 
-	$('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:hasText, pre, label, dt, dd, div:hasText').each(function() {
+	$('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd, div:hasText').each(function() {
 		$(this).hover(
 			function() {
 			
@@ -64,7 +64,7 @@ $(function() {
 				$(this).parents().removeClass('farfalla_red');*/
 
 				$('#monitor')
-					.html($.htmlClean($(this).html(), { allowedTags : ['a', 'ul', 'ol', 'li', 'br', 'p', 'h1', 'h2', 'h3', 'h4', 'h5'] })+$(this).val())
+					.html($.htmlClean($(this).html(), { allowedTags : ['a', 'ul', 'ol', 'li', 'br', 'p'] })+$(this).val())
 					.css('margin-top', ($(window).scrollTop()) + 'px');
 
 				$('#monitor a').each( function(i){
