@@ -1,7 +1,7 @@
 ﻿<?php
 
 
-if($_GET['profile']=='mouseonly'){
+if($_GET['profile']=='1'){
 	echo ($_GET['callback'] .'({
 		"plugins" : [
 			{
@@ -12,7 +12,7 @@ if($_GET['profile']=='mouseonly'){
 	});');
 }
 
-if($_GET['profile']=='magnifier'){
+if($_GET['profile']=='2'){
 	echo ($_GET['callback'] .'({
 		"plugins" : [
 			{
@@ -23,7 +23,7 @@ if($_GET['profile']=='magnifier'){
 	});');
 }
 
-if($_GET['profile']=='all'){
+if($_GET['profile']=='All'){
 	echo ($_GET['callback'] .'({
 		"plugins" : [
 			{

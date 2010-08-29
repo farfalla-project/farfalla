@@ -20,9 +20,9 @@
 
 			$('<ul>').appendTo('#farfalla_active').hide();			
 
-			$.each($.JSONCookie('farfalla_plugins_cookie').plugins, function(i,plugin){
+			$.each($.JSONCookie('farfalla_plugins_cookie').Plugin, function(i,plugin){
 				$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
-				$('#farfalla_active ul').append('<li> | </li>');					
+//				$('#farfalla_active ul').append('<li> | </li>');					
 			});
 
 
@@ -44,7 +44,7 @@
 </head>
 	<body>
 		
-		<div id="farfalla_active"></div>
+		<div id="farfalla_active"><p>Loaded plugin(s): </p></div>
 
 	</body>
 </html>

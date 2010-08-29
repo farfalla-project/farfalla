@@ -11,22 +11,32 @@
 
 	$(function(){
 
+	var farfalla_path = 'http://localhost/farfalla/';
 
 		if($.cookie('farfalla_plugins_cookie')){
 			window.location = 'toolbar.html?update='+Math.random();
-		}
-
-	var farfalla_path = 'http://localhost/farfalla/';
+		} else {
+		$.getJSON(
+			farfalla_path+"profiles/index.php/profiles/menu/?callback=?",
+			{},
+			function(data) {
+				$.each(data, function(value, name){
+					$('<option>').attr('value', value).text(name).appendTo('#farfalla_profile');
+				});
+			}
+			);
+		};
+	
 	
 		// Recall user's configuration from central db
 
 	$("#farfalla_activator").click(function() {
 	
+			var farfalla_profile = $('#farfalla_profile').val();
+	
+	
 			$.getJSON(
-				farfalla_path+"json.php?callback=?",
-				{
-						"profile": $('#farfalla_profile').val()
-				},
+				farfalla_path+"profiles/index.php/profiles/retrieve/"+farfalla_profile+"/?callback=?", {},
 
 // Recall the plugins
 
@@ -49,14 +59,24 @@
 
 	});
 
+
 	
 	});
 
 	</script> 
+	
+	<style type="text/css" rel="stylesheet">
+		body{
+			background:#333;
+		}
+	</style>
 </head>
 	<body>
 		<form id="farfalla_toolbar_form" action="#">
-		<input type="input" id="farfalla_profile" value="magnifier" />
+		<select id="farfalla_profile" name="farfalla_profile">
+			<option>Choose your profile...</option>
+			<!-- Don't look for profiles here, they are loaded dynamically! -->
+		</select>
 		<input type="submit" id="farfalla_activator" value="get preferences" />
 		</form>
 	</body>

@@ -55,9 +55,15 @@ width: 5em;
 #farfalla_active{
 font-family: Helvetica, Calibri, sans;
 font-size: 12pt;
+color: #fff;
+}
+
+#farfalla_active p{
+display: inline;
 }
 
 #farfalla_active ul{
+display: inline;
 text-align: left;
 padding: 0;
 margin:0;
