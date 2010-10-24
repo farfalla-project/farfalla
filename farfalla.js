@@ -358,11 +358,11 @@ e&&e.document?e.document.compatMode==="CSS1Compat"&&e.document.documentElement["
                  var msg = JSON.parse(e.data);
              }
              catch (ex) {
-                 console.warn("postmessage data invalid json: ", ex);
+                 //console.warn("postmessage data invalid json: ", ex);
                  return;
              }
              if (!msg.type) {
-                 console.warn("postmessage message type required");
+                 //console.warn("postmessage message type required");
                  return;
              }
              var cbs = pm.data("callbacks.postmessage") || {},
@@ -569,21 +569,54 @@ if (! ("JSON" in window && window.JSON)){JSON={}}(function(){function f(n){retur
 
 
 /*
-##################################
-#                                #
-#  Here begins Farfalla code...  #
-#                                #
-##################################
+###########################################
+#                                         #
+#  Here begins original Farfalla code...  #
+#                                         #
+###########################################
 */
+
+// var isInIFrame = (window.location != window.parent.location) ? true : false;
 
 //
 // Set the path for Farfalla install: use an url like http://localhost/farfalla/, with a final /
 //
 
-var farfalla_path = 'http://localhost/farfalla/';
+function getFarfallaPath(){
+var search = 'farfalla_path=';
+if (document.cookie.length > 0) {
+	offset = document.cookie.indexOf(search);
+	if (offset != -1) {
+		offset += search.length;
+		end = document.cookie.indexOf(";", offset);
+		if (end == -1){
+			end = document.cookie.length;
+			}
+			return unescape(document.cookie.substring(offset, end))
+		}
+	}
+}
+
+//alert(getFarfallaPath());
+
+//var farfalla_path = 'http://localhost/farfalla/';
+var farfalla_path = getFarfallaPath();
+
+// console.log(farfalla_path.search('\/'));
 
 
- 
+/*
+if(isInIFrame == true){
+
+var hostname = window.location.hostname.toString();
+var pathname = window.location.pathname.toString();
+var dir = pathname.substr(0, pathname.lastIndexOf('/'));
+
+var farfalla_path = 'http://' + hostname + dir + '/';
+
+} // end iFrame check
+*/
+
 var headID = document.getElementsByTagName("head")[0];         
 var jqueryuiScript = document.createElement('script');
 jqueryuiScript.type = 'text/javascript';
@@ -632,35 +665,60 @@ $(function() {
 // Create the main toolbar
 
 		$('<div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').prependTo('body');
-		$('<div>').attr('id','farfalla_active').appendTo('#farfalla_toolbar');
+//		$('<div>').attr('id','farfalla_active').appendTo('#farfalla_toolbar');
+		$('<div>').attr('id','farfalla_buttons').appendTo('#farfalla_toolbar');
+		$('<ul>').appendTo('#farfalla_buttons');
 
 
-// Load the configuration selection form
+// Load the configuration selection form (in an iframe)
 
-			$('<iframe>').attr('src',farfalla_path+'form.html?updated='+Math.random()).attr('id','farfalla_iframe').prependTo('#farfalla_toolbar');
-
+		$('<iframe>').attr('src',farfalla_path+'form.html?updated='+Math.random()).attr('id','farfalla_iframe').prependTo('#farfalla_toolbar');
+//		$('#farfalla_toolbar').load(farfalla_path+'form.html?updated='+Math.random());
+	
 	}
 				
 // end "if" to determine wether to add the toolbar or not		
 
-		pm.bind("pass-cookie", function(data) {
-			$('<ul>').appendTo('#farfalla_active').hide();			
+	pm.bind("pass-cookie", function(data) {
+		$('<ul>').appendTo('#farfalla_active').hide();			
 
-			$.each(data.Plugin, function(i,plugin){
-		 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?updated='+Math.random());
-				$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
-				$('#farfalla_active ul').append('<li> | </li>');					
-			});
-
-			$('#farfalla_active ul').fadeIn(1000);
-			$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
-			$('#change_profile').click(function(){$.cookie('farfalla_plugins_cookie', null, { path: '/' }); location.reload();});
-
+		$.each(data.Plugin, function(i,plugin){
+	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?updated='+Math.random());
+			$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
+			$('#farfalla_active ul').append('<li> | </li>');					
 		});
+
+		$('#farfalla_active ul').fadeIn(1000);
+		$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
+		$('#change_profile').click(function(){$.cookie('farfalla_plugins_cookie', null, { path: '/' }); location.reload();});
+
+	});
 	
-		pm.bind("force-reload",function(){
-			window.location.reload();
-			
-		});
+	pm.bind("force-reload",function(){
+		window.location.reload();
+
+	});
+	
+/*	
+	#######################################
+	#                                     #
+	#    Reusable functions for plugins   #
+	#                                     #	
+	#######################################
+*/	
+	
+	// A function for adding buttons to the toolbar
+	// name -> text to display on the button
+	// id -> unique identifier for button: the final id will be something like button_buttonid
+	// callback -> a function to be triggered by that button
+
+	
+	$.fn.farfalla_add_button = function( name, id, callback ){
+		$('<li>').appendTo('#farfalla_buttons ul');
+		$('<img>').attr('src',farfalla_path+'images/'+id+'.jpg').attr('id','button_'+id).attr('alt', name).appendTo('#farfalla_buttons ul li:last');
+		$('#button_'+id).click(callback);
+	};
+
+
+
 });
-	

@@ -11,6 +11,8 @@
 	<script type="text/javascript">
 	
 	$(function(){
+
+
 		
 		pm({
 			target: window.parent,
@@ -22,7 +24,6 @@
 
 			$.each($.JSONCookie('farfalla_plugins_cookie').Plugin, function(i,plugin){
 				$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
-//				$('#farfalla_active ul').append('<li> | </li>');					
 			});
 
 
@@ -32,19 +33,30 @@
 				function(){
 					$.cookie('farfalla_plugins_cookie', null, { path: '/' }); 
 					window.location = 'form.html';
-				});
+		});
+
 
 	});
 
 	
 	
 	</script>
+	<style type="text/css" rel="stylesheet">
 
+	body{
+			background:#000;
+			font-family: Helvetica, Calibri, sans;
+			font-size: 12pt;
+			color: #fff;
+		}
+
+	</style>
 
 </head>
 	<body>
 		
 		<div id="farfalla_active"><p>Loaded plugin(s): </p></div>
+
 
 	</body>
 </html>
