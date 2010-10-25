@@ -40,7 +40,7 @@
 	// if not, retrieve the available profiles
 
 		$.getJSON(
-			farfalla_path+"profiles/index.php/profiles/menu/?callback=?",
+			"profiles/index.php/profiles/menu/?callback=?",
 			{},
 			function(data) {
 				$.each(data, function(value, name){
@@ -61,7 +61,7 @@
 	
 	
 			$.getJSON(
-				farfalla_path+"profiles/index.php/profiles/retrieve/"+farfalla_profile+"/?callback=?", {},
+				"profiles/index.php/profiles/retrieve/"+farfalla_profile+"/?callback=?", {},
 
 // Recall the plugins
 
