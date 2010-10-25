@@ -576,10 +576,9 @@ if (! ("JSON" in window && window.JSON)){JSON={}}(function(){function f(n){retur
 ###########################################
 */
 
-// var isInIFrame = (window.location != window.parent.location) ? true : false;
 
 //
-// Set the path for Farfalla install: use an url like http://localhost/farfalla/, with a final /
+// Set the path to main Farfalla scripts from the cookie set at every page load
 //
 
 function getFarfallaPath(){
@@ -597,25 +596,7 @@ if (document.cookie.length > 0) {
 	}
 }
 
-//alert(getFarfallaPath());
-
-//var farfalla_path = 'http://localhost/farfalla/';
 var farfalla_path = getFarfallaPath();
-
-// console.log(farfalla_path.search('\/'));
-
-
-/*
-if(isInIFrame == true){
-
-var hostname = window.location.hostname.toString();
-var pathname = window.location.pathname.toString();
-var dir = pathname.substr(0, pathname.lastIndexOf('/'));
-
-var farfalla_path = 'http://' + hostname + dir + '/';
-
-} // end iFrame check
-*/
 
 var headID = document.getElementsByTagName("head")[0];         
 var jqueryuiScript = document.createElement('script');
@@ -660,7 +641,7 @@ $(function() {
 
 // determine wether to add the toolbar or not
 
-	if(window.location.href.search(farfalla_path)!=0){
+	if(window.location.href.search(farfalla_path)!=0 || window.location.href.search('unimib.it')!=0){
 
 // Create the main toolbar
 

@@ -1,4 +1,4 @@
 .DS_Store
 *~
 *.txt
-profiles/app/config/database.php
+database.php
