@@ -641,7 +641,7 @@ $(function() {
 
 // determine wether to add the toolbar or not
 
-	if(window.location.href.search(farfalla_path)!=0 || window.location.href.search('unimib.it')!=0){
+	if(window.location.href.search(farfalla_path)=='-1' && window.location.href.search('unimib.it')=='-1'){
 
 // Create the main toolbar
 
