@@ -653,7 +653,7 @@ $(function() {
 
 // Load the configuration selection form (in an iframe)
 
-		$('<iframe>').attr('src',farfalla_path+'form.html?updated='+Math.random()).attr('id','farfalla_iframe').prependTo('#farfalla_toolbar');
+		$('<iframe>').attr('src',farfalla_path+'form.html?updated='+Math.random()).attr('id','farfalla_iframe').attr('frameborder','0').prependTo('#farfalla_toolbar');
 //		$('#farfalla_toolbar').load(farfalla_path+'form.html?updated='+Math.random());
 	
 	}
