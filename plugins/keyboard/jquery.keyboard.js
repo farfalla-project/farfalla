@@ -1,6 +1,6 @@
 /*
 jQuery UI Virtual Keyboard Widget
-Version 1.3
+Version 1.4.1
 
 Author: Jeremy Satterfield
 -----------------------------------------
@@ -70,21 +70,26 @@ CSS:
 TODO:
 
 Changelog:
-	1/17/2010 - 1.3 - Hide keyboard when clicking outside of keyboard
-					  Tweek positioning to fit better on screen if page 
-					  		scrolled or resized
-	1/15/2010 - 1.2 - Align keyboard with element it is called from
-					  Append keyboard DOM to elements parent instead of body
-    10/30/2009 - 1.1 - Change Preview window to clone the selected element
+    11/18/2010  1.4.1   Attach keyboard to the body tag for instances where 
+                            a parent element is position relative
+                        Add focus method to refocus the input preview so that 
+                            a cursor is visible
+                1.4     Update positioning to jQuery UI 1.8 position method
+                        Other tweaks for cleaning code
+    1/17/2010   1.3     Hide keyboard when clicking outside of keyboard
+					    Tweek positioning to fit better on screen if page 
+					  	    scrolled or resized
+	1/15/2010   1.2     Align keyboard with element it is called from
+					    Append keyboard DOM to elements parent instead of body
+    10/30/2009  1.1     Change Preview window to clone the selected element
                             to match the proper formatting of the element
                             (i.e. not showing characters in password fields)
-                       Add Return key to insert new lines into textareas
-                       Change style of Accept and Cancel buttons 
+                        Add Return key to insert new lines into textareas
+                        Change style of Accept and Cancel buttons 
                             to "ui-state-highlight" to standout
-                       Add ability for designer to create a custom keyboard 
+                        Add ability for designer to create a custom keyboard 
                             layout
-
-    10/21/2009 - 1.0 - initial build
+    10/21/2009  1.0     initial build
 */
 jQuery.widget('ui.keyboard', {
     
@@ -144,56 +149,50 @@ jQuery.widget('ui.keyboard', {
         var previewInput = keyboard.find('.ui-keyboard-preview');
         var decBtn = keyboard.find('[name=key_decimal]');
 		
-		$(document)
+		jQuery(document)
 			.unbind('mousedown', this._hideonexternalclick)
 			.bind('mousedown', this._hideonexternalclick);
 		
 		element
 			.focus(function(){
+                var element = jQuery(this)
 				jQuery('.ui-keyboard').hide();
                 previewInput
-                    .attr('value',element.attr('value'));
-		
-				//glad this function is in jquery-ui
-				elementPosition = jQuery.datepicker._findPos(element.get(0));
-				
-				offset = {
-					left : elementPosition[0],
-					top : elementPosition[1]
-				};
-				
-				//and this one too
-				offset = jQuery.datepicker._checkOffset({dpDiv:keyboard, settings:{}}, offset, false);
-				
+                    .val(element.val());
+
 				keyboard
-					.css({
-						position: "absolute",
-						left: offset.left + "px",
-						top: offset.top + "px"
-					})
-					.show();
+                    .position({
+                        of: element,
+                        my: "left top",
+                        at: "left top",
+                        collision: "fit",
+                    })
+                    .show();
 					
                 previewInput
-                    .scrollTop(previewInput.attr('scrollHeight'));
+                    .scrollTop(previewInput.attr('scrollHeight'))
+                    .focus();
 			});
 			
-		jQuery(element).parent()
+		jQuery('body')
 			.append(keyboard);
 
 		inputKeys
 			.click(function(){
  				previewInput
-                    .attr('value', previewInput.attr('value') + this.value)
+                    .val( previewInput.val() + this.value)
 			});
 
         allKeys.click(function(){
-            previewInput.scrollTop(previewInput.attr('scrollHeight'));
+            previewInput
+                .scrollTop(previewInput.attr('scrollHeight'))
+                .focus();
         })
 
         if(decBtn.length > 0){
             allKeys
                 .click(function(){
-                    if(/\./.test(previewInput.attr('value'))){
+                    if(/\./.test(previewInput.val())){
                         decBtn
                             .attr('disabled','disabled')
                             .removeClass('ui-state-default')
@@ -210,7 +209,7 @@ jQuery.widget('ui.keyboard', {
 	},
 	
 	_hideonexternalclick: function(e){
-		if($(e.target).closest('.ui-keyboard').length < 1){
+		if(jQuery(e.target).closest('.ui-keyboard').length < 1){
 			jQuery('.ui-keyboard').hide();
 		}
 	},
@@ -273,23 +272,23 @@ jQuery.widget('ui.keyboard', {
                         if(action == 'space'){
                             actionKey.clone()
                                 .attr('name','key_space')
-                                .attr('value','Space')
+                                .val('Space')
                                 .addClass('ui-keyboard-space')
                                 .click(function(){
-                                    previewInput.attr('value', 
-                                        previewInput.attr('value') + ' ');
+                                    previewInput.val( 
+                                        previewInput.val() + ' ');
                                 })
                                 .appendTo(newSet);
                         }else if(action == 'bksp'){
                             actionKey.clone()
                                 .attr('name','key_bksp')
-                                .attr('value','<Bksp')
+                                .val('<Bksp')
                                 .click(function(){
-                                    previewInput.attr('value', 
-                                        previewInput.attr('value').substring(
+                                    previewInput.val( 
+                                        previewInput.val().substring(
                                             0,
                                             previewInput
-                                                .attr('value').length - 1
+                                                .val().length - 1
                                         )
                                     );
                                 })
@@ -298,7 +297,7 @@ jQuery.widget('ui.keyboard', {
                         }else if(action == 'shift'){
                             actionKey.clone()
                                 .attr('name','key_shift')
-                                .attr('value','Shift')
+                                .val('Shift')
                                 .click(function(){
                                     hidden = container
                                         .find('.ui-keyboard-keyset:hidden');
@@ -311,12 +310,12 @@ jQuery.widget('ui.keyboard', {
                         }else if(action == 'accept'){
                             actionKey.clone()
                                 .attr('name','key_accept')
-                                .attr('value','Accept')
+                                .val('Accept')
                                 .addClass('ui-state-highlight')
                                 .removeClass('ui-state-active')
                                 .click(function(){
-                                    ui.element.attr('value', 
-                                        previewInput.attr('value')
+                                    ui.element.val( 
+                                        previewInput.val()
                                     );
                                     container.hide();
                                 })
@@ -324,7 +323,7 @@ jQuery.widget('ui.keyboard', {
                         }else if(action == 'cancel'){
                             actionKey.clone()
                                 .attr('name','key_cancel')
-                                .attr('value','Cancel')
+                                .val('Cancel')
                                 .addClass('ui-state-highlight')
                                 .removeClass('ui-state-active')
                                 .click(function(){
@@ -339,18 +338,18 @@ jQuery.widget('ui.keyboard', {
                         }else if(action == "dec"){
                             keyBtn.clone()
                                 .attr('name','key_decimal')
-                                .attr('value','.')
+                                .val('.')
                                 .appendTo(newSet);
                         }else if(action == "neg"){
                             actionKey.clone()
                                 .attr('name','key_negative')
-                                .attr('value','+/-')
+                                .val('+/-')
                                 .click(function(){
                                     if(/^\-?\d*\.?\d*$/.test(
-                                        previewInput.attr('value')
+                                        previewInput.val()
                                     )){
-                                        previewInput.attr('value', 
-                                            (previewInput.attr('value') * -1)
+                                        previewInput.val( 
+                                            (previewInput.val() * -1)
                                         );
                                     }
                                 })
@@ -358,10 +357,10 @@ jQuery.widget('ui.keyboard', {
                         }else if(action == "return"){
                             actionKey.clone()
                                 .attr('name','key_return')
-                                .attr('value','Return')
+                                .val('Return')
                                 .click(function(){
-                                    previewInput.attr('value', 
-                                            previewInput.attr('value') + ' \n'
+                                    previewInput.val( 
+                                            previewInput.val() + ' \n'
                                         );
                                 })
                                 .appendTo(newSet);
@@ -369,7 +368,7 @@ jQuery.widget('ui.keyboard', {
                     }else{
                         keyBtn.clone()
                             .attr('name','key_'+row+'_'+key)
-                            .attr('value',keys[key])
+                            .val(keys[key])
                             .appendTo(newSet);
                     }
                 }
@@ -381,4 +380,3 @@ jQuery.widget('ui.keyboard', {
 		return container;
 	}
 })
-

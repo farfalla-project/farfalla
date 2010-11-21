@@ -28,19 +28,19 @@ display:inline;
 }
 
 .farfalla_toolbar{
-border-top: 2px solid #999;
+/*border-top: 2px solid #999;
 border-left: 2px solid #999;
-border-right: 2px solid #999;
-border-bottom: 0;
+border-right: 2px solid #999;*/
+border: 0;
 background: #000;
 color: #fff;
 height: 40px;
 /*line-height: 40px;*/
-margin: 0 10%;
+margin: 0;
 padding: 0;
 bottom: 0px;
 position: fixed;
-width: 80%;
+width: 100%;
 z-index: 20000;
 }
 
