@@ -120,14 +120,14 @@ border: 1px solid #666;
 margin: .1em;
 }
 
+.ui-keyboard-keyset{
+
+}
+
+
 .ui-keyboard-actionkey{
 background: #eee;
 width: 4em;
-}
-
-.ui-keyboard-space{
-background: #fff;
-width: 15em;
 }
 
 .ui-keyboard-preview{

@@ -399,6 +399,7 @@ $(function() {
 
 	$('.ui-keyboard').css({
 		'width' : '60%',
+//		'padding' : '3px',
 		'background' : '#999',
 		'border' : '1px solid #666',
 		'position' : 'fixed', 
@@ -406,25 +407,25 @@ $(function() {
 		'left' : '20%',
 		'right' : '20%',
 		'align' : 'center',
-		'padding' : '1ex',
 		'bottom' : "36px"
-
 	});
 	
 	$('.ui-keyboard-preview').css({
-		'width' : '98%',
-		'margin' : '.1em'
+		'width' : '99%',
+		'margin' : '3px .5%'
 	});
 
 	$('.ui-keyboard-button').css({
-		width : "7%",
-		height : "28px", 
-		margin : ".1em",
+		width : "7.3%",
+//		height : "30%", 
+		margin : "2px .2%",
 		display : "inline"
 	});
 
 	$('.ui-keyboard-actionkey').css('width', '4em');
 
-	$('.ui-keyboard-space').css('width', '15em');
+	$('.ui-keyboard-space').css({
+		'width' : '27em'
+	});
 
 });
