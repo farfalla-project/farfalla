@@ -5,6 +5,10 @@ class ProfilesController extends AppController {
 	var $name = 'Profiles';
 	var $components = array('RequestHandler');
 
+	function beforeFilter() {
+	        $this->Auth->allow('menu','retrieve');
+	}
+
 	function index() {
 		$this->Profile->recursive = 0;
 		$this->set('profiles', $this->paginate());
