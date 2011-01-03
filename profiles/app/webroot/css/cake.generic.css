@@ -48,7 +48,7 @@ h1, h2, h3, h4 {
 h1 {
 	background:#fff;
 	color: #003d4c;
-	font-size: 100%;
+	font-size: 200%;
 }
 h2 {
 	background:#fff;
@@ -78,10 +78,11 @@ ul, li {
 	padding: 10px 20px;
 }
 #header h1 {
-	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
+	line-height:100px;
+	background: #003d4c url('../img/farfalla.icon.png') no-repeat left;
 	color: #fff;
-	padding: 0px 30px;
+	padding: 0px 100px;
+	font-family: Georgia, Times, serif;
 }
 #header h1 a {
 	color: #fff;
