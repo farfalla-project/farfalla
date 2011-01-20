@@ -82,8 +82,6 @@ $(function() {
 	$('html').keydown(function(event) {
 		
 	    var requestedAction = null;
-
- 
 	
     	switch (event.keyCode){
 
