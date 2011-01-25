@@ -5,6 +5,18 @@
 
 $(function(){
 
+/* PASTED CODE BEGINS HERE */
+
+
+	jQuery.expr[':'].hasText = function(element, index) {
+     // if there is only one child, and it is a text node
+     if (element.childNodes.length == 1 && element.firstChild.nodeType == 3) {
+        return jQuery.trim(element.innerHTML).length > 0;
+     }
+     return false;
+	};
+	
+
 /*
  * jQuery Keyboard Navigation Plugin - Current
  *   http://www.amountaintop.com/projects/keynav/
@@ -74,7 +86,7 @@ $(function(){
 	  e.pos = $.keynav.getPos(e);
 	  e.onClass = onClass;
 	  e.offClass = offClass;
-	  e.onmouseover = function (e) { $.keynav.setActive(this); };
+//	  e.onmouseover = function (e) { $.keynav.setActive(this); };
 	  kn.el.push(e);
   }
   $.keynav.setActive = function(e) {
@@ -87,6 +99,19 @@ $(function(){
 	  }
     $(e).removeClass(e.offClass).addClass(e.onClass);
 	  $(e).trigger('focus');
+	  
+/* Tiny tiny little code added for moving the highlighter :) */
+
+		var offset = $('.'+e.onClass).offset();
+
+//		$('#farfalla_debug').html($('.'+e.onClass).html());
+
+    	$('#highlighter').animate({'height' : $('.'+e.onClass).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.'+e.onClass).width() + 12 }, 300);
+    	
+//		$('#highlighter').scrollIntoView(true);
+		
+/* End of added code */
+	  
 	  kn.currentEl = e;
   }
   $.keynav.getCurrent = function () {
@@ -172,7 +197,7 @@ $(function(){
 
   $.keynav.activate = function () {
 	  var kn = $.keynav;
-	  $(kn.currentEl).trigger('click');
+	  $(kn.currentEl).trigger('click');	  
   }
 
   /**
@@ -210,6 +235,8 @@ $(function(){
     return isNaN(v) ? 0 : v;
   };
 
+/* PASTED CODE ENDS HERE */
+
 
 
 
@@ -217,33 +244,39 @@ $(function(){
 	
 // The highlighter div, taken from the magnifier plugin
 
+
 	$('<div id="highlighter">')
 	.addClass('highlighter')
 	.prependTo('body');
-	
-	
-/*	$('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd, div:hasText').each(function() {
+
+	$('<div id="farfalla_debug">')
+	.prependTo('body');
+
+
+	document.onkeydown = function(e) {
+    	var k = e.keyCode;
+	    if(k >= 37 && k <= 40) {
+    	    return false;
+	    }
+	}
+
+//	$('body').find('h1, h2, h3, h4, h5, p, li, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd').addClass('keynav_box');
+
+//	$('a').parent().click(function(){ $(this).children('a').trigger('click') });
+
+
+	var toFind = 'h1, h2, h3, h4, h5, p:visible, li:visible, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd';
+
+	$('body').find(toFind).addClass('keynav_box');
+
+	$('body').find(toFind).keynav('keynav_focusbox','keynav_box');
 		
-			
-		
-		});
+    // Set the first div as the one with focus, this is optional
+
+	$('.keynav_box:first').removeClass().addClass('keynav_focusbox');
+
+/*	var offset = $('.keynav_focusbox').offset();
+   	$('#highlighter').animate({'height' : $('.keynav_focusbox').height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.keynav_focusbox').width() + 12 }, 300);	
 */
 
-		$('body').find('h1, h2, h3, h4, h5, p, li, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd').addClass('keynav_box');
-
-		$('body').find('h1, h2, h3, h4, h5, p, li, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd').keynav('keynav_focusbox','keynav_box');
- 
-	    // Set the first div as the one with focus, this is optional
-
- //   	$('body *:first').removeClass().addClass('keynav_focusbox');
-    	
-    	
-    	
-		$('html').keydown(function(event) {
-
-			var offset = $('.keynav_focusbox').offset();
-    		$('#highlighter').animate({'height' : $('.keynav_focusbox').height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.keynav_focusbox').width() + 12 }, 300);			
-
-		});
 });
-	
