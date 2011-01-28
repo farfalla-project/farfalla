@@ -5,6 +5,10 @@
 
 $(function(){
 
+/* Importing the htmlClean plugin */
+
+	jQuery.getScript(farfalla_path +'jquery.htmlClean-min.js');
+
 /* PASTED CODE BEGINS HERE */
 
 
@@ -104,9 +108,10 @@ $(function(){
 
 		var offset = $('.'+e.onClass).offset();
 
-//		$('#farfalla_debug').html($('.'+e.onClass).html());
+		$('#farfalla_debug').html($.htmlClean($('.'+e.onClass).html()));
 
     	$('#highlighter').animate({'height' : $('.'+e.onClass).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.'+e.onClass).width() + 12 }, 300);
+
     	
 //		$('#highlighter').scrollIntoView(true);
 		
@@ -260,10 +265,7 @@ $(function(){
 	    }
 	}
 
-//	$('body').find('h1, h2, h3, h4, h5, p, li, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd').addClass('keynav_box');
-
-//	$('a').parent().click(function(){ $(this).children('a').trigger('click') });
-
+//	$('body').html($.htmlClean($(this).html(), { allowedTags : ['a', 'ul', 'ol', 'li', 'br', 'p'] }));
 
 	var toFind = 'h1, h2, h3, h4, h5, p:visible, li:visible, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd';
 
@@ -275,8 +277,5 @@ $(function(){
 
 	$('.keynav_box:first').removeClass().addClass('keynav_focusbox');
 
-/*	var offset = $('.keynav_focusbox').offset();
-   	$('#highlighter').animate({'height' : $('.keynav_focusbox').height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.keynav_focusbox').width() + 12 }, 300);	
-*/
 
 });
