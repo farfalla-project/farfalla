@@ -44,6 +44,10 @@ width: 100%;
 z-index: 20000;
 }
 
+.farfalla_hidden{
+visibility:hidden;
+}
+
 .farfalla_toolbar form{
 font-family: Helvetica, Calibri, sans;
 font-size: 12pt;

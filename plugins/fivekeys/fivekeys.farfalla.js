@@ -108,7 +108,7 @@ $(function(){
 
 		var offset = $('.'+e.onClass).offset();
 
-		$('#farfalla_debug').html($.htmlClean($('.'+e.onClass).html()));
+		$('#monitor').html($.htmlClean($('.'+e.onClass).html()));
 
     	$('#highlighter').animate({'height' : $('.'+e.onClass).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.'+e.onClass).width() + 12 }, 300);
 
@@ -254,7 +254,7 @@ $(function(){
 	.addClass('highlighter')
 	.prependTo('body');
 
-	$('<div id="farfalla_debug">')
+	$('<div id="monitor">')
 	.prependTo('body');
 
 
