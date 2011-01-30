@@ -11,7 +11,6 @@ $(function(){
 
 /* PASTED CODE BEGINS HERE */
 
-
 	jQuery.expr[':'].hasText = function(element, index) {
      // if there is only one child, and it is a text node
      if (element.childNodes.length == 1 && element.firstChild.nodeType == 3) {
