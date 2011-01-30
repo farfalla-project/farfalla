@@ -241,10 +241,6 @@ $(function(){
 
 /* PASTED CODE ENDS HERE */
 
-
-
-
-//	$.getScript(farfalla_path+'plugins/fivekeys/jquery.keynav.js');
 	
 // The highlighter div, taken from the magnifier plugin
 
@@ -254,7 +250,7 @@ $(function(){
 	.prependTo('body');
 
 	$('<div id="monitor">')
-	.prependTo('body');
+	.appendTo('body');
 
 
 	document.onkeydown = function(e) {
