@@ -10,6 +10,8 @@ $(function() {
      }
      return false;
 	};
+
+	$('ul').css('overflow','hidden');
 	
 	$('<div id="farfalla_debug">').prependTo('body');
 
@@ -93,7 +95,7 @@ $(function() {
 /* + chrome */  case 187 : $('div.monitor').animate({'fontSize': '+=10pt' }, 'fast' ); return false; break;
 
 /* . */         case 190 : $('#monitor').css('width', '45%').animate({'marginLeft': '50%' }, 'fast' ); return false; break;
-/* , */         case 188 : $('#monitor').toggleClass('hidden'); return false; break;
+/* , */         case 188 : $('#monitor, #highlighter').toggleClass('hidden'); return false; break;
 
 /* - */         case 109 : $('div.monitor').animate({'fontSize': '-=10pt' }, 'fast' ); return false; break;
 /* - chrome */  case 189 : $('div.monitor').animate({'fontSize': '-=10pt' }, 'fast' ); return false; break;

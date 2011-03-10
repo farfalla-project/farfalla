@@ -1,12 +1,27 @@
+<?php ?>
+
 <div class="profiles form">
 <?php echo $this->Form->create('Profile');?>
 	<fieldset>
  		<legend><?php __('Add Profile'); ?></legend>
+			
+	<p>This page allows you to create a custom profile from scratch. You can also clone <?php echo $this->Html->link(__('one of the existing profiles', true), array('action' => 'index')); ?> and edit it, adding or removing plugins.</p>
+
+	<h3>Step 1.</h3>
 	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('password');
-		echo $this->Form->input('description');
-		echo $this->Form->input('Plugin');
+		echo $this->Form->input('name', array('label'=>'Choose a name for your profile: it could be your own name, or a description of what it is useful for.'));
+	?>
+	<h3>Step 2.</h3>
+	<?php
+		echo $this->Form->input('password', array('label'=>'Choose a password: this will be required for editing your profile.'));
+	?>
+	<h3>Step 3.</h3>
+	<?php
+		echo $this->Form->input('description', array('label'=>'Enter a description for your profile. It could be useful for other people wishing to use it. Don\'t worry, you will never enter your personal data in your profile.'));
+	?>
+	<h3>Step 4.</h3>
+	<?php
+		echo $this->Form->input('Plugin', array('label'=>'Now select the plugins you wish to include in your profile.','class'=>'multiselect'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

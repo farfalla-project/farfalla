@@ -33,5 +33,9 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-    var $components = array('Auth','Session');
+
+    var $components = array('Session', 'Auth');
+
+    var $helpers = array('Html', 'Form', 'Ajax', 'Javascript', 'Session');
+
 }

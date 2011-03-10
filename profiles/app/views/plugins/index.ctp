@@ -2,11 +2,8 @@
 	<h2><?php __('Plugins');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -18,11 +15,8 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $plugin['Plugin']['id']; ?>&nbsp;</td>
-		<td><?php echo $plugin['Plugin']['name']; ?>&nbsp;</td>
+		<td><strong><?php echo $plugin['Plugin']['name']; ?></strong>&nbsp;</td>
 		<td><?php echo $plugin['Plugin']['description']; ?>&nbsp;</td>
-		<td><?php echo $plugin['Plugin']['created']; ?>&nbsp;</td>
-		<td><?php echo $plugin['Plugin']['modified']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $plugin['Plugin']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $plugin['Plugin']['id'])); ?>

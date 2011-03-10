@@ -31,6 +31,16 @@ class ProfilesController extends AppController {
 	    $this->RequestHandler->setContent('json', 'text/x-json');		$this->set('profile', $this->Profile->read(null, $id));
 	}
 
+	function duplicate($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid Profile.', true));
+			$this->redirect(array('action'=>'index'));
+		} else {
+			$this->Plant->copy($id);
+			$this->Session->setFlash(__('The selected Profile was successfully cloned!', true));
+			$this->redirect(array('action'=>'index'));
+		}
+	}
 
 	function view($id = null) {
 		if (!$id) {

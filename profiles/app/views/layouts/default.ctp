@@ -30,6 +30,12 @@
 
 		echo $this->Html->css('cake.generic');
 
+		echo $this->Html->css('farfalla.backend');
+
+		echo $javascript->link(array('jquery','jquery-ui','jquery.simpleMultiSelect','farfalla.effects')); 
+
+		echo $this->Html->css('jquery-ui-1.8.10.custom');
+		
 		echo $scripts_for_layout;
 	?>
 </head>
