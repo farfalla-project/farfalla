@@ -5,7 +5,7 @@ $(function(){
 //  $(".multiselect").multiselect({sortable: false, searchable: false});
 
 
-$('.multiselect').simpleMultiSelect({
+/* $('.multiselect').simpleMultiSelect({
     classesOnly : true, 
     pseudoSelect : 'custom-select-box', 
     selected : 'custom-select',
@@ -13,6 +13,8 @@ $('.multiselect').simpleMultiSelect({
     disabled : 'custom-disabled',
     optgroup : 'custom-optgroup',
     optgroupLabel : 'custom-optgroup-label'
-});
+}); */
+
+$('.checkbox input').button();
     
 });

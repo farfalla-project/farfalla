@@ -9,19 +9,19 @@
 
 	<h3>Step 1.</h3>
 	<?php
-		echo $this->Form->input('name', array('label'=>'Choose a name for your profile: it could be your own name, or a description of what it is useful for.'));
+		echo $this->Form->input('name', array('label'=>__('Choose a name for your profile: it could be your own name, or a description of what it is useful for.', true)));
 	?>
 	<h3>Step 2.</h3>
 	<?php
-		echo $this->Form->input('password', array('label'=>'Choose a password: this will be required for editing your profile.'));
+		echo $this->Form->input('password', array('label'=>__('Choose a password: this will be required for editing your profile.', true)));
 	?>
 	<h3>Step 3.</h3>
 	<?php
-		echo $this->Form->input('description', array('label'=>'Enter a description for your profile. It could be useful for other people wishing to use it. Don\'t worry, you will never enter your personal data in your profile.'));
+		echo $this->Form->input('description', array('label'=>__('Enter a description for your profile. It could be useful for other people wishing to use it. Don\'t worry, you will never enter your personal data in your profile.', true)));
 	?>
 	<h3>Step 4.</h3>
 	<?php
-		echo $this->Form->input('Plugin', array('label'=>'Now select the plugins you wish to include in your profile.','class'=>'multiselect'));
+		echo $this->Form->input('Plugin', array('label'=>__('Now select the plugins you wish to include in your profile.', true),'multiple' => 'checkbox'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

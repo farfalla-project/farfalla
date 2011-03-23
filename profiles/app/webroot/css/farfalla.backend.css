@@ -32,3 +32,19 @@ div.custom-select-box div.custom-optgroup-label{
     padding:5px;
     font-weight:bold;
 }
+
+input[type=checkbox] {
+	clear: left;
+	float: left;
+	margin: 1em;
+	width: auto;
+}
+div.checkbox label {
+	float:left;
+	display: block;
+}
+
+div.checkbox {
+/*	display: inline; 
+	margin: 16px; */
+}

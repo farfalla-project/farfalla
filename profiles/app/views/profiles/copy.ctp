@@ -2,13 +2,12 @@
 <div class="profiles form">
 <?php echo $this->Form->create('Profile');?>
 	<fieldset>
- 		<legend><?php __('Edit Profile'); ?></legend>
+ 		<legend><?php __('Copy Profile'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('name', array('label'=>__('This is the name for your profile: it could be your own name, or a description of what it is useful for.', true)));
+		echo $this->Form->input('name', array('label'=>__('Choose a new name for your version of this profile. Remember this one was originally called <strong>', true) . $this->data['Profile']['name'] . '</strong>', 'value'=>''));
 //		echo $this->Form->input('password');
 		echo $this->Form->input('description', array('label'=>__('This is a description for your profile. It could be useful for other people wishing to use it.', true)));
-		echo $this->Form->input('Plugin', array('label'=>__('These are the plugins you wish to include in your profile.', true),'multiple' => 'checkbox'));
+		echo $this->Form->input('Plugin', array('label'=>__('These are the plugins available for inclusion in your profile.', true),'multiple' => 'checkbox'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

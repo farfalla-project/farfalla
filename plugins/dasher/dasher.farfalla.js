@@ -18,6 +18,7 @@ var dasherDiv = $('<div id="farfalla_dasher"></div>');
 		'position':'absolute',
 		'top':0,
 		'left':0,
+		'height':'90%',
 		'width':'100%'
 	});
 

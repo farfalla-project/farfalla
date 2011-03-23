@@ -20,8 +20,11 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $profile['Profile']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $profile['Profile']['id'])); ?>
-			<?php echo $this->Html->link(__('Clone', true), array('action' => 'duplicate', $profile['Profile']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $profile['Profile']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $profile['Profile']['id'])); ?>
+			<br />
+			<br />
+			<?php echo $this->Html->link(__('New profile from this template', true), array('action' => 'copy', $profile['Profile']['id'])); ?>
+			
 		</td>
 	</tr>
 <?php endforeach; ?>

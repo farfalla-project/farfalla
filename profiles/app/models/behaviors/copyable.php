@@ -316,4 +316,4 @@ class CopyableBehavior extends ModelBehavior {
 		return true;
 	}
 	
-} ?>
+}

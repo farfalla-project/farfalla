@@ -21,25 +21,8 @@ class ProfilesController extends AppController {
 	}
 
 	function retrieve($id = null) {
-		/*
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid profile', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		*/
 		$this->layout = 'ajax';
 	    $this->RequestHandler->setContent('json', 'text/x-json');		$this->set('profile', $this->Profile->read(null, $id));
-	}
-
-	function duplicate($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid Profile.', true));
-			$this->redirect(array('action'=>'index'));
-		} else {
-			$this->Plant->copy($id);
-			$this->Session->setFlash(__('The selected Profile was successfully cloned!', true));
-			$this->redirect(array('action'=>'index'));
-		}
 	}
 
 	function view($id = null) {
@@ -83,6 +66,29 @@ class ProfilesController extends AppController {
 		$plugins = $this->Profile->Plugin->find('list');
 		$this->set(compact('plugins'));
 	}
+
+
+	function copy($id = null) {
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid profile', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->data)) {
+			$this->Profile->create();
+			if ($this->Profile->save($this->data)) {
+				$this->Session->setFlash(__('The profile has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The profile could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this->data)) {
+			$this->data = $this->Profile->read(null, $id);
+		}
+		$plugins = $this->Profile->Plugin->find('list');
+		$this->set(compact('plugins'));
+	}
+
 
 	function delete($id = null) {
 		if (!$id) {
