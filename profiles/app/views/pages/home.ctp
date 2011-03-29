@@ -9,4 +9,6 @@
 </p>
 
 <h3>Create your profile</h3>
-<p>Access the profile creation tutorial.</p>
+<p>
+	<?php echo $this->Html->link(__('Access the profile creation page.', true), array('controller' => 'profiles', 'action' => 'add')); ?>
+</p>

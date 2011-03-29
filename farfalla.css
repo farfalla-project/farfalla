@@ -216,6 +216,11 @@ visibility: hidden;
 margin: 0 10px 10px 10px;
 border: 1px solid #ccc;
 padding: 5px;
+display:inline;
+float:left;
+}
+
+.addalt_overlay{
 }
 
 .keynav_focusbox{

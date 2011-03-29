@@ -67,9 +67,9 @@ $(function() {
 
 				$('#monitor')
 					.html($.htmlClean($(this).html(), { allowedTags : ['a', 'ul', 'ol', 'li', 'br', 'p'] })+$(this).val())
-					.css('margin-top', ($(window).scrollTop()) + 'px');
+					.css({'margin-top' : ($(window).scrollTop()) + 'px', 'font-size' : '30pt' });
 
-				$('#monitor a').each( function(i){
+				$('#monitor a').css({ 'font-size' : '30pt' }).each( function(i){
    					$(this).append('<span style="color:violet;"> ['+ (i+1) +']</span>');
 				});
 

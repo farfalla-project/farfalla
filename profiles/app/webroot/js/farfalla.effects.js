@@ -16,5 +16,9 @@ $(function(){
 }); */
 
 $('.checkbox input').button();
-    
+
+$('.actions ul li a').button();
+
+$('.submit input').button();
+
 });
