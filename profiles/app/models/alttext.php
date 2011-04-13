@@ -16,7 +16,7 @@ class Alttext extends AppModel {
 		'url' => array(
 			'url' => array(
 				'rule' => array('url'),
-				//'message' => 'Your custom message here',
+				//'message' => 'The one you entered doesn't seem to be a valid url...',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -26,7 +26,7 @@ class Alttext extends AppModel {
 		'text' => array(
 			'alphanumeric' => array(
 				'rule' => array('alphanumeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Only letters, numbers and spaces, please...',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -64,6 +64,6 @@ class Alttext extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)
-	);
-}
+	); 
+} 
 ?>

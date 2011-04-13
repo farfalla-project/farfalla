@@ -1,18 +1,27 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="it">
 <head>
 	
 	<link type="text/css" rel="stylesheet" href="farfalla.css" />
+    <link href="languages/javascript.en.json" lang="en" rel="gettext" />
+    <link href="languages/javascript.it.json" lang="it" rel="gettext" />
 	<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="postmessage.js"></script>
 	<script type="text/javascript" src="jquery.cookie.js"></script>
 	<script type="text/javascript" src="jquery.jsoncookie.js"></script>
     <script type="text/javascript" src="postmessage.js"></script>
-	
+    <script type="text/javascript" src="jquery.gettext.js"></script>
+
 	<script type="text/javascript">
-	
+
+//	I18n code powered by jQuery GetText Plugin
+
+	$.gt.load();
+	$.getScript('languages/translations.catalog.js');
+
+//  	
+
 	$(function(){
-
-
 		
 		pm({
 			target: window.parent,
@@ -28,7 +37,7 @@
 
 
 			$('#farfalla_active ul').show();
-			$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
+			$('#farfalla_active ul').append('<li><input type="button" id="change_profile" /></li>');					
 			$('#change_profile').click(
 				function(){
 					$.cookie('farfalla_plugins_cookie', null, { path: '/' }); 
@@ -61,7 +70,7 @@
 </head>
 	<body>
 		
-		<div id="farfalla_active"><p>Loaded plugin(s): </p></div>
+		<div id="farfalla_active"><p id="farfalla_loaded_plugins"></p></div>
 
 
 	</body>

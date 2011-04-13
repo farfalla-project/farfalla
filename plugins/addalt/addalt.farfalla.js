@@ -1,6 +1,24 @@
 ﻿// Farfalla plugin: Add Alt Attribute
 
+
+
 $(function() {
+
+
+function getXPath( element )
+{
+    var xpath = '';
+
+    for ( ; element && element.nodeType == 1; element = element.parentNode ){
+
+	    var id = $(element.parentNode).children(element.tagName).index(element) 	+ 1;
+    	    // id > 1 ? (id = '[' + id + ']') : (id = '');
+		id = id > 1 ? ('[' + id + ']') : '';
+    	    xpath = '/' + element.tagName.toLowerCase() + id + xpath;
+	    }
+    	return xpath;
+	}
+
 
   $('body').append('<div id="dialog-form" />');
 

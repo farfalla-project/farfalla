@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-01-29 14:30-0500\n"
+"PO-Revision-Date: 2011-04-13 18:28+0100\n"
+"Last-Translator: Andrea Mangiatordi <andrea.mangiatordi@gmail.com>\n"
+"Language-Team: en <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: languages/translations.catalog.js:3
+msgid "magnifier"
+msgstr "ingranditore"
+
+#: languages/translations.catalog.js:6
+msgid "Choose your profile..."
+msgstr "Scegli un profilo..."
+
+#: languages/translations.catalog.js:7
+msgid "Activate profile"
+msgstr "Attiva profilo"
+
+#: languages/translations.catalog.js:10
+msgid "Loaded plugin(s):"
+msgstr "Plugin caricati:"
+
+#: languages/translations.catalog.js:11
+msgid "Change profile"
+msgstr "Cambia profilo"
+
+#~ msgid "+r:"
+#~ msgstr "+r:"
+
+#~ msgid "+E:"
+#~ msgstr "+E:"
+
+#~ msgid "undefined"
+#~ msgstr "undefined"
+
+#~ msgid "Humpty Dumpty sat on a wall,"
+#~ msgstr "Humpty Dumpty sedeva sul muro,"
+
+#~ msgid "Humpty Dumpty had a great fall."
+#~ msgstr "Humpty Dumpty cadde sul duro."
+
+#~ msgid "All the king's horses, And all the king's men,"
+#~ msgstr "Tutte le guardie e i cavalli del re"
+
+#~ msgid "Couldn't put Humpty together again."
+#~ msgstr "pi&ugrave; non riuscirono a metterlo in pi&eacute;."
+
+#~ msgid "...whatever!"
+#~ msgstr "... n'importe-quoi!"
+
+#~ msgid "like..."
+#~ msgstr "comme..."
+
+#~ msgid "ho yeah..."
+#~ msgstr "Ho ouiiii!"
+
+#~ msgid "Ho noooes!"
+#~ msgstr "Ho nooon!"
+
+#~ msgid "No"
+#~ msgstr "Non"

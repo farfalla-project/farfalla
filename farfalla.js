@@ -615,6 +615,10 @@ var jqueryjsoncookieScript = document.createElement('script');
 jqueryjsoncookieScript.type = 'text/javascript';
 jqueryjsoncookieScript.src = farfalla_path+'jquery.jsoncookie.js';
 headID.appendChild(jqueryjsoncookieScript);
+/*var jquerygettextScript = document.createElement('script');
+jquerygettextScript.type = 'text/javascript';
+jquerygettextScript.src = farfalla_path+'jquery.gettext.js';
+headID.appendChild(jquerygettextScript);*/
 /*
 var jquerypostmessageScript = document.createElement('script');
 jquerypostmessageScript.type = 'text/javascript';
@@ -656,10 +660,12 @@ $(function() {
 		$('<iframe>').attr('src',farfalla_path+'form.html').attr('id','farfalla_iframe').attr('frameborder','0').prependTo('#farfalla_toolbar');
 //		$('<iframe>').attr('src',farfalla_path+'form.html?updated='+Math.random()).attr('id','farfalla_iframe').attr('frameborder','0').prependTo('#farfalla_toolbar');
 //		$('#farfalla_toolbar').load(farfalla_path+'form.html?updated='+Math.random());
-	
+
+// end "if" to determine wether to add the toolbar or not			
 	}
 				
-// end "if" to determine wether to add the toolbar or not		
+
+// call the plugins associated to the selected profile
 
 	pm.bind("pass-cookie", function(data) {
 		$('<ul>').appendTo('#farfalla_active').hide();			
@@ -667,7 +673,7 @@ $(function() {
 		$.each(data.Plugin, function(i,plugin){
 	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
 //	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?updated='+Math.random());
-			$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
+			$('#farfalla_active ul').append('<li>'+$.gt.gettext(plugin.name)+'</li>');					
 			$('#farfalla_active ul').append('<li> | </li>');					
 		});
 
@@ -698,7 +704,7 @@ $(function() {
 	
 	$.fn.farfalla_add_button = function( name, id, callback ){
 		$('<li>').appendTo('#farfalla_buttons ul');
-		$('<img>').attr('src',farfalla_path+'images/'+id+'.jpg').attr('id','button_'+id).attr('alt', name).appendTo('#farfalla_buttons ul li:last');
+		$('<img>').attr('src',farfalla_path+'images/'+id+'.jpg?updated='+Math.random()).attr('id','button_'+id).attr('alt', name).appendTo('#farfalla_buttons ul li:last');
 		$('#button_'+id).click(callback);
 	};
 

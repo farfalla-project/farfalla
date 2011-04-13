@@ -1,15 +1,28 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="it">
 <head>
 
+    <link href="languages/javascript.en.json" lang="en" rel="gettext" />
+    <link href="languages/javascript.it.json" lang="it" rel="gettext" />
 	<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="json2.js"></script>
 	<script type="text/javascript" src="jquery.cookie.js"></script>
 	<script type="text/javascript" src="jquery.jsoncookie.js"></script>
 	<script type="text/javascript" src="postmessage.js"></script>
+    <script type="text/javascript" src="jquery.gettext.js"></script>
+
 	<script type="text/javascript">
 
 
-	$(function(){
+//	I18n code powered by jQuery GetText Plugin
+
+	$.gt.load();
+	$.getScript('languages/translations.catalog.js');
+
+//  
+
+	$(function(){	
+
 
 	function getFarfallaPath(){
 		var search = 'farfalla_path=';
@@ -110,10 +123,10 @@
 	<body>
 		<form id="farfalla_toolbar_form" action="#">
 		<select id="farfalla_profile" name="farfalla_profile">
-			<option class="choose">Choose your profile...</option>
+			<option class="choose" id="farfalla_profile_chooser"></option>
 			<!-- Don't look for profiles here, they are loaded dynamically! -->
 		</select>
-		<input type="submit" id="farfalla_activator" value="get preferences" />
+		<input type="submit" id="farfalla_activator" />
 		</form>
 	</body>
 </html>

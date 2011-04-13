@@ -18,11 +18,13 @@ $(function() {
 	$('<div id="monitor">')
 	.html('<p style="font-size:30pt">Farfalla Magnification module: active</p>')
 	.addClass('monitor')
+	.addClass('ui-corner-all')
 	.prependTo('body')
 	.fadeIn(300);
 
 	$('<div id="highlighter">')
 	.addClass('highlighter')
+	.addClass('ui-corner-all')
 	.prependTo('body');
 
 	$('#highlighter').click(
