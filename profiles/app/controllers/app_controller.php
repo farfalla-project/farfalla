@@ -38,4 +38,8 @@ class AppController extends Controller {
 
     var $helpers = array('Html', 'Form', 'Ajax', 'Javascript', 'Session');
 
+	function beforeFilter() {
+	        $this->Auth->allow('display');
+	}
+
 }
