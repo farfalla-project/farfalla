@@ -2,8 +2,16 @@
 class Profile extends AppModel {
 	var $name = 'Profile';
 	var $displayField = 'name';
-	
-	var $actsAs = array('Copyable' => array('stripFields' => array('id', 'created', 'modified', 'name')));
+
+	var $actsAs = array(
+	  'Copyable' => array(
+	    'stripFields' => array('id', 'created', 'modified', 'name')
+	  ), 
+	  'Translate' => array(
+	    'name' => 'nameTranslation',
+	    'description' => 'descriptionTranslation',
+	  )
+	);
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed

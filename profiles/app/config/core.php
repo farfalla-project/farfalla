@@ -35,6 +35,19 @@
  */
 	Configure::write('debug', 0);
 
+/* Check if agent's language is supported */
+
+    $agent_language = "eng"; // Default
+
+    switch ($_SERVER['HTTP_ACCEPT_LANGUAGE']) {
+      case "it-it" : $agent_language = "eng";
+      break;
+    }
+
+
+
+	Configure::write('Config.language', $agent_language);
+
 /**
  * CakePHP Log Level:
  *

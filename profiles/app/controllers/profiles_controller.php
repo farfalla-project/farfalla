@@ -11,6 +11,7 @@ class ProfilesController extends AppController {
 
 	function index() {
 		$this->Profile->recursive = 0;
+//		$this->Profile->bindTranslation(array ('name' => 'nameTranslation'));
 		$this->set('profiles', $this->paginate());
 	}
 

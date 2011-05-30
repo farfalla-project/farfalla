@@ -23,12 +23,12 @@
 			$('<ul>').appendTo('#farfalla_active').hide();			
 
 			$.each($.JSONCookie('farfalla_plugins_cookie').Plugin, function(i,plugin){
-				$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
+				$('#farfalla_active ul').prepend('<li>'+plugin.name+'</li>');					
 			});
 
 
-			$('#farfalla_active ul').show();
-			$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
+//			$('#farfalla_active ul').show();
+//			$('#farfalla_active ul').append('');					
 			$('#change_profile').click(
 				function(){
 					$.cookie('farfalla_plugins_cookie', null, { path: '/' }); 
@@ -61,7 +61,17 @@
 </head>
 	<body>
 		
-		<div id="farfalla_active"><p>Loaded plugin(s): </p></div>
+		<div id="farfalla_active">
+		
+			<p><?php __('Loaded plugin(s): ', false) ?></p>
+        
+	        <ul>
+				<li>
+					<input type="button" id="change_profile" value="<?php __('change profile', false); ?>" />
+				</li>
+			</ul>			
+			
+		</div>
 
 
 	</body>

@@ -110,10 +110,10 @@
 	<body>
 		<form id="farfalla_toolbar_form" action="#">
 		<select id="farfalla_profile" name="farfalla_profile">
-			<option class="choose">Choose your profile...</option>
+			<option class="choose"><?php __('Choose your profile...',false); ?></option>
 			<!-- Don't look for profiles here, they are loaded dynamically! -->
 		</select>
-		<input type="submit" id="farfalla_activator" value="get preferences" />
+		<input type="submit" id="farfalla_activator" value="<?php __('get preferences',false); ?>" />
 		</form>
 	</body>
 </html>
