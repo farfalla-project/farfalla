@@ -681,7 +681,7 @@ $(function() {
 	
 	$.fn.farfalla_add_button = function( name, id, callback ){
 		$('<li></li>').appendTo('#farfalla_buttons ul');
-		$('<img></img>').attr('src',farfalla_path+'images/'+id+'.jpg?updated='+Math.random()).attr('id','button_'+id).attr('alt', name).appendTo('#farfalla_buttons ul li:last');
+		$('<img></img>').attr('src',farfalla_path+'images/'+id+'.jpg').attr('id','button_'+id).attr('alt', name).appendTo('#farfalla_buttons ul li:last');
 		$('#button_'+id).click(callback);
 	};
 
