@@ -27,8 +27,6 @@
 			});
 
 
-//			$('#farfalla_active ul').show();
-//			$('#farfalla_active ul').append('');					
 			$('#change_profile').click(
 				function(){
 					$.cookie('farfalla_plugins_cookie', null, { path: '/' }); 

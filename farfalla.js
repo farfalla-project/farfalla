@@ -649,9 +649,11 @@ $(function() {
 		$('<ul></ul>').appendTo('#farfalla_active').hide();			
 
 		$.each(data.Plugin, function(i,plugin){
-	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js' //, 
+//	 		  function() { alert('Load of '+plugin.name+' was performed.'); }
+	 		);
 			$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
-			$('#farfalla_active ul').append('<li> | </li>');					
+			$('#farfalla_active ul').append('<li> | </li>');
 		});
 
 		$('#farfalla_active ul').fadeIn(1000);
