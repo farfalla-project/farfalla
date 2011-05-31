@@ -681,9 +681,15 @@ $(function() {
 	// callback -> a function to be triggered by the button
 
 	
-	$.fn.farfalla_add_button = function( name, id, callback ){
+	$.fn.farfalla_add_button = function( name, id, accesskey, callback ){
 		$('<li></li>').appendTo('#farfalla_buttons ul');
-		$('<img></img>').attr('src',farfalla_path+'images/'+id+'.jpg').attr('id','button_'+id).attr('alt', name).appendTo('#farfalla_buttons ul li:last');
+		$('<img></img>')
+		  .attr({
+		    'src':farfalla_path+'images/'+id+'.jpg',
+		    'id':'button_'+id,
+		    'alt':name,
+		    'accesskey':accesskey})
+		  .appendTo('#farfalla_buttons ul li:last');
 		$('#button_'+id).click(callback);
 	};
 

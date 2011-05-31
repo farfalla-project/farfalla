@@ -5,7 +5,7 @@ $(function() {
 
 
   // Increase Font Size
-  $('#farfalla_buttons').farfalla_add_button('+','fontsize_increase',function(){
+  $('#farfalla_buttons').farfalla_add_button('+','fontsize_increase','a',function(){
 	    var currentFontSize = $('html').css('font-size');
 	    var currentFontSizeNum = parseFloat(currentFontSize, 10);
 	    var newFontSize = currentFontSizeNum*1.2;
@@ -14,7 +14,7 @@ $(function() {
   });
   
   // Decrease Font Size
-  $('#farfalla_buttons').farfalla_add_button('-','fontsize_decrease',function(){
+  $('#farfalla_buttons').farfalla_add_button('-','fontsize_decrease','z',function(){
   		var currentFontSize = $('html').css('font-size');
   		var currentFontSizeNum = parseFloat(currentFontSize, 10);
   		var newFontSize = currentFontSizeNum*0.8;

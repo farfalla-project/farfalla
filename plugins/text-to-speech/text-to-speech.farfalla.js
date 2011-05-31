@@ -12,7 +12,7 @@ $(function() {
       supplied: "mp3"
     });
 
-   $('#farfalla_buttons').farfalla_add_button('say this', 'say_this', function(){
+   $('#farfalla_buttons').farfalla_add_button('say this', 'say_this', 's', function(){
      $('#farfalla_jplayer').jPlayer("setMedia", {
 	    mp3: "http://speech.jtalkplugin.com/api/?speech="+$('#monitor').html()
      }).jPlayer("play");
