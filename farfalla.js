@@ -678,6 +678,7 @@ $(function() {
 	// A function for adding buttons to the toolbar
 	// name -> text to display on the button
 	// id -> unique identifier for button: the final id will be something like button_buttonid
+	// accesskey -> the value for the accesskey attribute useful for activating the buttons from the keyboard
 	// callback -> a function to be triggered by the button
 
 	
@@ -687,10 +688,10 @@ $(function() {
 		  .attr({
 		    'src':farfalla_path+'images/'+id+'.jpg',
 		    'id':'button_'+id,
-		    'alt':name,
-		    'accesskey':accesskey})
+		    'alt':name})
 		  .appendTo('#farfalla_buttons ul li:last');
-		$('#button_'+id).click(callback);
+		$('#button_'+id).wrap('<a accesskey="'+accesskey+'"></a>');
+		$('#button_'+id).parent('a').click(callback);
 	};
 
 
