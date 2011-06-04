@@ -1,3 +1,7 @@
+/*
+Farfalla code is at the bottom, after jquery...
+*/
+
 /*!
  * jQuery JavaScript Library v1.4.2
  * http://jquery.com/
@@ -626,7 +630,7 @@ $(function() {
 
 // determine wether to add the toolbar or not
 
-	if(window.location.href.search(farfalla_path)=='-1' && window.location.href.search('unimib.it')=='-1'){
+	if(window.location.href.search(farfalla_path)=='-1' && window.location.href.search('lisp8.formazione.unimib.it')=='-1'){
 
 // Create the main toolbar
 
@@ -637,7 +641,67 @@ $(function() {
 
 // Load the configuration selection form (in an iframe)
 
-		$('<iframe></iframe>').attr('src',farfalla_path+'profiles/index.php/pages/form').attr('id','farfalla_iframe').attr('frameborder','0').prependTo('#farfalla_toolbar');
+//		$('<iframe></iframe>').attr('src',farfalla_path+'profiles/index.php/pages/form').attr('id','farfalla_iframe').attr('frameborder','0').prependTo('#farfalla_toolbar');
+
+        $('<div></div>').attr('id','farfalla_selection').prependTo('#farfalla_toolbar');
+
+		$('<form></form>').attr({'id':'farfalla_toolbar_form','action':'#','method':'post'}).appendTo('#farfalla_selection');
+		$('<select></select>').attr({'id':'farfalla_profile','name':'farfalla_profile'}).appendTo('#farfalla_toolbar_form');
+			$('<option></option>').addClass('choose').html('Choose your profile...').appendTo('#farfalla_profile');
+
+		$('<input></input>').attr({'type':'submit','id':'farfalla_activator','value':'get preferences'}).appendTo('#farfalla_toolbar_form');
+
+			$.getJSON(
+			farfalla_path+"profiles/index.php/profiles/menu/?callback=?",
+			{},
+			function(data) {
+				$.each(data, function(value, name){
+					$('<option>').attr('value', value).text(name).appendTo('#farfalla_profile');
+				});
+//				$('#farfalla_toolbar_form').show();
+			}
+			);
+
+
+	$("#farfalla_activator").click(function() {
+	
+			var farfalla_profile = $('#farfalla_profile').val();
+	
+	
+			$.getJSON(
+				farfalla_path+"profiles/index.php/profiles/retrieve/"+farfalla_profile+"/?callback=?", {},
+
+// Recall the plugins
+
+				function(data) {
+
+					$.cookie('farfalla_plugins_cookie', JSON.stringify(data), { path: '/', expires: 10 });
+
+					$('#farfalla_toolbar_form').fadeOut(1000);
+					pm({
+						target: window,
+						type: "force-reload"
+					});
+				}
+			);
+
+
+
+			// stop the call to the form "action"
+			return false;					
+
+	});
+
+
+/*		$.get(farfalla_path+'profiles/index.php/profiles/index2', function(data) {
+		  $('#selection').html(data);
+		  alert('Load was performed.');
+		  $("#farfalla_activator").click(function() {
+			// stop the call to the form "action"
+			return false;
+		  });
+		});
+*/
 
 // end "if" to determine wether to add the toolbar or not			
 	}
@@ -666,6 +730,10 @@ $(function() {
 		window.location.reload();
 
 	});
+
+
+	
+	
 	
 /*	
 	#######################################

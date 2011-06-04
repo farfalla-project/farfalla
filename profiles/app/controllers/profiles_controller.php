@@ -6,10 +6,17 @@ class ProfilesController extends AppController {
 	var $components = array('RequestHandler');
 
 	function beforeFilter() {
-	        $this->Auth->allow('menu','retrieve');
+	        $this->Auth->allow('menu','retrieve','index2');
 	}
 
 	function index() {
+		$this->Profile->recursive = 0;
+//		$this->Profile->bindTranslation(array ('name' => 'nameTranslation'));
+		$this->set('profiles', $this->paginate());
+	}
+
+	function index2() {
+		$this->layout = 'ajax';
 		$this->Profile->recursive = 0;
 //		$this->Profile->bindTranslation(array ('name' => 'nameTranslation'));
 		$this->set('profiles', $this->paginate());
