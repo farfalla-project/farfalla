@@ -177,7 +177,7 @@
  * characters."
  * @link http://php.net/session_name
  */
-	Configure::write('Session.cookie', 'CAKEPHP');
+	Configure::write('Session.cookie', 'FARFALLA');
 
 /**
  * Session time out time (in minutes).

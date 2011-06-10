@@ -6,7 +6,7 @@ class ProfilesController extends AppController {
 	var $components = array('RequestHandler');
 
 	function beforeFilter() {
-	        $this->Auth->allow('menu','retrieve','index2');
+	        $this->Auth->allow('menu','retrieve','reset','status');
 	}
 
 	function index() {
@@ -15,22 +15,39 @@ class ProfilesController extends AppController {
 		$this->set('profiles', $this->paginate());
 	}
 
-	function index2() {
-		$this->layout = 'ajax';
-		$this->Profile->recursive = 0;
-//		$this->Profile->bindTranslation(array ('name' => 'nameTranslation'));
-		$this->set('profiles', $this->paginate());
-	}
-
 	function menu() {
+		$this->Session->start();
+/*		if($this->Session->read('id')){
+			$this->redirect(array('action' => 'retrieve/'.$this->Session->read('id').'/?callback='.$_GET['callback']));
+		}
+*/
 		$this->layout = 'ajax';
-	    $this->RequestHandler->setContent('json', 'text/x-json');
+		$this->RequestHandler->setContent('json', 'text/x-json');
+//		$this->set('farfalla_action','menu');
+//	    $this->set('callback', $callback);		
 		$this->set('profiles', $this->Profile->find('list', array('fields' => array('Profile.id', 'Profile.name'))));
 	}
 
 	function retrieve($id = null) {
+		$this->Session->write('id',$id);
 		$this->layout = 'ajax';
-	    $this->RequestHandler->setContent('json', 'text/x-json');		$this->set('profile', $this->Profile->read(null, $id));
+	    $this->RequestHandler->setContent('json', 'text/x-json');		
+//	    $this->set('callback', $callback);
+	    $this->set('profile', $this->Profile->read(null, $id));
+	}
+	
+	function reset() {
+		$this->Session->delete('id');
+//	    $this->set('callback', $callback);
+		$this->redirect(array('action' => 'menu'));
+	}
+
+	function status() {
+		$this->layout = 'ajax';
+	    $this->RequestHandler->setContent('json', 'text/x-json');		
+
+//		$this->set('id', $this -> Session -> read('id'));
+//	    $this->set('callback', $callback);		
 	}
 
 	function view($id = null) {
