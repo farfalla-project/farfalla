@@ -2,4 +2,4 @@
 *~
 *.txt
 .com.apple.timemachine.supported
-profiles/farfalla-backend.sql
+backend/farfalla-backend.sql

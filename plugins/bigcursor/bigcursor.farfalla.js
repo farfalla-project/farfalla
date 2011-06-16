@@ -3,6 +3,6 @@
 
 $(function(){
 		$('html').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Arrow.cur'), auto");  
-		$('html a').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Pointer.cur'), auto");  
+		$('a').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Pointer.cur'), auto");  
 });
 	

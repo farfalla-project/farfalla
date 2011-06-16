@@ -39,7 +39,9 @@ class ProfilesController extends AppController {
 	function reset() {
 		$this->Session->delete('id');
 //	    $this->set('callback', $callback);
-		$this->redirect(array('action' => 'menu'));
+		$this->layout = 'ajax';
+	    $this->RequestHandler->setContent('json', 'text/x-json');		
+//		$this->redirect(array('action' => 'menu'));
 	}
 
 	function status() {
