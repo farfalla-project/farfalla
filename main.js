@@ -4,8 +4,8 @@ $(function() {
 	
 // Inclusion of the needed css stylesheets
 
-	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'jquery-ui-1.7.2.custom.css').prependTo($('head'));
-	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'farfalla.css').prependTo($('head'));
+	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'jquery-ui-1.7.2.custom.css').prependTo('head');
+	$('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'farfalla.css').prependTo('head');
 
 // Farfalla core functions
 
@@ -15,13 +15,6 @@ $(function() {
 			$('<div></div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').prependTo('body');
 			$('<div></div>').attr('id','farfalla_buttons').appendTo('#farfalla_toolbar');
 			$('<ul></ul>').appendTo('#farfalla_buttons');
-/*			$('<iframe></iframe>')
-			.attr({
-				'src':farfalla_path+'backend/profiles/status',
-				'id':'farfalla_status'
-				})
-//			.hide()	
-			.appendTo('#farfalla_toolbar'); */
 		};
 
 		// Adds the profile selection form
@@ -68,6 +61,7 @@ $(function() {
 									});
 								}
 							);
+							
 		};
 			
 		// Adds interaction to the activation button in the profile selection form
@@ -84,19 +78,12 @@ $(function() {
 				// Recall the plugins
 
 				function(data) {
-
-//					$.cookie('farfalla_plugins_cookie', JSON.stringify(data), { path: '/', expires: 10 });
-
 					farfalla_plugins_listing_create($('#farfalla_profile').val());
 					farfalla_plugins_listing_interaction();
 					$('#farfalla_toolbar_form').fadeOut('slow');
 					$('#farfalla_active').fadeIn('slow');
-/*					pm({
-						target: window,
-						type: "force-reload"
-					});
-*/
 				}
+
 			);
 
 			// stop the call to the form "action"
@@ -149,34 +136,7 @@ $(function() {
 	};
 				
 
-// call the plugins associated to the selected profile
-/*
-	pm.bind("pass-cookie", function(data) {
-		$('<ul></ul>').appendTo('#farfalla_active').hide();			
 
-		$.each(data.Plugin, function(i,plugin){
-	 		jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js' //, 
-//	 		  function() { alert('Load of '+plugin.name+' was performed.'); }
-	 		);
-			$('#farfalla_active ul').append('<li>'+plugin.name+'</li>');					
-			$('#farfalla_active ul').append('<li> | </li>');
-		});
-
-		$('#farfalla_active ul').fadeIn(1000);
-		$('#farfalla_active ul').append('<li><input type="button" id="change_profile" value="change profile" /></li>');					
-		$('#change_profile').click(function(){$.cookie('farfalla_plugins_cookie', null, { path: '/' }); location.reload();});
-
-	});
-	
-	pm.bind("force-reload",function(){
-		window.location.reload();
-
-	});
-*/
-
-	
-	
-	
 /*	
 	#######################################
 	#                                     #

@@ -137,7 +137,7 @@
  * the cake shell command: cake schema run create Sessions
  *
  */
-	Configure::write('Session.save', 'php');
+	Configure::write('Session.save', 'farfalla_session');
 
 /**
  * The model name to be used for the session model.

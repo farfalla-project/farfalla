@@ -16,7 +16,7 @@ class ProfilesController extends AppController {
 	}
 
 	function menu() {
-		$this->Session->start();
+//		$this->Session->start();
 /*		if($this->Session->read('id')){
 			$this->redirect(array('action' => 'retrieve/'.$this->Session->read('id').'/?callback='.$_GET['callback']));
 		}

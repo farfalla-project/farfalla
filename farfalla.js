@@ -51,6 +51,11 @@ if (document.cookie.length > 0) {
 
 var farfalla_path = getFarfallaPath();
 
+
+//
+// Call the basically required scripts...
+//
+
 var headID = document.getElementsByTagName("head")[0];         
 
 var jqueryScript = document.createElement('script');
