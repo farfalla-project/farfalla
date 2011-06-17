@@ -16,15 +16,13 @@ class ProfilesController extends AppController {
 	}
 
 	function menu() {
-//		$this->Session->start();
+		$this->Session->start();
 /*		if($this->Session->read('id')){
 			$this->redirect(array('action' => 'retrieve/'.$this->Session->read('id').'/?callback='.$_GET['callback']));
 		}
 */
 		$this->layout = 'ajax';
 		$this->RequestHandler->setContent('json', 'text/x-json');
-//		$this->set('farfalla_action','menu');
-//	    $this->set('callback', $callback);		
 		$this->set('profiles', $this->Profile->find('list', array('fields' => array('Profile.id', 'Profile.name'))));
 	}
 

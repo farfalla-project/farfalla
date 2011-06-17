@@ -39,22 +39,8 @@ class AppController extends Controller {
     var $helpers = array('Html', 'Form', 'Ajax', 'Javascript', 'Session');
 
 	function beforeFilter() {
-        $this->Auth->allow('display');
-//		$current_session_value = $this->Session->read('id');
-//		if ( $this->RequestHandler->isAjax() ) {
-//		$this->Session->write('id', null ); // reset that session which was use to store
-//		$this->Session->write('id', $current_session_value ); // re-assign again
-
+		$this->Auth->allow('display');
 	}
 	
-/*	function beforeRender() {
-		$current_session_value = $this->Session->read('id');
-//		if ( $this->RequestHandler->isAjax() ) {
-		$this->Session->write('id', null ); // reset that session which was use to store
-		$this->Session->write('id', $current_session_value ); // re-assign again
-//		}
-
-	}
-*/
 	
 }
