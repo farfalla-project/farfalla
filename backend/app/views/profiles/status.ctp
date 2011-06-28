@@ -10,6 +10,4 @@ if($this -> Session -> read('id')){
 }; 
 echo(');');
 
-//var_dump($pippo);
-
 ?>

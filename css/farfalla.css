@@ -1,114 +1,108 @@
 /* CORE */
 html{
-padding: 0;
-margin: 0;
-top: 0;
+	padding: 0;
+	margin: 0;
+	top: 0;
 }
 
 body{
-padding: 0;
-margin: 0;
+	padding: 0;
+	margin: 0;
 }
+
+#farfalla_toolbar{
+	font-family: Helvetica, Calibri, sans;
+	font-size: 12pt;
+/*	display: block; */
+/*	background-image: url('../images/farfalla-toolbar-background.jpg'); */
+	border: 0;
+	background-color: #000;
+	color: #fff;
+	height: 60px; 
+	margin: 0; 
+	overflow: hidden;
+	padding: 4px;
+	float: right;
+	z-index: 20000; 
+	right: 0; 
+}
+
+	#farfalla_toolbar div{
+		float: left;
+		display: inline;
+		height:60px;
+	}
+
+
+	#farfalla_toolbar input, #farfalla_toolbar select{
+		height: 36px;
+		background: #fff;
+		margin: 12px 3px;
+		border: 0;
+		font-size: 16px;
+	}
+	
+	#farfalla_toolbar option{
+		height: 36px;
+		text-align: right;
+		background: #fff;
+	}
+
+		#change_profile{
+			padding: 4px;
+		}
+		
+	#farfalla_logo{
+		width: 60px;
+		height: 60px;
+		background: url('../images/farfalla_icon.png') no-repeat;
+		float: left;
+	}
+	
+	#farfalla_active{
+		display: inline;
+		float: left;
+	}
+	
+		#farfalla_active p{
+			display: inline;
+		}
+	
+		#farfalla_active ul{
+			display: inline;
+			text-align: left;
+			padding: 0;
+			margin:0;
+			top:0;
+		}
+		
+		#farfalla_active ul li{
+			display: inline;
+			padding: 4px;
+			margin:0;
+			top:0;
+			color: #fff;
+		}
+
+	#farfalla_buttons ul, #farfalla_buttons ul li{
+	list-style: none;
+	display: inline;
+	}
+	
+		#farfalla_buttons ul li img{
+		padding: 0 3px;
+		cursor: pointer;
+		}
 
 #highlighter{
-border: 6px solid red;
-/*display:none;*/
-margin: 0;
-position: absolute;
-z-index: 20000;
+	border: 6px solid red;
+	/*display:none;*/
+	margin: 0;
+	position: absolute;
+	z-index: 20000;
 }
 
-#farfalla_iframe{
-float: left;
-width: 60%;
-background: #999;
-height: 50px;
-border: none;
-display:inline;
-}
 
-.farfalla_toolbar{
-/*border-top: 2px solid #999;
-border-left: 2px solid #999;
-border-right: 2px solid #999;*/
-border: 0;
-background-image: url('images/farfalla-toolbar-background.jpg');
-background-color: #000;
-color: #fff;
-height: 40px;
-/*line-height: 40px;*/
-left:0;
-margin: 0;
-padding: 0;
-bottom: 0px;
-position: fixed;
-width: 100%;
-z-index: 20000;
-}
-
-.farfalla_hidden{
-visibility:hidden;
-}
-
-.farfalla_toolbar form{
-font-family: Helvetica, Calibri, sans;
-font-size: 12pt;
-display: inline;
-}
-
-.farfalla_toolbar p{
-display: inline;
-}
-
-.farfalla_toolbar_explode{
-width: 5em;
-}
-
-#farfalla_active{
-display: inline;
-float:left;
-}
-
-#farfalla_active p{
-display: inline;
-}
-
-#farfalla_active ul{
-display: inline;
-text-align: left;
-padding: 0;
-margin:0;
-top:0;
-}
-
-#farfalla_active ul li{
-display: inline;
-padding: 4px;
-margin:0;
-top:0;
-color: #fff;
-}
-
-#change_profile{
-/*float:right;*/
-padding: 4px;
-}
-
-#farfalla_buttons{
-width: 40%;
-float:left;
-display: inline;
-}
-
-#farfalla_buttons ul, #farfalla_buttons ul li{
-list-style: none;
-display: inline;
-}
-
-#farfalla_buttons ul li img{
-padding: 0 3pt;
-cursor: pointer;
-}
 
 /* PLUGINS */
 

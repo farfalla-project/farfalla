@@ -1,6 +1,6 @@
 /*!
  * Farfalla - A web tool for accessibility - v0.1
- * http://farfalla-project.org.com/
+ * http://farfalla-project.org/
  *
  * Copyright 2010, Andrea Mangiatordi
  * Licensed under the AGPL Version 3 license.
@@ -60,15 +60,15 @@ var headID = document.getElementsByTagName("head")[0];
 
 var jqueryScript = document.createElement('script');
 jqueryScript.type = 'text/javascript';
-jqueryScript.src = farfalla_path+'jquery-1.4.2.min.js';
+jqueryScript.src = farfalla_path+'libs/jquery.min.js';
 headID.appendChild(jqueryScript);
 
 var jqueryuiScript = document.createElement('script');
 jqueryuiScript.type = 'text/javascript';
-jqueryuiScript.src = farfalla_path+'jquery-ui-1.7.2.custom.min.js';
+jqueryuiScript.src = farfalla_path+'libs/jquery-ui.custom.min.js';
 headID.appendChild(jqueryuiScript);
 
 var fmainScript = document.createElement('script');
 fmainScript.type = 'text/javascript';
-fmainScript.src = farfalla_path+'main.js';
+fmainScript.src = farfalla_path+'libs/main.js';
 headID.appendChild(fmainScript);

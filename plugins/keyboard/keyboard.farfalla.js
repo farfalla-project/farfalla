@@ -390,42 +390,43 @@ $(function() {
 		layout:'qwerty'
 	});
 
-	$(window).scroll(function(){
+/*	$(window).scroll(function(){
 		$('.ui-keyboard')
 //			.css('margin-top', ($(window).scrollTop()) + 'px')
 			.animate({'marginTop': ($(window).scrollTop()) + 'px'}, 'fast' );
 	});
-
+*/
 
 	$('.ui-keyboard').css({
 		'width' : '60%',
-//		'padding' : '3px',
 		'background' : '#999',
 		'border' : '1px solid #666',
-		'position' : 'fixed', 
-		'z-index' : '16000',
+		'position' : 'absolute', 
+		'z-index' : '10000',
 		'left' : '20%',
 		'right' : '20%',
 		'align' : 'center',
-		'bottom' : "36px"
-	});
+		'bottom' : 0
+	}).addClass('ui-corner-all');
 	
 	$('.ui-keyboard-preview').css({
 		'width' : '99%',
 		'margin' : '3px .5%'
-	});
+	}).addClass('ui-corner-all');
 
 	$('.ui-keyboard-button').css({
-		width : "7.3%",
-//		height : "30%", 
-		margin : "2px .2%",
+		width : '7.3%',
+		height : '3em', 
+		margin : ".4% .2%",
 		display : "inline"
-	});
+	}).addClass('ui-corner-all');
 
-	$('.ui-keyboard-actionkey').css('width', '4em');
+	$('.ui-keyboard-actionkey').css('width', '4em').addClass('ui-corner-all');
 
 	$('.ui-keyboard-space').css({
-		'width' : '27em'
-	});
+		'width' : '18em'
+	}).addClass('ui-corner-all');
+
+
 
 });
