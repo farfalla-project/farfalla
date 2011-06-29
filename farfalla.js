@@ -41,7 +41,7 @@ function fgetScriptNodes(s){
 
 }
 
-function getPath(){
+function fgetPath(){
 
 	var search = 'farfalla.js';
 
@@ -54,7 +54,7 @@ function getPath(){
 		return unescape(farfalla_script.substring(0, end))
 }
 
-var farfalla_path = getPath();
+var farfalla_path = fgetPath();
 
 //
 // Call the basically required scripts...
@@ -75,5 +75,7 @@ fmainScript.type = 'text/javascript';
 fmainScript.src = farfalla_path+'libs/main.js';
 
 headID.appendChild(jqueryScript);
-headID.appendChild(jqueryuiScript);
-headID.appendChild(fmainScript);
+jqueryScript.onload = function () {
+	headID.appendChild(jqueryuiScript);
+	headID.appendChild(fmainScript);
+}
