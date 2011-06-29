@@ -29,28 +29,32 @@
  *
  */
  
- 
-//
-// Set the path to main Farfalla scripts from the cookie set at every page load
-//
+function fgetScriptNodes(s){
 
-function getFarfallaPath(){
-var search = 'farfalla_path=';
-if (document.cookie.length > 0) {
-	offset = document.cookie.indexOf(search);
-	if (offset != -1) {
-		offset += search.length;
-		end = document.cookie.indexOf(";", offset);
-		if (end == -1){
-			end = document.cookie.length;
-			}
-			return unescape(document.cookie.substring(offset, end))
+	var scripts = window.document.getElementsByTagName('script');
+
+	for (i = 0; i <= scripts.length-1; i++) {
+		if(scripts[i].src.indexOf(s) > 0){
+			return scripts[i].src
 		}
 	}
+
 }
 
-var farfalla_path = getFarfallaPath();
+function getPath(){
 
+	var search = 'farfalla.js';
+
+	var farfalla_script = fgetScriptNodes(search);
+
+	end = farfalla_script.indexOf(search);
+	if (end == -1){
+		end = farfalla_script.length;
+		}
+		return unescape(farfalla_script.substring(0, end))
+}
+
+var farfalla_path = getPath();
 
 //
 // Call the basically required scripts...
@@ -61,14 +65,15 @@ var headID = document.getElementsByTagName("head")[0];
 var jqueryScript = document.createElement('script');
 jqueryScript.type = 'text/javascript';
 jqueryScript.src = farfalla_path+'libs/jquery.min.js';
-headID.appendChild(jqueryScript);
 
 var jqueryuiScript = document.createElement('script');
 jqueryuiScript.type = 'text/javascript';
 jqueryuiScript.src = farfalla_path+'libs/jquery-ui.custom.min.js';
-headID.appendChild(jqueryuiScript);
 
 var fmainScript = document.createElement('script');
 fmainScript.type = 'text/javascript';
 fmainScript.src = farfalla_path+'libs/main.js';
+
+headID.appendChild(jqueryScript);
+headID.appendChild(jqueryuiScript);
 headID.appendChild(fmainScript);

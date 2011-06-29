@@ -6,7 +6,7 @@ class UsersController extends AppController {
 
 	
 	function beforeFilter() {
-	        $this->Auth->allow('register');
+	        $this->Auth->allow();
 	}
 
 
