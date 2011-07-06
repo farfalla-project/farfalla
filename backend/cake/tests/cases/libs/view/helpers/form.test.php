@@ -1865,7 +1865,7 @@ class FormHelperTest extends CakeTestCase {
 			'/div'
 		);
 		$this->assertTags($result, $expected);
-		
+
 		$result = $this->Form->input('User.active', array('label' => false, 'checked' => '1'));
 		$expected = array(
 			'div' => array('class' => 'input checkbox'),

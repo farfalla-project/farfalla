@@ -389,7 +389,7 @@ class CacheHelperTest extends CakeTestCase {
 	function testCacheWithCustomRoutes() {
 		Router::reload();
 		Router::connect('/:lang/:controller/:action/*', array(), array('lang' => '[a-z]{3}'));
-		
+
 		$this->Controller->cache_parsing();
 		$this->Controller->params = array(
 			'lang' => 'en',

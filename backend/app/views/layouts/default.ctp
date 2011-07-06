@@ -33,9 +33,9 @@
 		echo $this->Html->css('farfalla.backend');
 
 		echo $this->Html->css('jquery-ui-1.8.10.custom');
-		
-		echo $javascript->link(array('jquery','jquery-ui','farfalla.effects')); 
-		
+
+		echo $javascript->link(array('jquery','jquery-ui','farfalla.effects'));
+
 		echo $scripts_for_layout;
 	?>
 </head>

@@ -473,7 +473,7 @@ class CakeSession extends Object {
 		}
 		if ($iniSet && ($this->security === 'high' || $this->security === 'medium')) {
 			ini_set('session.referer_check', $this->host);
-		} 
+		}
 
 		if ($this->security == 'high') {
 			$this->cookieLifeTime = 0;

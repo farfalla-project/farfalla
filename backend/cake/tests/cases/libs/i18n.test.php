@@ -2607,9 +2607,9 @@ class I18nTest extends CakeTestCase {
 	function testTimeDefinitionJapanese(){
 		Configure::write('Config.language', 'ja_jp');
 		$result = __c('d_fmt', 5, true);
-		
+
 		$expected = "%Y年%m月%d日";
-		
+
 		$this->assertEqual($result, $expected);
 
 		$result = __c('am_pm', 5, true);

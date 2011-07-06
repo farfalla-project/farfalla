@@ -25,46 +25,46 @@ function getXPath( element )
   $('#dialog-form').append('<p>Add an alternative text for the image</p>');
   $('#dialog-form').append('<form></form>');
   $('#dialog-form form').append('<input type="text" value="" name="farfalla-addalt" />');
-  
+
   $.each($('img'), function() {
-  		
+  
   		if($(this).parent()!='a') {
 
-	  		$(this).wrap('<div class="farfalla_addalt ui-corner-all" />'); 			
+	  		$(this).wrap('<div class="farfalla_addalt ui-corner-all" />'); 
 
 		} else {
-			
-			$(this).parent().wrap('<div class="farfalla_addalt ui-corner-all" />'); 			
-			
+
+			$(this).parent().wrap('<div class="farfalla_addalt ui-corner-all" />'); 
+
 		};
-  			
+  
   		if($(this).attr('alt')==""){
-  			
+  
   			$(this).parent('div')
   				.addClass('ui-state-error')
   				.width($(this).width())
   				.append('<div class="addalt_overlay ui-state-error" style="display:none"><p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>This image has no alternative text! Click here to add...</p></div>');
- 
+
   		} else {
 
   			$(this).parent('div')
   				.width($(this).width())
-  				.append('<div class="addalt_overlay" style="display:none"><p>'+$(this).attr('alt')+'</p></div>');  		
-  		
+  				.append('<div class="addalt_overlay" style="display:none"><p>'+$(this).attr('alt')+'</p></div>');  
+  
   		}
-  
+
   	}
-   
+
   );
-  
-  
+
+
 	$('.addalt_overlay').click(
   		function(){
-  			$('#dialog-form').dialog('open');  	
+  			$('#dialog-form').dialog('open');  
   	});
-  
+
   $.each($('.farfalla_addalt'), function() {
-  
+
 	$(this).hover(
 		function(){
 			$(this).children('div').show(300);
@@ -103,12 +103,12 @@ function getXPath( element )
 
 					if ( bValid ) {
 						$( "#users tbody" ).append( "<tr>" +
-							"<td>" + name.val() + "</td>" + 
-							"<td>" + email.val() + "</td>" + 
+							"<td>" + name.val() + "</td>" +
+							"<td>" + email.val() + "</td>" +
 							"<td>" + password.val() + "</td>" +
-						"</tr>" ); 
+						"</tr>" );
 						$( this ).dialog( "close" );
-					} 
+					}
 
 				},
 				Cancel: function() {

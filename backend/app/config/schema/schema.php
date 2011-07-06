@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* SVN FILE: $Id$ */
 /* App schema generated on: 2010-11-23 15:11:34 : 1290522094*/
 class AppSchema extends CakeSchema {

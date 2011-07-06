@@ -12,7 +12,7 @@ $(function() {
 	    $('*').css('font-size', newFontSize).css('padding-bottom','0.2ex');
 	    return false;
   });
-  
+
   // Decrease Font Size
   $('#farfalla_buttons').farfalla_add_button('-','fontsize_decrease','z',function(){
   		var currentFontSize = $('html').css('font-size');

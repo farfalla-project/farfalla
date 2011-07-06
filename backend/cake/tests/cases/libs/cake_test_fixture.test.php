@@ -270,7 +270,7 @@ class CakeTestFixtureTest extends CakeTestCase {
 	}
 
 /**
- * test that importing with records works.  Make sure to try with postgres as its 
+ * test that importing with records works.  Make sure to try with postgres as its
  * handling of aliases is a workaround at best.
  *
  * @return void
@@ -303,7 +303,7 @@ class CakeTestFixtureTest extends CakeTestCase {
 
 		$defaultDb->config = $defaultConfig;
 
-		$Source->drop($newTestSuiteDb);	
+		$Source->drop($newTestSuiteDb);
 	}
 
 /**

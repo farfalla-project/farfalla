@@ -1,10 +1,10 @@
 <?php
 class UsersController extends AppController {
 
-    var $name = 'Users';    
+    var $name = 'Users';
 //    var $components = array('Auth'); // Not necessary if declared in your app controller
 
-	
+
 	function beforeFilter() {
 	        $this->Auth->allow();
 	}
@@ -16,7 +16,7 @@ class UsersController extends AppController {
     function logout() {
         $this->redirect($this->Auth->logout());
     }
-    
+
  	function register() {
     	if ($this->data) {
         	if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['password_confirm'])) {

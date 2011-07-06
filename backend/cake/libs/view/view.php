@@ -163,7 +163,7 @@ class View extends Object {
  * @access public
  */
 	var $subDir = null;
-	
+
 /**
  * Theme name.
  *
@@ -493,7 +493,7 @@ class View extends Object {
 	}
 
 /**
- * Fire a callback on all loaded Helpers. All helpers must implement this method, 
+ * Fire a callback on all loaded Helpers. All helpers must implement this method,
  * it is not checked before being called.  You can add additional helper callbacks in AppHelper.
  *
  * @param string $callback name of callback fire.
@@ -516,7 +516,7 @@ class View extends Object {
 	}
 
 /**
- * Render cached view. Works in concert with CacheHelper and Dispatcher to 
+ * Render cached view. Works in concert with CacheHelper and Dispatcher to
  * render cached view files.
  *
  * @param string $filename the cache file to include
@@ -854,7 +854,7 @@ class View extends Object {
 			}
 		}
 		$paths = $this->_paths(Inflector::underscore($this->plugin));
-		
+
 		$exts = array($this->ext);
 		if ($this->ext !== '.ctp') {
 			array_push($exts, '.ctp');
@@ -898,7 +898,7 @@ class View extends Object {
 		}
 		$paths = $this->_paths(Inflector::underscore($this->plugin));
 		$file = 'layouts' . DS . $subDir . $name;
-		
+
 		$exts = array($this->ext);
 		if ($this->ext !== '.ctp') {
 			array_push($exts, '.ctp');

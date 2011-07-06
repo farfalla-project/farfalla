@@ -8,11 +8,11 @@ $(function() {
 
 // Pasted code
 
-function loadScript(scriptURL) { 
+function loadScript(scriptURL) {
 	var scriptElem = document.createElement('SCRIPT');
 	scriptElem.setAttribute('language', 'JavaScript');
 	scriptElem.setAttribute('src', scriptURL);
 	document.body.appendChild(scriptElem);
 	}
-	
+
 	loadScript('http://google-axsjax.googlecode.com/svn/trunk/common/axsScriptChooser.js');

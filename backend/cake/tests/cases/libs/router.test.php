@@ -1786,7 +1786,7 @@ class RouterTest extends CakeTestCase {
  */
 	function testUrlWritingWithPrefixesAndCustomRoutes() {
 		Router::connect(
-			'/admin/login', 
+			'/admin/login',
 			array('controller' => 'users', 'action' => 'login', 'prefix' => 'admin', 'admin' => true)
 		);
 		Router::setRequestInfo(array(

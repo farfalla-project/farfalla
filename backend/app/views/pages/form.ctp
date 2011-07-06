@@ -30,7 +30,7 @@
 	var farfalla_path = getFarfallaPath();
 
 	$('#farfalla_toolbar_form').hide();
-		
+
 	// check if a configuration has already been chosen
 
 		if($.cookie('farfalla_plugins_cookie')){
@@ -50,16 +50,16 @@
 			}
 			);
 		};
-	
-	
-	
+
+
+
 		// Recall user's configuration from central db
 
 	$("#farfalla_activator").click(function() {
-	
+
 			var farfalla_profile = $('#farfalla_profile').val();
-	
-	
+
+
 			$.getJSON(
 				"profiles/index.php/profiles/retrieve/"+farfalla_profile+"/?callback=?", {},
 
@@ -80,16 +80,16 @@
 
 
 			// stop the call to the form "action"
-			return false;					
+			return false;
 
 	});
 
 
-	
+
 	});
 
-	</script> 
-	
+	</script>
+
 	<style type="text/css" rel="stylesheet">
 		body{
 

@@ -14,17 +14,18 @@ body{
 	font-family: Helvetica, Calibri, sans;
 	font-size: 12pt;
 /*	display: block; */
-/*	background-image: url('../images/farfalla-toolbar-background.jpg'); */
-	border: 0;
+	background-image: url('../images/farfalla-toolbar-background.jpg');
+	border: 1px solid #999;
+	border-right: 0;
 	background-color: #000;
 	color: #fff;
-	height: 60px; 
-	margin: 0; 
+	height: 40px;
+	margin: 0;
 	overflow: hidden;
 	padding: 4px;
 	float: right;
-	z-index: 20000; 
-	right: 0; 
+	z-index: 20000;
+	right: 0;
 }
 
 	#farfalla_toolbar div{
@@ -35,52 +36,58 @@ body{
 
 
 	#farfalla_toolbar input, #farfalla_toolbar select{
-		height: 36px;
+/*		height: 36px; */
+		padding: 0.4em;
 		background: #fff;
-		margin: 12px 3px;
+		margin: 2px 3px;
 		border: 0;
-		font-size: 16px;
+		font-size: 1em;
+		float:left;
 	}
-	
+
+	#farfalla_toolbar select{
+		height: 2.2em;
+		padding: 0;
+		vertical-align: center;
+	}
+
 	#farfalla_toolbar option{
-		height: 36px;
-		text-align: right;
+/*		height: 36px;
 		background: #fff;
+		line-height: 36px; */
+		padding: 0.4em;
 	}
 
 		#change_profile{
 			padding: 4px;
+			float: left;
 		}
-		
+
 	#farfalla_logo{
 		width: 60px;
 		height: 60px;
 		background: url('../images/farfalla_icon.png') no-repeat;
 		float: left;
 	}
-	
+
 	#farfalla_active{
-		display: inline;
+		display: block;
 		float: left;
 	}
-	
-		#farfalla_active p{
-			display: inline;
-		}
-	
+
 		#farfalla_active ul{
-			display: inline;
-			text-align: left;
+			display: block;
+			float: left;
 			padding: 0;
 			margin:0;
 			top:0;
 		}
-		
+
 		#farfalla_active ul li{
 			display: inline;
-			padding: 4px;
+			float: left;
+			padding: 1ex;
 			margin:0;
-			top:0;
 			color: #fff;
 		}
 
@@ -88,7 +95,7 @@ body{
 	list-style: none;
 	display: inline;
 	}
-	
+
 		#farfalla_buttons ul li img{
 		padding: 0 3px;
 		cursor: pointer;
@@ -109,7 +116,7 @@ body{
 /* Plugins > General purpose highlighter */
 
 .farfalla_red,a:link.farfalla_red, a:visited.farfalla_red, .farfalla_red a{
-border: 2px solid #f00; 
+border: 2px solid #f00;
 background: #f66 url('');
 }
 

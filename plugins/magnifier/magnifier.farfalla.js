@@ -12,8 +12,16 @@ $(function() {
 	};
 
 	$('ul').css('overflow','hidden');
-	
-	$('<div id="farfalla_debug">').prependTo('body');
+
+	$('<div id="farfalla_debug"></div>').appendTo('body');
+	$('<div id="farfalla_link_selector"></div>').addClass('monitor').css({
+		'width':'auto',
+		'margin':'auto',
+		'position':'absolute',
+		'top':'1em',
+		'left':'1em',
+		'border-color':'#f90'
+	}).addClass('ui-corner-all').hide().appendTo('body');
 
 	$('<div id="monitor">')
 	.html('<p style="font-size:30pt">Farfalla Magnification module: active</p>')
@@ -37,31 +45,30 @@ $(function() {
 		if($('#monitor').height()<$(window).height()){
 			$('#monitor')
 			.css('margin-top', ($(window).scrollTop()) + 'px');
-//		.animate({'marginTop': ($(window).scrollTop()) + 'px'}, 'fast' );
 		}
 	});
-	
-	$('#monitor').mouseover( 
+
+	$('#monitor').mouseover(
 		function(){ $(this).toggleClass('monitor_left') }
 	);
-	
+
 	$('#monitor div').removeClass('*');
 
 
-	
-	
+
+
 	// Highlight elements...
 
 	$('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd, div:hasText').each(function() {
 		$(this).hover(
 			function() {
-			
+
 			$('.farfalla-hover').removeClass('farfalla-hover');
 			$(this).addClass('farfalla-hover');
-			
+
 			var offset = $(this).offset();
 			$('#highlighter').animate({'height' : $(this).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $(this).width() + 12 }, 300);
-			
+
 //			$('').animate({'marginTop': ($(this).offset.top) + 'px' }, 'fast');
 
 	/*			$(this).addClass('farfalla_red');
@@ -74,7 +81,7 @@ $(function() {
 				$('#monitor *').css({'font-size': 'inherit', 'line-height': 'inherit'});
 
 				$('#monitor a').each( function(i){
-   					$(this).append('<span style="color:violet;"> ['+ (i+1) +']</span>');
+   					$(this).append('<span style="color:violet;"> ['+ (i+1) +']</span>');   
 				});
 
 			},
@@ -85,10 +92,33 @@ $(function() {
 			})
 		});
 
+
+// Changes the page href according to a number indicating an <a> in the currently magnified area
+
+	function goToHref (value) {
+		document.location.href = $('#monitor a').eq(value-1).attr('href');
+	};
+
+// Allows control over multi-key pressures for selecting an <a>
+
+	function filterKeys (length, value) {
+		if(length > 0) {
+			if (length < 10) {
+				goToHref(value);
+			} else	{
+				$('#farfalla_link_selector').show().append(value);
+				if ($('#farfalla_link_selector').html()>length) {
+					$('#farfalla_link_selector').html('');
+				}
+			}
+		}
+	}
+
+
 	$('html').keydown(function(event) {
-		
+
 	    var requestedAction = null;
-	
+
     	switch (event.keyCode){
 
 /*up*/          case 38 : $('#monitor').animate({'marginTop': '+=50px'}, 'fast' ); return false; break;
@@ -104,24 +134,27 @@ $(function() {
 /* - */         case 109 : $('div.monitor').animate({'fontSize': '-=10pt' }, 'fast' ); return false; break;
 /* - chrome */  case 189 : $('div.monitor').animate({'fontSize': '-=10pt' }, 'fast' ); return false; break;
 
-/* 1 */     case 49 : document.location.href = $('#monitor a').eq(0).attr('href'); return false; break;
-/* 2 */     case 50 : document.location.href = $('#monitor a').eq(1).attr('href'); return false; break;
-/* 3 */     case 51 : document.location.href = $('#monitor a').eq(2).attr('href'); return false; break;
-/* 4 */     case 52 : document.location.href = $('#monitor a').eq(3).attr('href'); return false; break;
-/* 5 */     case 53 : document.location.href = $('#monitor a').eq(4).attr('href'); return false; break;
-/* 6 */     case 54 : document.location.href = $('#monitor a').eq(5).attr('href'); return false; break;
-/* 7 */     case 55 : document.location.href = $('#monitor a').eq(6).attr('href'); return false; break;
-/* 8 */     case 56 : document.location.href = $('#monitor a').eq(7).attr('href'); return false; break;
-/* 9 */     case 57 : document.location.href = $('#monitor a').eq(8).attr('href'); return false; break;
-/* 0 */     case 48 : document.location.href = $('#monitor a').eq(9).attr('href'); return false; break;
+/* 1 */     case 49 : filterKeys($('#monitor a').length, 1); return false; break;
+/* 2 */     case 50 : filterKeys($('#monitor a').length, 2); return false; break;
+/* 3 */     case 51 : filterKeys($('#monitor a').length, 3); return false; break;
+/* 4 */     case 52 : filterKeys($('#monitor a').length, 4); return false; break;
+/* 5 */     case 53 : filterKeys($('#monitor a').length, 5); return false; break;
+/* 6 */     case 54 : filterKeys($('#monitor a').length, 6); return false; break;
+/* 7 */     case 55 : filterKeys($('#monitor a').length, 7); return false; break;
+/* 8 */     case 56 : filterKeys($('#monitor a').length, 8); return false; break;
+/* 9 */     case 57 : filterKeys($('#monitor a').length, 9); return false; break;
+/* 0 */     case 48 : filterKeys($('#monitor a').length, 0); return false; break;
+
+/* backspace */  case 8 : $('#farfalla_link_selector').html('').hide(); return false; break;
+/* enter */      case 13 : goToHref($('#farfalla_link_selector').html()); return false; break;
 
     	    default:requestedAction='null';
 	    }
 
 
 //			$('#farfalla_debug').html(event.keyCode);
-			
-							
+
+	
 	});
 
 

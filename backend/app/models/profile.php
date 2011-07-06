@@ -6,7 +6,7 @@ class Profile extends AppModel {
 	var $actsAs = array(
 	  'Copyable' => array(
 	    'stripFields' => array('id', 'created', 'modified', 'name')
-	  ), 
+	  ),
 	  'Translate' => array(
 	    'name' => 'nameTranslation',
 	    'description' => 'descriptionTranslation',

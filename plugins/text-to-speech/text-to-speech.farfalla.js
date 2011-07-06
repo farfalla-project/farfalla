@@ -1,4 +1,4 @@
-﻿// Farfalla plugin: Text to Speech. Allows rapid text to speech translation. 
+﻿// Farfalla plugin: Text to Speech. Allows rapid text to speech translation.
 // Requires jplayer and at least one plugin producing text strings in the #monitor div
 
 $(function() {
@@ -18,14 +18,13 @@ $(function() {
      }).jPlayer("play");
     return false;
    });
-  
-  
+
   });
 
 
 
 
 
-        
+
 
 });

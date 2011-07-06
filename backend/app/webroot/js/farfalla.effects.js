@@ -6,8 +6,8 @@ $(function(){
 
 
 /* $('.multiselect').simpleMultiSelect({
-    classesOnly : true, 
-    pseudoSelect : 'custom-select-box', 
+    classesOnly : true,
+    pseudoSelect : 'custom-select-box',
     selected : 'custom-select',
     unselected : 'custom-unselect',
     disabled : 'custom-disabled',

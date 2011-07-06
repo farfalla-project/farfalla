@@ -40,7 +40,7 @@
     $agent_language = "eng"; // Default
 
     switch ($_SERVER['HTTP_ACCEPT_LANGUAGE']) {
-      case "it-it" : $agent_language = "eng";
+      case "it-it" : $agent_language = "ita";
       break;
     }
 

@@ -4,7 +4,7 @@
 <?php echo $this->Form->create('Profile');?>
 	<fieldset>
  		<legend><?php __('Add Profile'); ?></legend>
-			
+
 	<p><?php echo(__('This page allows you to create a custom profile from scratch. You can also clone', true)); ?> <?php echo $this->Html->link(__('one of the existing profiles', true), array('action' => 'index')); ?> <?php echo(__('and edit it, adding or removing plugins.', true)); ?></p>
 
 	<h3>Step 1.</h3>

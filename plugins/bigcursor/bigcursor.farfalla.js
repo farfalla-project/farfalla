@@ -2,7 +2,6 @@
 // To do: adding options for distinct cursors.
 
 $(function(){
-		$('html').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Arrow.cur'), auto");  
-		$('a').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Pointer.cur'), auto");  
+		$('html').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Arrow.cur'), auto");
+		$('a').css("cursor","url('"+farfalla_path+"/plugins/bigcursor/cursors/Pointer.cur'), auto");
 });
-	

@@ -527,7 +527,7 @@ class HtmlHelper extends AppHelper {
  *
  * {{{
  * echo $html->style(array('margin' => '10px', 'padding' => '10px'), true);
- * 
+ *
  * // creates
  * 'margin:10px;padding:10px;'
  * }}}

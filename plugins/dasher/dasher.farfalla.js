@@ -3,7 +3,7 @@
 // See http://www.inference.phy.cam.ac.uk/dasher/ for info about what is dasher and how it works.
 
 
-var dasherApplet = $('<applet />');	
+var dasherApplet = $('<applet />');
 
 	dasherApplet.attr({
 		'height':'100%',
@@ -29,9 +29,9 @@ jQuery.fn.dasher = function(){
 
 	dasherDiv.toggle();
 
-};	
+};
 
 
 $('textarea, input').click(function() {
 	$(this).dasher();
-});	
+});

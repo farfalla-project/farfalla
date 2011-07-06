@@ -559,9 +559,9 @@ class Model extends Overloadable {
  *
  * Example: Turn off the associated Model Support request,
  * to temporarily lighten the User model:
- * 
+ *
  * `$this->User->unbindModel( array('hasMany' => array('Supportrequest')) );`
- * 
+ *
  * unbound models that are not made permanent will reset with the next call to Model::find()
  *
  * @param array $params Set of bindings to unbind (indexed by binding type)

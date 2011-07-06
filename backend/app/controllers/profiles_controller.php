@@ -6,21 +6,16 @@ class ProfilesController extends AppController {
 	var $components = array('RequestHandler');
 
 	function beforeFilter() {
-	        $this->Auth->allow('menu','retrieve','reset','status');
+	        $this->Auth->allow('menu','retrieve','reset','status','top','show');
 	}
 
 	function index() {
 		$this->Profile->recursive = 0;
-//		$this->Profile->bindTranslation(array ('name' => 'nameTranslation'));
 		$this->set('profiles', $this->paginate());
 	}
 
 	function menu() {
 		$this->Session->start();
-/*		if($this->Session->read('id')){
-			$this->redirect(array('action' => 'retrieve/'.$this->Session->read('id').'/?callback='.$_GET['callback']));
-		}
-*/
 		$this->layout = 'ajax';
 		$this->RequestHandler->setContent('json', 'text/x-json');
 		$this->set('profiles', $this->Profile->find('list', array('fields' => array('Profile.id', 'Profile.name'))));
@@ -29,25 +24,31 @@ class ProfilesController extends AppController {
 	function retrieve($id = null) {
 		$this->Session->write('id',$id);
 		$this->layout = 'ajax';
-	    $this->RequestHandler->setContent('json', 'text/x-json');		
-//	    $this->set('callback', $callback);
+	    $this->RequestHandler->setContent('json', 'text/x-json');
 	    $this->set('profile', $this->Profile->read(null, $id));
 	}
-	
+
+	function top($distance = null) {
+		$this->Session->write('top',$distance);
+		$this->layout = 'ajax';
+	    $this->RequestHandler->setContent('json', 'text/x-json');
+	}
+
+	function show($show = null) {
+		$this->Session->write('show',$show);
+		$this->layout = 'ajax';
+	    $this->RequestHandler->setContent('json', 'text/x-json');
+	}
+
 	function reset() {
 		$this->Session->delete('id');
-//	    $this->set('callback', $callback);
 		$this->layout = 'ajax';
-	    $this->RequestHandler->setContent('json', 'text/x-json');		
-//		$this->redirect(array('action' => 'menu'));
+	    $this->RequestHandler->setContent('json', 'text/x-json');
 	}
 
 	function status() {
 		$this->layout = 'ajax';
-	    $this->RequestHandler->setContent('json', 'text/x-json');		
-
-//		$this->set('id', $this -> Session -> read('id'));
-//	    $this->set('callback', $callback);		
+	    $this->RequestHandler->setContent('json', 'text/x-json');
 	}
 
 	function view($id = null) {

@@ -692,7 +692,7 @@ class RequestHandlerComponentTest extends CakeTestCase {
 	}
 
 /**
- * assure that beforeRedirect with a status code will correctly set the status header 
+ * assure that beforeRedirect with a status code will correctly set the status header
  *
  * @return void
  */

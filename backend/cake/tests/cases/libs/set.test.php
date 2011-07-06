@@ -1079,7 +1079,7 @@ class SetTest extends CakeTestCase {
 		$expected = array(1, 2, 3);
 		$r = Set::extract('/User/id', $nonZero);
 		$this->assertEqual($r, $expected);
-		
+
 		$expected = array(
 			array('User' => array('id' => 1, 'name' => 'John')),
 			array('User' => array('id' => 2, 'name' => 'Bob')),

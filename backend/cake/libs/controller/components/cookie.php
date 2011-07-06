@@ -205,7 +205,7 @@ class CookieComponent extends Object {
 		}
 		$this->__encrypted = $encrypt;
 		$this->__expire($expires);
-		
+
 		if (!is_array($key)) {
 			$key = array($key => $value);
 		}
@@ -214,7 +214,7 @@ class CookieComponent extends Object {
 			if (strpos($name, '.') === false) {
 				$this->__values[$name] = $value;
 				$this->__write("[$name]", $value);
-				
+
 			} else {
 				$names = explode('.', $name, 2);
 				if (!isset($this->__values[$names[0]])) {
@@ -245,7 +245,7 @@ class CookieComponent extends Object {
 		if (is_null($key)) {
 			return $this->__values;
 		}
-		
+
 		if (strpos($key, '.') !== false) {
 			$names = explode('.', $key, 2);
 			$key = $names[0];
@@ -344,11 +344,11 @@ class CookieComponent extends Object {
 			return $this->__expires;
 		}
 		$this->__reset = $this->__expires;
-		
+
 		if ($expires == 0) {
 			return $this->__expires = 0;
 		}
-		
+
 		if (is_integer($expires) || is_numeric($expires)) {
 			return $this->__expires = $now + intval($expires);
 		}

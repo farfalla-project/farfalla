@@ -1,6 +1,6 @@
-﻿// Farfalla plugin: Five Keys. 
+﻿// Farfalla plugin: Five Keys.
 // Description: Allows moving through the elements of a webpage using the arrow keys
-// To do: 
+// To do:
 
 
 $(function(){
@@ -18,7 +18,7 @@ $(function(){
      }
      return false;
 	};
-	
+
 
 /*
  * jQuery Keyboard Navigation Plugin - Current
@@ -48,19 +48,19 @@ $(function(){
         key = e.which;
       }
 			switch(key) {
-				case 37: 
+				case 37:
 				  $.keynav.goLeft();
 				  break;
-				case 38: 
+				case 38:
 				  $.keynav.goUp();
 				  break;
-				case 39: 
+				case 39:
 				  $.keynav.goRight();
 				  break;
-				case 40: 
+				case 40:
 				  $.keynav.goDown();
 				  break;
-				case 13: 
+				case 13:
 				  $.keynav.activate();
 				  break;
 			}
@@ -102,7 +102,7 @@ $(function(){
 	  }
     $(e).removeClass(e.offClass).addClass(e.onClass);
 	  $(e).trigger('focus');
-	  
+
 /* Tiny tiny little code added for moving the highlighter :) */
 
 		var offset = $('.'+e.onClass).offset();
@@ -111,11 +111,11 @@ $(function(){
 
     	$('#highlighter').animate({'height' : $('.'+e.onClass).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.'+e.onClass).width() + 12 }, 300);
 
-    	
+    
 //		$('#highlighter').scrollIntoView(true);
-		
+
 /* End of added code */
-	  
+
 	  kn.currentEl = e;
   }
   $.keynav.getCurrent = function () {
@@ -158,9 +158,9 @@ $(function(){
   }
   $.keynav.goLeft = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dy >= 0) && (Math.abs(dx) - dy) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -168,9 +168,9 @@ $(function(){
   }
   $.keynav.goRight = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dy <= 0) && (Math.abs(dx) + dy) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -179,9 +179,9 @@ $(function(){
 
   $.keynav.goUp = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dx >= 0) && (Math.abs(dy) - dx) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -190,9 +190,9 @@ $(function(){
 
   $.keynav.goDown = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dx <= 0) && (Math.abs(dy) + dx) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -201,13 +201,13 @@ $(function(){
 
   $.keynav.activate = function () {
 	  var kn = $.keynav;
-	  $(kn.currentEl).trigger('click');	  
+	  $(kn.currentEl).trigger('click');
   }
 
   /**
    * This function was taken from Stefan's exellent interface plugin
    * http://www.eyecon.ro/interface/
-   * 
+   *
    * I included it in this library's namespace because the functions aren't
    * quite the same.
    */
@@ -241,7 +241,7 @@ $(function(){
 
 /* PASTED CODE ENDS HERE */
 
-	
+
 // The highlighter div, taken from the magnifier plugin
 
 
@@ -267,7 +267,7 @@ $(function(){
 	$('body').find(toFind).addClass('keynav_box');
 
 	$('body').find(toFind).keynav('keynav_focusbox','keynav_box');
-		
+
     // Set the first div as the one with focus, this is optional
 
 	$('.keynav_box:first').removeClass().addClass('keynav_focusbox');

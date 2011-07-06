@@ -2,7 +2,7 @@
 class Plugin extends AppModel {
 	var $name = 'Plugin';
 	var $displayField = 'name';
-	
+
 	var $actAs = 'Copyable';
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

@@ -79,12 +79,12 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		
+
 		if ($page == 'form') $this->layout = 'toolbar';
 		if ($page == 'toolbar') $this->layout = 'toolbar';
-		
+
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
 	}
-	
+
 }

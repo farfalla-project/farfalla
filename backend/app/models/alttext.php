@@ -64,6 +64,6 @@ class Alttext extends AppModel {
 			'fields' => '',
 			'order' => ''
 		)
-	); 
-} 
+	);
+}
 ?>

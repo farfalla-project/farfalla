@@ -8,7 +8,7 @@
  *
  *
  *
- * Includes: 
+ * Includes:
  *
  *   jQuery JavaScript Library
  *   http://jquery.com/
@@ -28,7 +28,7 @@
  *
  *
  */
- 
+
 function fgetScriptNodes(s){
 
 	var scripts = window.document.getElementsByTagName('script');
@@ -60,7 +60,7 @@ var farfalla_path = fgetPath();
 // Call the basically required scripts...
 //
 
-var headID = document.getElementsByTagName("head")[0];         
+var headID = document.getElementsByTagName("head")[0];
 
 var jqueryScript = document.createElement('script');
 jqueryScript.type = 'text/javascript';

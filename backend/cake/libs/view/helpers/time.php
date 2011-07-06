@@ -33,7 +33,7 @@ class TimeHelper extends AppHelper {
  * Converts a string representing the format for the function strftime and returns a
  * windows safe and i18n aware format.
  *
- * @param string $format Format with specifiers for strftime function. 
+ * @param string $format Format with specifiers for strftime function.
  *    Accepts the special specifier %S which mimics th modifier S for date()
  * @param string UNIX timestamp
  * @return string windows safe and date() function compatible format for strftime
@@ -334,7 +334,7 @@ class TimeHelper extends AppHelper {
  * @return boolean True if datetime string was yesterday
  * @access public
  * @link http://book.cakephp.org/view/1472/Testing-Time
- * 
+ *
  */
 	function wasYesterday($dateString, $userOffset = null) {
 		$date = $this->fromString($dateString, $userOffset);
@@ -635,7 +635,7 @@ class TimeHelper extends AppHelper {
 /**
  * Returns true if specified datetime was within the interval specified, else false.
  *
- * @param mixed $timeInterval the numeric value with space then time type. 
+ * @param mixed $timeInterval the numeric value with space then time type.
  *    Example of valid types: 6 hours, 2 days, 1 minute.
  * @param mixed $dateString the datestring or unix timestamp to compare
  * @param int $userOffset User's offset from GMT (in hours)

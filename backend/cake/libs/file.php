@@ -215,7 +215,7 @@ class File extends Object {
 	}
 
 /**
- * Prepares a ascii string for writing.  Converts line endings to the 
+ * Prepares a ascii string for writing.  Converts line endings to the
  * correct terminator for the current platform.  If windows "\r\n" will be used
  * all other platforms will use "\n"
  *

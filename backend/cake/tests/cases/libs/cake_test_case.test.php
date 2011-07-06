@@ -184,7 +184,7 @@ class CakeTestCaseTest extends CakeTestCase {
 			'/a'
 		);
 		$this->assertTrue($this->Case->assertTags($input, $pattern), 'Single quoted attributes %s');
-		
+
 		$input = "<a href='/test.html' class='active'>My link</a>";
 		$pattern = array(
 			'a' => array('href' => 'preg:/.*\.html/', 'class' => 'active'),

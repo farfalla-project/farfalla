@@ -1,6 +1,6 @@
-﻿// Farfalla plugin: Step by Step. 
-// Description: Allows moving through the elements of a webpage using the arrow keys. Left and right arrows move from a DOM element to the following or to the preceding one. 
-// To do: 
+﻿// Farfalla plugin: Step by Step.
+// Description: Allows moving through the elements of a webpage using the arrow keys. Left and right arrows move from a DOM element to the following or to the preceding one.
+// To do:
 
 
 $(function(){
@@ -30,20 +30,20 @@ this._clearKeysString(elem);},_clearKeysString:function(e){$(e).data('keys_strin
 	$('p:first').addClass('step-by-step-farfalla');
 
 	$(document).bind('keystrokes', {
-		
+
 		keys: ['p']
-					
+
 	}, function(event){
-				
+
 		// for debug purpose: c
-		
+
 		$('#monitor').html('You typed : <em>' + event.keystrokes.stack_item.keys.join(', ') + '</em>');
 
 
 		$('#monitor').append($('p.step-by-step-farfalla').html());
-		
+
 		$('p.step-by-step-farfalla').next('p').addClass('step-by-step-farfalla');
-		
+
 		$('p.step-by-step-farfalla:first').removeClass('step-by-step-farfalla');
 
 	});
@@ -52,4 +52,3 @@ this._clearKeysString(elem);},_clearKeysString:function(e){$(e).data('keys_strin
 
 
 });
-	

@@ -8,12 +8,12 @@ ini_restore('session.referer_check');
 ini_set('session.use_trans_sid', 0);
 ini_set('session.name', Configure::read('Session.cookie'));
 
-// Cookie is now destroyed when browser is closed, doesn't 
+// Cookie is now destroyed when browser is closed, doesn't
 // persist for days as it does by default for security
 // low and medium
 ini_set('session.cookie_lifetime', 0);
 
-// Cookie path is now '/' even if you app is within a sub 
+// Cookie path is now '/' even if you app is within a sub
 // directory on the domain
 $this->path = '/';
 ini_set('session.cookie_path', $this->path);
