@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "POT-Creation-Date: 2011-05-26 18:30+0200\n"
-"PO-Revision-Date: 2011-05-26 18:31+0100\n"
+"PO-Revision-Date: 2011-07-06 17:01+0100\n"
 "Last-Translator: Andrea Mangiatordi <andrea.mangiatordi@gmail.com>\n"
 "Language-Team: Farfalla_translators <info@farfalla-project.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,101 +14,84 @@ msgstr ""
 "Plural-Forms: plural=EXPRESSION;\n"
 
 #: /controllers/alttexts_controller.php:13;35
-#, fuzzy
 msgid "Invalid alttext"
-msgstr "testoAlternativo non valido"
+msgstr "Testo alternativo non valido"
 
 #: /controllers/alttexts_controller.php:23;40
-#, fuzzy
 msgid "The alttext has been saved"
-msgstr "il testo alternativo è stato salvato"
+msgstr "Il testo alternativo è stato salvato"
 
 #: /controllers/alttexts_controller.php:26;43
-#, fuzzy
 msgid "The alttext could not be saved. Please, try again."
-msgstr "The Element could not be saved. Please, try again."
+msgstr ""
 
 #: /controllers/alttexts_controller.php:55
-#, fuzzy
 msgid "Invalid id for alttext"
-msgstr "Invalid id for Element"
+msgstr "Identificativo non valido per il testo alternativo"
 
 #: /controllers/alttexts_controller.php:59
-#, fuzzy
 msgid "Alttext deleted"
-msgstr "Component deleted"
+msgstr "Testo alternativo cancellato"
 
 #: /controllers/alttexts_controller.php:62
 msgid "Alttext was not deleted"
-msgstr ""
+msgstr "Il testo alternativo non è stato cancellato"
 
 #: /controllers/languages_controller.php:13;33
-#, fuzzy
 msgid "Invalid language"
-msgstr "Invalid Category."
+msgstr "Lingua non valida"
 
 #: /controllers/languages_controller.php:23;38
-#, fuzzy
 msgid "The language has been saved"
-msgstr "The Component has been saved."
+msgstr "La lingua è stata salvata"
 
 #: /controllers/languages_controller.php:26;41
-#, fuzzy
 msgid "The language could not be saved. Please, try again."
-msgstr "The Element could not be saved. Please, try again."
+msgstr "Non è stato possibile salvare la lingua. Per favore, riprova."
 
 #: /controllers/languages_controller.php:51
-#, fuzzy
 msgid "Invalid id for language"
-msgstr "Invalid id for Element"
+msgstr "Identificativo non valido per la lingua"
 
 #: /controllers/languages_controller.php:55
-#, fuzzy
 msgid "Language deleted"
-msgstr "Component deleted"
+msgstr "Lingua cancellata"
 
 #: /controllers/languages_controller.php:58
 msgid "Language was not deleted"
-msgstr ""
+msgstr "La lingua non è stata cancellata"
 
 #: /controllers/plugins_controller.php:13;35;72;94
-#, fuzzy
 msgid "Invalid plugin"
-msgstr "Plugin caricati: "
+msgstr "Plugin non valido"
 
 #: /controllers/plugins_controller.php:23;40;82;99
-#, fuzzy
 msgid "The plugin has been saved"
-msgstr "The Component has been saved."
+msgstr "Il plugin è stato salvato"
 
 #: /controllers/plugins_controller.php:26;43;85;102
-#, fuzzy
 msgid "The plugin could not be saved. Please, try again."
-msgstr "The Element could not be saved. Please, try again."
+msgstr "Non è stato possibile salvare il plugin. Per favore riprova."
 
 #: /controllers/plugins_controller.php:55;114
-#, fuzzy
 msgid "Invalid id for plugin"
-msgstr "Invalid id for Element"
+msgstr "Identificativo non valido per il plugin"
 
 #: /controllers/plugins_controller.php:59;118
-#, fuzzy
 msgid "Plugin deleted"
-msgstr "Component deleted"
+msgstr "Plugin cancellato"
 
 #: /controllers/plugins_controller.php:62;121
 msgid "Plugin was not deleted"
-msgstr ""
+msgstr "Il plugin non è stato cancellato"
 
 #: /controllers/profiles_controller.php:31;53;74;113;135
-#, fuzzy
 msgid "Invalid profile"
-msgstr "Aggiungi nuovo profilo"
+msgstr "Profilo non valido"
 
 #: /controllers/profiles_controller.php:41;58;80;123;140
-#, fuzzy
 msgid "The profile has been saved"
-msgstr "The Component has been saved."
+msgstr "Il profilo è stato salvato"
 
 #: /controllers/profiles_controller.php:44;61;83;126;143
 #, fuzzy
@@ -127,11 +110,11 @@ msgstr "Component deleted"
 
 #: /controllers/profiles_controller.php:103;162
 msgid "Profile was not deleted"
-msgstr ""
+msgstr "Il profilo non è stato cancellato"
 
 #: /controllers/users_controller.php:25
 msgid "The new user has been created. You can now login."
-msgstr ""
+msgstr "Il nuovo utente è stato creato. Puoi ora eseguire il login."
 
 #: /views/alttexts/add.ctp:4
 #, fuzzy
@@ -147,7 +130,6 @@ msgstr "testoAlternativo non valido"
 #: /views/profiles/add.ctp:27
 #: /views/profiles/copy.ctp:13
 #: /views/profiles/edit.ctp:14
-#, fuzzy
 msgid "Submit"
 msgstr "Invia"
 
@@ -169,7 +151,7 @@ msgstr "Invia"
 #: /views/profiles/index.ctp:7;47
 #: /views/profiles/view.ctp:37;57
 msgid "Actions"
-msgstr ""
+msgstr "Azioni"
 
 #: /views/alttexts/add.ctp:18
 #: /views/alttexts/edit.ctp:20
@@ -222,9 +204,8 @@ msgstr "testoAlternativo non valido"
 #: /views/profiles/edit.ctp:20
 #: /views/profiles/index.ctp:23
 #: /views/profiles/view.ctp:76
-#, fuzzy
 msgid "Delete"
-msgstr "Delete component"
+msgstr "Cancella"
 
 #: /views/alttexts/edit.ctp:19
 #: /views/alttexts/index.ctp:35
@@ -241,11 +222,11 @@ msgstr "Delete component"
 #: /views/profiles/index.ctp:23
 #: /views/profiles/view.ctp:40;76
 msgid "Are you sure you want to delete # %s?"
-msgstr ""
+msgstr "Vuoi davvvero cancellare il numero %s?"
 
 #: /views/alttexts/index.ctp:2
 msgid "Alttexts"
-msgstr ""
+msgstr "Testi alternativi"
 
 #: /views/alttexts/index.ctp:33
 #: /views/languages/index.ctp:21
@@ -254,9 +235,8 @@ msgstr ""
 #: /views/plugins/view.ctp:71
 #: /views/profiles/index.ctp:21
 #: /views/profiles/view.ctp:74
-#, fuzzy
 msgid "View"
-msgstr "Aggiungi una nota"
+msgstr "Visualizza"
 
 #: /views/alttexts/index.ctp:34
 #: /views/languages/index.ctp:22
@@ -265,31 +245,29 @@ msgstr "Aggiungi una nota"
 #: /views/plugins/view.ctp:72
 #: /views/profiles/index.ctp:22
 #: /views/profiles/view.ctp:75
-#, fuzzy
 msgid "Edit"
-msgstr "(Modifica)"
+msgstr "Modifica"
 
 #: /views/alttexts/index.ctp:43
 #: /views/languages/index.ctp:31
 #: /views/plugins/index.ctp:31
 #: /views/profiles/index.ctp:35
 msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
-msgstr ""
+msgstr "Pagina %page% di %pages%, sono mostrati %current% record su un totale di %count%, a partire dal record %start%, fino al %end%"
 
 #: /views/alttexts/index.ctp:48
 #: /views/languages/index.ctp:36
 #: /views/plugins/index.ctp:36
 #: /views/profiles/index.ctp:40
 msgid "previous"
-msgstr ""
+msgstr "precedente"
 
 #: /views/alttexts/index.ctp:51
 #: /views/languages/index.ctp:39
 #: /views/plugins/index.ctp:39
 #: /views/profiles/index.ctp:43
-#, fuzzy
 msgid "next"
-msgstr "Prossimi articoli &raquo;"
+msgstr "successivo"
 
 #: /views/alttexts/index.ctp:57
 #: /views/alttexts/view.ctp:47
@@ -310,44 +288,42 @@ msgstr "testoAlternativo non valido"
 #: /views/languages/view.ctp:4;32
 #: /views/plugins/view.ctp:4;47
 #: /views/profiles/view.ctp:4;52
-#, fuzzy
 msgid "Id"
-msgstr "Noise data"
+msgstr "Identificativo"
 
 #: /views/alttexts/view.ctp:9
 #: /views/languages/view.ctp:33
-#, fuzzy
 msgid "Url"
-msgstr "visita url »"
+msgstr "Indirizzo URL"
 
 #: /views/alttexts/view.ctp:14
 #: /views/languages/view.ctp:34
 msgid "Text"
-msgstr ""
+msgstr "Testo"
 
 #: /views/alttexts/view.ctp:19
 #: /views/languages/view.ctp:2
 msgid "Language"
-msgstr ""
+msgstr "Lingua"
 
 #: /views/alttexts/view.ctp:24
 #: /views/languages/view.ctp:36
 msgid "Xpath"
-msgstr ""
+msgstr "Xpath"
 
 #: /views/alttexts/view.ctp:29
 #: /views/languages/view.ctp:37
 #: /views/plugins/view.ctp:19;51
 #: /views/profiles/view.ctp:24;55
 msgid "Created"
-msgstr ""
+msgstr "Creato"
 
 #: /views/alttexts/view.ctp:34
 #: /views/languages/view.ctp:38
 #: /views/plugins/view.ctp:24;52
 #: /views/profiles/view.ctp:29;56
 msgid "Modified"
-msgstr ""
+msgstr "Modificato"
 
 #: /views/alttexts/view.ctp:45
 #, fuzzy
@@ -367,12 +343,11 @@ msgstr "Edit Components"
 
 #: /views/languages/index.ctp:2
 msgid "Languages"
-msgstr ""
+msgstr "Lingue"
 
 #: /views/languages/view.ctp:9
 #: /views/plugins/view.ctp:9;48
 #: /views/profiles/view.ctp:9;53
-#, fuzzy
 msgid "Name"
 msgstr "Nome"
 
@@ -391,18 +366,16 @@ msgid "Language Id"
 msgstr "Noise data"
 
 #: /views/layouts/default.ctp:25
-#, fuzzy
 msgid "Farfalla: a web tool for accessibility -"
-msgstr "Farfalla: un'applicazione web per l'accessibilit&agrave;"
+msgstr "Farfalla: un'applicazione web per l'accessibilità - "
 
 #: /views/layouts/default.ctp:45
-#, fuzzy
 msgid "Farfalla project: a web tool for accessibility"
-msgstr "Farfalla project: un'applicazione web per l'accessibilit&agrave;"
+msgstr "Farfalla project: un'applicazione web per l'accessibilità"
 
 #: /views/layouts/default.ctp:56
 msgid "CakePHP: the rapid development php framework"
-msgstr ""
+msgstr "CakePHP: il framework php per lo sviluppo rapido"
 
 #: /views/pages/form.ctp:113
 msgid "Choose your profile..."
@@ -414,11 +387,11 @@ msgstr "ottieni le preferenze"
 
 #: /views/pages/home.ctp:8
 msgid "Read a short description of the existing profiles."
-msgstr ""
+msgstr "Leggi una breve descrizione dei profili esistenti."
 
 #: /views/pages/home.ctp:13
 msgid "Access the profile creation page."
-msgstr ""
+msgstr "Vai alla pagina di creazione di un nuovo profilo."
 
 #: /views/pages/toolbar.ctp:66
 msgid "Loaded plugin(s): "
@@ -429,9 +402,8 @@ msgid "change profile"
 msgstr "cambia profilo"
 
 #: /views/plugins/add.ctp:4
-#, fuzzy
 msgid "Add Plugin"
-msgstr "Plugin caricati: "
+msgstr "Aggiungi un plugin"
 
 #: /views/plugins/add.ctp:17
 #: /views/plugins/edit.ctp:19
@@ -441,9 +413,8 @@ msgstr "Plugin caricati: "
 #: /views/profiles/edit.ctp:22
 #: /views/profiles/index.ctp:50
 #: /views/profiles/view.ctp:43
-#, fuzzy
 msgid "List Plugins"
-msgstr "Plugin correlati"
+msgstr "Elenco dei plugin"
 
 #: /views/plugins/add.ctp:18
 #: /views/plugins/edit.ctp:20
@@ -454,9 +425,8 @@ msgstr "Plugin correlati"
 #: /views/profiles/duplicate.ctp:18
 #: /views/profiles/edit.ctp:21
 #: /views/profiles/view.ctp:41
-#, fuzzy
 msgid "List Profiles"
-msgstr "List Components"
+msgstr "Elenco dei profili"
 
 #: /views/plugins/add.ctp:19
 #: /views/plugins/edit.ctp:21
@@ -464,20 +434,17 @@ msgstr "List Components"
 #: /views/plugins/view.ctp:39;82
 #: /views/profiles/index.ctp:49
 #: /views/profiles/view.ctp:42
-#, fuzzy
 msgid "New Profile"
-msgstr "Aggiungi nuovo profilo"
+msgstr "Nuovo profilo"
 
 #: /views/plugins/edit.ctp:4
 #: /views/plugins/view.ctp:34
-#, fuzzy
 msgid "Edit Plugin"
-msgstr "Plugin caricati: "
+msgstr "Modifica Plugin"
 
 #: /views/plugins/index.ctp:2
-#, fuzzy
 msgid "Plugins"
-msgstr "Plugin correlati"
+msgstr "Plugin"
 
 #: /views/plugins/index.ctp:45
 #: /views/plugins/view.ctp:37
@@ -486,29 +453,25 @@ msgstr "Plugin correlati"
 #: /views/profiles/edit.ctp:23
 #: /views/profiles/index.ctp:51
 #: /views/profiles/view.ctp:44;85
-#, fuzzy
 msgid "New Plugin"
-msgstr "Plugin caricati: "
+msgstr "Nuovo plugin"
 
 #: /views/plugins/view.ctp:2
-#, fuzzy
 msgid "Plugin"
-msgstr "Plugin caricati: "
+msgstr "Plugin "
 
 #: /views/plugins/view.ctp:14;50
 #: /views/profiles/view.ctp:19;54
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
 #: /views/plugins/view.ctp:35
-#, fuzzy
 msgid "Delete Plugin"
-msgstr "Plugin caricati: "
+msgstr "Cancella plugin"
 
 #: /views/plugins/view.ctp:43
-#, fuzzy
 msgid "Related Profiles"
-msgstr "Articoli simili"
+msgstr "Profili correlati"
 
 #: /views/plugins/view.ctp:49
 #: /views/profiles/view.ctp:14
@@ -533,19 +496,19 @@ msgstr "e modificarlo, aggiungendo o rimuovendo plugin."
 
 #: /views/profiles/add.ctp:12
 msgid "Choose a name for your profile: it could be your own name, or a description of what it is useful for."
-msgstr ""
+msgstr "Scegli un nome per il tuo profilo: può essere il tuo nome, o una descrizione della finalità del profilo."
 
 #: /views/profiles/add.ctp:16
 msgid "Choose a password: this will be required for editing your profile."
-msgstr ""
+msgstr "Scegli una password: questa sarà richiesta per modificare il tuo profilo."
 
 #: /views/profiles/add.ctp:20
 msgid "Enter a description for your profile. It could be useful for other people wishing to use it. Don't worry, you will never enter your personal data in your profile."
-msgstr ""
+msgstr "Inserisci una descrizione per il tuo profilo. Potrebbe essere utile ad altre persone che lo vorranno usare. Non preoccuparti, non ti chiederemo mai di inserire dati personali nel tuo profilo."
 
 #: /views/profiles/add.ctp:24
 msgid "Now select the plugins you wish to include in your profile."
-msgstr ""
+msgstr "Ora seleziona i plugin che vuoi includere nel tuo profilo."
 
 #: /views/profiles/copy.ctp:5
 msgid "Copy Profile"
@@ -553,16 +516,16 @@ msgstr "Copia il Profilo"
 
 #: /views/profiles/copy.ctp:7
 msgid "Choose a new name for your version of this profile. Remember this one was originally called <strong>"
-msgstr ""
+msgstr "Scegli un nuovo nome per la tua versione di questo profilo. Ricorda che questo si chiamava <strong>"
 
 #: /views/profiles/copy.ctp:9
 #: /views/profiles/edit.ctp:10
 msgid "This is a description for your profile. It could be useful for other people wishing to use it."
-msgstr ""
+msgstr "Questa è una descrizione del tuo profilo. Potrebbe essere utile ad altre persone interessate."
 
 #: /views/profiles/copy.ctp:10
 msgid "These are the plugins available for inclusion in your profile."
-msgstr ""
+msgstr "Questi sono i plugin che puoi includere nel tuo profilo."
 
 #: /views/profiles/duplicate.ctp:4
 #: /views/profiles/edit.ctp:5
@@ -572,11 +535,11 @@ msgstr "Modifica il Profilo"
 
 #: /views/profiles/edit.ctp:8
 msgid "This is the name for your profile: it could be your own name, or a description of what it is useful for."
-msgstr ""
+msgstr "Questo è il nome del tuo profilo: può essere il tuo nome, o una desrizione delle funzionalità del profilo."
 
 #: /views/profiles/edit.ctp:11
 msgid "These are the plugins you wish to include in your profile."
-msgstr ""
+msgstr "Questi sono i plugin che vuoi includere nel tuo profilo."
 
 #: /views/profiles/index.ctp:2
 msgid "Profiles"
@@ -584,7 +547,7 @@ msgstr "Profili"
 
 #: /views/profiles/index.ctp:26
 msgid "New profile from this template"
-msgstr ""
+msgstr "Nuovo profilo da questo modello"
 
 #: /views/profiles/view.ctp:2
 msgid "Profile"

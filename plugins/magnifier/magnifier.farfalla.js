@@ -59,7 +59,7 @@ $(function() {
 
 	// Highlight elements...
 
-	$('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd, div:hasText').each(function() {
+	$('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd, div:hasText, address').each(function() {
 		$(this).hover(
 			function() {
 
@@ -102,7 +102,7 @@ $(function() {
 // Allows control over multi-key pressures for selecting an <a>
 
 	function filterKeys (length, value) {
-		if(length > 0) {
+		if(length > 0 && value <= length) {
 			if (length < 10) {
 				goToHref(value);
 			} else	{

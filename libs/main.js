@@ -38,8 +38,8 @@ $(function() {
 
 			$('<form></form>').attr({'id':'farfalla_toolbar_form','action':'#','method':'post'}).appendTo('#farfalla_selection');
 				$('<select></select>').attr({'id':'farfalla_profile','name':'farfalla_profile'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
-					$('<option></option>').addClass('choose').html('Choose your profile...').appendTo('#farfalla_profile');
-				$('<input></input>').attr({'type':'submit','id':'farfalla_activator','value':'get preferences','disabled':'disabled'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
+					$('<option></option>').addClass('choose').html('Loading...').appendTo('#farfalla_profile');
+				$('<input></input>').attr({'type':'submit','id':'farfalla_activator','value':'loading...','disabled':'disabled'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
 
 				$('#farfalla_profile').change(function(){
 					$('#farfalla_activator').removeAttr('disabled');
@@ -49,9 +49,11 @@ $(function() {
 					farfalla_path+"backend/profiles/menu/?callback=?",
 					{},
 					function(data) {
-						$.each(data, function(value, name){
+						$.each(data.profiles, function(value, name){
 							$('<option>').attr('value', value).text(name).appendTo('#farfalla_profile');
 						});
+						$('#farfalla_profile option[class=choose]').html(data.ui.choose);
+						$('#farfalla_activator').val(data.ui.get);
 					}
 				);
 
@@ -63,18 +65,20 @@ $(function() {
 
 			$('<div></div>').attr('id','farfalla_active').appendTo('#farfalla_toolbar');
 				$('<ul></ul>').appendTo('#farfalla_active');
-						$('<input></input>').attr({'type':'button','id':'farfalla_change_profile','value':'change profile'}).addClass('ui-corner-all').prependTo('#farfalla_active');
+						$('<input></input>').attr({'type':'button','id':'farfalla_change_profile','value':'loading ...'}).addClass('ui-corner-all').prependTo('#farfalla_active');
 
 							$.getJSON(
 								farfalla_path+'backend/profiles/retrieve/'+id+'/?callback=?',
 								{},
 								function(data) {
-									$.each(data.Plugin, function(i, plugin){
+								console.log(data)
+									$.each(data.description.Plugin, function(i, plugin){
 										$('#farfalla_active ul').prepend('<li>'+plugin.name+'</li>');
 										$('#farfalla_selection').hide();
 //										$('#farfalla_active').show();
 										jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
 									});
+									$('#farfalla_change_profile').val(data.ui.reset)
 								}
 							);
 	

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2011-05-26 18:30+0200\n"
+"POT-Creation-Date: 2011-07-20 17:40+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -86,27 +86,27 @@ msgstr ""
 msgid "Plugin was not deleted"
 msgstr ""
 
-#: /controllers/profiles_controller.php:31;53;74;113;135
+#: /controllers/profiles_controller.php:56;78;99;138;160
 msgid "Invalid profile"
 msgstr ""
 
-#: /controllers/profiles_controller.php:41;58;80;123;140
+#: /controllers/profiles_controller.php:66;83;105;148;165
 msgid "The profile has been saved"
 msgstr ""
 
-#: /controllers/profiles_controller.php:44;61;83;126;143
+#: /controllers/profiles_controller.php:69;86;108;151;168
 msgid "The profile could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/profiles_controller.php:96;155
+#: /controllers/profiles_controller.php:121;180
 msgid "Invalid id for profile"
 msgstr ""
 
-#: /controllers/profiles_controller.php:100;159
+#: /controllers/profiles_controller.php:125;184
 msgid "Profile deleted"
 msgstr ""
 
-#: /controllers/profiles_controller.php:103;162
+#: /controllers/profiles_controller.php:128;187
 msgid "Profile was not deleted"
 msgstr ""
 
@@ -364,10 +364,12 @@ msgid "CakePHP: the rapid development php framework"
 msgstr ""
 
 #: /views/pages/form.ctp:113
+#: /views/profiles/menu.ctp:3
 msgid "Choose your profile..."
 msgstr ""
 
 #: /views/pages/form.ctp:116
+#: /views/profiles/menu.ctp:4
 msgid "get preferences"
 msgstr ""
 
@@ -379,11 +381,11 @@ msgstr ""
 msgid "Access the profile creation page."
 msgstr ""
 
-#: /views/pages/toolbar.ctp:66
+#: /views/pages/toolbar.ctp:64
 msgid "Loaded plugin(s): "
 msgstr ""
 
-#: /views/pages/toolbar.ctp:70
+#: /views/pages/toolbar.ctp:68
 msgid "change profile"
 msgstr ""
 
