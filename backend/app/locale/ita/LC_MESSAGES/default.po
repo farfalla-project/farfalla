@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "POT-Creation-Date: 2011-05-26 18:30+0200\n"
-"PO-Revision-Date: 2011-07-06 17:01+0100\n"
+"PO-Revision-Date: 2011-07-20 21:33+0100\n"
 "Last-Translator: Andrea Mangiatordi <andrea.mangiatordi@gmail.com>\n"
 "Language-Team: Farfalla_translators <info@farfalla-project.org>\n"
 "MIME-Version: 1.0\n"
@@ -94,9 +94,8 @@ msgid "The profile has been saved"
 msgstr "Il profilo è stato salvato"
 
 #: /controllers/profiles_controller.php:44;61;83;126;143
-#, fuzzy
 msgid "The profile could not be saved. Please, try again."
-msgstr "The Element could not be saved. Please, try again."
+msgstr "Non è stato possibile salvare il profilo. Riprovare più tardi."
 
 #: /controllers/profiles_controller.php:96;155
 #, fuzzy
@@ -379,7 +378,7 @@ msgstr "CakePHP: il framework php per lo sviluppo rapido"
 
 #: /views/pages/form.ctp:113
 msgid "Choose your profile..."
-msgstr "Scegli il tuo profilo"
+msgstr "Scegli il tuo profilo..."
 
 #: /views/pages/form.ctp:116
 msgid "get preferences"

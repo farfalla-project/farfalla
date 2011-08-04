@@ -13,13 +13,15 @@ $(function() {
 
 		function farfalla_toolbar_create() {
 			$('<div></div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').addClass('ui-corner-left').prependTo('body');
-			$('<div>&nbsp;</div>').attr('id','farfalla_logo').css('cursor','ns-resize').appendTo('#farfalla_toolbar');
-			$('<div></div>').attr('id','farfalla_buttons').appendTo('#farfalla_toolbar');
+			$('<div>&nbsp;</div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
+			$('<div>&nbsp;</div>').attr('id','farfalla_handle').css('cursor','ns-resize').appendTo('#farfalla_toolbar');
+
+			$('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
 			$('<ul></ul>').appendTo('#farfalla_buttons');
 
 			$('#farfalla_toolbar')
 				.draggable({
-					handle : '#farfalla_logo',
+					handle : '#farfalla_handle',
 					axis: 'y',
 					stop: function() {
 						$.getJSON(
@@ -49,8 +51,14 @@ $(function() {
 					farfalla_path+"backend/profiles/menu/?callback=?",
 					{},
 					function(data) {
-						$.each(data.profiles, function(value, name){
-							$('<option>').attr('value', value).text(name).appendTo('#farfalla_profile');
+						$.each(data.profiles, function(){
+							$('<option>')
+// title must be substituted with a proper jquery callout
+								.attr(
+									{'value': this.Profile.id, 'title': this.descriptionTranslation[0].content}
+								)
+								.text(this.nameTranslation[0].content)
+								.appendTo('#farfalla_profile');
 						});
 						$('#farfalla_profile option[class=choose]').html(data.ui.choose);
 						$('#farfalla_activator').val(data.ui.get);
@@ -71,7 +79,6 @@ $(function() {
 								farfalla_path+'backend/profiles/retrieve/'+id+'/?callback=?',
 								{},
 								function(data) {
-								console.log(data)
 									$.each(data.description.Plugin, function(i, plugin){
 										$('#farfalla_active ul').prepend('<li>'+plugin.name+'</li>');
 										$('#farfalla_selection').hide();
@@ -102,6 +109,7 @@ $(function() {
 					farfalla_plugins_listing_interaction();
 					$('#farfalla_toolbar_form').fadeOut('slow');
 					$('#farfalla_active').fadeIn('slow');
+					farfalla_hide_toolbar(0);
 				}
 
 			);
@@ -172,6 +180,9 @@ $(function() {
 		function farfalla_hide_toolbar(value) {
 			if(value == 0){
 				$('#farfalla_selection, #farfalla_active').hide('slow');
+				$.getJSON(
+					farfalla_path+"backend/profiles/show/0/?callback=?",{}
+				);
 			}
 		}
 
@@ -225,6 +236,7 @@ $(function() {
 		  .appendTo('#farfalla_buttons ul li:last');
 		$('#button_'+id).wrap('<a accesskey="'+accesskey+'"></a>');
 		$('#button_'+id).parent('a').click(callback);
+		$('#farfalla_buttons').show();
 	};
 
 

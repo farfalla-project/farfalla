@@ -18,7 +18,7 @@ class ProfilesController extends AppController {
 		$this->Session->start();
 		$this->layout = 'ajax';
 		$this->RequestHandler->setContent('json', 'text/x-json');
-		$this->set('profiles', $this->Profile->find('list', array('fields' => array('Profile.id', 'Profile.name'))));
+		$this->set('profiles', $this->Profile->find('all', array('fields' => array('Profile.id', 'Profile.name'))));
 	}
 
 	function retrieve($id = null) {

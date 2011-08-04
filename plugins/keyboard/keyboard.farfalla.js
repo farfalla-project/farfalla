@@ -98,8 +98,8 @@ jQuery.widget('ui.keyboard', {
                 '{sp:.5} A S D F G H J K L : " {return}'],
             ['{sp:1} z x c v b n m , . / {shift}',
                 '{sp:1} Z X C V B N M < > ? {shift}' ],
-            ['{accept} {space} {cancel} {bksp}',
-                '{accept} {space} {cancel} {bksp}']
+            ['{accept} {space} {cancel} {bksp} {empty}',
+                '{accept} {space} {cancel} {bksp} {empty}']
         ],
         "alpha": [
             ['1 2 3 4 5 6 7 8 9 0 - = `',
@@ -110,8 +110,8 @@ jQuery.widget('ui.keyboard', {
                 '{sp:.5} K L M N O P Q R S : " {return}'],
             ['{sp:1} t u v w x y z , . / {shift}',
                 '{sp:1} T U V W X Y Z < > ? {shift}' ],
-            ['{accept} {space} {cancel} {bksp}',
-                '{accept} {space} {cancel} {bksp}']
+            ['{accept} {space} {cancel} {bksp} {empty}',
+                '{accept} {space} {cancel} {bksp} {empty}']
         ],
         "dvorak": [
             ['1 2 3 4 5 6 7 8 9 0 [ ] `',
@@ -122,8 +122,8 @@ jQuery.widget('ui.keyboard', {
                 '{sp:.5} A O E U I D H T N S _ {return}'],
             ['{sp:1} ; q j k x b m w v z {shift}',
                 '{sp:1} : Q J K X B M W V Z {shift}' ],
-            ['{accept} {space} {cancel} {bksp}',
-                '{accept} {space} {cancel} {bksp}']
+            ['{accept} {space} {cancel} {bksp} {empty}',
+                '{accept} {space} {cancel} {bksp} {empty}']
         ],
         "num": [
             ['1 2 3 {bksp}'],
@@ -293,6 +293,16 @@ jQuery.widget('ui.keyboard', {
                                 })
                                 .appendTo(newSet);
              
+                        }else if(action == 'empty'){
+                            actionKey.clone()
+                                .attr('name','key_empty')
+                                .attr('value','Empty')
+                                .click(function(){
+                                    previewInput.attr('value','');
+                                })
+                                .addClass('ui-state-highlight')
+                                .appendTo(newSet);
+             
                         }else if(action == 'shift'){
                             actionKey.clone()
                                 .attr('name','key_shift')
@@ -401,7 +411,7 @@ $(function() {
 		'width' : '60%',
 		'background' : '#999',
 		'border' : '1px solid #666',
-		'position' : 'absolute',
+		'position' : 'fixed',
 		'z-index' : '10000',
 		'left' : '20%',
 		'right' : '20%',
@@ -409,24 +419,39 @@ $(function() {
 		'bottom' : 0
 	}).addClass('ui-corner-all');
 
+	$('.ui-keyboard-keyset').css({
+		'width' : '98%',
+		'margin' : 'auto 1%'
+	});
+
 	$('.ui-keyboard-preview').css({
-		'width' : '99%',
-		'margin' : '3px .5%'
+		'width' : '98%',
+		'margin' : '1%',
+		'border' : '3px solid red',
+		'font-size' : '20px'
 	}).addClass('ui-corner-all');
 
 	$('.ui-keyboard-button').css({
-		width : '7.3%',
-		height : '3em',
-		margin : ".4% .2%",
-		display : "inline"
+		'width' : '7%',
+		'height' : '2em',
+		'margin' : '.4% .2%',
+		'display' : 'inline',
+		'font-size' : '20px',
+		'background' : '#333',
+		'text-align' : 'center',
+		'color' : 'white',
+		'border' : 'none'
 	}).addClass('ui-corner-all');
 
 	$('.ui-keyboard-actionkey').css('width', '4em').addClass('ui-corner-all');
 
 	$('.ui-keyboard-space').css({
-		'width' : '18em'
+		'width' : '50%'
 	}).addClass('ui-corner-all');
 
-
+	$('.ui-state-highlight').css({
+		'background' : '#fc0',
+		'color' : '#000'
+	});
 
 });

@@ -42,13 +42,15 @@ body{
 		margin: 2px 3px;
 		border: 0;
 		font-size: 1em;
-		float:left;
+		float: left;
+		line-height: 22px;
 	}
 
 	#farfalla_toolbar select{
 		height: 2.2em;
 		padding: 0;
 		vertical-align: center;
+		width: auto;
 	}
 
 	#farfalla_toolbar option{
@@ -70,12 +72,22 @@ body{
 		float: left;
 	}
 
+	#farfalla_handle{
+		width: 30px;
+		height: 50px;
+		background: url('../images/farfalla_handle.gif') no-repeat;
+		float: left;
+		padding: 0;
+		margin: 0;
+	}
+
 	#farfalla_active{
 		display: block;
 		float: left;
 	}
 
 		#farfalla_active ul{
+			list-style: none;
 			display: block;
 			float: left;
 			padding: 0;
