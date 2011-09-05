@@ -25,7 +25,7 @@ $(function() {
 					axis: 'y',
 					stop: function() {
 						$.getJSON(
-							farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{}
+                            farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{}
 						);
 					}
 				}).css('position','absolute');
@@ -125,13 +125,10 @@ $(function() {
 		function farfalla_plugins_listing_interaction() {
 
 			$('#farfalla_change_profile').click( function(){
-						$('#farfalla_active').fadeOut();
-//						farfalla_selection_create();
-//						farfalla_selection_interaction();
-//						$('#farfalla_buttons').children().remove();
-						window.location.reload();
-				$.getJSON(farfalla_path+'backend/profiles/reset/?callback=?', {}, function(){});
-			} );
+				$('#farfalla_active').fadeOut();
+				var jqxhr = $.getJSON(farfalla_path+'backend/profiles/reset/?callback=?');
+				jqxhr.complete(function() {window.location.reload()});
+			});
 		};
 
 		// Checks if a profile has already been selected, then starts what is needed

@@ -421,14 +421,17 @@ $(function() {
 
 	$('.ui-keyboard-keyset').css({
 		'width' : '98%',
-		'margin' : 'auto 1%'
+		'margin' : 'auto 1%',
 	});
 
 	$('.ui-keyboard-preview').css({
 		'width' : '98%',
 		'margin' : '1%',
 		'border' : '3px solid red',
-		'font-size' : '20px'
+		'font-size' : '20px',
+		'background' : '#fff',
+		'color' : '#000',
+		'margin' : '0'
 	}).addClass('ui-corner-all');
 
 	$('.ui-keyboard-button').css({
