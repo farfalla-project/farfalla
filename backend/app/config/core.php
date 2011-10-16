@@ -49,6 +49,7 @@
 	} 
 	
     switch ($lang) {
+      case "it-IT" : $agent_language = "ita";
       case "it-it" : $agent_language = "ita";
       case "it" : $agent_language = "ita";
 //      case "es-es" : $agent_language = "esp";

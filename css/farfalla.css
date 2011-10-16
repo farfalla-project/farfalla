@@ -12,70 +12,75 @@ body{
 
 #farfalla_toolbar{
 	font-family: Helvetica, Calibri, sans;
-	font-size: 12pt;
+	font-size: 12pt; 
 /*	display: block; */
-	background-image: url('../images/farfalla-toolbar-background.jpg');
-	border: 1px solid #999;
+	background: url('../images/toolbar/menu-left.png') transparent no-repeat; 
+/*	border: 1px solid #fff; */
 	border-right: 0;
-	background-color: #000;
 	color: #fff;
-	height: 40px;
+	height: 48px;
 	margin: 0;
 	overflow: hidden;
-	padding: 4px;
+	padding-left: 12px;
 	float: right;
 	z-index: 20000;
 	right: 0;
 }
 
 	#farfalla_toolbar div{
+		background: transparent url('../images/toolbar/menu-content.png') repeat-x;
 		float: left;
 		display: inline;
-		height:60px;
+		height:48px; 
 	}
 
 
 	#farfalla_toolbar input, #farfalla_toolbar select{
 /*		height: 36px; */
-		padding: 0.4em;
+		padding: 8px;
 		background: #fff;
-		margin: 2px 3px;
+		margin: 4px 3px; 
 		border: 0;
-		font-size: 1em;
+		font-size: 1em; 
 		float: left;
-		line-height: 22px;
+		line-height: 22px; 
 	}
 
 	#farfalla_toolbar select{
-		height: 2.2em;
+		height: 38px;
 		padding: 0;
 		vertical-align: center;
 		width: auto;
 	}
 
 	#farfalla_toolbar option{
-/*		height: 36px;
+		height: 36px;
 		background: #fff;
-		line-height: 36px; */
-		padding: 0.4em;
+		line-height: 36px; 
+		padding: 0.4em; 
 	}
 
 		#change_profile{
-			padding: 4px;
+			padding: 4px; 
 			float: left;
 		}
 
 	#farfalla_logo{
-		width: 60px;
-		height: 60px;
-		background: url('../images/farfalla_icon.png') no-repeat;
+		width: 70px; 
+		height: 48px;  
 		float: left;
 	}
+	
+	#farfalla_logo img{
+		border: none;
+		padding: 2px;
+		margin:none;
+	}
 
-	#farfalla_handle{
-		width: 30px;
-		height: 50px;
-		background: url('../images/farfalla_handle.gif') no-repeat;
+	#farfalla_toolbar div#farfalla_handle{
+		width: 18px; 
+		height: 48px;
+		background: url('../images/toolbar/menu-handler.png') repeat-x;
 		float: left;
 		padding: 0;
 		margin: 0;
@@ -98,7 +103,7 @@ body{
 		#farfalla_active ul li{
 			display: inline;
 			float: left;
-			padding: 1ex;
+			padding: 1ex; 
 			margin:0;
 			color: #fff;
 		}
@@ -109,7 +114,7 @@ body{
 	}
 
 		#farfalla_buttons ul li img{
-		padding: 0 3px;
+		padding: 4px; 
 		cursor: pointer;
 		}
 
