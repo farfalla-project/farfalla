@@ -35,8 +35,7 @@ body{
 	}
 
 
-	#farfalla_toolbar input, #farfalla_toolbar select{
-/*		height: 36px; */
+	#farfalla_toolbar div form input, #farfalla_active input, #farfalla_toolbar select{
 		padding: 8px;
 		background: #fff;
 		margin: 4px 3px; 
@@ -44,6 +43,8 @@ body{
 		font-size: 1em; 
 		float: left;
 		line-height: 22px; 
+		height: 38px;
+		width: 200px;
 	}
 
 	#farfalla_toolbar select{
