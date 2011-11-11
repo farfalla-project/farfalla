@@ -1,5 +1,5 @@
 /*!
- * Farfalla - A web tool for accessibility - v0.1
+ * Farfalla - Accessibility in the Cloud
  * http://farfalla-project.org/
  *
  * Copyright 2010, Andrea Mangiatordi

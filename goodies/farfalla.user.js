@@ -3,7 +3,15 @@
 // @namespace      userscripts.org
 // @description    Injects Farfalla helper
 // @version        0.2
-// @include        *
+// @include       //
+//
+// Farfalla - Accessibility in the Cloud
+// http://farfalla-project.org/
+//
+// Copyright 2010, Andrea Mangiatordi
+// Licensed under the AGPL Version 3 license.
+// http://farfalla-project.org/license
+//
 // ==/UserScript==
 	
 function fgetScripts(s){
