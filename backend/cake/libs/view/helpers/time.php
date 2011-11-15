@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
@@ -79,6 +79,15 @@ class TimeHelper extends AppHelper {
 				return sprintf("%02d", date('Y', $this->__time) / 100);
 			case 'D':
 				return '%m/%d/%y';
+			case 'e':
+				if (DS === '/') {
+					return '%e';
+				}
+				$day = date('j', $this->__time);
+				if ($day < 10) {
+					$day = ' ' . $day;
+				}
+				return $day;
 			case 'eS' :
 				return date('jS', $this->__time);
 			case 'b':
@@ -226,9 +235,9 @@ class TimeHelper extends AppHelper {
 
 		$y = $this->isThisYear($date) ? '' : ' %Y';
 
-		if ($this->isToday($date)) {
+		if ($this->isToday($dateString, $userOffset)) {
 			$ret = sprintf(__('Today, %s',true), strftime("%H:%M", $date));
-		} elseif ($this->wasYesterday($date)) {
+		} elseif ($this->wasYesterday($dateString, $userOffset)) {
 			$ret = sprintf(__('Yesterday, %s',true), strftime("%H:%M", $date));
 		} else {
 			$format = $this->convertSpecifiers("%b %eS{$y}, %H:%M", $date);
@@ -431,6 +440,17 @@ class TimeHelper extends AppHelper {
  */
 	function toRSS($dateString, $userOffset = null) {
 		$date = $this->fromString($dateString, $userOffset);
+
+		if(!is_null($userOffset)) {
+			if($userOffset == 0) {
+				$timezone = '+0000';
+			} else {
+				$hours = (int) floor(abs($userOffset));
+				$minutes = (int) (fmod(abs($userOffset), $hours) * 60);
+				$timezone = ($userOffset < 0 ? '-' : '+') . str_pad($hours, 2, '0', STR_PAD_LEFT) . str_pad($minutes, 2, '0', STR_PAD_LEFT);
+			}
+			return date('D, d M Y H:i:s', $date) . ' ' . $timezone;
+		}
 		return date("r", $date);
 	}
 
@@ -580,33 +600,33 @@ class TimeHelper extends AppHelper {
 		} else {
 			if ($years > 0) {
 				// years and months and days
-				$relativeDate .= ($relativeDate ? ', ' : '') . $years . ' ' . __n('year', 'years', $years, true);
-				$relativeDate .= $months > 0 ? ($relativeDate ? ', ' : '') . $months . ' ' . __n('month', 'months', $months, true) : '';
-				$relativeDate .= $weeks > 0 ? ($relativeDate ? ', ' : '') . $weeks . ' ' . __n('week', 'weeks', $weeks, true) : '';
-				$relativeDate .= $days > 0 ? ($relativeDate ? ', ' : '') . $days . ' ' . __n('day', 'days', $days, true) : '';
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d year', '%d years', $years, true), $years);
+				$relativeDate .= $months > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d month', '%d months', $months, true), $months) : '';
+				$relativeDate .= $weeks > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d week', '%d weeks', $weeks, true), $weeks) : '';
+				$relativeDate .= $days > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d day', '%d days', $days, true), $days) : '';
 			} elseif (abs($months) > 0) {
 				// months, weeks and days
-				$relativeDate .= ($relativeDate ? ', ' : '') . $months . ' ' . __n('month', 'months', $months, true);
-				$relativeDate .= $weeks > 0 ? ($relativeDate ? ', ' : '') . $weeks . ' ' . __n('week', 'weeks', $weeks, true) : '';
-				$relativeDate .= $days > 0 ? ($relativeDate ? ', ' : '') . $days . ' ' . __n('day', 'days', $days, true) : '';
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d month', '%d months', $months, true), $months);
+				$relativeDate .= $weeks > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d week', '%d weeks', $weeks, true), $weeks) : '';
+				$relativeDate .= $days > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d day', '%d days', $days, true), $days) : '';
 			} elseif (abs($weeks) > 0) {
 				// weeks and days
-				$relativeDate .= ($relativeDate ? ', ' : '') . $weeks . ' ' . __n('week', 'weeks', $weeks, true);
-				$relativeDate .= $days > 0 ? ($relativeDate ? ', ' : '') . $days . ' ' . __n('day', 'days', $days, true) : '';
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d week', '%d weeks', $weeks, true), $weeks);
+				$relativeDate .= $days > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d day', '%d days', $days, true), $days) : '';
 			} elseif (abs($days) > 0) {
 				// days and hours
-				$relativeDate .= ($relativeDate ? ', ' : '') . $days . ' ' . __n('day', 'days', $days, true);
-				$relativeDate .= $hours > 0 ? ($relativeDate ? ', ' : '') . $hours . ' ' . __n('hour', 'hours', $hours, true) : '';
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d day', '%d days', $days, true), $days);
+				$relativeDate .= $hours > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d hour', '%d hours', $hours, true), $hours) : '';
 			} elseif (abs($hours) > 0) {
 				// hours and minutes
-				$relativeDate .= ($relativeDate ? ', ' : '') . $hours . ' ' . __n('hour', 'hours', $hours, true);
-				$relativeDate .= $minutes > 0 ? ($relativeDate ? ', ' : '') . $minutes . ' ' . __n('minute', 'minutes', $minutes, true) : '';
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d hour', '%d hours', $hours, true), $hours);
+				$relativeDate .= $minutes > 0 ? ($relativeDate ? ', ' : '') . sprintf(__n('%d minute', '%d minutes', $minutes, true), $minutes) : '';
 			} elseif (abs($minutes) > 0) {
 				// minutes only
-				$relativeDate .= ($relativeDate ? ', ' : '') . $minutes . ' ' . __n('minute', 'minutes', $minutes, true);
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d minute', '%d minutes', $minutes, true), $minutes);
 			} else {
 				// seconds only
-				$relativeDate .= ($relativeDate ? ', ' : '') . $seconds . ' ' . __n('second', 'seconds', $seconds, true);
+				$relativeDate .= ($relativeDate ? ', ' : '') . sprintf(__n('%d second', '%d seconds', $seconds, true), $seconds);
 			}
 
 			if (!$backwards) {

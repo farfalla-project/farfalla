@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.app.config
@@ -121,7 +121,7 @@
  * Set the value of 'Session.save' to <name> to utilize it in CakePHP.
  *
  * To use database sessions, run the app/config/schema/sessions.php schema using
- * the cake shell command: cake schema run create Sessions
+ * the cake shell command: cake schema create Sessions
  *
  */
 	Configure::write('Session.save', 'php');
@@ -167,7 +167,7 @@
 	Configure::write('Session.cookie', 'CAKEPHP');
 
 /**
- * Session time out time (in minutes).
+ * Session time out time (in seconds).
  * Actual value depends on 'Security.level' setting.
  */
 	Configure::write('Session.timeout', '120');
@@ -179,7 +179,8 @@
 
 /**
  * When set to false, HTTP_USER_AGENT will not be checked
- * in the session
+ * in the session. You might want to set the value to false, when dealing with
+ * older versions of IE, Chrome Frame or certain web-browsing devices and AJAX
  */
 	Configure::write('Session.checkAgent', true);
 
@@ -296,6 +297,7 @@
  * 			'127.0.0.1:11211' // localhost, default port 11211
  * 		), //[optional]
  * 		'compress' => false, // [optional] compress data in Memcache (slower, but uses less memory)
+ * 		'persistent' => true, // [optional] set this to false for non-persistent connections
  *	));
  *
  */

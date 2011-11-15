@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2009, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2009, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
@@ -161,7 +161,9 @@ class FixtureTask extends BakeTask {
 		if (!class_exists('CakeSchema')) {
 			App::import('Model', 'CakeSchema', false);
 		}
-		$table = $schema = $records = $import = $modelImport = $recordImport = null;
+		$table = $schema = $records = $import = $modelImport = null;
+		$importBits = array();
+
 		if (!$useTable) {
 			$useTable = Inflector::tableize($model);
 		} elseif ($useTable != Inflector::tableize($model)) {
@@ -170,16 +172,17 @@ class FixtureTask extends BakeTask {
 
 		if (!empty($importOptions)) {
 			if (isset($importOptions['schema'])) {
-				$modelImport = "'model' => '{$importOptions['schema']}'";
+				$modelImport = true;
+				$importBits[] = "'model' => '{$importOptions['schema']}'";
 			}
 			if (isset($importOptions['records'])) {
-				$recordImport = "'records' => true";
+				$importBits[] = "'records' => true";
 			}
-			if ($modelImport && $recordImport) {
-				$modelImport .= ', ';
+			if ($this->connection != 'default') {
+				$importBits[] .= "'connection' => '{$this->connection}'";
 			}
-			if (!empty($modelImport) || !empty($recordImport)) {
-				$import = sprintf("array(%s%s)", $modelImport, $recordImport);
+			if (!empty($importBits)) {
+				$import = sprintf("array(%s)", implode(', ', $importBits));
 			}
 		}
 
@@ -293,35 +296,30 @@ class FixtureTask extends BakeTask {
 								 $insert = substr($insert, 0, (int)$fieldInfo['length'] - 2);
 							}
 						}
-						$insert = "'$insert'";
 					break;
 					case 'timestamp':
-						$ts = time();
-						$insert = "'$ts'";
+						$insert = time();
 					break;
 					case 'datetime':
-						$ts = date('Y-m-d H:i:s');
-						$insert = "'$ts'";
+						$insert = date('Y-m-d H:i:s');
 					break;
 					case 'date':
-						$ts = date('Y-m-d');
-						$insert = "'$ts'";
+						$insert = date('Y-m-d');
 					break;
 					case 'time':
-						$ts = date('H:i:s');
-						$insert = "'$ts'";
+						$insert = date('H:i:s');
 					break;
 					case 'boolean':
 						$insert = 1;
 					break;
 					case 'text':
-						$insert = "'Lorem ipsum dolor sit amet, aliquet feugiat.";
+						$insert = "Lorem ipsum dolor sit amet, aliquet feugiat.";
 						$insert .= " Convallis morbi fringilla gravida,";
 						$insert .= " phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin";
 						$insert .= " venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla";
 						$insert .= " vestibulum massa neque ut et, id hendrerit sit,";
 						$insert .= " feugiat in taciti enim proin nibh, tempor dignissim, rhoncus";
-						$insert .= " duis vestibulum nunc mattis convallis.'";
+						$insert .= " duis vestibulum nunc mattis convallis.";
 					break;
 				}
 				$record[$field] = $insert;
@@ -343,7 +341,8 @@ class FixtureTask extends BakeTask {
 		foreach ($records as $record) {
 			$values = array();
 			foreach ($record as $field => $value) {
-				$values[] = "\t\t\t'$field' => $value";
+				$val = var_export($value, true);
+				$values[] = "\t\t\t'$field' => $val";
 			}
 			$out .= "\t\tarray(\n";
 			$out .= implode(",\n", $values);
@@ -384,7 +383,10 @@ class FixtureTask extends BakeTask {
 		foreach ($records as $record) {
 			$row = array();
 			foreach ($record[$modelObject->alias] as $field => $value) {
-				$row[$field] = $db->value($value, $schema[$field]['type']);
+				if ($schema[$field]['type'] === 'boolean') {
+					$value = (int)(bool)$value;
+				}
+				$row[$field] = $value;
 			}
 			$out[] = $row;
 		}

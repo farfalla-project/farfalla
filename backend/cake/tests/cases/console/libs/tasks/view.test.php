@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP : Rapid Development Framework (http://cakephp.org)
- * Copyright 2006-2009, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2006-2009, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.tests.cases.console.libs.tasks
@@ -262,7 +262,7 @@ class ViewTaskTest extends CakeTestCase {
 		$this->Task->Project =& new ViewTaskMockProjectTask();
 		$this->Task->path = TMP;
 		$this->Task->Template->params['theme'] = 'default';
-
+		
 		$this->_routing = Configure::read('Routing');
 	}
 
@@ -372,6 +372,19 @@ class ViewTaskTest extends CakeTestCase {
 			new PatternExpectation('/\$viewTaskComment\[\'Article\'\]\[\'title\'\]/')
 		));
 		$this->Task->bake('index', true);
+	}
+
+/**
+ * test that baking a view with no template doesn't make a file.
+ *
+ * @return void
+ */
+	function testBakeWithNoTemplate() {
+		$this->Task->controllerName = 'ViewTaskComments';
+		$this->Task->controllerPath = 'view_task_comments';
+
+		$this->Task->expectNever('createFile');
+		$this->Task->bake('delete', true);
 	}
 
 /**
@@ -516,7 +529,7 @@ class ViewTaskTest extends CakeTestCase {
 		$this->Task->expectAt(0, 'createFile', array(TMP . 'view_task_comments' . DS . 'index.ctp', '*'));
 		$this->Task->expectAt(1, 'createFile', array(TMP . 'view_task_comments' . DS . 'add.ctp', '*'));
 		$this->Task->execute();
-
+		
 		$this->Task->args = array('ViewTaskComment');
 
 		$this->Task->expectAt(0, 'createFile', array(TMP . 'view_task_comments' . DS . 'index.ctp', '*'));

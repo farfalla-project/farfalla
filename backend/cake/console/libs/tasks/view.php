@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
@@ -343,11 +343,11 @@ class ViewTask extends BakeTask {
 		$this->hr();
 		$this->out(sprintf(__('Controller Name: %s', true), $this->controllerName));
 		$this->out(sprintf(__('Action Name:     %s', true), $action));
-		$this->out(sprintf(__('Path:            %s', true), $this->params['app'] . DS . $this->controllerPath . DS . Inflector::underscore($action) . ".ctp"));
+		$this->out(sprintf(__('Path:            %s', true), $this->params['app'] . DS . 'views' . DS . $this->controllerPath . DS . Inflector::underscore($action) . ".ctp"));
 		$this->hr();
 		$looksGood = $this->in(__('Look okay?', true), array('y','n'), 'y');
 		if (strtolower($looksGood) == 'y') {
-			$this->bake($action);
+			$this->bake($action, true);
 			$this->_stop();
 		} else {
 			$this->out(__('Bake Aborted.', true));
@@ -365,6 +365,9 @@ class ViewTask extends BakeTask {
 	function bake($action, $content = '') {
 		if ($content === true) {
 			$content = $this->getContent($action);
+		}
+		if (empty($content)) {
+			return false;
 		}
 		$path = $this->getPath();
 		$filename = $path . $this->controllerPath . DS . Inflector::underscore($action) . '.ctp';
@@ -407,7 +410,7 @@ class ViewTask extends BakeTask {
 		}
 		if (!empty($this->template) && $action != $this->template) {
 			return $this->template;
-		}
+		} 
 		$template = $action;
 		$prefixes = Configure::read('Routing.prefixes');
 		foreach ((array)$prefixes as $prefix) {

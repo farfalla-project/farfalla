@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP : Rapid Development Framework (http://cakephp.org)
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.tests.cases.console.libs.tasks
@@ -197,21 +197,31 @@ class ModelTaskTest extends CakeTestCase {
 
 		$result = $this->Task->fieldValidation('text', array('type' => 'string', 'length' => 10, 'null' => false));
 		$expected = array('notempty' => 'notempty');
+		$this->assertEqual($expected, $result);
 
 		$result = $this->Task->fieldValidation('text', array('type' => 'date', 'length' => 10, 'null' => false));
 		$expected = array('date' => 'date');
+		$this->assertEqual($expected, $result);
 
 		$result = $this->Task->fieldValidation('text', array('type' => 'time', 'length' => 10, 'null' => false));
 		$expected = array('time' => 'time');
+		$this->assertEqual($expected, $result);
 
 		$result = $this->Task->fieldValidation('email', array('type' => 'string', 'length' => 10, 'null' => false));
 		$expected = array('email' => 'email');
+		$this->assertEqual($expected, $result);
 
 		$result = $this->Task->fieldValidation('test', array('type' => 'integer', 'length' => 10, 'null' => false));
 		$expected = array('numeric' => 'numeric');
+		$this->assertEqual($expected, $result);
 
 		$result = $this->Task->fieldValidation('test', array('type' => 'boolean', 'length' => 10, 'null' => false));
-		$expected = array('numeric' => 'numeric');
+		$expected = array('boolean' => 'boolean');
+		$this->assertEqual($expected, $result);
+
+		$result = $this->Task->fieldValidation('test', array('type' => 'string', 'length' => 36, 'null' => false));
+		$expected = array('uuid' => 'uuid');
+		$this->assertEqual($expected, $result);
 	}
 
 /**

@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -278,6 +278,24 @@ class Article extends CakeTestModel {
 		if ($title === 'My Article Title') {
 			return false;
 		}
+		return true;
+	}
+}
+
+/**
+ * Model stub for beforeDelete testing
+ *
+ * @see #250
+ * @package cake.tests
+ */
+class BeforeDeleteComment extends CakeTestModel {
+	var $name = 'BeforeDeleteComment';
+
+	var $useTable = 'comments';
+
+	function beforeDelete($cascade = true) {
+		$db =& $this->getDataSource();
+		$db->delete($this, array($this->alias . '.' . $this->primaryKey => array(1, 3)));
 		return true;
 	}
 }
@@ -3539,6 +3557,7 @@ class FruitNoWith extends CakeTestModel {
 		)
 	);
 }
+
 class UuidTagNoWith extends CakeTestModel {
 	var $name = 'UuidTag';
 	var $useTable = 'uuid_tags';
@@ -3555,11 +3574,32 @@ class UuidTagNoWith extends CakeTestModel {
 class ProductUpdateAll extends CakeTestModel {
 	var $name = 'ProductUpdateAll';
 	var $useTable = 'product_update_all';
-
 }
 
 class GroupUpdateAll extends CakeTestModel {
 	var $name = 'GroupUpdateAll';
 	var $useTable = 'group_update_all';
+}
 
+class TransactionTestModel extends CakeTestModel {
+	var $name = 'TransactionTestModel';
+	var $useTable = 'samples';
+
+	function afterSave($created) {
+		$data = array(
+			array('apple_id' => 1, 'name' => 'sample6'),
+		);
+		$this->saveAll($data, array('atomic' => true, 'callbacks' => false));
+	}
+}
+
+/**
+ * Test model for datasource prefixes
+ *
+ */
+class PrefixTestModel extends CakeTestModel {
+}
+class PrefixTestUseTableModel extends CakeTestModel {
+	var $name = 'PrefixTest';
+	var $useTable = 'prefix_tests';
 }

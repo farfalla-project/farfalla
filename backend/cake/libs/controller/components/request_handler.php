@@ -7,12 +7,12 @@
  * should respond to the different needs of a handheld computer and a desktop machine.
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
@@ -120,6 +120,7 @@ class RequestHandlerComponent extends Object {
 		'NetFront',
 		'Nokia',
 		'Opera Mini',
+		'Opera Mobi',
 		'PalmOS',
 		'PalmSource',
 		'portalmmm',
@@ -176,11 +177,12 @@ class RequestHandlerComponent extends Object {
  */
 	function __construct() {
 		$this->__acceptTypes = explode(',', env('HTTP_ACCEPT'));
+		$this->__acceptTypes = array_map('trim', $this->__acceptTypes);
 
 		foreach ($this->__acceptTypes as $i => $type) {
 			if (strpos($type, ';')) {
 				$type = explode(';', $type);
-				$this->__acceptTypes[$i] = $type[0];
+				$this->__acceptTypes[$i] = trim($type[0]);
 			}
 		}
 		parent::__construct();
@@ -202,6 +204,7 @@ class RequestHandlerComponent extends Object {
 		if (isset($controller->params['url']['ext'])) {
 			$this->ext = $controller->params['url']['ext'];
 		}
+		$this->params = $controller->params;
 		$this->_set($settings);
 	}
 
@@ -239,6 +242,8 @@ class RequestHandlerComponent extends Object {
 			$this->renderAs($controller, $this->ext);
 		} elseif ($this->isAjax()) {
 			$this->renderAs($controller, 'ajax');
+		} elseif (empty($this->ext) || in_array($this->ext, array('html', 'htm'))) {
+			$this->respondAs('html', array('charset' => Configure::read('App.encoding')));
 		}
 
 		if ($this->requestedWith('xml')) {
@@ -736,7 +741,7 @@ class RequestHandlerComponent extends Object {
 			if (!empty($options['attachment'])) {
 				$this->_header("Content-Disposition: attachment; filename=\"{$options['attachment']}\"");
 			}
-			if (Configure::read() < 2 && !defined('CAKEPHP_SHELL')) {
+			if (Configure::read() < 2 && !defined('CAKEPHP_SHELL') && empty($this->params['requested'])) {
 				$this->_header($header);
 			}
 			$this->__responseTypeSet = $cType;

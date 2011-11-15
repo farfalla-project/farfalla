@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -404,7 +404,7 @@ class JavascriptTest extends CakeTestCase {
 			$result = $this->Javascript->object($data);
 			$this->assertEqual($result, $expected);
 		}
-
+		
 		$object = array('title' => 'New thing', 'indexes' => array(5, 6, 7, 8), 'object' => array('inner' => array('value' => 1)));
 		$result = $this->Javascript->object($object, array('prefix' => 'PREFIX', 'postfix' => 'POSTFIX'));
 		$this->assertPattern('/^PREFIX/', $result);
@@ -444,7 +444,7 @@ class JavascriptTest extends CakeTestCase {
 		$expected = '{?Object?:{?key1?:"val1",?key2?:"val2",?key3?:"val3"}}';
 		$result = $this->Javascript->object($object, array('q' => '?'));
 		$this->assertEqual($result, $expected);
-
+		
 		$expected = '{?Object?:{?key1?:"val1",?key2?:val2,?key3?:"val3"}}';
 		$result = $this->Javascript->object($object, array(
 			'q' => '?', 'stringKeys' => array('key3', 'key1')

@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -166,10 +166,10 @@ class TestHelper extends Helper {
 /**
  * expose a method as public
  *
- * @param string $options
- * @param string $exclude
- * @param string $insertBefore
- * @param string $insertAfter
+ * @param string $options 
+ * @param string $exclude 
+ * @param string $insertBefore 
+ * @param string $insertAfter 
  * @return void
  */
 	function parseAttributes($options, $exclude = null, $insertBefore = ' ', $insertAfter = null) {
@@ -219,7 +219,7 @@ class HelperTest extends CakeTestCase {
  * @access public
  * @return void
  */
-	function testFormFieldNameParsing() {
+	function testSetEntity() {
 		// PHP4 reference hack
 		ClassRegistry::removeObject('view');
 		ClassRegistry::addObject('view', $this->View);
@@ -348,6 +348,17 @@ class HelperTest extends CakeTestCase {
 		$this->assertEqual($this->View->modelId, null);
 		$this->assertEqual($this->View->association, null);
 		$this->assertEqual($this->View->fieldSuffix, null);
+	}
+
+/**
+ * test that 'view' doesn't break things.
+ *
+ * @return void
+ */
+	function testSetEntityWithView() {
+		$this->assertNull($this->Helper->setEntity('Allow.view.group_id'));
+		$this->assertNull($this->Helper->setEntity('Allow.view'));
+		$this->assertNull($this->Helper->setEntity('View.view'));
 	}
 
 /**
@@ -575,6 +586,13 @@ class HelperTest extends CakeTestCase {
 		$this->assertEqual($this->View->association, null);
 		$this->assertEqual($this->View->fieldSuffix, null);
 
+		$this->Helper->setEntity('HelperTestTag');
+		$this->assertEqual($this->View->model, 'HelperTestTag');
+		$this->assertEqual($this->View->field, 'HelperTestTag');
+		$this->assertEqual($this->View->modelId, null);
+		$this->assertEqual($this->View->association, null);
+		$this->assertEqual($this->View->fieldSuffix, null);
+		$this->assertEqual($this->View->entityPath, 'HelperTestTag');
 	}
 
 /**
@@ -774,7 +792,7 @@ class HelperTest extends CakeTestCase {
 		$helper =& new TestHelper();
 		$compact = array('compact', 'checked', 'declare', 'readonly', 'disabled',
 			'selected', 'defer', 'ismap', 'nohref', 'noshade', 'nowrap', 'multiple', 'noresize');
-
+		
 		foreach ($compact as $attribute) {
 			foreach (array('true', true, 1, '1', $attribute) as $value) {
 				$attrs = array($attribute => $value);

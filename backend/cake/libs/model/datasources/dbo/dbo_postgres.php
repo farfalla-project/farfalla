@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources.dbo
@@ -265,6 +265,9 @@ class DboPostgres extends DboSource {
 							$this->_sequenceMap[$table][$c['name']] = $seq[1];
 						}
 					}
+					if ($fields[$c['name']]['type'] == 'boolean' && !empty($fields[$c['name']]['default'])) {
+						$fields[$c['name']]['default'] = constant($fields[$c['name']]['default']);
+					}
 				}
 			}
 			$this->__cacheDescription($table, $fields);
@@ -299,16 +302,6 @@ class DboPostgres extends DboSource {
 		}
 
 		switch($column) {
-			case 'inet':
-			case 'float':
-			case 'integer':
-			case 'date':
-			case 'datetime':
-			case 'timestamp':
-			case 'time':
-				if ($data === '') {
-					return $read ? 'NULL' : 'DEFAULT';
-				}
 			case 'binary':
 				$data = pg_escape_bytea($data);
 			break;
@@ -320,6 +313,19 @@ class DboPostgres extends DboSource {
 				}
 				return (!empty($data) ? 'TRUE' : 'FALSE');
 			break;
+			case 'float':
+				if (is_float($data)) {
+					$data = sprintf('%F', $data);
+				}
+			case 'inet':
+			case 'integer':
+			case 'date':
+			case 'datetime':
+			case 'timestamp':
+			case 'time':
+				if ($data === '') {
+					return $read ? 'NULL' : 'DEFAULT';
+				}
 			default:
 				$data = pg_escape_string($data);
 			break;
@@ -397,7 +403,7 @@ class DboPostgres extends DboSource {
  * @access public
  */
 	function truncate($table, $reset = 0) {
-		if (parent::truncate($table)) {
+		if ($this->execute('DELETE FROM ' . $this->fullTableName($table))) {
 			$table = $this->fullTableName($table, false);
 			if (isset($this->_sequenceMap[$table]) && $reset !== 1) {
 				foreach ($this->_sequenceMap[$table] as $field => $sequence) {
@@ -562,7 +568,7 @@ class DboPostgres extends DboSource {
 		$out = '';
 		$colList = array();
 		foreach ($compare as $curTable => $types) {
-			$indexes = array();
+			$indexes = $colList = array();
 			if (!$table || $table == $curTable) {
 				$out .= 'ALTER TABLE ' . $this->fullTableName($curTable) . " \n";
 				foreach ($types as $type => $column) {
@@ -574,11 +580,7 @@ class DboPostgres extends DboSource {
 						case 'add':
 							foreach ($column as $field => $col) {
 								$col['name'] = $field;
-								$alter = 'ADD COLUMN '.$this->buildColumn($col);
-								if (isset($col['after'])) {
-									$alter .= ' AFTER '. $this->name($col['after']);
-								}
-								$colList[] = $alter;
+								$colList[] = 'ADD COLUMN '.$this->buildColumn($col);
 							}
 						break;
 						case 'drop':
@@ -597,8 +599,7 @@ class DboPostgres extends DboSource {
 								$default = isset($col['default']) ? $col['default'] : null;
 								$nullable = isset($col['null']) ? $col['null'] : null;
 								unset($col['default'], $col['null']);
-								$colList[] = 'ALTER COLUMN '. $fieldName .' TYPE ' . str_replace($fieldName, '', $this->buildColumn($col));
-
+								$colList[] = 'ALTER COLUMN '. $fieldName .' TYPE ' . str_replace(array($fieldName, 'NOT NULL'), '', $this->buildColumn($col));
 								if (isset($nullable)) {
 									$nullable = ($nullable) ? 'DROP NOT NULL' : 'SET NOT NULL';
 									$colList[] = 'ALTER COLUMN '. $fieldName .'  ' . $nullable;
@@ -630,7 +631,7 @@ class DboPostgres extends DboSource {
 				} else {
 					$out = '';
 				}
-				$out .= implode(";\n\t", $this->_alterIndexes($curTable, $indexes)) . ";";
+				$out .= implode(";\n\t", $this->_alterIndexes($curTable, $indexes));
 			}
 		}
 		return $out;

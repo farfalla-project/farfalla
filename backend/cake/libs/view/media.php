@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view
@@ -131,7 +131,7 @@ class MediaView extends View {
 			$this->mimeType = array_merge($this->mimeType, $mimeType);
 		}
 
-		if (isset($extension) && isset($this->mimeType[$extension]) && connection_status() == 0) {
+		if (isset($extension) && isset($this->mimeType[strtolower($extension)]) && connection_status() == 0) {
 			$chunkSize = 8192;
 			$buffer = '';
 			$fileSize = @filesize($path);
@@ -202,7 +202,7 @@ class MediaView extends View {
 				}
 				$this->_header(array(
 					'Last-Modified: ' . $modified,
-					'Content-Type: ' . $this->mimeType[$extension],
+					'Content-Type: ' . $this->mimeType[strtolower($extension)],
 					'Content-Length: ' . $fileSize));
 			}
 			$this->_output();

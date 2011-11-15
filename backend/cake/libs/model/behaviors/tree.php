@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP :  Rapid Development Framework (http://cakephp.org)
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.behaviors
@@ -226,7 +226,7 @@ class TreeBehavior extends ModelBehavior {
 
 		if ($id === null) {
 			return $Model->find('count', array('conditions' => $scope));
-		} elseif (isset($Model->data[$Model->alias][$left]) && isset($Model->data[$Model->alias][$right])) {
+		} elseif ($Model->id === $id && isset($Model->data[$Model->alias][$left]) && isset($Model->data[$Model->alias][$right])) {
 			$data = $Model->data[$Model->alias];
 		} else {
 			$data = $Model->find('first', array('conditions' => array($scope, $Model->escapeField() => $id), 'recursive' => $recursive));
@@ -284,7 +284,7 @@ class TreeBehavior extends ModelBehavior {
 		if (!$id) {
 			$conditions = $scope;
 		} else {
-			$result = array_values($Model->find('first', array(
+			$result = array_values((array)$Model->find('first', array(
 				'conditions' => array($scope, $Model->escapeField() => $id),
 				'fields' => array($left, $right),
 				'recursive' => $recursive
@@ -437,7 +437,7 @@ class TreeBehavior extends ModelBehavior {
  *
  * @param AppModel $Model Model instance
  * @param mixed $id The ID of the record to move
- * @param mixed $number how many places to move the node or true to move to last position
+ * @param int|bool $number how many places to move the node or true to move to last position
  * @return boolean true on success, false on failure
  * @access public
  * @link http://book.cakephp.org/view/1352/moveDown
@@ -496,7 +496,7 @@ class TreeBehavior extends ModelBehavior {
  *
  * @param AppModel $Model Model instance
  * @param mixed $id The ID of the record to move
- * @param mixed $number how many places to move the node, or true to move to first position
+ * @param int|bool $number how many places to move the node, or true to move to first position
  * @return boolean true on success, false on failure
  * @access public
  * @link http://book.cakephp.org/view/1353/moveUp
@@ -716,7 +716,10 @@ class TreeBehavior extends ModelBehavior {
 		}
 
 		$db =& ConnectionManager::getDataSource($Model->useDbConfig);
-		$Model->updateAll(array($parent => $db->value($node[$parent], $parent)), array($parent => $node[$Model->primaryKey]));
+		$Model->updateAll(
+			array($parent => $db->value($node[$parent], $parent)),
+			array($Model->escapeField($parent) => $node[$Model->primaryKey])
+		);
 		$this->__sync($Model, 1, '-', 'BETWEEN ' . ($node[$left] + 1) . ' AND ' . ($node[$right] - 1));
 		$this->__sync($Model, 2, '-', '> ' . ($node[$right]));
 		$Model->id = $id;

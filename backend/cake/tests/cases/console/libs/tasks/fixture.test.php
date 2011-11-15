@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2009, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2009, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.tests.cases.console.libs.tasks
@@ -136,6 +136,17 @@ class FixtureTaskTest extends CakeTestCase {
 	}
 
 /**
+ * test that connection gets set to the import options when a different connection is used.
+ *
+ * @return void
+ */
+	function testImportOptionsAlternateConnection() {
+		$this->Task->connection = 'test_suite';
+		$result = $this->Task->bake('Article', false, array('schema' => 'Article'));
+		$this->assertPattern("/'connection' => 'test_suite'/", $result);
+	}
+
+/**
  * test generating a fixture with database conditions.
  *
  * @return void
@@ -154,6 +165,28 @@ class FixtureTaskTest extends CakeTestCase {
 		$this->assertPattern("/'title' => 'First Article'/", $result, 'Missing import data %s');
 		$this->assertPattern('/Second Article/', $result, 'Missing import data %s');
 		$this->assertPattern('/Third Article/', $result, 'Missing import data %s');
+	}
+
+/**
+ * Ensure that fixture data doesn't get overly escaped.
+ *
+ * @return void
+ */
+	function testImportRecordsNoEscaping() {
+		$Article = ClassRegistry::init('Article');
+		$Article->updateAll(array('body' => "'Body \"value\"'"));
+
+		$this->Task->interactive = true;
+		$this->Task->setReturnValueAt(0, 'in', 'WHERE 1=1 LIMIT 10');
+		$this->Task->connection = 'test_suite';
+		$this->Task->path = '/my/path/';
+		$result = $this->Task->bake('Article', false, array(
+			'fromTable' => true, 
+			'schema' => 'Article',
+			'records' => false
+		));
+
+		$this->assertPattern("/'body' => 'Body \"value\"'/", $result, 'Data has escaping %s');
 	}
 
 /**
@@ -287,15 +320,24 @@ class FixtureTaskTest extends CakeTestCase {
 		$this->assertPattern('/var \$fields = array\(/', $result);
 
 		$result = $this->Task->bake('Article', 'comments', array('records' => true));
-		$this->assertPattern("/var \\\$import \= array\('records' \=\> true\);/", $result);
+		$this->assertPattern(
+			"/var \\\$import \= array\('records' \=\> true, 'connection' => 'test_suite'\);/",
+			$result
+		);
 		$this->assertNoPattern('/var \$records/', $result);
 
 		$result = $this->Task->bake('Article', 'comments', array('schema' => 'Article'));
-		$this->assertPattern("/var \\\$import \= array\('model' \=\> 'Article'\);/", $result);
+		$this->assertPattern(
+			"/var \\\$import \= array\('model' \=\> 'Article', 'connection' => 'test_suite'\);/",
+			$result
+		);
 		$this->assertNoPattern('/var \$fields/', $result);
 
 		$result = $this->Task->bake('Article', 'comments', array('schema' => 'Article', 'records' => true));
-		$this->assertPattern("/var \\\$import \= array\('model' \=\> 'Article'\, 'records' \=\> true\);/", $result);
+		$this->assertPattern(
+			"/var \\\$import \= array\('model' \=\> 'Article'\, 'records' \=\> true, 'connection' => 'test_suite'\);/",
+			$result
+		);
 		$this->assertNoPattern('/var \$fields/', $result);
 		$this->assertNoPattern('/var \$records/', $result);
 	}
@@ -312,6 +354,7 @@ class FixtureTaskTest extends CakeTestCase {
 
 		$result = $this->Task->bake('Article', 'datatypes');
 		$this->assertPattern("/'float_field' => 1/", $result);
+		$this->assertPattern("/'bool' => 1/", $result);
 
 		$result = $this->Task->bake('Article', 'binary_tests');
 		$this->assertPattern("/'data' => 'Lorem ipsum dolor sit amet'/", $result);
@@ -331,7 +374,7 @@ class FixtureTaskTest extends CakeTestCase {
 		$this->Task->expectAt(0, 'createFile', array($filename, new PatternExpectation('/Article/')));
 		$result = $this->Task->generateFixtureFile('Article', array());
 
-		$this->Task->expectAt(1, 'createFile', array($filename, new PatternExpectation('/\<\?php(.*)\?\>/ms')));
+		$this->Task->expectAt(1, 'createFile', array($filename, new PatternExpectation('/\<\?php(.*)$/ms')));
 		$result = $this->Task->generateFixtureFile('Article', array());
 	}
 

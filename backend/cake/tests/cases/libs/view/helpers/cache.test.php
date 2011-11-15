@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -309,6 +309,73 @@ class CacheHelperTest extends CakeTestCase {
 	}
 
 /**
+ * test cache of view vars
+ *
+ * @access public
+ * @return void
+ */
+	function testCacheViewVars() {
+		$this->Controller->cache_parsing();
+		$this->Controller->params = array(
+			'controller' => 'cache_test',
+			'action' => 'cache_parsing',
+			'url' => array(),
+			'pass' => array(),
+			'named' => array()
+		);
+		$this->Controller->cacheAction = 21600;
+		$this->Controller->here = '/cacheTest/cache_parsing';
+		$this->Controller->action = 'cache_parsing';
+
+		$View = new View($this->Controller);
+		$result = $View->render('index');
+		$this->assertNoPattern('/cake:nocache/', $result);
+		$this->assertNoPattern('/php echo/', $result);
+
+		$filename = CACHE . 'views' . DS . 'cachetest_cache_parsing.php';
+		$this->assertTrue(file_exists($filename));
+
+		$contents = file_get_contents($filename);
+		$this->assertPattern('/\$this\-\>viewVars/', $contents);
+		$this->assertPattern('/extract\(\$this\-\>viewVars, EXTR_SKIP\);/', $contents);
+		$this->assertPattern('/php echo \$variable/', $contents);
+
+		@unlink($filename);
+	}
+	
+	function testCacheCallbacks() {
+		$this->Controller->cache_parsing();
+		$this->Controller->params = array(
+			'controller' => 'cache_test',
+			'action' => 'cache_parsing',
+			'url' => array(),
+			'pass' => array(),
+			'named' => array()
+		);
+		$this->Controller->cacheAction = array(
+			'cache_parsing' => array(
+				'duration' => 21600,
+				'callbacks' => true
+			)
+		);
+		$this->Controller->here = '/cacheTest/cache_parsing';
+		$this->Controller->action = 'cache_parsing';
+
+		$View = new View($this->Controller);
+		$result = $View->render('index');
+
+		$filename = CACHE . 'views' . DS . 'cachetest_cache_parsing.php';
+		$this->assertTrue(file_exists($filename));
+
+		$contents = file_get_contents($filename);
+
+		$this->assertPattern('/\$controller->beforeFilter\(\);/', $contents);
+		$this->assertPattern('/\$this->params = \$controller->params;/', $contents);
+
+		@unlink($filename);
+	}
+
+/**
  * test cacheAction set to a boolean
  *
  * @return void
@@ -382,6 +449,42 @@ class CacheHelperTest extends CakeTestCase {
 	}
 
 /**
+ * test with named and pass args.
+ *
+ * @return void
+ */
+	function testCacheWithNamedAndPassedArgs() {
+		Router::reload();
+
+		$this->Controller->cache_parsing();
+		$this->Controller->params = array(
+			'controller' => 'cache_test',
+			'action' => 'cache_parsing',
+			'url' => array(),
+			'pass' => array(1, 2),
+			'named' => array(
+				'name' => 'mark',
+				'ice' => 'cream'
+			)
+		);
+		$this->Controller->cacheAction = array(
+			'cache_parsing' => 21600
+		);
+		$this->Controller->here = '/cache_test/cache_parsing/1/2/name:mark/ice:cream';
+		$this->Controller->action = 'cache_parsing';
+		
+		$View = new View($this->Controller);
+		$result = $View->render('index');
+
+		$this->assertNoPattern('/cake:nocache/', $result);
+		$this->assertNoPattern('/php echo/', $result);
+
+		$filename = CACHE . 'views' . DS . 'cache_test_cache_parsing_1_2_name_mark_ice_cream.php';
+		$this->assertTrue(file_exists($filename));
+		@unlink($filename);
+	}
+
+/**
  * test that custom routes are respected when generating cache files.
  *
  * @return void
@@ -389,7 +492,7 @@ class CacheHelperTest extends CakeTestCase {
 	function testCacheWithCustomRoutes() {
 		Router::reload();
 		Router::connect('/:lang/:controller/:action/*', array(), array('lang' => '[a-z]{3}'));
-
+		
 		$this->Controller->cache_parsing();
 		$this->Controller->params = array(
 			'lang' => 'en',
@@ -415,17 +518,60 @@ class CacheHelperTest extends CakeTestCase {
 		$this->assertTrue(file_exists($filename));
 		@unlink($filename);
 	}
+
+/**
+ * test ControllerName contains AppName
+ *
+ * This test verifys view cache is created correctly when the app name is contained in part of the controller name.
+ * (webapp Name) base name is 'cache' controller is 'cacheTest' action is 'cache_name'
+ * apps url would look somehing like http://localhost/cache/cacheTest/cache_name
+ *
+ * @return void
+ **/
+	function testCacheBaseNameControllerName() {
+		$this->Controller->cache_parsing();
+		$this->Controller->cacheAction = array(
+			'cache_name' => 21600
+		);
+		$this->Controller->params = array(
+			'controller' => 'cacheTest',
+			'action' => 'cache_name',
+			'url' => array(),
+			'pass' => array(),
+			'named' => array()
+		);
+		$this->Controller->here = '/cache/cacheTest/cache_name';
+		$this->Controller->action = 'cache_name';
+		$this->Controller->base = '/cache';
+
+		$View = new View($this->Controller);
+		$result = $View->render('index');
+
+		$this->assertNoPattern('/cake:nocache/', $result);
+		$this->assertNoPattern('/php echo/', $result);
+
+		$filename = CACHE . 'views' . DS . 'cache_cachetest_cache_name.php';
+		$this->assertTrue(file_exists($filename));
+		@unlink($filename);
+    }
+
 /**
  * testCacheEmptySections method
  *
  * This test must be uncommented/fixed in next release (1.2+)
  *
  * @return void
- * @access public
- *
-	function testCacheEmptySections () {
+ */
+	function testCacheEmptySections() {
 		$this->Controller->cache_parsing();
-		$this->Controller->cacheAction = array('cacheTest' => 21600);
+		$this->Controller->params = array(
+			'controller' => 'cacheTest',
+			'action' => 'cache_empty_sections',
+			'url' => array(),
+			'pass' => array(),
+			'named' => array()
+		);
+		$this->Controller->cacheAction = array('cache_empty_sections' => 21600);
 		$this->Controller->here = '/cacheTest/cache_empty_sections';
 		$this->Controller->action = 'cache_empty_sections';
 		$this->Controller->layout = 'cache_empty_sections';
@@ -448,16 +594,15 @@ class CacheHelperTest extends CakeTestCase {
 		$this->assertNoPattern('/cake:nocache/', $contents);
 		$this->assertPattern(
 			'@<head>\s*<title>Posts</title>\s*' .
-			"<\?php \$x = 1; \?>\s*" .
+			'<\?php \$x \= 1; \?>\s*' .
 			'</head>\s*' .
 			'<body>\s*' .
-			"<\?php \$x\+\+; \?>\s*" .
-			"<\?php \$x\+\+; \?>\s*" .
+			'<\?php \$x\+\+; \?>\s*' .
+			'<\?php \$x\+\+; \?>\s*' .
 			'View Content\s*' .
-			"<\?php \$y = 1; \?>\s*" .
-			"<\?php echo 'cached count is:' . \$x; \?>\s*" .
+			'<\?php \$y = 1; \?>\s*' .
+			'<\?php echo \'cached count is: \' . \$x; \?>\s*' .
 			'@', $contents);
 		@unlink($filename);
 	}
-*/
 }

@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -146,7 +146,7 @@ class HttpSocket extends CakeSocket {
  * You can use a url string to set the url and use default configurations for
  * all other options:
  *
- * `$http =& new HttpSockect('http://cakephp.org/');`
+ * `$http =& new HttpSocket('http://cakephp.org/');`
  *
  * Or use an array to configure multiple options:
  *
@@ -227,7 +227,23 @@ class HttpSocket extends CakeSocket {
 			if (!empty($this->request['cookies'])) {
 				$cookies = $this->buildCookies($this->request['cookies']);
 			}
-			$this->request['header'] = array_merge(array('Host' => $this->request['uri']['host']), $this->request['header']);
+			$Host = $this->request['uri']['host'];
+			$schema = '';
+			$port = 0;
+			if (isset($this->request['uri']['schema'])) {
+				$schema = $this->request['uri']['schema'];
+			}
+			if (isset($this->request['uri']['port'])) {
+				$port = $this->request['uri']['port'];
+			}
+			if (
+				($schema === 'http' && $port != 80) ||
+				($schema === 'https' && $port != 443) ||
+				($port != 80 && $port != 443)
+			) {
+				$Host .= ':' . $port;
+			}
+			$this->request['header'] = array_merge(compact('Host'), $this->request['header']);
 		}
 
 		if (isset($this->request['auth']['user']) && isset($this->request['auth']['pass'])) {
@@ -736,7 +752,7 @@ class HttpSocket extends CakeSocket {
  * - ?key[subKey]=value
  * - ?key[]=value1&key[]=value2
  *
- * A leading '?' mark in $query is optional and does not effect the outcome of this function.
+ * A leading '?' mark in $query is optional and does not effect the outcome of this function. 
  * For the complete capabilities of this implementation take a look at HttpSocketTest::testparseQuery()
  *
  * @param mixed $query A query string to parse into an array or an array to return directly "as is"
@@ -929,7 +945,7 @@ class HttpSocket extends CakeSocket {
  * Parses cookies in response headers.
  *
  * @param array $header Header array containing one ore more 'Set-Cookie' headers.
- * @return mixed Either false on no cookies, or an array of cookies recieved.
+ * @return mixed Either false on no cookies, or an array of cookies received.
  * @access public
  * @todo Make this 100% RFC 2965 confirm
  */

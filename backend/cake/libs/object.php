@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -125,7 +125,7 @@ class Object {
 	}
 
 /**
- * Stop execution of the current script.  Wraps exit() making
+ * Stop execution of the current script.  Wraps exit() making 
  * testing easier.
  *
  * @param $status see http://php.net/exit for values
@@ -156,7 +156,7 @@ class Object {
 	}
 
 /**
- * Allows setting of multiple properties of the object in a single line of code.  Will only set
+ * Allows setting of multiple properties of the object in a single line of code.  Will only set 
  * properties that are part of a class declaration.
  *
  * @param array $properties An associative array containing properties and corresponding values.

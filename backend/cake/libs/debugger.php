@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -120,7 +120,7 @@ class Debugger extends Object {
 	function __construct() {
 		$docRef = ini_get('docref_root');
 
-		if (empty($docRef)) {
+		if (empty($docRef) && function_exists('ini_set')) {
 			ini_set('docref_root', 'http://php.net/');
 		}
 		if (!defined('E_RECOVERABLE_ERROR')) {
@@ -499,6 +499,16 @@ class Debugger extends Object {
 			case 'object':
 				return get_class($var) . "\n" . $_this->__object($var);
 			case 'array':
+				$var = array_merge($var,  array_intersect_key(array(
+					'password' => '*****',
+					'login'  => '*****',
+					'host' => '*****',
+					'database' => '*****',
+					'port' => '*****',
+					'prefix' => '*****',
+					'schema' => '*****'
+				), $var));
+
 				$out = "array(";
 				$vars = array();
 				foreach ($var as $key => $val) {

@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -122,7 +122,7 @@ class CakeSocket extends Object {
 		}
 
 		if (!empty($errNum) || !empty($errStr)) {
-			$this->setLastError($errStr, $errNum);
+			$this->setLastError($errNum, $errStr);
 		}
 
 		$this->connected = is_resource($this->connection);
@@ -212,8 +212,14 @@ class CakeSocket extends Object {
 				return false;
 			}
 		}
-
-		return fwrite($this->connection, $data, strlen($data));
+		$totalBytes = strlen($data);
+		for ($written = 0, $rv = 0; $written < $totalBytes; $written += $rv) {
+			$rv = fwrite($this->connection, substr($data, $written));
+			if ($rv === false || $rv === 0) {
+				return $written;
+			}
+		}
+		return $written;
 	}
 
 /**

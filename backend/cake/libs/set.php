@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -327,7 +327,7 @@ class Set {
 			for ($j = 0; $j < $count; $j++) {
 				$args = array();
 				for ($i = 0; $i < $count2; $i++) {
-					if (isset($data[$i][$j])) {
+					if (array_key_exists($j, $data[$i])) {
 						$args[] = $data[$i][$j];
 					}
 				}
@@ -389,11 +389,11 @@ class Set {
 		$options = array_merge(array('flatten' => true), $options);
 		if (!isset($contexts[0])) {
 			$current = current($data);
-			if ((is_array($current) && count($data) <= 1) || !is_array($current) || !Set::numeric(array_keys($data))) {
+			if ((is_array($current) && count($data) < 1) || !is_array($current) || !Set::numeric(array_keys($data))) {
 				$contexts = array($data);
 			}
 		}
-		$tokens = array_slice(preg_split('/(?<!=)\/(?![a-z-]*\])/', $path), 1);
+		$tokens = array_slice(preg_split('/(?<!=|\\\\)\/(?![a-z-\s]*\])/', $path), 1);
 
 		do {
 			$token = array_shift($tokens);
@@ -431,7 +431,9 @@ class Set {
 						'key' => $key,
 						'item' => array_keys($context['item']),
 					);
-				} elseif (is_array($context['item']) && array_key_exists($token, $context['item'])) {
+				} elseif (is_array($context['item'])
+					&& array_key_exists($token, $context['item'])
+					&& !(strval($key) === strval($token) && count($tokens) == 1 && $tokens[0] === '.')) {
 					$items = $context['item'][$token];
 					if (!is_array($items)) {
 						$items = array($items);
@@ -470,7 +472,7 @@ class Set {
 							'item' => $item,
 						);
 					}
-				} elseif (($key === $token || (ctype_digit($token) && $key == $token) || $token === '.')) {
+				} elseif ($key === $token || (ctype_digit($token) && $key == $token) || $token === '.') {
 					$context['trace'][] = $key;
 					$matches[] = array(
 						'trace' => $context['trace'],
@@ -1092,6 +1094,10 @@ class Set {
  * @static
  */
 	function sort($data, $path, $dir) {
+		$originalKeys = array_keys($data);
+		if (is_numeric(implode('', $originalKeys))) {
+			$data = array_values($data);
+		}
 		$result = Set::__flatten(Set::extract($data, $path));
 		list($keys, $values) = array(Set::extract($result, '{n}.id'), Set::extract($result, '{n}.value'));
 
@@ -1103,7 +1109,6 @@ class Set {
 		}
 		array_multisort($values, $dir, $keys, $dir);
 		$sorted = array();
-
 		$keys = array_unique($keys);
 
 		foreach ($keys as $k) {

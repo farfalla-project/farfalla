@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
@@ -153,7 +153,7 @@ class DboSource extends DataSource {
  * @return boolean True on success, false on failure
  * @access public
  */
-	function reconnect($config = null) {
+	function reconnect($config = array()) {
 		$this->disconnect();
 		$this->setConfig($config);
 		$this->_sources = null;
@@ -542,7 +542,7 @@ class DboSource extends DataSource {
 			return $return;
 		}
 		$data = trim($data);
-		if (preg_match('/^[\w-]+(\.[\w-]+)*$/', $data)) { // string, string.string
+		if (preg_match('/^[\w-]+(?:\.[^ \*]*)*$/', $data)) { // string, string.string
 			if (strpos($data, '.') === false) { // string
 				return $this->cacheMethod(__FUNCTION__, $cacheKey, $this->startQuote . $data . $this->endQuote);
 			}
@@ -562,7 +562,7 @@ class DboSource extends DataSource {
 			);
 		}
 		if (
-			preg_match('/^([\w-]+(\.[\w-]+|\(.*\))*)\s+' . preg_quote($this->alias) . '\s*([\w-]+)$/', $data, $matches
+			preg_match('/^([\w-]+(\.[\w-]+|\(.*\))*)\s+' . preg_quote($this->alias) . '\s*([\w-]+)$/i', $data, $matches
 		)) {
 			return $this->cacheMethod(
 				__FUNCTION__, $cacheKey,
@@ -570,6 +570,9 @@ class DboSource extends DataSource {
 					'/\s{2,}/', ' ', $this->name($matches[1]) . ' ' . $this->alias . ' ' . $this->name($matches[3])
 				)
 			);
+		}
+		if (preg_match('/^[\w-_\s]*[\w-_]+/', $data)) {
+			return $this->cacheMethod(__FUNCTION__, $cacheKey, $this->startQuote . $data . $this->endQuote);
 		}
 		return $this->cacheMethod(__FUNCTION__, $cacheKey, $data);
 	}
@@ -630,7 +633,7 @@ class DboSource extends DataSource {
 			$controller = null;
 			$View =& new View($controller, false);
 			$View->set('logs', array($this->configKeyName => $log));
-			echo $View->element('sql_dump');
+			echo $View->element('sql_dump', array('_forced_from_dbo_' => true));
 		} else {
 			foreach ($log['log'] as $k => $i) {
 				print (($k + 1) . ". {$i['query']} {$i['error']}\n");
@@ -845,6 +848,10 @@ class DboSource extends DataSource {
 						$stack = array($assoc);
 						$db->queryAssociation($model, $linkModel, $type, $assoc, $assocData, $array, true, $resultSet, $model->recursive - 1, $stack);
 						unset($db);
+
+						if ($type === 'hasMany') {
+							$filtered []= $assoc;
+						}
 					}
 				}
 			}
@@ -1290,7 +1297,7 @@ class DboSource extends DataSource {
 					$query = array_merge(array('order' => $assocData['order'], 'limit' => $assocData['limit']), $query);
 				} else {
 					$join = array(
-						'table' => $this->fullTableName($linkModel),
+						'table' => $linkModel,
 						'alias' => $alias,
 						'type' => isset($assocData['type']) ? $assocData['type'] : 'LEFT',
 						'conditions' => trim($this->conditions($conditions, true, false, $model))
@@ -1329,7 +1336,7 @@ class DboSource extends DataSource {
 					$joinKeys = array($assocData['foreignKey'], $assocData['associationForeignKey']);
 					list($with, $joinFields) = $model->joinModel($assocData['with'], $joinKeys);
 
-					$joinTbl = $this->fullTableName($model->{$with});
+					$joinTbl = $model->{$with};
 					$joinAlias = $joinTbl;
 
 					if (is_array($joinFields) && !empty($joinFields)) {
@@ -1339,8 +1346,8 @@ class DboSource extends DataSource {
 						$joinFields = array();
 					}
 				} else {
-					$joinTbl = $this->fullTableName($assocData['joinTable']);
-					$joinAlias = $joinTbl;
+					$joinTbl = $assocData['joinTable'];
+					$joinAlias = $this->fullTableName($assocData['joinTable']);
 				}
 				$query = array(
 					'conditions' => $assocData['conditions'],
@@ -1428,6 +1435,9 @@ class DboSource extends DataSource {
 		}
 		if (!empty($data['conditions'])) {
 			$data['conditions'] = trim($this->conditions($data['conditions'], true, false));
+		}
+		if (!empty($data['table'])) {
+			$data['table'] = $this->fullTableName($data['table']);
 		}
 		return $this->renderJoinStatement($data);
 	}
@@ -1685,8 +1695,10 @@ class DboSource extends DataSource {
 					$noJoin = false;
 					break;
 				}
-				$conditions[$field] = $value;
-				unset($conditions[$originalField]);
+				if ($field !== $originalField) {
+					$conditions[$field] = $value;
+					unset($conditions[$originalField]);
+				}
 			}
 			if ($noJoin === true) {
 				return $this->conditions($conditions);
@@ -1721,7 +1733,7 @@ class DboSource extends DataSource {
 			if (isset($model->{$assoc}) && $model->useDbConfig == $model->{$assoc}->useDbConfig) {
 				$assocData = $model->getAssociated($assoc);
 				$join[] = $this->buildJoinStatement(array(
-					'table' => $this->fullTableName($model->{$assoc}),
+					'table' => $model->{$assoc},
 					'alias' => $assoc,
 					'type' => isset($assocData['type']) ? $assocData['type'] : 'LEFT',
 					'conditions' => trim($this->conditions(
@@ -1919,7 +1931,7 @@ class DboSource extends DataSource {
 		foreach ($fields as $field) {
 			$virtualField = $this->name($alias . $this->virtualFieldSeparator . $field);
 			$expression = $this->__quoteFields($model->getVirtualField($field));
-			$virtual[] = '(' .$expression . ") {$this->alias} {$virtualField}";
+			$virtual[] = '(' . $expression . ") {$this->alias} {$virtualField}";
 		}
 		return $virtual;
 	}
@@ -1949,8 +1961,8 @@ class DboSource extends DataSource {
 			$quote
 		);
 		$cacheKey = crc32(serialize($cacheKey));
-		if (isset($this->methodCache[__FUNCTION__][$cacheKey])) {
-			return $this->methodCache[__FUNCTION__][$cacheKey];
+		if ($return = $this->cacheMethod(__FUNCTION__, $cacheKey)) {
+			return $return;
 		}
 		$allFields = empty($fields);
 		if ($allFields) {
@@ -2017,18 +2029,8 @@ class DboSource extends DataSource {
 						if ($comma === false) {
 							$build = explode('.', $fields[$i]);
 							if (!Set::numeric($build)) {
-								$fields[$i] = $this->name($build[0] . '.' . $build[1]);
+								$fields[$i] = $this->name(implode('.', $build));
 							}
-							$comma = String::tokenize($fields[$i]);
-							foreach ($comma as $string) {
-								if (preg_match('/^[0-9]+\.[0-9]+$/', $string)) {
-									$value[] = $string;
-								} else {
-									$build = explode('.', $string);
-									$value[] = $this->name(trim($build[0]) . '.' . trim($build[1]));
-								}
-							}
-							$fields[$i] = implode(', ', $value);
 						}
 					}
 					$fields[$i] = $prepend . $fields[$i];
@@ -2050,7 +2052,7 @@ class DboSource extends DataSource {
 		if (!empty($virtual)) {
 			$fields = array_merge($fields, $this->_constructVirtualFields($model, $alias, $virtual));
 		}
-		return $this->methodCache[__FUNCTION__][$cacheKey] = array_unique($fields);
+		return $this->cacheMethod(__FUNCTION__, $cacheKey, array_unique($fields));
 	}
 
 /**
@@ -2240,8 +2242,8 @@ class DboSource extends DataSource {
  * @access private
  */
 	function __parseKey(&$model, $key, $value) {
-		$operatorMatch = '/^((' . implode(')|(', $this->__sqlOps);
-		$operatorMatch .= '\\x20)|<[>=]?(?![^>]+>)\\x20?|[>=!]{1,3}(?!<)\\x20?)/is';
+		$operatorMatch = '/^(((' . implode(')|(', $this->__sqlOps);
+		$operatorMatch .= ')\\x20?)|<[>=]?(?![^>]+>)\\x20?|[>=!]{1,3}(?!<)\\x20?)/is';
 		$bound = (strpos($key, '?') !== false || (is_array($value) && strpos($key, ':') !== false));
 
 		if (!strpos($key, ' ')) {
@@ -2440,7 +2442,7 @@ class DboSource extends DataSource {
 			}
 
 			if (strpos($key, '.')) {
-				$key = preg_replace_callback('/([a-zA-Z0-9_]{1,})\\.([a-zA-Z0-9_]{1,})/', array(&$this, '__quoteMatchedField'), $key);
+				$key = preg_replace_callback('/([a-zA-Z0-9_-]{1,})\\.([a-zA-Z0-9_-]{1,})/', array(&$this, '__quoteMatchedField'), $key);
 			}
 			if (!preg_match('/\s/', $key) && !strpos($key, '.')) {
 				$key = $this->name($key);
@@ -2467,7 +2469,7 @@ class DboSource extends DataSource {
 				$group = array($group);
 			}
 			foreach($group as $index => $key) {
-				if ($model->isVirtualField($key)) {
+				if (is_object($model) && $model->isVirtualField($key)) {
 					$group[$index] = '(' . $model->getVirtualField($key) . ')';
 				}
 			}

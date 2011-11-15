@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller
@@ -186,6 +186,25 @@ class ControllerMergeVarsTestCase extends CakeTestCase {
 	}
 
 /**
+ * Test that helpers declared in appcontroller come before those in the subclass
+ * orderwise
+ *
+ * @return void
+ */
+	function testHelperOrderPrecedence() {
+		$Controller =& new MergeVariablesController();
+		$Controller->helpers = array('Custom', 'Foo' => array('something'));
+		$Controller->constructClasses();
+
+		$expected = array(
+			'MergeVar' => array('format' => 'html', 'terse'),
+			'Custom' => null,
+			'Foo' => array('something')
+		);
+		$this->assertIdentical($Controller->helpers, $expected, 'Order is incorrect. %s');
+	}
+
+/**
  * test merging of vars with plugin
  *
  * @return void
@@ -204,8 +223,8 @@ class ControllerMergeVarsTestCase extends CakeTestCase {
 		$this->assertEqual($Controller->components, $expected, 'Components are unexpected %s');
 
 		$expected = array(
-			'Javascript',
-			'MergeVar' => array('format' => 'html', 'terse')
+			'MergeVar' => array('format' => 'html', 'terse'),
+			'Javascript' => null
 		);
 		$this->assertEqual($Controller->helpers, $expected, 'Helpers are unexpected %s');
 

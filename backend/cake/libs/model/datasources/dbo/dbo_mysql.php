@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources.dbo
@@ -122,7 +122,7 @@ class DboMysqlBase extends DboSource {
 			return $cache;
 		}
 		$fields = false;
-		$cols = $this->query('DESCRIBE ' . $this->fullTableName($model));
+		$cols = $this->query('SHOW FULL COLUMNS FROM ' . $this->fullTableName($model));
 
 		foreach ($cols as $column) {
 			$colKey = array_keys($column);
@@ -139,11 +139,23 @@ class DboMysqlBase extends DboSource {
 				if (!empty($column[0]['Key']) && isset($this->index[$column[0]['Key']])) {
 					$fields[$column[0]['Field']]['key'] = $this->index[$column[0]['Key']];
 				}
+				foreach ($this->fieldParameters as $name => $value) {
+					if (!empty($column[0][$value['column']])) {
+						$fields[$column[0]['Field']][$name] = $column[0][$value['column']];
+					}
+				}
+				if (isset($fields[$column[0]['Field']]['collate'])) {
+					$charset = $this->getCharsetName($fields[$column[0]['Field']]['collate']);
+					if ($charset) {
+						$fields[$column[0]['Field']]['charset'] = $charset;
+					}
+				}
 			}
 		}
 		$this->__cacheDescription($this->fullTableName($model, false), $fields);
 		return $fields;
 	}
+
 /**
  * Generates and executes an SQL UPDATE statement for given model, fields, and values.
  *
@@ -206,12 +218,21 @@ class DboMysqlBase extends DboSource {
 		if (empty($conditions)) {
 			$alias = $joins = false;
 		}
-		$conditions = $this->conditions($this->defaultConditions($model, $conditions, $alias), true, true, $model);
+		$complexConditions = false;
+		foreach ((array)$conditions as $key => $value) {
+			if (strpos($key, $model->alias) === false) {
+				$complexConditions = true;
+				break;
+			}
+		}
+		if (!$complexConditions) {
+			$joins = false;
+		}
 
+		$conditions = $this->conditions($this->defaultConditions($model, $conditions, $alias), true, true, $model);
 		if ($conditions === false) {
 			return false;
 		}
-
 		if ($this->execute($this->renderStatement('delete', compact('alias', 'table', 'joins', 'conditions'))) === false) {
 			$model->onError();
 			return false;
@@ -274,7 +295,7 @@ class DboMysqlBase extends DboSource {
 		$out = '';
 		$colList = array();
 		foreach ($compare as $curTable => $types) {
-			$indexes = $tableParameters = array();
+			$indexes = $tableParameters = $colList = array();
 			if (!$table || $table == $curTable) {
 				$out .= 'ALTER TABLE ' . $this->fullTableName($curTable) . " \n";
 				foreach ($types as $type => $column) {
@@ -418,7 +439,7 @@ class DboMysqlBase extends DboSource {
 /**
  * Returns an detailed array of sources (tables) in the database.
  *
- * @param string $name Table name to get parameters
+ * @param string $name Table name to get parameters 
  * @return array Array of tablenames in the database
  */
 	function listDetailedSources($name = null) {
@@ -543,6 +564,10 @@ class DboMysql extends DboMysqlBase {
 			$this->connection = mysql_pconnect($config['host'] . ':' . $config['port'], $config['login'], $config['password']);
 		}
 
+		if (!$this->connection) {
+			return false;
+		}
+
 		if (mysql_select_db($config['database'], $this->connection)) {
 			$this->connected = true;
 		}
@@ -646,16 +671,19 @@ class DboMysql extends DboMysqlBase {
 				if ($data === '') {
 					return 'NULL';
 				}
-				if ((is_int($data) || is_float($data) || $data === '0') || (
+				if (is_float($data)) {
+					return str_replace(',', '.', strval($data));
+				}
+				if ((is_int($data) || $data === '0') || (
 					is_numeric($data) && strpos($data, ',') === false &&
-					$data[0] != '0' && strpos($data, 'e') === false)) {
-						return $data;
-					}
+					$data[0] != '0' && strpos($data, 'e') === false)
+				) {
+					return $data;
+				}
 			default:
-				$data = "'" . mysql_real_escape_string($data, $this->connection) . "'";
+				return "'" . mysql_real_escape_string($data, $this->connection) . "'";
 			break;
 		}
-		return $data;
 	}
 
 /**

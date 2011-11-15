@@ -13,13 +13,13 @@ $(function() {
 
 		function farfalla_toolbar_create() {
 			$('<div></div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').addClass('ui-corner-left').prependTo('body');
-			$('<div>&nbsp;</div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
+			$('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
 			
 			$('<img></img>').attr({
 				'src':farfalla_path+'/images/farfalla_icon.png',
 				'alt':'Farfalla logo - Click to hide or display the toolbar'
 			}).appendTo('#farfalla_logo');
-			$('<div>&nbsp;</div>').attr('id','farfalla_handle').css('cursor','ns-resize').appendTo('#farfalla_toolbar');
+			$('<div></div>').attr('id','farfalla_handle').css('cursor','ns-resize').appendTo('#farfalla_toolbar');
 
 //			$('<img></img>').attr({
 //				'src':farfalla_path+'/images/farfalla_handle.gif',
@@ -28,8 +28,7 @@ $(function() {
 			$('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
 			$('<ul></ul>').appendTo('#farfalla_buttons');
 
-			$('#farfalla_toolbar')
-				.draggable({
+			$('#farfalla_toolbar').draggable({
 					handle : '#farfalla_handle',
 					axis: 'y',
 					stop: function() {

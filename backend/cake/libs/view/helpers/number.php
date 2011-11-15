@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
@@ -48,7 +48,7 @@ class NumberHelper extends AppHelper {
 			'decimals' => '.', 'negative' => '()','escape' => false
 		),
 		'EUR' => array(
-			'before'=>'&#8364;', 'after' => 'c', 'zero' => 0, 'places' => 2, 'thousands' => '.',
+			'before'=>'&#8364;', 'after' => false, 'zero' => 0, 'places' => 2, 'thousands' => '.',
 			'decimals' => ',', 'negative' => '()', 'escape' => false
 		)
 	);
@@ -164,7 +164,7 @@ class NumberHelper extends AppHelper {
  * ### Options
  *
  * - `before` - The currency symbol to place before whole numbers ie. '$'
- * - `after` - The currency symbol to place after decimal numbers ie. 'c'. Set to boolean false to
+ * - `after` - The currency symbol to place after decimal numbers ie. 'c'. Set to boolean false to 
  *    use no decimal symbol.  eg. 0.35 => $0.35.
  * - `zero` - The text to use for zero values, can be a string or a number. ie. 0, 'Free!'
  * - `places` - Number of decimal places to use. ie. 2
@@ -230,7 +230,7 @@ class NumberHelper extends AppHelper {
  * currency formats easier.
  *
  * {{{ $number->addFormat('NOK', array('before' => 'Kr. ')); }}}
- *
+ * 
  * You can now use `NOK` as a shortform when formatting currency amounts.
  *
  * {{{ $number->currency($value, 'NOK'); }}}

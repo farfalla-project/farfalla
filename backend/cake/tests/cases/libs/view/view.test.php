@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -474,10 +474,10 @@ class ViewTest extends CakeTestCase {
 	function testElement() {
 		$result = $this->View->element('test_element');
 		$this->assertEqual($result, 'this is the test element');
-
+		
 		$result = $this->View->element('plugin_element', array('plugin' => 'test_plugin'));
 		$this->assertEqual($result, 'this is the plugin element using params[plugin]');
-
+		
 		$this->View->plugin = 'test_plugin';
 		$result = $this->View->element('test_plugin_element');
 		$this->assertEqual($result, 'this is the test set using View::$plugin plugin element');
@@ -485,6 +485,35 @@ class ViewTest extends CakeTestCase {
 		$result = $this->View->element('non_existant_element');
 		$this->assertPattern('/Not Found:/', $result);
 		$this->assertPattern('/non_existant_element/', $result);
+	}
+
+/**
+ * Test that alternate extensions work with duplicated elements.
+ *
+ * @return void
+ */
+	function testElementExtensions() {
+		$this->View->ext = '.xml';
+		$result = $this->View->element('test_element');
+		$this->assertEqual(trim($result), '<p>test element</p>');
+	}
+
+/**
+ * test that additional element viewVars don't get overwritten with helpers.
+ *
+ * @return void
+ */
+	function testElementParamsDontOverwriteHelpers() {
+		$Controller = new ViewPostsController();
+		$Controller->helpers = array('Form');
+
+		$View = new View($Controller);
+		$result = $View->element('type_check', array('form' => 'string'), true);
+		$this->assertEqual('string', $result);
+
+		$View->set('form', 'string');
+		$result = $View->element('type_check', array(), true);
+		$this->assertEqual('string', $result);
 	}
 
 /**
@@ -553,6 +582,21 @@ class ViewTest extends CakeTestCase {
 		$this->assertTrue($cached);
 		$this->assertEqual($result, $expected);
 
+	}
+
+/**
+ * test that ctp is used as a fallback file extension for elements
+ *
+ * @return void
+ */
+	function testElementCtpFallback() {
+		$View = new TestView($this->PostsController);
+		$View->ext = '.missing';
+		$element = 'test_element';
+		$expected = 'this is the test element';
+		$result = $View->element($element);
+
+		$this->assertEqual($expected, $result);
 	}
 
 /**
@@ -718,13 +762,12 @@ class ViewTest extends CakeTestCase {
 		Configure::write('Cache.check', true);
 
 		$Controller =& new ViewPostsController();
-		$Controller->cacheAction = '1 day';
+		$Controller->cacheAction = '+1 day';
 		$View =& new View($Controller);
 		$View->loaded['cache'] = new ViewTestMockCacheHelper();
 		$View->loaded['cache']->expectCallCount('cache', 2);
 
-		$result = $View->render('index');
-		$this->assertPattern('/posts index/', $result);
+		$View->render('index');
 
 		Configure::write('Cache.check', $_check);
 	}
@@ -812,6 +855,36 @@ class ViewTest extends CakeTestCase {
 	}
 
 /**
+ * Test that render() will remove the cake:nocache tags when only the cachehelper is present.
+ *
+ * @return void
+ */
+	function testRenderStrippingNoCacheTagsOnlyCacheHelper() {
+		Configure::write('Cache.check', false);
+		$View =& new View($this->PostsController);
+		$View->set(array('superman' => 'clark', 'variable' => 'var'));
+		$View->helpers = array('Html', 'Form', 'Cache');
+		$View->layout = 'cache_layout';
+		$result = $View->render('index');
+		$this->assertNoPattern('/cake:nocache/', $result);
+	}
+
+/**
+ * Test that render() will remove the cake:nocache tags when only the Cache.check is true.
+ *
+ * @return void
+ */
+	function testRenderStrippingNoCacheTagsOnlyCacheCheck() {
+		Configure::write('Cache.check', true);
+		$View =& new View($this->PostsController);
+		$View->set(array('superman' => 'clark', 'variable' => 'var'));
+		$View->helpers = array('Html', 'Form');
+		$View->layout = 'cache_layout';
+		$result = $View->render('index');
+		$this->assertNoPattern('/cake:nocache/', $result);
+	}
+
+/**
  * testRenderNocache method
  *
  * @access public
@@ -874,6 +947,12 @@ class ViewTest extends CakeTestCase {
 
 		$View->set(array('key3' => 'value3'));
 		$this->assertIdentical($View->getVar('key3'), 'value3');
+		
+		$View->viewVars = array();
+		$View->set(array(3 => 'three', 4 => 'four'));
+		$View->set(array(1 => 'one', 2 => 'two'));
+		$expected = array(3 => 'three', 4 => 'four', 1 => 'one', 2 => 'two');
+		$this->assertEqual($View->viewVars, $expected);
 	}
 
 /**
@@ -891,13 +970,22 @@ class ViewTest extends CakeTestCase {
 		$View->association = 'Comment';
 		$View->field = 'user_id';
 		$this->assertEqual($View->entity(), array('Comment', 'user_id'));
-
+		
 		$View->model = 0;
 		$View->association = null;
 		$View->field = 'Node';
 		$View->fieldSuffix = 'title';
 		$View->entityPath = '0.Node.title';
 		$expected = array(0, 'Node', 'title');
+		$this->assertEqual($View->entity(), $expected);
+		
+		$View->model = 'HelperTestTag';
+		$View->field = 'HelperTestTag';
+		$View->modelId = null;
+		$View->association = null;
+		$View->fieldSuffix = null;
+		$View->entityPath = 'HelperTestTag';
+		$expected = array('HelperTestTag', 'HelperTestTag');
 		$this->assertEqual($View->entity(), $expected);
 	}
 

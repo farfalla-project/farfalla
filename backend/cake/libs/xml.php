@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -216,7 +216,7 @@ class XmlNode extends Object {
 
 		if (isset($tagOpts['name'])) {
 			$name = $tagOpts['name'];
-		} elseif ($name != strtolower($name)) {
+		} elseif ($name != strtolower($name) && $options['slug'] !== false) {
 			$name = Inflector::slug(Inflector::underscore($name));
 		}
 
@@ -275,6 +275,9 @@ class XmlNode extends Object {
 
 							$node->normalize($val, $n, $options);
 						} elseif ($options['format'] == 'tags' && $this->__tagOptions($key) !== false) {
+							if ($options['slug'] == true) {
+								$key = Inflector::slug(Inflector::underscore($key));
+							}
 							$tmp =& $node->createElement($key);
 							if (!empty($val) || $val === 0 || $val === '0') {
 								$tmp->createTextNode($val);
@@ -687,11 +690,11 @@ class XmlNode extends Object {
  */
 	function toArray($camelize = true) {
 		$out = $this->attributes;
-		$multi = null;
 
 		foreach ($this->children as $child) {
 			$key = $camelize ? Inflector::camelize($child->name) : $child->name;
 
+			$leaf = false;
 			if (is_a($child, 'XmlTextNode')) {
 				$out['value'] = $child->value;
 				continue;
@@ -700,46 +703,33 @@ class XmlNode extends Object {
 				if ($child->attributes) {
 					$value = array_merge(array('value' => $value), $child->attributes);
 				}
-				if (isset($out[$child->name]) || isset($multi[$key])) {
-					if (!isset($multi[$key])) {
-						$multi[$key] = array($out[$child->name]);
-						unset($out[$child->name]);
-					}
-					$multi[$key][] = $value;
-				} else {
-					$out[$child->name] = $value;
+				if (count($child->children) == 1) {
+					$leaf = true;
 				}
-				continue;
 			} elseif (count($child->children) === 0 && $child->value == '') {
 				$value = $child->attributes;
-				if (isset($out[$key]) || isset($multi[$key])) {
-					if (!isset($multi[$key])) {
-						$multi[$key] = array($out[$key]);
-						//unset($out[$key]);
-					}
-					$multi[$key][] = $value;
-				} elseif (!empty($value)) {
-					$out[$key] = $value;
-				} else {
-					$out[$child->name] = $value;
+				if (empty($value)) {
+					$leaf = true;
 				}
-				continue;
 			} else {
 				$value = $child->toArray($camelize);
 			}
 
-			if (!isset($out[$key])) {
-				$out[$key] = $value;
-			} else {
-				if (!is_array($out[$key]) || !isset($out[$key][0])) {
+			if (isset($out[$key])) {
+				if(!isset($out[$key][0]) || !is_array($out[$key]) || !is_int(key($out[$key]))) {
 					$out[$key] = array($out[$key]);
-				}
+				} 
 				$out[$key][] = $value;
+			} elseif (isset($out[$child->name])) {
+				$t = $out[$child->name];
+				unset($out[$child->name]);
+				$out[$key] = array($t);
+				$out[$key][] = $value;
+			} elseif ($leaf) {
+				$out[$child->name] = $value;
+			} else {
+				$out[$key] = $value;
 			}
-		}
-
-		if (isset($multi)) {
-			$out = array_merge($out, $multi);
 		}
 		return $out;
 	}
@@ -852,6 +842,9 @@ class Xml extends XmlNode {
  *    rendered out as text, either 'attributes' or 'tags', defaults to 'attributes'
  * - 'tags': An array specifying any tag-specific formatting options, indexed
  *    by tag name.  See XmlNode::normalize().
+ * - 'slug':  A boolean to indicate whether or not you want the string version of the XML document
+ *   to have its tags run through Inflector::slug().  Defaults to true
+ *
  * @param mixed $input The content with which this XML document should be initialized.  Can be a
  *    string, array or object.  If a string is specified, it may be a literal XML
  *    document, or a URL or file path to read from.
@@ -861,7 +854,8 @@ class Xml extends XmlNode {
 	function __construct($input = null, $options = array()) {
 		$defaults = array(
 			'root' => '#document', 'tags' => array(), 'namespaces' => array(),
-			'version' => '1.0', 'encoding' => 'UTF-8', 'format' => 'attributes'
+			'version' => '1.0', 'encoding' => 'UTF-8', 'format' => 'attributes',
+			'slug' => true
 		);
 		$options = array_merge($defaults, Xml::options(), $options);
 

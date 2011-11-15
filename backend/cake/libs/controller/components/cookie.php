@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
@@ -166,6 +166,9 @@ class CookieComponent extends Object {
 	function initialize(&$controller, $settings) {
 		$this->key = Configure::read('Security.salt');
 		$this->_set($settings);
+		if (isset($this->time)) {
+			$this->__expire($this->time);
+		}
 	}
 
 /**
@@ -184,7 +187,7 @@ class CookieComponent extends Object {
 /**
  * Write a value to the $_COOKIE[$key];
  *
- * Optional [Name.], reguired key, optional $value, optional $encrypt, optional $expires
+ * Optional [Name.], required key, optional $value, optional $encrypt, optional $expires
  * $this->Cookie->write('[Name.]key, $value);
  *
  * By default all values are encrypted.
@@ -230,7 +233,7 @@ class CookieComponent extends Object {
 /**
  * Read the value of the $_COOKIE[$key];
  *
- * Optional [Name.], reguired key
+ * Optional [Name.], required key
  * $this->Cookie->read(Name.key);
  *
  * @param mixed $key Key of the value to be obtained. If none specified, obtain map key => values
@@ -263,7 +266,7 @@ class CookieComponent extends Object {
 /**
  * Delete a cookie value
  *
- * Optional [Name.], reguired key
+ * Optional [Name.], required key
  * $this->Cookie->read('Name.key);
  *
  * You must use this method before any output is sent to the browser.
@@ -278,12 +281,19 @@ class CookieComponent extends Object {
 			$this->read();
 		}
 		if (strpos($key, '.') === false) {
-			unset($this->__values[$key]);
+			if (isset($this->__values[$key]) && is_array($this->__values[$key])) {
+				foreach ($this->__values[$key] as $idx => $val) {
+					$this->__delete("[$key][$idx]");
+				}
+			}
 			$this->__delete("[$key]");
+			unset($this->__values[$key]);
 			return;
 		}
 		$names = explode('.', $key, 2);
-		$this->__values[$names[0]] = Set::remove($this->__values[$names[0]], $names[1]);
+		if (isset($this->__values[$names[0]])) {
+			$this->__values[$names[0]] = Set::remove($this->__values[$names[0]], $names[1]);
+		}
 		$this->__delete('[' . implode('][', $names) . ']');
 	}
 
@@ -411,7 +421,7 @@ class CookieComponent extends Object {
 		$decrypted = array();
 		$type = $this->__type;
 
-		foreach ($values as $name => $value) {
+		foreach ((array)$values as $name => $value) {
 			if (is_array($value)) {
 				foreach ($value as $key => $val) {
 					$pos = strpos($val, 'Q2FrZQ==.');

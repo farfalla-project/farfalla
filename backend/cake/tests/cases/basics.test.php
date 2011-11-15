@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases
@@ -96,7 +96,13 @@ class BasicsTest extends CakeTestCase {
 		$__ENV = $_ENV;
 
 		$_SERVER['HTTP_HOST'] = 'localhost';
-		$this->assertEqual(env('HTTP_BASE'), '');
+		$this->assertEqual(env('HTTP_BASE'), '.localhost');
+
+		$_SERVER['HTTP_HOST'] = 'com.ar';
+		$this->assertEqual(env('HTTP_BASE'), '.com.ar');
+
+		$_SERVER['HTTP_HOST'] = 'example.ar';
+		$this->assertEqual(env('HTTP_BASE'), '.example.ar');
 
 		$_SERVER['HTTP_HOST'] = 'example.com';
 		$this->assertEqual(env('HTTP_BASE'), '.example.com');
@@ -107,8 +113,20 @@ class BasicsTest extends CakeTestCase {
 		$_SERVER['HTTP_HOST'] = 'subdomain.example.com';
 		$this->assertEqual(env('HTTP_BASE'), '.example.com');
 
+		$_SERVER['HTTP_HOST'] = 'example.com.ar';
+		$this->assertEqual(env('HTTP_BASE'), '.example.com.ar');
+
+		$_SERVER['HTTP_HOST'] = 'www.example.com.ar';
+		$this->assertEqual(env('HTTP_BASE'), '.example.com.ar');
+
+		$_SERVER['HTTP_HOST'] = 'subdomain.example.com.ar';
+		$this->assertEqual(env('HTTP_BASE'), '.example.com.ar');
+
 		$_SERVER['HTTP_HOST'] = 'double.subdomain.example.com';
 		$this->assertEqual(env('HTTP_BASE'), '.subdomain.example.com');
+
+		$_SERVER['HTTP_HOST'] = 'double.subdomain.example.com.ar';
+		$this->assertEqual(env('HTTP_BASE'), '.subdomain.example.com.ar');
 
 		$_SERVER = $_ENV = array();
 

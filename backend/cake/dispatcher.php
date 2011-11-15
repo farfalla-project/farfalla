@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake
@@ -111,7 +111,7 @@ class Dispatcher extends Object {
 		$this->here = $this->base . '/' . $url;
 
 		if ($this->asset($url) || $this->cached($url)) {
-			$this->_stop();
+			return;
 		}
 		$controller =& $this->__getController();
 
@@ -227,8 +227,11 @@ class Dispatcher extends Object {
  */
 	function __extractParams($url, $additionalParams = array()) {
 		$defaults = array('pass' => array(), 'named' => array(), 'form' => array());
-		$this->params = array_merge($defaults, $url, $additionalParams);
-		return Router::url($url);
+		$params = array_merge($defaults, $url, $additionalParams);
+		$this->params = $params;
+
+		$params += array('base' => false, 'url' => array());
+		return ltrim(Router::reverse($params), '/');
 	}
 
 /**
@@ -261,9 +264,9 @@ class Dispatcher extends Object {
 		$namedExpressions = Router::getNamedExpressions();
 		extract($namedExpressions);
 		include CONFIGS . 'routes.php';
-		$params = array_merge(Router::parse($fromUrl), $params);
+		$params = array_merge(array('controller' => '', 'action' => ''), Router::parse($fromUrl), $params);
 
-		if (strlen($params['action']) === 0) {
+		if (empty($params['action'])) {
 			$params['action'] = 'index';
 		}
 		if (isset($params['form']['data'])) {
@@ -354,9 +357,12 @@ class Dispatcher extends Object {
 		if ($base === DS || $base === '.') {
 			$base = '';
 		}
-		$this->webroot = $base .'/';
+		$this->webroot = $base . '/';
 
-		if (!empty($base)) {
+		$docRoot = realpath(env('DOCUMENT_ROOT'));
+		$docRootContainsWebroot = strpos($docRoot, $dir . '/' . $webroot);
+
+		if (!empty($base) || !$docRootContainsWebroot) {
 			if (strpos($this->webroot, $dir) === false) {
 				$this->webroot .= $dir . '/' ;
 			}
@@ -480,8 +486,8 @@ class Dispatcher extends Object {
 			if ($tmpUri === '/' || $tmpUri == $baseDir || $tmpUri == $base) {
 				$url = $_GET['url'] = '/';
 			} else {
-				if ($base && strpos($uri, $base) !== false) {
-					$elements = explode($base, $uri);
+				if ($base && strpos($uri, $base) === 0) {
+					$elements = explode($base, $uri, 2);
 				} elseif (preg_match('/^[\/\?\/|\/\?|\?\/]/', $uri)) {
 					$elements = array(1 => preg_replace('/^[\/\?\/|\/\?|\?\/]/', '', $uri));
 				} else {
@@ -621,7 +627,7 @@ class Dispatcher extends Object {
 			ob_start('ob_gzhandler');
 		}
 
-		App::import('View', 'Media', false);
+		App::import('View', 'Media');
 		$controller = null;
 		$Media = new MediaView($controller);
 		if (isset($Media->mimeType[$ext])) {

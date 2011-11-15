@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -4776,7 +4776,7 @@ class ModelReadTest extends BaseModelTest {
  *
  * @return void
  */
-	function bindWithCustomPrimaryKey() {
+	function testBindWithCustomPrimaryKey() {
 		$this->loadFixtures('Story', 'StoriesTag', 'Tag');
 		$Model =& ClassRegistry::init('StoriesTag');
 		$Model->bindModel(array(
@@ -4791,7 +4791,7 @@ class ModelReadTest extends BaseModelTest {
 	}
 
 /**
- * test that calling unbindModel() with reset == true multiple times
+ * test that calling unbindModel() with reset == true multiple times 
  * leaves associations in the correct state.
  *
  * @return void
@@ -5158,7 +5158,7 @@ class ModelReadTest extends BaseModelTest {
 				'group' => null,
 				'joins' => array(array(
 					'alias' => 'ArticlesTag',
-					'table' => $this->db->fullTableName('articles_tags'),
+					'table' => 'articles_tags',
 					'conditions' => array(
 						array("ArticlesTag.article_id" => '{$__cakeID__$}'),
 						array("ArticlesTag.tag_id" => $this->db->identifier('Tag.id'))
@@ -7435,6 +7435,7 @@ class ModelReadTest extends BaseModelTest {
 
 		$this->assertTrue($Post->isVirtualField('other_field'));
 		$this->assertTrue($Post->isVirtualField('Post.other_field'));
+		$this->assertFalse($Post->isVirtualField('Comment.other_field'), 'Other models should not match.');
 		$this->assertFalse($Post->isVirtualField('id'));
 		$this->assertFalse($Post->isVirtualField('Post.id'));
 		$this->assertFalse($Post->isVirtualField(array()));

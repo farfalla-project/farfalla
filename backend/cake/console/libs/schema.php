@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console.libs
@@ -90,6 +90,9 @@ class SchemaShell extends Shell {
 		}
 		if (!empty($this->params['plugin'])) {
 			$plugin = $this->params['plugin'];
+			if (empty($name)) {
+				$name = $plugin;
+			}
 		}
 		$this->Schema =& new CakeSchema(compact('name', 'path', 'file', 'connection', 'plugin'));
 	}
@@ -150,8 +153,13 @@ class SchemaShell extends Shell {
 			}
 		}
 
+		$cacheDisable = Configure::read('Cache.disable');
+		Configure::write('Cache.disable', true);
+
 		$content = $this->Schema->read($options);
 		$content['file'] = $this->params['file'];
+		
+		Configure::write('Cache.disable', $cacheDisable);
 
 		if ($snapshot === true) {
 			$Folder =& new Folder($this->Schema->path);
@@ -272,7 +280,7 @@ class SchemaShell extends Shell {
 		if (isset($this->params['plugin'])) {
 			$plugin = $this->params['plugin'];
 		}
-
+		
 		if (isset($this->params['dry'])) {
 			$this->__dry = true;
 			$this->out(__('Performing a dry run.', true));
@@ -487,15 +495,16 @@ Commands:
 
 	schema create <name> <table>
 		Drop and create tables based on schema file
-		optional <table> argument can be used to create only a single
+		optional <table> argument can be used to create only a single 
 		table in the schema. Pass the -s param with a number to use a snapshot.
 		Use the `-dry` param to preview the changes.
 
 	schema update <name> <table>
 		Alter the tables based on schema file. Optional <table>
-		parameter will only update one table.
+		parameter will only update one table. 
 		To use a snapshot pass the `-s` param with the snapshot number.
 		To preview the changes that will be done use `-dry`.
+		To force update of all tables into the schema, use the -f param.
 TEXT;
 		$this->out($help);
 		$this->_stop();

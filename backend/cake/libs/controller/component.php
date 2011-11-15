@@ -4,12 +4,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller
@@ -246,7 +246,11 @@ class Component extends Object {
 				if ($componentCn === 'SessionComponent') {
 					$object->{$component} =& new $componentCn($base);
 				} else {
-					$object->{$component} =& new $componentCn();
+					if (PHP5) {
+						$object->{$component} = new $componentCn();
+					} else {
+						$object->{$component} =& new $componentCn();
+					}
 				}
 				$object->{$component}->enabled = true;
 				$this->_loaded[$component] =& $object->{$component};

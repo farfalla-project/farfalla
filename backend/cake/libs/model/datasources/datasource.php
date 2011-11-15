@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
@@ -375,13 +375,11 @@ class DataSource extends Object {
  * To-be-overridden in subclasses.
  *
  * @param Model $model The model class having record(s) deleted
- * @param mixed $id Primary key of the model
+ * @param mixed $conditions The conditions to use for deleting.
  * @access public
  */
-	function delete(&$model, $id = null) {
-		if ($id == null) {
-			$id = $model->id;
-		}
+	function delete(&$model, $conditions = null) {
+		return false;
 	}
 
 /**
@@ -396,7 +394,7 @@ class DataSource extends Object {
 	}
 
 /**
- * Returns the ID generated from the previous INSERT operation.
+ * Returns the number of rows returned by last operation.
  *
  * @param unknown_type $source
  * @return integer Number of rows returned by last operation
@@ -407,7 +405,7 @@ class DataSource extends Object {
 	}
 
 /**
- * Returns the ID generated from the previous INSERT operation.
+ * Returns the number of rows affected by last query.
  *
  * @param unknown_type $source
  * @return integer Number of rows affected by last query.
@@ -428,6 +426,7 @@ class DataSource extends Object {
 	function enabled() {
 		return true;
 	}
+
 /**
  * Returns true if the DataSource supports the given interface (method)
  *
@@ -502,6 +501,7 @@ class DataSource extends Object {
 
 		foreach ($keys as $key) {
 			$val = null;
+			$type = null;
 
 			if (strpos($query, $key) !== false) {
 				switch ($key) {
@@ -525,6 +525,7 @@ class DataSource extends Object {
 								$val = '';
 							}
 						}
+						$type = $model->getColumnType($model->primaryKey);
 					break;
 					case '{$__cakeForeignKey__$}':
 						foreach ($model->__associations as $id => $name) {
@@ -532,6 +533,8 @@ class DataSource extends Object {
 								if ($assocName === $association) {
 									if (isset($assoc['foreignKey'])) {
 										$foreignKey = $assoc['foreignKey'];
+										$assocModel = $model->$assocName;
+										$type = $assocModel->getColumnType($assocModel->primaryKey);
 
 										if (isset($data[$model->alias][$foreignKey])) {
 											$val = $data[$model->alias][$foreignKey];
@@ -560,7 +563,7 @@ class DataSource extends Object {
 				if (empty($val) && $val !== '0') {
 					return false;
 				}
-				$query = str_replace($key, $this->value($val, $model->getColumnType($model->primaryKey)), $query);
+				$query = str_replace($key, $this->value($val, $type), $query);
 			}
 		}
 		return $query;

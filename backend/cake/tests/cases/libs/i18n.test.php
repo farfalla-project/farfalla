@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -53,6 +53,49 @@ class I18nTest extends CakeTestCase {
 		App::build();
 		App::objects('plugin', null, false);
 	}
+
+
+	function testTranslationCaching() {
+		Configure::write('Config.language', 'cache_test_po');
+		$i18n =& i18n::getInstance();
+
+		// reset internally stored entries
+		I18n::clear();
+
+		Cache::clear(false, '_cake_core_');
+		$lang = Configure::read('Config.language');#$i18n->l10n->locale;
+
+		Cache::config('_cake_core_', Cache::config('default'));
+
+		// make some calls to translate using different domains
+		$this->assertEqual(I18n::translate('dom1.foo', false, 'dom1'), 'Dom 1 Foo');
+		$this->assertEqual(I18n::translate('dom1.bar', false, 'dom1'), 'Dom 1 Bar');
+		$this->assertEqual($i18n->__domains['dom1']['cache_test_po']['LC_MESSAGES']['dom1.foo'], 'Dom 1 Foo');
+
+		// reset internally stored entries
+		I18n::clear();
+
+		// now only dom1 should be in cache
+		$cachedDom1 = Cache::read('dom1_' . $lang, '_cake_core_');
+		$this->assertEqual($cachedDom1['LC_MESSAGES']['dom1.foo'], 'Dom 1 Foo');
+		$this->assertEqual($cachedDom1['LC_MESSAGES']['dom1.bar'], 'Dom 1 Bar');
+		// dom2 not in cache
+		$this->assertFalse(Cache::read('dom2_' . $lang, '_cake_core_'));
+
+		// translate a item of dom2 (adds dom2 to cache)
+		$this->assertEqual(I18n::translate('dom2.foo', false, 'dom2'), 'Dom 2 Foo');
+
+		// verify dom2 was cached through manual read from cache
+		$cachedDom2 = Cache::read('dom2_' . $lang, '_cake_core_');
+		$this->assertEqual($cachedDom2['LC_MESSAGES']['dom2.foo'], 'Dom 2 Foo');
+		$this->assertEqual($cachedDom2['LC_MESSAGES']['dom2.bar'], 'Dom 2 Bar');
+
+		// modify cache entry manually to verify that dom1 entries now will be read from cache 
+		$cachedDom1['LC_MESSAGES']['dom1.foo'] = 'FOO';
+		Cache::write('dom1_' . $lang, $cachedDom1, '_cake_core_');
+		$this->assertEqual(I18n::translate('dom1.foo', false, 'dom1'), 'FOO');
+	}
+
 
 /**
  * testDefaultStrings method
@@ -2607,9 +2650,9 @@ class I18nTest extends CakeTestCase {
 	function testTimeDefinitionJapanese(){
 		Configure::write('Config.language', 'ja_jp');
 		$result = __c('d_fmt', 5, true);
-
+		
 		$expected = "%Y年%m月%d日";
-
+		
 		$this->assertEqual($result, $expected);
 
 		$result = __c('am_pm', 5, true);

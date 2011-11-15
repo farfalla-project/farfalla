@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -56,7 +56,7 @@ class Inflector {
 			'/(c)hild$/i' => '\1hildren',
 			'/(buffal|tomat)o$/i' => '\1\2oes',
 			'/(alumn|bacill|cact|foc|fung|nucle|radi|stimul|syllab|termin|vir)us$/i' => '\1i',
-			'/us$/' => 'uses',
+			'/us$/i' => 'uses',
 			'/(alias)$/i' => '\1es',
 			'/(ax|cris|test)is$/i' => '\1es',
 			'/s$/' => 's',
@@ -70,6 +70,7 @@ class Inflector {
 			'atlas' => 'atlases',
 			'beef' => 'beefs',
 			'brother' => 'brothers',
+			'cafe' => 'cafes',
 			'child' => 'children',
 			'corpus' => 'corpuses',
 			'cow' => 'cows',
@@ -133,7 +134,7 @@ class Inflector {
 			'/(drive)s$/i' => '\1',
 			'/([^fo])ves$/i' => '\1fe',
 			'/(^analy)ses$/i' => '\1sis',
-			'/(analy|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i' => '\1\2sis',
+			'/(analy|ba|diagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i' => '\1\2sis',
 			'/([ti])a$/i' => '\1um',
 			'/(p)eople$/i' => '\1\2erson',
 			'/(m)en$/i' => '\1an',
@@ -147,7 +148,8 @@ class Inflector {
 			'.*[nrlm]ese', '.*deer', '.*fish', '.*measles', '.*ois', '.*pox', '.*sheep', '.*ss'
 		),
 		'irregular' => array(
-			'waves' => 'wave'
+			'waves' => 'wave',
+			'curves' => 'curve'
 		)
 	);
 
@@ -367,7 +369,11 @@ class Inflector {
 						if ($reset) {
 							$_this->{$var}[$rule] = $pattern;
 						} else {
-							$_this->{$var}[$rule] = array_merge($pattern, $_this->{$var}[$rule]);
+							if ($rule === 'uninflected') {
+								$_this->{$var}[$rule] = array_merge($pattern, $_this->{$var}[$rule]);
+							} else {
+								$_this->{$var}[$rule] = $pattern + $_this->{$var}[$rule];
+							}
 						}
 						unset($rules[$rule], $_this->{$var}['cache' . ucfirst($rule)]);
 						if (isset($_this->{$var}['merged'][$rule])) {
@@ -380,7 +386,7 @@ class Inflector {
 						}
 					}
 				}
-				$_this->{$var}['rules'] = array_merge($rules, $_this->{$var}['rules']);
+				$_this->{$var}['rules'] = $rules + $_this->{$var}['rules'];
 			break;
 		}
 	}

@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.cake.tests.lib
@@ -161,8 +161,8 @@ class TestManager {
 
 		if (!file_exists($filePath) || strpos($filePath, '..')) {
 			trigger_error(sprintf(
-					__("Group test %s cannot be found at %s", true),
-					htmlentities($groupTestName),
+					__("Group test %s cannot be found at %s", true), 
+					htmlentities($groupTestName), 
 					htmlentities($filePath)
 				),
 				E_USER_ERROR

@@ -1,5 +1,9 @@
 <?php
-$output = "<h2>Sweet, \"" . Inflector::humanize($app) . "\" got Baked by CakePHP!</h2>\n";
+$output = "
+<iframe src=\"http://cakephp.org/bake-banner\" width=\"830\" height=\"160\" style=\"overflow:hidden; border:none;\">
+	<p>For updates and important announcements, visit http://cakefest.org</p>
+</iframe>\n";
+$output .= "<h2>Sweet, \"" . Inflector::humanize($app) . "\" got Baked by CakePHP!</h2>\n";
 $output .="
 <?php
 if (Configure::read() > 0):
@@ -19,6 +23,21 @@ endif;
 	endif;
 ?>
 </p>
+<div id=\"url-rewriting-warning\" style=\"background-color:#e32; color:#fff; padding:3px; margin: 20px 0\">
+	<?php __('URL rewriting is not properly configured on your server. '); ?>
+	<ol style=\"padding-left:20px\">
+		<li>
+			<a target=\"_blank\" href=\"http://book.cakephp.org/view/917/Apache-and-mod_rewrite-and-htaccess\" style=\"color:#fff;\">
+				<?php __('Help me configure it')?>
+			</a>
+		</li>
+		<li>
+			<a target=\"_blank\" href=\"http://book.cakephp.org/view/931/CakePHP-Core-Configuration-Variables\" style=\"color:#fff;\">
+				<?php __('I don\'t / can\'t use URL rewriting')?>
+			</a>
+		</li>
+	</ol>
+</div>
 <p>
 <?php
 	\$settings = Cache::settings();

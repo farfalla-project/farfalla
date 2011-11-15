@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller
@@ -392,7 +392,7 @@ class ScaffoldViewTest extends CakeTestCase {
 		$ScaffoldView =& new TestScaffoldView($this->Controller);
 
 		$result = $ScaffoldView->testGetFilename('index');
-		$expected = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS
+		$expected = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS 
 			. 'themed' . DS . 'test_theme' . DS . 'posts' . DS . 'scaffold.index.ctp';
 		$this->assertEqual($result, $expected);
 	}
@@ -509,7 +509,7 @@ class ScaffoldViewTest extends CakeTestCase {
 		new Scaffold($this->Controller, $params);
 		$result = ob_get_clean();
 
-		$this->assertPattern('/<form id="ScaffoldMockEditForm" method="post" action="\/scaffold_mock\/edit\/1"/', $result);
+		$this->assertPattern('/<form action="\/scaffold_mock\/edit\/1" id="ScaffoldMockEditForm" method="post"/', $result);
 		$this->assertPattern('/<legend>Edit Scaffold Mock<\/legend>/', $result);
 
 		$this->assertPattern('/input type="hidden" name="data\[ScaffoldMock\]\[id\]" value="1" id="ScaffoldMockId"/', $result);
@@ -730,6 +730,7 @@ class ScaffoldTest extends CakeTestCase {
 		$result = $Scaffold->getParams();
 		$this->assertEqual($result['action'], 'admin_edit');
 	}
+
 /**
  * test that the proper names and variable values are set by Scaffold
  *
@@ -768,6 +769,21 @@ class ScaffoldTest extends CakeTestCase {
 		$this->assertEqual($result['singularVar'], 'scaffoldMock');
 		$this->assertEqual($result['pluralVar'], 'scaffoldMock');
 		$this->assertEqual($result['scaffoldFields'], array('id', 'user_id', 'title', 'body', 'published', 'created', 'updated'));
+	}
+
+/**
+ * test that Scaffold overrides the view property even if its set to 'Theme'
+ *
+ * @return void
+ */
+	function testScaffoldChangingViewProperty() {
+		$this->Controller->action = 'edit';
+		$this->Controller->theme = 'test_theme';
+		$this->Controller->view = 'Theme';
+		$this->Controller->constructClasses();
+		$Scaffold =& new TestScaffoldMock($this->Controller, array());
+
+		$this->assertEqual($this->Controller->view, 'Scaffold');
 	}
 
 /**

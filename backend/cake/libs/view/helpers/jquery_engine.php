@@ -11,12 +11,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2009, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright       Copyright 2006-2009, Cake Software Foundation, Inc.
+ * @copyright       Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link            http://cakephp.org CakePHP Project
  * @package         cake
  * @subpackage      cake.view.helpers
@@ -178,7 +178,7 @@ class JqueryEngineHelper extends JsBaseEngineHelper {
 	}
 
 /**
- * Create a domReady event. For jQuery. This method does not
+ * Create a domReady event. For jQuery. This method does not 
  * bind a 'traditional event' as `$(document).bind('ready', fn)`
  * Works in an entirely different fashion than  `$(document).ready()`
  * The first will not run the function when eval()'d as part of a response
@@ -256,21 +256,20 @@ class JqueryEngineHelper extends JsBaseEngineHelper {
 		$options['url'] = $url;
 		if (isset($options['update'])) {
 			$wrapCallbacks = isset($options['wrapCallbacks']) ? $options['wrapCallbacks'] : true;
-			if ($wrapCallbacks) {
-				$success = $this->jQueryObject . '("' . $options['update'] . '").html(data);';
-			} else {
-				$success = sprintf(
-					'function (data, textStatus) {%s("%s").html(data);}',
-					$this->jQueryObject,
-					$options['update']
-				);
+			$success = '';
+			if(isset($options['success']) AND !empty($options['success'])) {
+				$success .= $options['success'];
+			}
+			$success .= $this->jQueryObject . '("' . $options['update'] . '").html(data);';
+			if (!$wrapCallbacks) {
+				$success = 'function (data, textStatus) {' . $success . '}';
 			}
 			$options['dataType'] = 'html';
 			$options['success'] = $success;
 			unset($options['update']);
 		}
 		$callbacks = array('success', 'error', 'beforeSend', 'complete');
-		if (isset($options['dataExpression'])) {
+		if (!empty($options['dataExpression'])) {
 			$callbacks[] = 'data';
 			unset($options['dataExpression']);
 		}

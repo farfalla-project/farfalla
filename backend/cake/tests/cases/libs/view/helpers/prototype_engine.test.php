@@ -5,14 +5,14 @@
  * PHP versions 4 and 5
  *
  * CakePHP : Rapid Development Framework <http://www.cakephp.org/>
- * Copyright 2006-2009, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *								1785 E. Sahara Avenue, Suite 490-204
  *								Las Vegas, Nevada 89104
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright       Copyright 2006-2009, Cake Software Foundation, Inc.
+ * @copyright       Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link            http://cakephp.org CakePHP Project
  * @package         cake.tests
  * @subpackage      cake.tests.cases.views.helpers
@@ -268,13 +268,11 @@ class PrototypeEngineHelperTestCase extends CakeTestCase {
 	function testSortable() {
 		$this->Proto->get('#myList');
 		$result = $this->Proto->sortable(array(
-			'distance' => 5,
-			'start' => 'onStart',
 			'complete' => 'onComplete',
 			'sort' => 'onSort',
 			'wrapCallbacks' => false
 		));
-		$expected = 'var jsSortable = Sortable.create($("myList"), {onChange:onSort, onStart:onStart, onUpdate:onComplete, snap:5});';
+		$expected = 'var jsSortable = Sortable.create($("myList"), {onChange:onSort, onUpdate:onComplete});';
 		$this->assertEqual($result, $expected);
 	}
 
@@ -348,9 +346,11 @@ class PrototypeEngineHelperTestCase extends CakeTestCase {
 			'handle' => '#handle',
 			'change' => 'change();',
 			'complete' => 'complete();',
-			'value' => 4
+			'value' => 4,
+			'min' => 10,
+			'max' => 100
 		));
-		$expected = 'var jsSlider = new Control.Slider($("handle"), $("element"), {onChange:function (value) {complete();}, onSlide:function (value) {change();}, sliderValue:4});';
+		$expected = 'var jsSlider = new Control.Slider($("handle"), $("element"), {onChange:function (value) {complete();}, onSlide:function (value) {change();}, range:$R(10,100), sliderValue:4});';
 		$this->assertEqual($result, $expected);
 	}
 

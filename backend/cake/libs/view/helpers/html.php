@@ -5,12 +5,12 @@
  * Simplifies the construction of HTML elements.
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
@@ -431,7 +431,7 @@ class HtmlHelper extends AppHelper {
 			if ($url[0] !== '/') {
 				$url = JS_URL . $url;
 			}
-			if (strpos($url, '?') === false && strpos($url, '.js') === false) {
+			if (strpos($url, '?') === false && substr($url, -3) !== '.js') {
 				$url .= '.js';
 			}
 			$url = $this->assetTimestamp($this->webroot($url));
@@ -806,7 +806,7 @@ class HtmlHelper extends AppHelper {
 /**
  * Internal function to build a nested list (UL/OL) out of an associative array.
  *
- * @param array $list Set of elements to list
+ * @param array $items Set of elements to list
  * @param array $options Additional HTML attributes of the list (ol/ul) tag
  * @param array $itemOptions Additional HTML attributes of the list item (LI) tag
  * @param string $tag Type of list tag to use (ol/ul)

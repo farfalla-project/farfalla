@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
@@ -435,6 +435,47 @@ class CookieComponentTest extends CakeTestCase {
 		$this->assertEqual($data, $expected);
 		$this->Controller->Cookie->destroy();
 		unset($_COOKIE['CakeTestCookie']);
+	}
+
+
+/**
+ * test that no error is issued for non array data.
+ *
+ * @return void
+ */
+	function testNoErrorOnNonArrayData() {
+		$this->Controller->Cookie->destroy();
+		$_COOKIE['CakeTestCookie'] = 'kaboom';
+
+		$this->assertNull($this->Controller->Cookie->read('value'));
+	}
+
+/**
+ * test that deleting a top level keys kills the child elements too.
+ *
+ * @return void
+ */
+	function testDeleteRemovesChildren() {
+		$_COOKIE['CakeTestCookie'] = array(
+			'User' => array('email' => 'example@example.com', 'name' => 'mark'),
+			'other' => 'value'
+		);
+		$this->Controller->Cookie->startup();
+		$this->assertEqual('mark', $this->Controller->Cookie->read('User.name'));
+
+		$this->Controller->Cookie->delete('User');
+		$this->assertFalse($this->Controller->Cookie->read('User.email'));
+		$this->Controller->Cookie->destroy();
+	}
+
+/**
+ * Test deleting recursively with keys that don't exist.
+ *
+ * @return void
+ */
+	function testDeleteChildrenNotExist() {
+		$this->assertNull($this->Controller->Cookie->delete('NotFound'));
+		$this->assertNull($this->Controller->Cookie->delete('Not.Found'));
 	}
 
 /**

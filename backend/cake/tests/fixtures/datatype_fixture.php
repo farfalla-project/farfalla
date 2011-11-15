@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.tests.fixtures
@@ -43,6 +43,7 @@ class DatatypeFixture extends CakeTestFixture {
 	var $fields = array(
 		'id' => array('type' => 'integer', 'null'=> false, 'default'=> 0, 'key' => 'primary'),
 		'float_field' => array('type' => 'float', 'length' => '5,2', 'null' => false, 'default' => null),
+		'bool' => array('type' => 'boolean', 'null' => false, 'default' => false),
 	);
 
 /**
@@ -52,6 +53,6 @@ class DatatypeFixture extends CakeTestFixture {
  * @access public
  */
 	var $records = array(
-		array('id' => 1, 'float_field' => 42.23),
+		array('id' => 1, 'float_field' => 42.23, 'bool' => false),
 	);
 }

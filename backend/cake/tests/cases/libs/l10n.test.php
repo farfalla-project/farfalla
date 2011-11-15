@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -194,7 +194,7 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->map(array('nld', 'nl'));
 		$expected = array('nld' => 'nl', 'nl' => 'dut');
 		$this->assertEqual($result, $expected);
-
+		
 		$result = $l10n->map(array('nld'));
 		$expected = array('nld' => 'nl');
 		$this->assertEqual($result, $expected);
@@ -430,7 +430,7 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->map(array('xho', 'xh'));
 		$expected = array('xho' => 'xh', 'xh' => 'xho');
 		$this->assertEqual($result, $expected);
-
+	
 		$result = $l10n->map(array('cy', 'cym'));
 		$expected = array('cym' => 'cy', 'cy' => 'cym');
 		$this->assertEqual($result, $expected);
@@ -943,7 +943,7 @@ class L10nTest extends CakeTestCase {
 			'pt-br' => array('language' => 'Portuguese (Brazil)', 'locale' => 'pt_br', 'localeFallback' => 'por', 'charset' => 'utf-8', 'direction' => 'ltr')
 		);
 		$this->assertEqual($result, $expected);
-
+		
 		$result = $l10n->catalog(array('eng', 'deu', 'zho', 'rum', 'zul', 'yid'));
 		$expected = array(
 			'eng' => array('language' => 'English', 'locale' => 'eng', 'localeFallback' => 'eng', 'charset' => 'utf-8', 'direction' => 'ltr'),

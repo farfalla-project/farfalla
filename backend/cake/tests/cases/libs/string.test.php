@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -200,6 +200,26 @@ class StringTest extends CakeTestCase {
 		$result = String::insert('?-pended result', array('Pre'));
 		$expected = "Pre-pended result";
 		$this->assertEqual($result, $expected);
+
+		$string = 'switching :timeout / :timeout_count';
+		$expected = 'switching 5 / 10';
+		$result = String::insert($string, array('timeout' => 5, 'timeout_count' => 10));
+		$this->assertEqual($result, $expected);
+
+		$string = 'switching :timeout / :timeout_count';
+		$expected = 'switching 5 / 10';
+		$result = String::insert($string, array('timeout_count' => 10, 'timeout' => 5));
+		$this->assertEqual($result, $expected);
+
+		$string = 'switching :timeout_count by :timeout';
+		$expected = 'switching 10 by 5';
+		$result = String::insert($string, array('timeout' => 5, 'timeout_count' => 10));
+		$this->assertEqual($result, $expected);
+
+		$string = 'switching :timeout_count by :timeout';
+		$expected = 'switching 10 by 5';
+		$result = String::insert($string, array('timeout_count' => 10, 'timeout' => 5));
+		$this->assertEqual($result, $expected);
 	}
 
 /**
@@ -280,7 +300,7 @@ class StringTest extends CakeTestCase {
 		$expected = array('tagA', '"single tag"', 'tagB');
 		$this->assertEqual($expected, $result);
 	}
-
+	
 	function testReplaceWithQuestionMarkInString() {
 		$string = ':a, :b and :c?';
 		$expected = '2 and 3?';

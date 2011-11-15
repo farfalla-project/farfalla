@@ -10,18 +10,21 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v .0.10.0.1222
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+if (!class_exists('Security')) {
+	App::import('Core', 'Security');
+}
 
 /**
  * Session class for Cake.
@@ -193,9 +196,6 @@ class CakeSession extends Object {
 			}
 		}
 		if (isset($_SESSION) || $start === true) {
-			if (!class_exists('Security')) {
-				App::import('Core', 'Security');
-			}
 			$this->sessionTime = $this->time + (Security::inactiveMins() * Configure::read('Session.timeout'));
 			$this->security = Configure::read('Security.level');
 		}
@@ -227,7 +227,7 @@ class CakeSession extends Object {
  * @return boolean True if session has been started.
  */
 	function started() {
-		if (!empty($_SESSION) && session_id()) {
+		if (isset($_SESSION) && session_id()) {
 			return true;
 		}
 		return false;
@@ -454,7 +454,10 @@ class CakeSession extends Object {
  * @access public
  */
 	function destroy() {
-		$_SESSION = array();
+		if ($this->started()) {
+			session_destroy();
+		}
+		$_SESSION = null;
 		$this->__construct($this->path);
 		$this->start();
 		$this->renew();
@@ -743,14 +746,17 @@ class CakeSession extends Object {
  * Helper function called on write for database sessions.
  *
  * @param integer $id ID that uniquely identifies session in database
- * @param mixed $data The value of the the data to be saved.
+ * @param mixed $data The value of the data to be saved.
  * @return boolean True for successful write, false otherwise.
  * @access private
  */
 	function __write($id, $data) {
+		if (!$id) {
+			return false;
+		}
 		$expires = time() + Configure::read('Session.timeout') * Security::inactiveMins();
 		$model =& ClassRegistry::getObject('Session');
-		$return = $model->save(compact('id', 'data', 'expires'));
+		$return = $model->save(array($model->primaryKey => $id) + compact('data', 'expires'));
 		return $return;
 	}
 

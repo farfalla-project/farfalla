@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model
@@ -234,24 +234,37 @@ class CakeSchema extends Object {
 
 		if (is_array($models)) {
 			foreach ($models as $model) {
+				$importModel = $model;
 				if (isset($this->plugin)) {
-					$model = $this->plugin . '.' . $model;
+					$importModel = $this->plugin . '.' . $model;
 				}
+				if (!App::import('Model', $importModel)) {
+					continue;
+				}
+				$vars = get_class_vars($model);
+				if (empty($vars['useDbConfig']) || $vars['useDbConfig'] != $connection) {
+					continue;
+				}
+
 				if (PHP5) {
-					$Object = ClassRegistry::init(array('class' => $model, 'ds' => null));
+					$Object = ClassRegistry::init(array('class' => $model, 'ds' => $connection));
 				} else {
-					$Object =& ClassRegistry::init(array('class' => $model, 'ds' => null));
+					$Object =& ClassRegistry::init(array('class' => $model, 'ds' => $connection));
 				}
 
 				if (is_object($Object) && $Object->useTable !== false) {
-					$Object->setDataSource($connection);
-					$table = $db->fullTableName($Object, false);
-					if (in_array($table, $currentTables)) {
-						$key = array_search($table, $currentTables);
+					$fulltable = $table = $db->fullTableName($Object, false);
+					if ($prefix && strpos($table, $prefix) !== 0) {
+						continue;
+					}
+					$table = $this->_noPrefixTable($prefix, $table);
+
+					if (in_array($fulltable, $currentTables)) {
+						$key = array_search($fulltable, $currentTables);
 						if (empty($tables[$table])) {
 							$tables[$table] = $this->__columns($Object);
 							$tables[$table]['indexes'] = $db->index($Object);
-							$tables[$table]['tableParameters'] = $db->readTableParameters($table);
+							$tables[$table]['tableParameters'] = $db->readTableParameters($fulltable);
 							unset($currentTables[$key]);
 						}
 						if (!empty($Object->hasAndBelongsToMany)) {
@@ -261,11 +274,16 @@ class CakeSchema extends Object {
 								}
 								if (is_object($Object->$class)) {
 									$withTable = $db->fullTableName($Object->$class, false);
+									if ($prefix && strpos($withTable, $prefix) !== 0) {
+										continue;
+									}
 									if (in_array($withTable, $currentTables)) {
 										$key = array_search($withTable, $currentTables);
-										$tables[$withTable] = $this->__columns($Object->$class);
-										$tables[$withTable]['indexes'] = $db->index($Object->$class);
-										$tables[$withTable]['tableParameters'] = $db->readTableParameters($withTable);
+										$noPrefixWith = $this->_noPrefixTable($prefix, $withTable);
+	
+										$tables[$noPrefixWith] = $this->__columns($Object->$class);
+										$tables[$noPrefixWith]['indexes'] = $db->index($Object->$class);
+										$tables[$noPrefixWith]['tableParameters'] = $db->readTableParameters($withTable);
 										unset($currentTables[$key]);
 									}
 								}
@@ -282,7 +300,7 @@ class CakeSchema extends Object {
 					if (strpos($table, $prefix) !== 0) {
 						continue;
 					}
-					$table = str_replace($prefix, '', $table);
+					$table = $this->_noPrefixTable($prefix, $table);
 				}
 				$Object = new AppModel(array(
 					'name' => Inflector::classify($table), 'table' => $table, 'ds' => $connection
@@ -366,7 +384,7 @@ class CakeSchema extends Object {
 
 		$File =& new File($path . DS . $file, true);
 		$header = '$Id';
-		$content = "<?php \n/* SVN FILE: {$header}$ */\n/* {$name} schema generated on: " . date('Y-m-d H:m:s') . " : ". time() . "*/\n{$out}?>";
+		$content = "<?php \n/* {$name} schema generated on: " . date('Y-m-d H:i:s') . " : ". time() . "*/\n{$out}?>";
 		$content = $File->prepare($content);
 		if ($File->write($content)) {
 			return $content;
@@ -455,11 +473,11 @@ class CakeSchema extends Object {
 			if (!array_key_exists($table, $old)) {
 				$tables[$table]['add'] = $fields;
 			} else {
-				$diff = array_diff_assoc($fields, $old[$table]);
+				$diff = $this->_arrayDiffAssoc($fields, $old[$table]);
 				if (!empty($diff)) {
 					$tables[$table]['add'] = $diff;
 				}
-				$diff = array_diff_assoc($old[$table], $fields);
+				$diff = $this->_arrayDiffAssoc($old[$table], $fields);
 				if (!empty($diff)) {
 					$tables[$table]['drop'] = $diff;
 				}
@@ -467,13 +485,13 @@ class CakeSchema extends Object {
 
 			foreach ($fields as $field => $value) {
 				if (isset($old[$table][$field])) {
-					$diff = array_diff_assoc($value, $old[$table][$field]);
+					$diff = $this->_arrayDiffAssoc($value, $old[$table][$field]);
 					if (!empty($diff) && $field !== 'indexes' && $field !== 'tableParameters') {
 						$tables[$table]['change'][$field] = array_merge($old[$table][$field], $diff);
 					}
 				}
 
-				if (isset($add[$table][$field])) {
+				if (isset($tables[$table]['add'][$field]) && $field !== 'indexes' && $field !== 'tableParameters') {
 					$wrapper = array_keys($fields);
 					if ($column = array_search($field, $wrapper)) {
 						if (isset($wrapper[$column - 1])) {
@@ -505,6 +523,46 @@ class CakeSchema extends Object {
 			}
 		}
 		return $tables;
+	}
+
+/**
+ * Extended array_diff_assoc noticing change from/to NULL values
+ *
+ * It behaves almost the same way as array_diff_assoc except for NULL values: if
+ * one of the values is not NULL - change is detected. It is useful in situation
+ * where one value is strval('') ant other is strval(null) - in string comparing
+ * methods this results as EQUAL, while it is not.
+ *
+ * @param array $array1 Base array
+ * @param array $array2 Corresponding array checked for equality
+ * @return array Difference as array with array(keys => values) from input array
+ *     where match was not found.
+ * @access protected
+ */
+	function _arrayDiffAssoc($array1, $array2) {
+		$difference = array();
+		foreach ($array1 as $key => $value) {
+			if (!array_key_exists($key, $array2)) {
+				$difference[$key] = $value;
+				continue;
+			}
+			$correspondingValue = $array2[$key];
+			if (is_null($value) !== is_null($correspondingValue)) {
+				$difference[$key] = $value;
+				continue;
+			}
+			if (is_bool($value) !== is_bool($correspondingValue)) {
+				$difference[$key] = $value;
+				continue;
+			}
+			$compare = strval($value);
+			$correspondingValue = strval($correspondingValue);
+			if ($compare === $correspondingValue) {
+				continue;
+			}
+			$difference[$key] = $value;
+		}
+		return $difference;
 	}
 
 /**
@@ -583,7 +641,7 @@ class CakeSchema extends Object {
 		if (!is_array($new) || !is_array($old)) {
 			return false;
 		}
-		$change = array_diff_assoc($new, $old);
+		$change = $this->_arrayDiffAssoc($new, $old);
 		return $change;
 	}
 
@@ -601,12 +659,12 @@ class CakeSchema extends Object {
 
 		$add = $drop = array();
 
-		$diff = array_diff_assoc($new, $old);
+		$diff = $this->_arrayDiffAssoc($new, $old);
 		if (!empty($diff)) {
 			$add = $diff;
 		}
 
-		$diff = array_diff_assoc($old, $new);
+		$diff = $this->_arrayDiffAssoc($old, $new);
 		if (!empty($diff)) {
 			$drop = $diff;
 		}
@@ -636,5 +694,16 @@ class CakeSchema extends Object {
 			}
 		}
 		return array_filter(compact('add', 'drop'));
+	}
+
+/**
+ * Trim the table prefix from the full table name, and return the prefix-less table
+ *
+ * @param string $prefix Table prefix
+ * @param string $table Full table name
+ * @return string Prefix-less table name
+ */
+	function _noPrefixTable($prefix, $table) {
+		return preg_replace('/^' . preg_quote($prefix) . '/', '', $table);
 	}
 }

@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
@@ -164,7 +164,7 @@ class AuthComponent extends Object {
 	var $loginRedirect = null;
 
 /**
- * The the default action to redirect to after the user is logged out.  While AuthComponent does
+ * The default action to redirect to after the user is logged out.  While AuthComponent does
  * not handle post-logout redirection, a redirect URL will be returned from AuthComponent::logout().
  * Defaults to AuthComponent::$loginAction.
  *
@@ -382,7 +382,8 @@ class AuthComponent extends Object {
 			$controller->data[$model->alias][$this->fields['password']] = null;
 			return false;
 		} else {
-			if (!$this->user()) {
+			$user = $this->user();
+			if (!$user) {
 				if (!$this->RequestHandler->isAjax()) {
 					$this->Session->setFlash($this->authError, $this->flashElement, array(), 'auth');
 					if (!empty($controller->params['url']) && count($controller->params['url']) >= 2) {
@@ -442,7 +443,7 @@ class AuthComponent extends Object {
 			break;
 		}
 
-		if ($this->isAuthorized($type)) {
+		if ($this->isAuthorized($type, null, $user)) {
 			return true;
 		}
 
@@ -527,7 +528,6 @@ class AuthComponent extends Object {
 				$valid = $this->Acl->check($user, $this->action());
 			break;
 			case 'crud':
-				$this->mapActions();
 				if (!isset($this->actionMap[$this->params['action']])) {
 					trigger_error(
 						sprintf(__('Auth::startup() - Attempted access of un-mapped action "%1$s" in controller "%2$s"', true), $this->params['action'], $this->params['controller']),
@@ -542,7 +542,6 @@ class AuthComponent extends Object {
 				}
 			break;
 			case 'model':
-				$this->mapActions();
 				$action = $this->params['action'];
 				if (isset($this->actionMap[$action])) {
 					$action = $this->actionMap[$action];
@@ -842,7 +841,7 @@ class AuthComponent extends Object {
  */
 	function identify($user = null, $conditions = null) {
 		if ($conditions === false) {
-			$conditions = null;
+			$conditions = array();
 		} elseif (is_array($conditions)) {
 			$conditions = array_merge((array)$this->userScope, $conditions);
 		} else {
@@ -924,7 +923,7 @@ class AuthComponent extends Object {
 
 		if (is_array($data)) {
 			$model =& $this->getModel();
-
+			
 			if(isset($data[$model->alias])) {
 				if (isset($data[$model->alias][$this->fields['username']]) && isset($data[$model->alias][$this->fields['password']])) {
 					$data[$model->alias][$this->fields['password']] = $this->password($data[$model->alias][$this->fields['password']]);

@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP : Rapid Development Framework (http://cakephp.org)
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc.
  * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.cake.libs.
@@ -348,10 +348,10 @@ class CakeTestCaseTest extends CakeTestCase {
 		), true);
 
 		$result = $this->Case->testAction('/tests_apps/index', array('return' => 'view'));
-		$this->assertPattern('/This is the TestsAppsController index view/', $result);
+		$this->assertPattern('/^\s*This is the TestsAppsController index view\s*$/i', $result);
 
 		$result = $this->Case->testAction('/tests_apps/index', array('return' => 'contents'));
-		$this->assertPattern('/This is the TestsAppsController index view/', $result);
+		$this->assertPattern('/\bThis is the TestsAppsController index view\b/i', $result);
 		$this->assertPattern('/<html/', $result);
 		$this->assertPattern('/<\/html>/', $result);
 

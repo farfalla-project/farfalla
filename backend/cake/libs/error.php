@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -106,6 +106,7 @@ class ErrorHandler extends Object {
 		if (!in_array(strtolower($method), array_map('strtolower', get_class_methods($this)))) {
 			$method = 'error';
 		}
+
 		if ($method !== 'error') {
 			if (Configure::read('debug') == 0) {
 				$parentClass = get_parent_class($this);
@@ -116,7 +117,7 @@ class ErrorHandler extends Object {
 				if (in_array(strtolower($method), $parentMethods)) {
 					$method = 'error404';
 				}
-				if (isset($code) && $code == 500) {
+				if (isset($messages[0]['code']) && $messages[0]['code'] == 500) {
 					$method = 'error500';
 				}
 			}

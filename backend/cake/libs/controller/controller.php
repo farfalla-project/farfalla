@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller
@@ -424,22 +424,20 @@ class Controller extends Object {
 					$this->uses = array_flip($this->uses);
 					array_unshift($this->uses, $plugin . $this->modelClass);
 				}
-			} elseif ($this->uses !== null || $this->uses !== false) {
+			} else {
 				$merge[] = 'uses';
 			}
 
 			foreach ($merge as $var) {
 				if (!empty($appVars[$var]) && is_array($this->{$var})) {
-					if ($var === 'components') {
+					if ($var !== 'uses') {
 						$normal = Set::normalize($this->{$var});
 						$app = Set::normalize($appVars[$var]);
 						if ($app !== $normal) {
 							$this->{$var} = Set::merge($app, $normal);
 						}
 					} else {
-						$this->{$var} = Set::merge(
-							$this->{$var}, array_diff($appVars[$var], $this->{$var})
-						);
+						$this->{$var} = array_merge($this->{$var}, array_diff($appVars[$var], $this->{$var}));
 					}
 				}
 			}
@@ -450,22 +448,20 @@ class Controller extends Object {
 			$uses = $appVars['uses'];
 			$merge = array('components', 'helpers');
 
-			if ($this->uses !== null || $this->uses !== false) {
+			if ($this->uses !== null && $this->uses !== false) {
 				$merge[] = 'uses';
 			}
 
 			foreach ($merge as $var) {
 				if (isset($appVars[$var]) && !empty($appVars[$var]) && is_array($this->{$var})) {
-					if ($var === 'components') {
+					if ($var !== 'uses') {
 						$normal = Set::normalize($this->{$var});
 						$app = Set::normalize($appVars[$var]);
 						if ($app !== $normal) {
 							$this->{$var} = Set::merge($app, $normal);
 						}
 					} else {
-						$this->{$var} = Set::merge(
-							$this->{$var}, array_diff($appVars[$var], $this->{$var})
-						);
+						$this->{$var} = array_merge($this->{$var}, array_diff($appVars[$var], $this->{$var}));
 					}
 				}
 			}
@@ -473,7 +469,7 @@ class Controller extends Object {
 	}
 
 /**
- * Loads Model classes based on the the uses property
+ * Loads Model classes based on the uses property
  * see Controller::loadModel(); for more info.
  * Loads Components and prepares them for initialization.
  *
@@ -768,7 +764,7 @@ class Controller extends Object {
 		} else {
 			$data = array($one => $two);
 		}
-		$this->viewVars = array_merge($this->viewVars, $data);
+		$this->viewVars = $data + $this->viewVars;
 	}
 
 /**
@@ -804,7 +800,7 @@ class Controller extends Object {
  */
 	function isAuthorized() {
 		trigger_error(sprintf(
-			__('%s::isAuthorized() is not defined.', true), $this->name
+			__('%sController::isAuthorized() is not defined.', true), $this->name
 		), E_USER_WARNING);
 		return false;
 	}
@@ -847,7 +843,7 @@ class Controller extends Object {
 				$object =& $this->{$object->alias};
 			}
 			$object->set($object->data);
-			$errors = array_merge($errors, $object->invalidFields());
+			$errors = array_merge($errors, (array)$object->invalidFields());
 		}
 
 		return $this->validationErrors = (!empty($errors) ? $errors : false);
@@ -1130,7 +1126,7 @@ class Controller extends Object {
 		}
 
 		if (!empty($options['order']) && is_array($options['order'])) {
-			$alias = $object->alias ;
+			$alias = $object->alias;
 			$key = $field = key($options['order']);
 
 			if (strpos($key, '.') !== false) {
@@ -1141,7 +1137,7 @@ class Controller extends Object {
 
 			if ($object->hasField($field)) {
 				$options['order'][$alias . '.' . $field] = $value;
-			} elseif ($object->hasField($field, true)) {
+			} elseif ($object->hasField($key, true)) {
 				$options['order'][$field] = $value;
 			} elseif (isset($object->{$alias}) && $object->{$alias}->hasField($field)) {
 				$options['order'][$alias . '.' . $field] = $value;

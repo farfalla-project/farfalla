@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2011, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
@@ -275,8 +275,9 @@ class ControllerTask extends BakeTask {
  */
 	function bakeActions($controllerName, $admin = null, $wannaUseSession = true) {
 		$currentModelName = $modelImport = $this->_modelName($controllerName);
-		if ($this->plugin) {
-			$modelImport = $this->plugin . '.' . $modelImport;
+		$plugin = $this->plugin;
+		if ($plugin) {
+			$modelImport = $plugin . '.' . $modelImport;
 		}
 		if (!App::import('Model', $modelImport)) {
 			$this->err(__('You must have a model for this class to build basic methods. Please try again.', true));
@@ -290,7 +291,7 @@ class ControllerTask extends BakeTask {
 		$singularHumanName = $this->_singularHumanName($controllerName);
 		$pluralHumanName = $this->_pluralName($controllerName);
 
-		$this->Template->set(compact('admin', 'controllerPath', 'pluralName', 'singularName', 'singularHumanName',
+		$this->Template->set(compact('plugin', 'admin', 'controllerPath', 'pluralName', 'singularName', 'singularHumanName',
 			'pluralHumanName', 'modelObj', 'wannaUseSession', 'currentModelName'));
 		$actions = $this->Template->generate('actions', 'controller_actions');
 		return $actions;
@@ -452,6 +453,11 @@ class ControllerTask extends BakeTask {
 		$this->out("<name>");
 		$this->out("\tName of the controller to bake. Can use Plugin.name");
 		$this->out("\tas a shortcut for plugin baking.");
+		$this->out();
+		$this->out('Params:');
+		$this->out();
+		$this->out('-connection <config>');
+		$this->out("\tset db config <config>. uses 'default' if none is specified");
 		$this->out();
 		$this->out('Commands:');
 		$this->out();
