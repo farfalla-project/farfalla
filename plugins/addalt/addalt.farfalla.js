@@ -24,9 +24,9 @@ function getXPath( element )
 
   $('#dialog-form').append('<p>Add an alternative text for the image</p>');
   $('#dialog-form').append('<form></form>');
-  $('#dialog-form form').append('<input type="text" value="" name="farfalla-addalt" />');
+  $('#dialog-form form').append('<textarea name="farfalla-addalt" style="width:100%" /></textarea>');
 
-  $.each($('img'), function() {
+  $.each($('img').not('#farfalla_logo img'), function() {
   
   		if($(this).parent()!='a') {
 

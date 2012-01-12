@@ -6,19 +6,23 @@ $(function() {
 
   // Increase Font Size
   $('#farfalla_buttons').farfalla_add_button('+','fontsize_increase','a',function(){
-	    var currentFontSize = $('html').css('font-size');
-	    var currentFontSizeNum = parseFloat(currentFontSize, 10);
-	    var newFontSize = currentFontSizeNum*1.2;
-	    $('*').css('font-size', newFontSize).css('padding-bottom','0.2ex');
+	    $('*').css({
+	    	'font-size': function(index, value) {
+        		return parseFloat(value) * 1.1;
+      		},
+      		'line-height' : '130%'
+      	}); 
 	    return false;
   });
 
   // Decrease Font Size
   $('#farfalla_buttons').farfalla_add_button('-','fontsize_decrease','z',function(){
-  		var currentFontSize = $('html').css('font-size');
-  		var currentFontSizeNum = parseFloat(currentFontSize, 10);
-  		var newFontSize = currentFontSizeNum*0.8;
-		$('*').css('font-size', newFontSize).css('padding-bottom','0.2ex');
+	    $('*').css({
+	    	'font-size': function(index, value) {
+        		return parseFloat(value) * 0.9;
+      		},
+      		'line-height' : '130%'
+      	}); 
 	    return false;
   });
 
