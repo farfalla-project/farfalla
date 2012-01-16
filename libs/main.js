@@ -233,18 +233,45 @@ $(function() {
 
 
     $.fn.farfalla_add_button = function( name, id, accesskey, callback ){
-        $('<li></li>').appendTo('#farfalla_buttons ul');
-        $('<img></img>')
+        $('<li></li>').appendTo('#farfalla_buttons ul');    
+        $('<input></input>')
           .attr({
-            'src':farfalla_path+'images/'+id+'.png',
+            'value':name,
+            'type':'button',
             'id':'button_'+id,
-            'alt':name})
+            'accesskey':accesskey
+            })
+          .addClass('ui-corner-all')
+          .addClass('plugin-button')
           .appendTo('#farfalla_buttons ul li:last');
-        $('#button_'+id).wrap('<a accesskey="'+accesskey+'"></a>');
-        $('#button_'+id).parent('a').click(callback);
+        $('#button_'+id).click(callback);
         $('#farfalla_buttons').show();
     };
 
+
+
+    $.farfalla_get_option = function( option, callback ){
+
+      $.getJSON(
+         farfalla_path+"backend/plugins/get_option/"+option+"/?callback=?",
+         {}, callback
+      );
+      
+    };
+    
+
+                
+    $.farfalla_set_option = function( option, value ){
+      
+      
+      if(value==null){
+        $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
+      
+      } else {
+        $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/"+value+"/?callback=?");
+      }
+      
+    };
 
 
 });

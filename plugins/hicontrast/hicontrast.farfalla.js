@@ -1,75 +1,63 @@
-﻿// Farfalla plugin: High contrast
+// Farfalla plugin: High contrast
 
-$(function() {
+$(function() {  
+
+  $.farfalla_add_css = function (style){
+
+      $("head").append('<link id="'+style+'" rel="stylesheet" type="text/css" href="'+farfalla_path+'plugins/hicontrast/css/'+style+'.css" />');
+      $("head").append('<link id="farfalla-hic-toolbar" rel="stylesheet" type="text/css" href="'+farfalla_path+'plugins/hicontrast/css/farfalla-hic-toolbar.css" />');
+
+  }
 
 
-//  $('#farfalla_buttons').farfalla_add_button('toggle high contrast','toggle_hicontrast','h',function(){
+  $.farfalla_remove_css = function (style){
 
+      $('#'+style+'').remove();
+      $('#farfalla-hic-toolbar').remove();
+
+  }
+
+// when the page loads, check if the alternative CSS is already active
+
+  $.farfalla_get_option('hicontrast',function(data){
+
+    if(data.value){
+
+      $.farfalla_add_css(data.value);
+
+    }
+    
+  });
+
+  $.farfalla_add_ccs_button = function (style,accesskey){
+
+  $('#farfalla_buttons').farfalla_add_button(style,'toggle_'+style,accesskey,function(){
+
+      $.farfalla_get_option('hicontrast',function(data){
+
+        if(data.value==style){
+
+	      $.farfalla_set_option('hicontrast');
+          $.farfalla_remove_css(style);
+   
+        }else{
+      
+          $.farfalla_remove_css(data.value);
+          $.farfalla_set_option('hicontrast',style);
+          $.farfalla_add_css(style);
+        
+        }
+
+      })
+    
+    })
+  
+  };
+
+// create the buttons
 	
-/*
-     From the high contrast CSS for Mozilla Firefox
-     Black background/white text
-     Proposed by Valusiana on 29th November 2011 on Ubuntu-it forums
-     http://forum.ubuntu-it.org/index.php/topic,470585.msg3876938.html#msg3876938     
-     
-     Begin suggested code:
-*/
-    $('*').css({
-      'color': 'white !important',
-      'background-color': 'black !important'
-	});
-
-	$('input, textarea, select').css({
-      'color': 'white !important',
-      'background': 'black !important'
-    });
-
-    $('button, input[type="file"], input[type="submit"], input[type="button"], input[type="reset"]').css({
-      'color': 'yellow !important',
-      'background': 'navy !important'
-    });
-    
-    $('a[href]').css({
-      'text-decoration': 'underline !important'
-    });
-
-    $('a[href]:hover, a[href]:hover *').css({
-      'color': 'black !important',   
-      'background': 'white !important'
-    });
-    
-    $('a[href] img').css({
-      'border': 'thin solid white !important'
-    });
-
-    $('@media print *').css({
-      'color': 'black !important',  
-      'background': 'white !important'
-    });
-		
-/* End suggested code */
-		
-    $('#farfalla_toolbar').css({
-      'border':'2px solid #fff',
-      'border-right':'0',
-      'background':'black !important'
-    });
-
-    $('#farfalla_toolbar *').css({
-      'background':'transparent'
-    });
-
-    $('#farfalla_change_profile').css({
-      'border':'1px solid #fff'
-    });
-    
-    $('#farfalla_handle').css({
-      'background':'url('+farfalla_path+'images/toolbar/menu-handler.png)'
-    });
-
-//    return false;
-//  });
-
+  $.farfalla_add_ccs_button('farfalla-valusiana','v');
+  $.farfalla_add_ccs_button('farfalla-pippo','p');
 
 
 });

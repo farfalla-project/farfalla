@@ -1,7 +1,13 @@
 <?php
 class PluginsController extends AppController {
 
+	var $helpers = array('Html','Javascript');
 	var $name = 'Plugins';
+	var $components = array('RequestHandler');
+
+	function beforeFilter() {
+	        $this->Auth->allow('set_option','get_option');
+	}
 
 	function index() {
 		$this->Plugin->recursive = 0;
@@ -121,5 +127,21 @@ class PluginsController extends AppController {
 		$this->Session->setFlash(__('Plugin was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function get_option($option = null) {
+		$key = $option;
+		$value = $this->Session->read($option);
+		$this->layout = 'ajax';
+	    $this->RequestHandler->setContent('json', 'text/x-json');
+		$this->set(compact('key'));
+		$this->set(compact('value'));
+	}
+
+	function set_option($key = null, $value = null) {
+		$this->Session->write($key,$value);
+		$this->layout = 'ajax';
+	    $this->RequestHandler->setContent('json', 'text/x-json');
+	}
+
 }
 ?>

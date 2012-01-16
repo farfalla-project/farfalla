@@ -1,0 +1,28 @@
+﻿@charset "utf-8";
+/*   Name: CSS ad Alto Contrasto per Firefox
+   Sfondo Nero/Caratteri Bianchi
+   Personale 2011 Valusiana */
+* {
+   color: #cff !important;
+   background: #000 !important;
+}
+input, textarea, select {
+   color: #cff !important;   
+   background: #000 !important;
+}
+button, input[type="file"], input[type="submit"], input[type="button"], input[type="reset"] {
+   color: yellow;   
+   background: navy;
+}
+a[href] {text-decoration: underline;}
+a[href]:hover, a[href]:hover * {
+   color: #000 !important;   
+   background: #cff !important;
+}
+a[href] img {border: thin solid #cff;}
+@media print {
+   * {
+      color: #000 !important;   
+      background: #cff !important;
+   }
+}

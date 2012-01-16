@@ -113,11 +113,20 @@ body{
 	list-style: none;
 	display: inline;
 	}
+	
+	#farfalla_buttons ul li input{
+	  height: 80%;
+	  margin: 1% 3px;
+      background: #fff;
+      border: 0;
+      font-size: 24px;
+      font-weight: bold;
+	}
 
-		#farfalla_buttons ul li img{
+/*		#farfalla_buttons ul li img{
 		padding: 4px; 
 		cursor: pointer;
-		}
+		}*/
 
 #highlighter{
 	border: 6px solid red;

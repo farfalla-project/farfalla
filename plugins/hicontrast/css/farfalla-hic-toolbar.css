@@ -1,0 +1,22 @@
+﻿#farfalla_toolbar {
+  border: 2px solid #fff;
+  border-right: 0;
+  background: black;
+}
+
+#farfalla_toolbar *{
+  background: transparent;
+}
+
+#farfalla_change_profile{
+  border: 1px solid #fff;
+}
+    
+#farfalla_handle{
+  background: url('images/toolbar/menu-handler.png');
+}
+
+#farfalla_buttons ul li input{
+  background: #000;
+  border: 2px solid #fff;
+}

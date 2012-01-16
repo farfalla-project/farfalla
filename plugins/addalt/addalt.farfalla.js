@@ -26,7 +26,12 @@ function getXPath( element )
   $('#dialog-form').append('<form></form>');
   $('#dialog-form form').append('<textarea name="farfalla-addalt" style="width:100%" /></textarea>');
 
+  var count = 0;
+  var count_alt = 0;
+
   $.each($('img').not('#farfalla_logo img'), function() {
+  
+  count = count+1;
   
   		if($(this).parent()!='a') {
 
@@ -39,13 +44,15 @@ function getXPath( element )
 		};
   
   		if($(this).attr('alt')==""){
-  
+
   			$(this).parent('div')
   				.addClass('ui-state-error')
   				.width($(this).width())
   				.append('<div class="addalt_overlay ui-state-error" style="display:none"><p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>This image has no alternative text! Click here to add...</p></div>');
 
   		} else {
+
+        count_alt = count_alt+1;  
 
   			$(this).parent('div')
   				.width($(this).width())
@@ -57,6 +64,8 @@ function getXPath( element )
 
   );
 
+console.log(count);
+console.log(count_alt);
 
 	$('.addalt_overlay').click(
   		function(){
