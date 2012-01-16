@@ -37,7 +37,7 @@ $(function() {
 
         if(data.value==style){
 
-	      $.farfalla_set_option('hicontrast');
+          $.farfalla_set_option('hicontrast');
           $.farfalla_remove_css(style);
    
         }else{
@@ -56,8 +56,15 @@ $(function() {
 
 // create the buttons
 	
-  $.farfalla_add_ccs_button('farfalla-valusiana','v');
-  $.farfalla_add_ccs_button('farfalla-pippo','p');
-
+  $.farfalla_add_ccs_button('black-green','1');
+  $.farfalla_add_ccs_button('black-white','2');
+  $.farfalla_add_ccs_button('blue-white','3');
+  $.farfalla_add_ccs_button('lightyellow-black','4');
+  $.farfalla_add_ccs_button('yellow-black','5');
+  $.farfalla_add_ccs_button('black-lightblue','6');
+  $.farfalla_add_ccs_button('black-yellow','7');
+  $.farfalla_add_ccs_button('cyan-black','8');
+//  $.farfalla_add_ccs_button('lightblue-black','9');
+//  $.farfalla_add_ccs_button('white-black','0');
 
 });
