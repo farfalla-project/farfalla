@@ -232,15 +232,20 @@ $(function() {
     // callback -> a function to be triggered by the button
 
 
-    $.fn.farfalla_add_button = function( name, id, accesskey, callback ){
+    $.fn.farfalla_add_button = function( name, text, id, accesskey, bgcolor, txtcolor, callback ){
         $('<li></li>').appendTo('#farfalla_buttons ul');    
         $('<input></input>')
           .attr({
-            'value':name,
+            'value': text,
             'type':'button',
             'id':'button_'+id,
             'accesskey':accesskey
             })
+          .css({
+            'background': bgcolor,
+            'border': '2px solid '+txtcolor,
+            'color': txtcolor
+          })
           .addClass('ui-corner-all')
           .addClass('plugin-button')
           .appendTo('#farfalla_buttons ul li:last');

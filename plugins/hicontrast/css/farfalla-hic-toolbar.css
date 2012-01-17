@@ -4,6 +4,10 @@
   background: black;
 }
 
+#farfalla_toolbar {
+  background: #000 !important;
+}
+
 #farfalla_toolbar *{
   background: transparent;
 }
@@ -13,10 +17,12 @@
 }
     
 #farfalla_handle{
-  background: url('images/toolbar/menu-handler.png');
+  background: url('images/toolbar/menu-handler.png') #000 !important;
 }
 
+/*
 #farfalla_buttons ul li input{
-  background: #000;
+  color: #fff;
   border: 2px solid #fff;
 }
+*/

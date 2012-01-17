@@ -29,9 +29,9 @@ $(function() {
     
   });
 
-  $.farfalla_add_ccs_button = function (style,accesskey){
+  $.farfalla_add_ccs_button = function (style, name, accesskey, bgcolor, txtcolor){
 
-  $('#farfalla_buttons').farfalla_add_button(style,'toggle_'+style,accesskey,function(){
+  $('#farfalla_buttons').farfalla_add_button(style, name, 'toggle_'+style, accesskey, bgcolor, txtcolor, function(){
 
       $.farfalla_get_option('hicontrast',function(data){
 
@@ -56,15 +56,15 @@ $(function() {
 
 // create the buttons
 	
-  $.farfalla_add_ccs_button('black-green','1');
-  $.farfalla_add_ccs_button('black-white','2');
-  $.farfalla_add_ccs_button('blue-white','3');
-  $.farfalla_add_ccs_button('lightyellow-black','4');
-  $.farfalla_add_ccs_button('yellow-black','5');
-  $.farfalla_add_ccs_button('black-lightblue','6');
-  $.farfalla_add_ccs_button('black-yellow','7');
-  $.farfalla_add_ccs_button('cyan-black','8');
-//  $.farfalla_add_ccs_button('lightblue-black','9');
-//  $.farfalla_add_ccs_button('white-black','0');
+  $.farfalla_add_ccs_button('black-green', '1','1', 'black', '#3f3');
+  $.farfalla_add_ccs_button('black-white', '2', '2', 'black', 'white');
+  $.farfalla_add_ccs_button('blue-white', '3', '3', '#004', 'white');
+  $.farfalla_add_ccs_button('lightyellow-black', '4', '4', 'lightyellow', 'black');
+  $.farfalla_add_ccs_button('yellow-black', '5', '5', 'yellow', 'black');
+  $.farfalla_add_ccs_button('black-lightblue', '6', '6', 'black', '#5ffffd');
+  $.farfalla_add_ccs_button('black-yellow', '7', '7', 'black', 'yellow');
+  $.farfalla_add_ccs_button('cyan-black', '8', '8', '#9ff', 'black');
+  $.farfalla_add_ccs_button('lightblue-black', '9', '9', 'cyan', 'black');
+  $.farfalla_add_ccs_button('white-black', '0', '0', 'white', 'black');
 
 });
