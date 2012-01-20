@@ -9,7 +9,18 @@
 }
 
 #farfalla_toolbar *{
-  background: transparent;
+  background: #000 !important;
+}
+
+#farfalla_buttons ul li input{
+  border: 2px solid #fff !important;
+  color: #fff !important;
+  font-size: 24px !important;
+  background: #333 !important;
+}
+
+#farfalla_logo img{
+  background: #000 !important;
 }
 
 #farfalla_change_profile{
@@ -17,7 +28,7 @@
 }
     
 #farfalla_handle{
-  background: url('images/toolbar/menu-handler.png') #000 !important;
+  background: url('../../../images/toolbar/menu-handler.png') #000 !important;
 }
 
 /*

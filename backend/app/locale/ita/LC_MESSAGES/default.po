@@ -1,5 +1,5 @@
-# LANGUAGE translation of CakePHP Application
-# Copyright YEAR NAME <EMAIL@ADDRESS>
+# ITALIAN translation of CakePHP Application
+# Copyright 2011 Andrea Mangiatordi <info@farfalla-project.org>
 #
 msgid ""
 msgstr ""
