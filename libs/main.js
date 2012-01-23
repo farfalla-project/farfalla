@@ -253,7 +253,7 @@ $(function() {
         $('#farfalla_buttons').show();
     };
 
-
+    // A function for getting options from the Cakephp session array
 
     $.farfalla_get_option = function( option, callback ){
 
@@ -264,7 +264,7 @@ $(function() {
       
     };
     
-
+    // A function for setting options in the Cakephp session array
                 
     $.farfalla_set_option = function( option, value ){
       
@@ -277,6 +277,19 @@ $(function() {
       }
       
     };
+
+    // A function for getting the XPath of an element
+
+    $.getXPath = function ( element ) {
+    var xpath = '';
+    for ( ; element && element.nodeType == 1; element = element.parentNode )
+      {
+        var id = $(element.parentNode).children(element.tagName).index(element) + 1;
+        id > 1 ? (id = '[' + id + ']') : (id = '');
+        xpath = '/' + element.tagName.toLowerCase() + id + xpath;
+      }
+    return xpath;
+  } 
 
 
 });

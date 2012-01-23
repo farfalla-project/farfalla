@@ -44,14 +44,14 @@ class Alttext extends AppModel {
 			),
 		),
 		'xpath' => array(
-			'alphanumeric' => array(
-				'rule' => array('alphanumeric'),
+//			'alphanumeric' => array(
+				//'rule' => array('alphanumeric'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+//			),
 		),
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
