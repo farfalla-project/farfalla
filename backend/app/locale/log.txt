@@ -1,0 +1,2 @@
+18:18:28: /Library/WebServer/Documents/farfalla/profiles/app/locale/ita/LC_MESSAGES/default.po:5: invalid nplurals value
+18:18:28: /Applications/Poedit.app/Contents/MacOS/msgfmt: found 2 fatal errors

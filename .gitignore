@@ -1,5 +1,6 @@
 .DS_Store
 *~
-*.txt
+goodies/deployment.sh
+goodies/deploy.php
 .com.apple.timemachine.supported
 backend/farfalla-backend.sql
