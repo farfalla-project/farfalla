@@ -121,6 +121,8 @@ body{
       border: 0;
       font-size: 18pt !important;
       font-weight: bold;
+      width: auto;
+      height: auto;
 	}
 
 /*		#farfalla_buttons ul li img{
