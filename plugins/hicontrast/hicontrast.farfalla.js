@@ -56,15 +56,15 @@ $(function() {
 
 // create the buttons
 	
-  $.farfalla_add_ccs_button('black-green', '1','1', 'black', '#3f3');
-  $.farfalla_add_ccs_button('black-white', '2', '2', 'black', 'white');
-  $.farfalla_add_ccs_button('blue-white', '3', '3', '#004', 'white');
-  $.farfalla_add_ccs_button('lightyellow-black', '4', '4', 'lightyellow', 'black');
-  $.farfalla_add_ccs_button('yellow-black', '5', '5', 'yellow', 'black');
-  $.farfalla_add_ccs_button('black-lightblue', '6', '6', 'black', '#5ffffd');
-  $.farfalla_add_ccs_button('black-yellow', '7', '7', 'black', 'yellow');
-  $.farfalla_add_ccs_button('cyan-black', '8', '8', '#9ff', 'black');
-  $.farfalla_add_ccs_button('lightblue-black', '9', '9', 'cyan', 'black');
-  $.farfalla_add_ccs_button('white-black', '0', '0', 'white', 'black');
+  $.farfalla_add_ccs_button('black-green', '1','1', '#000', '#3f3');
+  $.farfalla_add_ccs_button('black-white', '2', '2', '#000', '#fff');
+  $.farfalla_add_ccs_button('blue-white', '3', '3', '#004', '#fff');
+  $.farfalla_add_ccs_button('lightyellow-black', '4', '4', '#ffc', '#000');
+  $.farfalla_add_ccs_button('yellow-black', '5', '5', 'yellow', '#000');
+  $.farfalla_add_ccs_button('black-lightblue', '6', '6', '#000', '#5ffffd');
+  $.farfalla_add_ccs_button('black-yellow', '7', '7', '#000', 'yellow');
+  $.farfalla_add_ccs_button('cyan-black', '8', '8', '#9ff', '#000');
+  $.farfalla_add_ccs_button('lightblue-black', '9', '9', 'cyan', '#000');
+  $.farfalla_add_ccs_button('white-black', '0', '0', '#fff', '#000');
 
 });

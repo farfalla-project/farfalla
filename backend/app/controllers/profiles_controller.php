@@ -6,7 +6,7 @@ class ProfilesController extends AppController {
 	var $components = array('RequestHandler');
 
 	function beforeFilter() {
-	        $this->Auth->allow('menu','retrieve','reset','status','top','show');
+        $this->Auth->allow('menu','retrieve','reset','status','top','show');
 	}
 
 	function index() {
