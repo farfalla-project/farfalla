@@ -14,21 +14,26 @@ body{
 	font-family: Helvetica, Calibri, sans;
 	font-size: 12pt; 
 /*	display: block; */
-	background: url('../images/toolbar/menu-left.png') transparent no-repeat; 
 /*	border: 1px solid #fff; */
+	background: transparent url('../images/toolbar/menu-content.png') repeat-x;
 	border-right: 0;
 	color: #fff;
 /*	height: 48px; */
 	margin: 0;
 	overflow: hidden;
-	padding-left: 12px;
+/*	padding-left: 12px;*/
 	float: right;
 	z-index: 20000;
 	right: 0;
 }
 
+    #farfalla_toolbar_margin{
+        display:block;
+        width:12px;
+        height:48px;
+        background: url('../images/toolbar/menu-left.png') #fff no-repeat;
+    }
 	#farfalla_toolbar div{
-		background: transparent url('../images/toolbar/menu-content.png') repeat-x;
 		float: left;
 		display: inline;
 		height:48px; 
@@ -65,7 +70,7 @@ body{
 			padding: 4px; 
 			float: left;
 		}
-
+		
 	#farfalla_logo{
 		width: 70px; 
 		height: 48px;  
@@ -79,12 +84,12 @@ body{
 	}
 
 	#farfalla_toolbar div#farfalla_handle{
-		width: 18px; 
-		height: 48px;
-		background: url('../images/toolbar/menu-handler.png') repeat-x;
+		width: 24px; 
+		height: 40px;
+		background: url('../images/toolbar/farfalla_grabber.png') no-repeat;
 		float: left;
 		padding: 0;
-		margin: 0;
+		margin: 3px 0; 
 	}
 
 	#farfalla_active{

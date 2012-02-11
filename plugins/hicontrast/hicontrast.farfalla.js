@@ -31,16 +31,19 @@ $(function() {
 
   $.farfalla_add_ccs_button = function (style, name, accesskey, bgcolor, txtcolor){
 
-  $('#farfalla_buttons').farfalla_add_button(style, name, 'toggle_'+style, accesskey, bgcolor, txtcolor, function(){
+    $('#farfalla_buttons').farfalla_add_button(style, name, 'toggle_'+style, accesskey, bgcolor, txtcolor, function(){
 
       $.farfalla_get_option('hicontrast',function(data){
 
+        // if the same style is already selected, deselect it and switch back to normal visualization
         if(data.value==style){
 
           $.farfalla_set_option('hicontrast');
           $.farfalla_remove_css(style);
    
         }else{
+      
+        // else, change to a new style
       
           $.farfalla_remove_css(data.value);
           $.farfalla_set_option('hicontrast',style);
@@ -57,7 +60,7 @@ $(function() {
 // create the buttons
 	
   $.farfalla_add_ccs_button('black-green', '1','1', '#000', '#3f3');
-  $.farfalla_add_ccs_button('black-white', '2', '2', '#000', '#fff');
+  $.farfalla_add_ccs_button('black-white', '2', '2', '#000', '#fff ');
   $.farfalla_add_ccs_button('blue-white', '3', '3', '#004', '#fff');
   $.farfalla_add_ccs_button('lightyellow-black', '4', '4', '#ffc', '#000');
   $.farfalla_add_ccs_button('yellow-black', '5', '5', 'yellow', '#000');

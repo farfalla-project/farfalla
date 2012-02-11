@@ -13,18 +13,37 @@ $(function() {
 
         function farfalla_toolbar_create() {
             $('<div></div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').addClass('ui-corner-left').prependTo('body');
+
+            $('<div></div>').attr('id','farfalla_toolbar_margin').appendTo('#farfalla_toolbar');
+            			
             $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
+            
+              $('#farfalla_logo img').callout({
+                msg:"Fare click qui per mostrare o nascondere la barra",
+                position: "bottom"
+              });
             
             $('<img></img>').attr({
                 'src':farfalla_path+'/images/farfalla_icon.png',
                 'alt':'Farfalla logo - Click to hide or display the toolbar'
             }).appendTo('#farfalla_logo');
-            $('<div></div>').attr('id','farfalla_handle').css('cursor','ns-resize').appendTo('#farfalla_toolbar');
 
-//            $('<img></img>').attr({
-//                'src':farfalla_path+'/images/farfalla_handle.gif',
-//                'alt':'Drag this handle up or down to set the toolbar position'
-//            }).appendTo('#farfalla_logo');
+            $('<div></div>').attr('id','farfalla_handle')
+              .css('cursor','url(\''+farfalla_path+'/images/hand.png\'), auto')
+              .appendTo('#farfalla_toolbar');
+
+            $('#farfalla_handle').mouseup(  
+              function(){
+                $(this).css('cursor','url(\''+farfalla_path+'/images/hand.png\'), auto')
+              }
+            );
+            
+            $('#farfalla_handle').mousedown(  
+              function(){
+                $(this).css('cursor','url(\''+farfalla_path+'/images/grab.png\'), auto')
+              }
+            );            
+
             $('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
             
             $('<ul></ul>').appendTo('#farfalla_buttons');
@@ -32,6 +51,7 @@ $(function() {
             $('#farfalla_toolbar').draggable({
                     handle : '#farfalla_handle',
                     axis: 'y',
+                    cursor:'url(\''+farfalla_path+'/images/grab.png\'), auto',
                     stop: function() {
                         $.getJSON(
                             farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{}
@@ -50,11 +70,13 @@ $(function() {
             $('<form></form>').attr({'id':'farfalla_toolbar_form','action':'#','method':'post'}).appendTo('#farfalla_selection');
                 $('<select></select>').attr({'id':'farfalla_profile','name':'farfalla_profile'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
                     $('<option></option>').addClass('choose').html('Loading...').appendTo('#farfalla_profile');
-                $('<input></input>').attr({'type':'submit','id':'farfalla_activator','value':'loading...','disabled':'disabled'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
+                    $('<option></option>').html('---').css('text-align','center').attr('disabled','disabled').appendTo('#farfalla_profile');
+                    
+                // $('<input></input>').attr({'type':'submit','id':'farfalla_activator','value':'loading...','disabled':'disabled'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
 
-                $('#farfalla_profile').change(function(){
-                    $('#farfalla_activator').removeAttr('disabled');
-                });
+//                $('#farfalla_profile').change(function(){
+//                    $('#farfalla_activator').removeAttr('disabled');
+//                });
 
                 $.getJSON(
                     farfalla_path+"backend/profiles/menu/?callback=?",
@@ -70,7 +92,7 @@ $(function() {
                                 .appendTo('#farfalla_profile');
                         });
                         $('#farfalla_profile option[class=choose]').html(data.ui.choose);
-                        $('#farfalla_activator').val(data.ui.get);
+//                        $('#farfalla_activator').val(data.ui.get);
                     }
                 );
 
@@ -104,7 +126,8 @@ $(function() {
 
         function farfalla_selection_interaction() {
 
-            $("#farfalla_activator").click(function() {
+//            $("#farfalla_activator").click(function() {
+            $("#farfalla_profile").change(function() {
 
             var farfalla_profile = $('#farfalla_profile').val();
 
@@ -241,11 +264,9 @@ $(function() {
             'id':'button_'+id,
             'accesskey':accesskey
             })
-          .css({
-            'background': bgcolor,
-            'border': '2px solid '+txtcolor,
-            'color': txtcolor
-          })
+          .css('cssText',
+            'background : '+bgcolor+' !important; border : 2px solid '+txtcolor+' !important; color : '+txtcolor+' !important;'
+           )
           .addClass('ui-corner-all')
           .addClass('plugin-button')
           .appendTo('#farfalla_buttons ul li:last');
