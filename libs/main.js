@@ -38,7 +38,7 @@ $(function() {
             $('<img></img>').attr({
             	'id':'farfalla_home_icon',
                 'src':farfalla_path+'/images/home_icon.png',
-                'alt':'Farfalla logo - Click to hide or display the toolbar'
+                'alt':'Farfalla home - Link to the farfalla home page'
             }).appendTo('#farfalla_home_link');
 
             $('<div></div>').attr('id','farfalla_handle')
