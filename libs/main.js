@@ -24,23 +24,23 @@ $(function() {
               });
             
             $('<img></img>').attr({
-                'src':farfalla_path+'/images/farfalla_icon.png',
+                'src':farfalla_path+'images/farfalla_icon.png',
                 'alt':'Farfalla logo - Click to hide or display the toolbar'
             }).appendTo('#farfalla_logo');
 
             $('<div></div>').attr('id','farfalla_handle')
-              .css('cursor','url(\''+farfalla_path+'/images/hand.png\'), auto')
+              .css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
               .appendTo('#farfalla_toolbar');
 
             $('#farfalla_handle').mouseup(  
               function(){
-                $(this).css('cursor','url(\''+farfalla_path+'/images/hand.png\'), auto')
+                $(this).css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
               }
             );
             
             $('#farfalla_handle').mousedown(  
               function(){
-                $(this).css('cursor','url(\''+farfalla_path+'/images/grab.png\'), auto')
+                $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
               }
             );            
 
@@ -51,7 +51,7 @@ $(function() {
             $('#farfalla_toolbar').draggable({
                     handle : '#farfalla_handle',
                     axis: 'y',
-                    cursor:'url(\''+farfalla_path+'/images/grab.png\'), auto',
+                    cursor:'url(\''+farfalla_path+'images/grab.png\'), auto',
                     stop: function() {
                         $.getJSON(
                             farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{}

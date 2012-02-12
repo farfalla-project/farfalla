@@ -34,7 +34,7 @@
 
     
 #farfalla_handle{
-  background: url('../../../images/toolbar/farfalla_grabber.png') #000 !important;
+  background: url('../../../images/toolbar/farfalla_grabber.png') no-repeat #000 !important;
 }
 
 /*

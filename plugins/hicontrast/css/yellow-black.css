@@ -24,16 +24,16 @@ h1,h2,h3,h4,h5,h6 {color: #000000 !important}
 h1 font,h2 font,h3 font,h4 font,h5 font,h6 font {color: #000000 !important}
 body {font-family: Arial, Verdana, Helvetica, sans-serif !important}
 body * {font-family: Arial, Verdana, Helvetica, sans-serif !important}
-body {font-size: 14pt !important}
-body * {font-size: 14pt !important}
-h1 {font-size: 1.50em !important}
-h2 {font-size: 1.25em !important}
-h3 {font-size: 1.15em !important}
-h4,h5,h6 {font-size: 1.0em !important}
-h1 font {font-size: 1.0em !important}
-h2 font {font-size: 1.0em !important}
-h3 font {font-size: 1.0em !important}
-h4 font,h5 font,h6 font {font-size: 1.0em !important}
+body {font-size: 14pt}
+body * {font-size: 14pt}
+h1 {font-size: 1.50em}
+h2 {font-size: 1.25em}
+h3 {font-size: 1.15em}
+h4,h5,h6 {font-size: 1.0em}
+h1 font {font-size: 1.0em}
+h2 font {font-size: 1.0em}
+h3 font {font-size: 1.0em}
+h4 font,h5 font,h6 font {font-size: 1.0em}
 * {font-style: normal !important}
 * {line-height: 1.3 !important}
 * {text-decoration: none !important}
