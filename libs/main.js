@@ -18,6 +18,8 @@ $(function() {
             			
             $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
             
+            $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
+            
               $('#farfalla_logo img').callout({
                 msg:"Fare click qui per mostrare o nascondere la barra",
                 position: "bottom"
@@ -27,6 +29,17 @@ $(function() {
                 'src':farfalla_path+'/images/farfalla_icon.png',
                 'alt':'Farfalla logo - Click to hide or display the toolbar'
             }).appendTo('#farfalla_logo');
+            
+            $('<a></a>').attr({
+            	'id':'farfalla_home_link',
+            	'href':'http://www.farfalla-project.org'
+            }).appendTo('#farfalla_home');
+            
+            $('<img></img>').attr({
+            	'id':'farfalla_home_icon',
+                'src':farfalla_path+'/images/home_icon.png',
+                'alt':'Farfalla logo - Click to hide or display the toolbar'
+            }).appendTo('#farfalla_home_link');
 
             $('<div></div>').attr('id','farfalla_handle')
               .css('cursor','url(\''+farfalla_path+'/images/hand.png\'), auto')
@@ -190,13 +203,13 @@ $(function() {
 
             $('#farfalla_logo').toggle(
                 function() {
-                    $('#farfalla_selection, #farfalla_active').hide('slow');
+                    $('#farfalla_selection, #farfalla_active, #farfalla_home').hide('slow');
                         $.getJSON(
                             farfalla_path+"backend/profiles/show/0/?callback=?",{}
                         );
                 },
                 function() {
-                    $('#farfalla_selection, #farfalla_active').show('slow');
+                    $('#farfalla_selection, #farfalla_active, #farfalla_home').show('slow');
                         $.getJSON(
                             farfalla_path+"backend/profiles/show/1/?callback=?",{}
                         );
@@ -208,7 +221,7 @@ $(function() {
 
         function farfalla_hide_toolbar(value) {
             if(value == 0){
-                $('#farfalla_selection, #farfalla_active').hide('slow');
+                $('#farfalla_selection, #farfalla_active, #farfalla_home').hide('slow');
                 $.getJSON(
                     farfalla_path+"backend/profiles/show/0/?callback=?",{}
                 );
