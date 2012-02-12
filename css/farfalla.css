@@ -80,7 +80,19 @@ body{
 	#farfalla_logo img{
 		border: none;
 		padding: 2px;
-		margin:none;
+		margin: none;
+	}
+	
+	#farfalla_toolbar div#farfalla_home{
+		width: 48px;
+		height:48px;
+		float:right;
+	}
+	
+	#farfalla_home a img{
+		border: none;
+		padding: 2px;
+		margin: 0px;
 	}
 
 	#farfalla_toolbar div#farfalla_handle{
