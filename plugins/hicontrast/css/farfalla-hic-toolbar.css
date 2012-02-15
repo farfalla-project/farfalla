@@ -37,9 +37,7 @@
   background: url('../../../images/toolbar/farfalla_grabber.png') no-repeat #000 !important;
 }
 
-/*
-#farfalla_buttons ul li input{
-  color: #fff;
-  border: 2px solid #fff;
+
+#farfalla_buttons ul, #farfalla_buttons ul li, #farfalla_buttons ul li input{
+  line-height: 38px !important;
 }
-*/

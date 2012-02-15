@@ -308,6 +308,7 @@ $(function() {
       
       } else {
         $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/"+value+"/?callback=?");
+        
       }
       
     };
