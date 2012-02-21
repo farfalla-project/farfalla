@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2011-07-20 17:40+0200\n"
+"POT-Creation-Date: 2012-02-21 09:01+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -62,27 +62,27 @@ msgstr ""
 msgid "Language was not deleted"
 msgstr ""
 
-#: /controllers/plugins_controller.php:13;35;72;94
+#: /controllers/plugins_controller.php:19;41;78;100
 msgid "Invalid plugin"
 msgstr ""
 
-#: /controllers/plugins_controller.php:23;40;82;99
+#: /controllers/plugins_controller.php:29;46;88;105
 msgid "The plugin has been saved"
 msgstr ""
 
-#: /controllers/plugins_controller.php:26;43;85;102
+#: /controllers/plugins_controller.php:32;49;91;108
 msgid "The plugin could not be saved. Please, try again."
 msgstr ""
 
-#: /controllers/plugins_controller.php:55;114
+#: /controllers/plugins_controller.php:61;120
 msgid "Invalid id for plugin"
 msgstr ""
 
-#: /controllers/plugins_controller.php:59;118
+#: /controllers/plugins_controller.php:65;124
 msgid "Plugin deleted"
 msgstr ""
 
-#: /controllers/plugins_controller.php:62;121
+#: /controllers/plugins_controller.php:68;127
 msgid "Plugin was not deleted"
 msgstr ""
 
@@ -364,12 +364,12 @@ msgid "CakePHP: the rapid development php framework"
 msgstr ""
 
 #: /views/pages/form.ctp:113
-#: /views/profiles/menu.ctp:3
+#: /views/profiles/menu.ctp:4
 msgid "Choose your profile..."
 msgstr ""
 
 #: /views/pages/form.ctp:116
-#: /views/profiles/menu.ctp:4
+#: /views/profiles/menu.ctp:5
 msgid "get preferences"
 msgstr ""
 
@@ -386,6 +386,7 @@ msgid "Loaded plugin(s): "
 msgstr ""
 
 #: /views/pages/toolbar.ctp:68
+#: /views/profiles/retrieve.ctp:3
 msgid "change profile"
 msgstr ""
 
@@ -535,6 +536,18 @@ msgstr ""
 
 #: /views/profiles/index.ctp:26
 msgid "New profile from this template"
+msgstr ""
+
+#: /views/profiles/menu.ctp:6
+msgid "Click on the Farfalla logo to show or hide the toolbar"
+msgstr ""
+
+#: /views/profiles/menu.ctp:7
+msgid "Go to <strong>Farfalla project</strong> main site"
+msgstr ""
+
+#: /views/profiles/menu.ctp:8
+msgid "<strong>Drag the bar up and down from here</strong><br />The position will be remembered"
 msgstr ""
 
 #: /views/profiles/view.ctp:2

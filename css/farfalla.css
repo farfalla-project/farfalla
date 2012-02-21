@@ -29,9 +29,9 @@ body{
 
     #farfalla_toolbar_margin{
         display:block;
-        width:12px;
+        width:4px;
         height:48px;
-        background: url('../images/toolbar/menu-left.png') #fff no-repeat;
+//        background: url('../images/toolbar/menu-left.png') transparent no-repeat;
     }
 	#farfalla_toolbar div{
 		float: left;
@@ -155,7 +155,14 @@ body{
 	z-index: 20000;
 }
 
-
+.callout {
+    position: absolute;
+	font-family:arial;
+    padding: 5px;
+    border: 2px solid #000;
+    background-color: #666;
+    color: #fff;
+}
 
 /* PLUGINS */
 
@@ -285,3 +292,4 @@ float:left;
 .farfalla_readability_{
   border: 2px solid red;
 }
+

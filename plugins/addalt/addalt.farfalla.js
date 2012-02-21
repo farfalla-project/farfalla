@@ -1,4 +1,4 @@
-﻿// Farfalla plugin: Add Alt Attribute
+// Farfalla plugin: Add Alt Attribute
 
 
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
-"POT-Creation-Date: 2011-05-26 18:30+0200\n"
-"PO-Revision-Date: 2011-11-16 22:41+0100\n"
+"POT-Creation-Date: 2012-02-21 09:01+0100\n"
+"PO-Revision-Date: 2012-02-21 09:04+0100\n"
 "Last-Translator: Andrea Mangiatordi <andrea.mangiatordi@gmail.com>\n"
 "Language-Team: Farfalla_translators <info@farfalla-project.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,8 @@ msgstr ""
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: /Library/WebServer/Documents/farfalla/backend/app\n"
+"X-Poedit-SearchPath-0: \n"
 
 #: /controllers/alttexts_controller.php:13;35
 msgid "Invalid alttext"
@@ -25,8 +27,9 @@ msgid "The alttext has been saved"
 msgstr "Il testo alternativo è stato salvato"
 
 #: /controllers/alttexts_controller.php:26;43
+#, fuzzy
 msgid "The alttext could not be saved. Please, try again."
-msgstr ""
+msgstr "Non è stato possibile salvare la lingua. Per favore, riprova."
 
 #: /controllers/alttexts_controller.php:55
 msgid "Invalid id for alttext"
@@ -64,53 +67,53 @@ msgstr "Lingua cancellata"
 msgid "Language was not deleted"
 msgstr "La lingua non è stata cancellata"
 
-#: /controllers/plugins_controller.php:13;35;72;94
+#: /controllers/plugins_controller.php:19;41;78;100
 msgid "Invalid plugin"
 msgstr "Plugin non valido"
 
-#: /controllers/plugins_controller.php:23;40;82;99
+#: /controllers/plugins_controller.php:29;46;88;105
 msgid "The plugin has been saved"
 msgstr "Il plugin è stato salvato"
 
-#: /controllers/plugins_controller.php:26;43;85;102
+#: /controllers/plugins_controller.php:32;49;91;108
 msgid "The plugin could not be saved. Please, try again."
 msgstr "Non è stato possibile salvare il plugin. Per favore riprova."
 
-#: /controllers/plugins_controller.php:55;114
+#: /controllers/plugins_controller.php:61;120
 msgid "Invalid id for plugin"
 msgstr "Identificativo non valido per il plugin"
 
-#: /controllers/plugins_controller.php:59;118
+#: /controllers/plugins_controller.php:65;124
 msgid "Plugin deleted"
 msgstr "Plugin cancellato"
 
-#: /controllers/plugins_controller.php:62;121
+#: /controllers/plugins_controller.php:68;127
 msgid "Plugin was not deleted"
 msgstr "Il plugin non è stato cancellato"
 
-#: /controllers/profiles_controller.php:31;53;74;113;135
+#: /controllers/profiles_controller.php:56;78;99;138;160
 msgid "Invalid profile"
 msgstr "Profilo non valido"
 
-#: /controllers/profiles_controller.php:41;58;80;123;140
+#: /controllers/profiles_controller.php:66;83;105;148;165
 msgid "The profile has been saved"
 msgstr "Il profilo è stato salvato"
 
-#: /controllers/profiles_controller.php:44;61;83;126;143
+#: /controllers/profiles_controller.php:69;86;108;151;168
 msgid "The profile could not be saved. Please, try again."
 msgstr "Non è stato possibile salvare il profilo. Riprovare più tardi."
 
-#: /controllers/profiles_controller.php:96;155
+#: /controllers/profiles_controller.php:121;180
 #, fuzzy
 msgid "Invalid id for profile"
-msgstr "Invalid id for Element"
+msgstr "Identificativo non valido per il testo alternativo"
 
-#: /controllers/profiles_controller.php:100;159
+#: /controllers/profiles_controller.php:125;184
 #, fuzzy
 msgid "Profile deleted"
-msgstr "Component deleted"
+msgstr "Il profilo non è stato cancellato"
 
-#: /controllers/profiles_controller.php:103;162
+#: /controllers/profiles_controller.php:128;187
 msgid "Profile was not deleted"
 msgstr "Il profilo non è stato cancellato"
 
@@ -164,7 +167,7 @@ msgstr "Azioni"
 #: /views/languages/view.ctp:23
 #, fuzzy
 msgid "List Alttexts"
-msgstr "List Components"
+msgstr "Testi alternativi correlati"
 
 #: /views/alttexts/add.ctp:19
 #: /views/alttexts/edit.ctp:21
@@ -175,7 +178,7 @@ msgstr "List Components"
 #: /views/languages/view.ctp:21
 #, fuzzy
 msgid "List Languages"
-msgstr "List Components"
+msgstr "Mie lingue"
 
 #: /views/alttexts/add.ctp:20
 #: /views/alttexts/edit.ctp:22
@@ -185,7 +188,7 @@ msgstr "List Components"
 #: /views/languages/view.ctp:22
 #, fuzzy
 msgid "New Language"
-msgstr "New Component"
+msgstr "Selezione lingua"
 
 #: /views/alttexts/edit.ctp:4
 #: /views/alttexts/view.ctp:44
@@ -335,13 +338,13 @@ msgstr "testoAlternativo non valido"
 #: /views/languages/add.ctp:4
 #, fuzzy
 msgid "Add Language"
-msgstr "Add Component"
+msgstr "Selezione lingua"
 
 #: /views/languages/edit.ctp:4
 #: /views/languages/view.ctp:19
 #, fuzzy
 msgid "Edit Language"
-msgstr "Edit Components"
+msgstr "Selezione lingua"
 
 #: /views/languages/index.ctp:2
 msgid "Languages"
@@ -356,7 +359,7 @@ msgstr "Nome"
 #: /views/languages/view.ctp:20
 #, fuzzy
 msgid "Delete Language"
-msgstr "Delete component"
+msgstr "Selezione lingua"
 
 #: /views/languages/view.ctp:28
 msgid "Related Alttexts"
@@ -365,7 +368,7 @@ msgstr "Testi alternativi correlati"
 #: /views/languages/view.ctp:35
 #, fuzzy
 msgid "Language Id"
-msgstr "Noise data"
+msgstr "Identificativo non valido per la lingua"
 
 #: /views/layouts/default.ctp:25
 msgid "Farfalla: a web tool for accessibility -"
@@ -380,10 +383,12 @@ msgid "CakePHP: the rapid development php framework"
 msgstr "CakePHP: il framework php per lo sviluppo rapido"
 
 #: /views/pages/form.ctp:113
+#: /views/profiles/menu.ctp:4
 msgid "Choose your profile..."
 msgstr "Scegli il tuo profilo..."
 
 #: /views/pages/form.ctp:116
+#: /views/profiles/menu.ctp:5
 msgid "get preferences"
 msgstr "ottieni le preferenze"
 
@@ -395,11 +400,12 @@ msgstr "Leggi una breve descrizione dei profili esistenti."
 msgid "Access the profile creation page."
 msgstr "Vai alla pagina di creazione di un nuovo profilo."
 
-#: /views/pages/toolbar.ctp:66
+#: /views/pages/toolbar.ctp:64
 msgid "Loaded plugin(s): "
 msgstr "Plugin caricati: "
 
-#: /views/pages/toolbar.ctp:70
+#: /views/pages/toolbar.ctp:68
+#: /views/profiles/retrieve.ctp:3
 msgid "change profile"
 msgstr "cambia profilo"
 
@@ -550,6 +556,18 @@ msgstr "Profili"
 #: /views/profiles/index.ctp:26
 msgid "New profile from this template"
 msgstr "Nuovo profilo da questo modello"
+
+#: /views/profiles/menu.ctp:6
+msgid "Click on the Farfalla logo to show or hide the toolbar"
+msgstr "Fai click sul logo di Farfalla per mostrare o nascondere la barra"
+
+#: /views/profiles/menu.ctp:7
+msgid "Go to <strong>Farfalla project</strong> main site"
+msgstr "Vai al sito di <strong>Farfalla project</strong>"
+
+#: /views/profiles/menu.ctp:8
+msgid "<strong>Drag the bar up and down from here</strong><br />The position will be remembered"
+msgstr "<strong>Trascina la barra in alto o in basso</strong><br />La posizione sar&agrave; memorizzata"
 
 #: /views/profiles/view.ctp:2
 msgid "Profile"

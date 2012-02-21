@@ -31,12 +31,10 @@
   color: #000 !important;
   height: 38px !important;
 }
-
     
 #farfalla_handle{
   background: url('../../../images/toolbar/farfalla_grabber.png') no-repeat #000 !important;
 }
-
 
 #farfalla_buttons ul, #farfalla_buttons ul li, #farfalla_buttons ul li input{
   line-height: 38px !important;

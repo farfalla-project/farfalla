@@ -7,6 +7,9 @@ $(function() {
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui-1.7.2.custom.css').prependTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
 
+    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.min.css').appendTo('head');
+
+
 // Farfalla core functions
 
         // Creates the main toolbar
@@ -20,10 +23,12 @@ $(function() {
             
             $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
             
-              $('#farfalla_logo img').callout({
-                msg:"Fare click qui per mostrare o nascondere la barra",
-                position: "bottom"
+            /*  $('#farfalla_home').qtip({
+                content : 'Loading...'
               });
+            */
+
+            $('div.callout').addClass('ui-corner-all');
             
             $('<img></img>').attr({
                 'src':farfalla_path+'images/farfalla_icon.png',
@@ -55,8 +60,7 @@ $(function() {
               function(){
                 $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
               }
-            );            
-
+            );
             $('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
             
             $('<ul></ul>').appendTo('#farfalla_buttons');
@@ -97,14 +101,26 @@ $(function() {
                     function(data) {
                         $.each(data.profiles, function(){
                             $('<option>')
-// title must be substituted with a proper jquery callout
                                 .attr(
                                     {'value': this.Profile.id, 'title': this.descriptionTranslation[0].content}
                                 )
                                 .text(this.nameTranslation[0].content)
+                                .qtip({
+                                   content : this.descriptionTranslation[0].content
+                                })
                                 .appendTo('#farfalla_profile');
                         });
                         $('#farfalla_profile option[class=choose]').html(data.ui.choose);
+                        $('#farfalla_home').qtip({
+                          content : data.ui.home
+                        });
+                        $('#farfalla_logo').qtip({
+                          content : data.ui.logo
+                        });
+                        $('#farfalla_handle').qtip({
+                          content : data.ui.handle
+                        });
+
 //                        $('#farfalla_activator').val(data.ui.get);
                     }
                 );
