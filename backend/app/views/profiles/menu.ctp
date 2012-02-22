@@ -4,12 +4,12 @@ Configure::write('debug', 0);
 $choose = __('Choose your profile...', true);
 $get = __('get preferences', true);
 $logo = __('Click on the Farfalla logo to show or hide the toolbar', true);
-$home = __('Go to <strong>Farfalla project</strong> main site', true);
+$home = __('Go to <strong>Farfalla project</strong> website', true);
 $handle = __('<strong>Drag the bar up and down from here</strong><br />The position will be remembered',true);
 
 echo($_GET['callback'].'(');
 echo('{"ui":');
-echo('{"choose":"' . $choose . '","get":"' . $get . '","logo":"' . $logo . '","handle":"' . $handle . '"},');
+echo('{"choose":"' . $choose . '","logo":"' . $logo . '","handle":"' . $handle . '","home":"' . $home . '"},');
 echo('"profiles":');
 echo($javascript->object($profiles));
 echo('});');

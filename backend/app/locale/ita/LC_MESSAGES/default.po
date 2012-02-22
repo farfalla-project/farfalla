@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 0.1\n"
-"POT-Creation-Date: 2012-02-21 09:01+0100\n"
-"PO-Revision-Date: 2012-02-21 09:04+0100\n"
+"Project-Id-Version: 0.2\n"
+"POT-Creation-Date: 2012-02-21 17:24+0100\n"
+"PO-Revision-Date: 2012-02-21 20:21+0100\n"
 "Last-Translator: Andrea Mangiatordi <andrea.mangiatordi@gmail.com>\n"
 "Language-Team: Farfalla_translators <info@farfalla-project.org>\n"
 "MIME-Version: 1.0\n"
@@ -562,7 +562,8 @@ msgid "Click on the Farfalla logo to show or hide the toolbar"
 msgstr "Fai click sul logo di Farfalla per mostrare o nascondere la barra"
 
 #: /views/profiles/menu.ctp:7
-msgid "Go to <strong>Farfalla project</strong> main site"
+#, fuzzy
+msgid "Go to <strong>Farfalla project</strong> website"
 msgstr "Vai al sito di <strong>Farfalla project</strong>"
 
 #: /views/profiles/menu.ctp:8
