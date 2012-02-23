@@ -2,8 +2,11 @@
 // Description: Allows moving through the elements of a webpage using the arrow keys. Left and right arrows move from a DOM element to the following or to the preceding one.
 // To do:
 
+jQuery.noConflict();
+(function($) { 
 
-$(function(){
+
+  $(function(){
 
 (function($){var keystrokes='keystrokes';$.event.special[keystrokes]={debug:false,global:{customValidation:null},add:function(obj){var h=obj.handler,data=obj.data,namespace=obj.namespace;var $elem=$(this),delegate=$.event.special[keystrokes]._delegate;var stack=$.isArray(data)?data:[data];stack=$.event.special[keystrokes]._addPrivateKeys.call(this,stack,namespace,h);var tmp_stack=$elem.data('stack');stack=(tmp_stack)?tmp_stack.concat(stack):stack;$elem.data('stack',stack);},remove:function(obj){$.event.special[keystrokes]._removeKeyListeners.call(this,obj.namespace||keystrokes);},setup:function(obj,namespaces,handler){var $elem=$(this),delegate=$.event.special[keystrokes]._delegate;$elem.bind('keyup.'+keystrokes,delegate).bind('keydown.'+keystrokes,delegate);$elem.data('keys_down',[]);$elem.data('keys_string',[]);$elem.data('joined',false);},teardown:function(namespaces){var $elem=$(this);$elem.unbind('keyup.'+keystrokes).unbind('keydown.'+keystrokes);$elem.removeData('keys_down');$elem.removeData('keys_string');$elem.removeData('joined');$elem.removeData('stack');},_delegate:function(e){$.event.special[keystrokes]['_'+e.type].call($.event.special[keystrokes],e,this);},_addPrivateKeys:function(data_stack,namespace,handler){var i=data_stack.length;while(i--){data_stack[i].name=(namespace)?keystrokes+'.'+namespace:keystrokes;data_stack[i]._namespace=namespace||keystrokes;delete handler.data;data_stack[i]._handler=handler;}
 return data_stack;},_removeKeyListeners:function(name){var $elem=$(this),stack=$elem.data('stack'),stack_len=stack.length;while(stack_len--){if(stack[stack_len]._namespace===name){stack.splice(stack_len,1);}};$elem.data('stack',stack);},_keydown:function(event,elem){var $elem=$(elem),self=this,temp_keys_down=$elem.data('keys_down');if(elem!=event.target&&(/textarea|select/i.test(event.target.nodeName)||event.target.type==="text")){return;}
@@ -48,7 +51,6 @@ this._clearKeysString(elem);},_clearKeysString:function(e){$(e).data('keys_strin
 
 	});
 
+  });
 
-
-
-});
+})(jQuery);

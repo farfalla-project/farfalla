@@ -13,15 +13,11 @@ body{
 #farfalla_toolbar{
 	font-family: Helvetica, Calibri, sans;
 	font-size: 12pt; 
-/*	display: block; */
-/*	border: 1px solid #fff; */
 	background: transparent url('../images/toolbar/menu-content.png') repeat-x;
 	border-right: 0;
 	color: #fff;
-/*	height: 48px; */
 	margin: 0;
 	overflow: hidden;
-/*	padding-left: 12px;*/
 	float: right;
 	z-index: 20000;
 	right: 0;
@@ -31,7 +27,7 @@ body{
         display:block;
         width:4px;
         height:48px;
-//        background: url('../images/toolbar/menu-left.png') transparent no-repeat;
+        background: url('../images/toolbar/menu-left.png') transparent no-repeat;
     }
 	#farfalla_toolbar div{
 		float: left;

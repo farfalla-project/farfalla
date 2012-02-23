@@ -1,4 +1,7 @@
-$(function() {
+jQuery.noConflict();
+(function($) { 
+
+  $(function() {
 
 
 	jQuery.getScript(farfalla_path +'libs/jquery.htmlClean-min.js');
@@ -159,5 +162,6 @@ $(function() {
 
 
 
-});
+  });
 
+})(jQuery);

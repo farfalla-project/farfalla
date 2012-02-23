@@ -1,6 +1,9 @@
 ﻿// Farfalla plugin: Font Size
 
-$(function() {
+jQuery.noConflict();
+(function($) { 
+
+ $(function() {
 
   
   $.farfalla_get_option('increase', function(data){
@@ -69,4 +72,5 @@ $(function() {
   
   });
 
-});
+ });
+})(jQuery);

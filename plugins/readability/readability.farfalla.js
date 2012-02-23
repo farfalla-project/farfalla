@@ -1,6 +1,9 @@
 ﻿// Farfalla plugin: Readability
 
-$(function() {  
+jQuery.noConflict();
+(function($) { 
+
+ $(function() {  
 
 // Create dialog form
   $('body').append('<div id="dialog-form"></div>');
@@ -105,4 +108,6 @@ $(function() {
   );
 
 
-});
+ });
+
+})(jQuery);

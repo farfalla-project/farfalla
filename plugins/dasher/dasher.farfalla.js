@@ -1,4 +1,7 @@
 ﻿// <reference path="jquery-1.6.1.min.js" />
+jQuery.noConflict();
+(function($) { 
+
 
 $(document).ready(function ()
 {
@@ -136,3 +139,6 @@ function InitJDasher()
 {
     $("#JDasherApplet")[0].init();
 }
+
+
+})(jQuery);

@@ -1,7 +1,10 @@
 ﻿// Farfalla plugin: Text to Speech. Allows rapid text to speech translation.
 // Requires jplayer and at least one plugin producing text strings in the #monitor div
 
-$(function() {
+jQuery.noConflict();
+(function($) { 
+ 
+ $(function() {
 
 
 
@@ -30,6 +33,6 @@ $(function() {
   });
 
 
+ });
 
-
-});
+})(jQuery);

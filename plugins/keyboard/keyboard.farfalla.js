@@ -1,3 +1,6 @@
+
+jQuery.noConflict();
+(function($) { 
 /*
 jQuery UI Virtual Keyboard Widget
 Version 1.3
@@ -393,7 +396,9 @@ jQuery.widget('ui.keyboard', {
 
 // Farfalla plugin: Virtual Keyboard
 
-$(function() {
+
+
+  $(function() {
 
 
 	$('input[type=text], input[class=lst], input[type=password], textarea').keyboard({
@@ -457,4 +462,6 @@ $(function() {
 		'color' : '#000'
 	});
 
-});
+  });
+
+})(jQuery);

@@ -1,6 +1,9 @@
 // Farfalla plugin: High contrast
 
-$(function() {  
+jQuery.noConflict();
+(function($) { 
+
+  $(function() {  
 
   $.farfalla_add_css = function (style){
 
@@ -70,4 +73,5 @@ $(function() {
   $.farfalla_add_ccs_button('lightblue-black', '9', '9', 'cyan', '#000');
   $.farfalla_add_ccs_button('white-black', '0', '0', '#fff', '#000');
 
-});
+  });
+})(jQuery);

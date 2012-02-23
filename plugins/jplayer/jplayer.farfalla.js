@@ -1,4 +1,7 @@
-﻿/*
+﻿jQuery.noConflict();
+(function($) { 
+
+/*
  * jPlayer Plugin for jQuery JavaScript Library
  * http://www.happyworm.com/jquery/jplayer
  *
@@ -77,4 +80,12 @@ VERSION:"jPlayer "+c.jPlayer.prototype.version.script+" needs Jplayer.swf versio
 {CSS_SELECTOR_COUNT:"e_css_selector_count",CSS_SELECTOR_METHOD:"e_css_selector_method",CSS_SELECTOR_STRING:"e_css_selector_string",OPTION_KEY:"e_option_key"};c.jPlayer.warningMsg={CSS_SELECTOR_COUNT:"The number of methodCssSelectors found did not equal one: ",CSS_SELECTOR_METHOD:"The methodName given in jPlayer('cssSelector') is not a valid jPlayer method.",CSS_SELECTOR_STRING:"The methodCssSelector given in jPlayer('cssSelector') is not a String or is empty.",OPTION_KEY:"The option requested in jPlayer('option') is undefined."};
 c.jPlayer.warningHint={CSS_SELECTOR_COUNT:"Check your css selector and the ancestor.",CSS_SELECTOR_METHOD:"Check your method name.",CSS_SELECTOR_STRING:"Check your css selector is a string.",OPTION_KEY:"Check your option name."}})(jQuery);
 
-$('<div id="farfalla_jplayer"></div>').prependTo('body');
+
+
+  $(function(){
+
+    $('<div id="farfalla_jplayer"></div>').prependTo('body');
+
+  });
+
+})(jQuery);

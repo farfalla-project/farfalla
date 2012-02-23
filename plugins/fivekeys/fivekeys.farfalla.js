@@ -2,8 +2,10 @@
 // Description: Allows moving through the elements of a webpage using the arrow keys
 // To do:
 
+jQuery.noConflict();
+(function($) { 
 
-$(function(){
+  $(function(){
 
 /* Importing the htmlClean plugin */
 
@@ -273,4 +275,6 @@ $(function(){
 	$('.keynav_box:first').removeClass().addClass('keynav_focusbox');
 
 
-});
+ });
+
+})(jQuery);

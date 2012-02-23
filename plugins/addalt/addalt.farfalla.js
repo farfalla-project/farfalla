@@ -1,8 +1,9 @@
 // Farfalla plugin: Add Alt Attribute
 
+jQuery.noConflict();
+(function($) { 
 
-
-$(function() {
+  $(function() {
 
 
 function getXPath( element )
@@ -131,4 +132,6 @@ console.log(count_alt);
 
 
 
-});
+  });
+
+})(jQuery);

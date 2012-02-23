@@ -1,4 +1,8 @@
-﻿#farfalla_toolbar {
+﻿body * {
+  text-shadow: none !important;
+}
+
+#farfalla_toolbar {
   border: 2px solid #fff;
   border-right: 0;
   background: black;

@@ -1,7 +1,7 @@
 ﻿// Main Farfalla Library: includes the functions used to draw the toolbar and the reusable functions for plugins
-
-$(function() {
-
+jQuery.noConflict();
+(function($) { 
+  $(function() {
 
 // Inclusion of the needed css stylesheets
 
@@ -142,7 +142,7 @@ $(function() {
 
                     }
                 );
-
+          farfalla_hide_toolbar(0);
         };
 
         // Adds the plugins listing area
@@ -362,3 +362,4 @@ $(function() {
 
 
 });
+})(jQuery);
