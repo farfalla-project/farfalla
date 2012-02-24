@@ -2,12 +2,10 @@
 // @name           Farfalla
 // @namespace      userscripts.org
 // @description    Injects Farfalla helper
-// @version        0.3.3.1
+// @version        0.3.4
 // @match          http://*/*
-// @exclude_match  http://*.facebook.com/*
 // @permissions    http://*/
 // @include        *
-// @exclude        http://*.facebook.com/*
 //
 // Farfalla - Accessibility in the Cloud
 // http://farfalla-project.org/
