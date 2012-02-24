@@ -127,7 +127,10 @@ jQuery.noConflict();
                             at: 'bottom center',
                             target: $('#farfalla_handle')
                           },
-                          style: 'ui-tooltip-dark'
+                          style: 'ui-tooltip-dark',
+                          hide: {
+                            event: 'mousedown'
+                          }
                         });
 
                         $('#farfalla_home').qtip({
