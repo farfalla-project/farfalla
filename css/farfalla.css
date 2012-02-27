@@ -294,3 +294,7 @@ float:left;
   font-size: 12pt !important;
   line-height: 14pt !important;
 }
+
+.ui-tooltip strong{
+  color: #fff;
+}

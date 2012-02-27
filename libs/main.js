@@ -1,4 +1,4 @@
-﻿// Main Farfalla Library: includes the functions used to draw the toolbar and the reusable functions for plugins
+// Main Farfalla Library: includes the functions used to draw the toolbar and the reusable functions for plugins
 jQuery.noConflict();
 (function($) { 
   $(function() {
@@ -12,6 +12,19 @@ jQuery.noConflict();
 
 
 // Farfalla core functions
+
+        function farfalla_ui_options() {
+		  // if no options are apssed, this is skipped (thanks to the "?" in the matching string)
+          var source = $("script[src*='farfalla.js?']").attr('src');
+          if (source){
+            var optStart = source.search('\\?');
+            var options = source.substr(optStart+1).split('&');
+			for (i; i < options.length; i++){
+			  options[i] = options[i].split('=');
+			}
+          }
+          return options;
+        };
 
         // Creates the main toolbar
 
@@ -127,10 +140,7 @@ jQuery.noConflict();
                             at: 'bottom center',
                             target: $('#farfalla_handle')
                           },
-                          style: 'ui-tooltip-dark',
-                          hide: {
-                            event: 'mousedown'
-                          }
+                          style: 'ui-tooltip-dark'
                         });
 
                         $('#farfalla_home').qtip({
@@ -278,6 +288,8 @@ jQuery.noConflict();
 // determine wether to add the toolbar or not
 
     if(window.location.href.search(farfalla_path)=='-1' && window.location.href.search('lisp8.formazione.unimib.it')=='-1' && window.location == window.parent.location){
+
+        // farfalla_ui_options();
 
         farfalla_toolbar_create();
 
