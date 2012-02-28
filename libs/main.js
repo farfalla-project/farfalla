@@ -11,17 +11,25 @@ jQuery.noConflict();
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.css').appendTo('head');
 
 
+// Main variables
+
+        var options = farfalla_ui_options();
+        var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
+
+
 // Farfalla core functions
 
+        // Parses the options passed along with farfalla.js
+
         function farfalla_ui_options() {
-		  // if no options are apssed, this is skipped (thanks to the "?" in the matching string)
+		  // if no options are passed, this is skipped (thanks to the "?" in the matching string)
           var source = $("script[src*='farfalla.js?']").attr('src');
           if (source){
             var optStart = source.search('\\?');
-            var options = source.substr(optStart+1).split('&');
-			for (i; i < options.length; i++){
-			  options[i] = options[i].split('=');
-			}
+            var options = source.substr(optStart+1).replace(/&/g,'","');
+            options = options.replace(/=/g,'":"');
+            options = '{"'+options+'"}';
+            options = $.parseJSON(options);
           }
           return options;
         };
@@ -31,8 +39,11 @@ jQuery.noConflict();
         function farfalla_toolbar_create() {
             $('<div></div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').addClass('ui-corner-left').prependTo('body');
 
-            $('<div></div>').attr('id','farfalla_toolbar_margin').appendTo('#farfalla_toolbar');
-            			
+            if($.inArray(options.border, allowedColors)>=0){
+              $('#farfalla_toolbar').css({
+                'border': '2px solid '+options.border
+              });
+            }
             $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
 
@@ -227,11 +238,19 @@ jQuery.noConflict();
 
         function farfalla_check_status() {
 
+                var options = farfalla_ui_options();
+
                 $.getJSON(
                     farfalla_path+"backend/profiles/status/?callback=?",
                     {},
                     function(data) {
-                        farfalla_set_top(data.top);
+
+                        if(data.top) {
+                          farfalla_set_top(data.top);
+                        } else if (options.top) {
+                          farfalla_set_top(options.top);
+                        }
+
                         if(data.id == null){
                             farfalla_selection_create();
                             farfalla_selection_interaction();
@@ -288,8 +307,6 @@ jQuery.noConflict();
 // determine wether to add the toolbar or not
 
     if(window.location.href.search(farfalla_path)=='-1' && window.location.href.search('lisp8.formazione.unimib.it')=='-1' && window.location == window.parent.location){
-
-        // farfalla_ui_options();
 
         farfalla_toolbar_create();
 
