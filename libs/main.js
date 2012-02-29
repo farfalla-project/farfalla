@@ -14,6 +14,7 @@ jQuery.noConflict();
 // Main variables
 
         var options = farfalla_ui_options();
+        var sliding = '#farfalla_selection, #farfalla_active, #farfalla_home';
         var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
 
 
@@ -30,7 +31,7 @@ jQuery.noConflict();
             options = options.replace(/=/g,'":"');
             options = '{"'+options+'"}';
             options = $.parseJSON(options);
-          }
+          } else { options = 0; }
           return options;
         };
 
@@ -39,11 +40,13 @@ jQuery.noConflict();
         function farfalla_toolbar_create() {
             $('<div></div>').attr('id','farfalla_toolbar').addClass('farfalla_toolbar').addClass('ui-corner-left').prependTo('body');
 
-            if($.inArray(options.border, allowedColors)>=0){
-              $('#farfalla_toolbar').css({
-                'border': '2px solid '+options.border
-              });
-            }
+            if(options.border){
+              if($.inArray(options.border, allowedColors)>=0){
+                $('#farfalla_toolbar').css({
+                  'border': '2px solid '+options.border
+                });
+              }
+            };
             $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
 
@@ -59,7 +62,7 @@ jQuery.noConflict();
             
             $('<img></img>').attr({
             	'id':'farfalla_home_icon',
-                'src':farfalla_path+'/images/home_icon.png',
+                'src':farfalla_path+'images/home_icon.png',
                 'alt':'Farfalla home - Link to the farfalla home page'
             }).appendTo('#farfalla_home_link');
 
@@ -166,7 +169,6 @@ jQuery.noConflict();
 
                     }
                 );
-          farfalla_hide_toolbar(0);
         };
 
         // Adds the plugins listing area
@@ -197,7 +199,6 @@ jQuery.noConflict();
 
         function farfalla_selection_interaction() {
 
-//            $("#farfalla_activator").click(function() {
             $("#farfalla_profile").change(function() {
 
             var farfalla_profile = $('#farfalla_profile').val();
@@ -234,34 +235,35 @@ jQuery.noConflict();
             });
         };
 
+
         // Checks if a profile has already been selected, then starts what is needed
 
         function farfalla_check_status() {
 
-                var options = farfalla_ui_options();
+          $.getJSON(farfalla_path+"backend/profiles/status/?callback=?", {},
+          function(data){
+            if(data.top) {
+              farfalla_set_top(data.top);
+            } else if (options.top) {
+              farfalla_set_top(options.top);
+            }
 
-                $.getJSON(
-                    farfalla_path+"backend/profiles/status/?callback=?",
-                    {},
-                    function(data) {
-
-                        if(data.top) {
-                          farfalla_set_top(data.top);
-                        } else if (options.top) {
-                          farfalla_set_top(options.top);
-                        }
-
-                        if(data.id == null){
-                            farfalla_selection_create();
-                            farfalla_selection_interaction();
-                        } else {
-                            farfalla_plugins_listing_create(data.id);
-                            farfalla_plugins_listing_interaction();
-                            farfalla_hide_toolbar(data.show);
-                        };
-                    }
-                );
-        }
+            if(data.id == null){
+              farfalla_selection_create();
+              farfalla_selection_interaction();
+              // session settings for toolbar visibility have precedence over website options...
+              if(data.show==1 || (data.show == null && options.visibility==1)){
+                $('#farfalla_logo').click();
+              } else {
+                farfalla_hide_toolbar(0);
+              }
+            } else {
+              farfalla_plugins_listing_create(data.id);
+              farfalla_plugins_listing_interaction();
+              farfalla_hide_toolbar(data.show);
+            }
+          })
+        };
 
         // Adds the show/hide effect to the toolbar logo
 
@@ -269,16 +271,12 @@ jQuery.noConflict();
 
             $('#farfalla_logo').toggle(
                 function() {
-                    $('#farfalla_selection, #farfalla_active, #farfalla_home').hide('slow');
-                        $.getJSON(
-                            farfalla_path+"backend/profiles/show/0/?callback=?",{}
-                        );
+                    $(sliding).show('slow');
+                    $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
                 },
                 function() {
-                    $('#farfalla_selection, #farfalla_active, #farfalla_home').show('slow');
-                        $.getJSON(
-                            farfalla_path+"backend/profiles/show/1/?callback=?",{}
-                        );
+                    $(sliding).hide('slow');
+                    $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
                 });
 
         }
@@ -286,13 +284,11 @@ jQuery.noConflict();
         // Hides the toolbar
 
         function farfalla_hide_toolbar(value) {
-            if(value == 0){
-                $('#farfalla_selection, #farfalla_active, #farfalla_home').hide('slow');
-                $.getJSON(
-                    farfalla_path+"backend/profiles/show/0/?callback=?",{}
-                );
+            if(value != 1){
+                $(sliding).hide('slow');
+                $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{} );
             }
-        }
+        };
 
         // Set 'top' value for toolbar positioning
 
