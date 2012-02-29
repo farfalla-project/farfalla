@@ -75,7 +75,7 @@ body{
 	
 	#farfalla_logo img{
 		border: none;
-		padding: 2px;
+		padding: 2px 2px 2px 6px;
 		margin: none;
 	}
 	
@@ -93,11 +93,11 @@ body{
 
 	#farfalla_toolbar div#farfalla_handle{
 		width: 24px; 
-		height: 40px;
+		height: 44px;
 		background: url('../images/toolbar/farfalla_grabber.png') no-repeat;
 		float: left;
 		padding: 0;
-		margin: 3px 0; 
+		margin: 4px 0 0 0;
 	}
 
 	#farfalla_active{

@@ -121,18 +121,16 @@ jQuery.noConflict();
                                   'id':'farfalla_option_'+this.Profile.id
                                 })
                                 .text(this.nameTranslation[0].content)
-                                .qtip({
+                                .appendTo('#farfalla_profile');
+                            $('#farfalla_option_'+this.Profile.id).qtip({
                                   content :  this.descriptionTranslation[0].content,
                                   position: {
-                                    my: 'top right',
-                                    at: 'bottom left',
+                                    my: 'center right',
+                                    at: 'center left',
                                     target: $('#farfalla_option_'+this.Profile.id)
                                   },
-                                  style: {
-                                    name: 'dark'
-                                  }
+                                  style: 'ui-tooltip-dark'
                                 })
-                                .appendTo('#farfalla_profile');
                         });
 
                         $('#farfalla_profile option[class=choose]').html(data.ui.choose);
