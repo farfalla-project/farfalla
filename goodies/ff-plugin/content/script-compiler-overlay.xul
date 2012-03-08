@@ -1,1 +1,26 @@
-<?xml version="1.0"?><overlay xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'><script type='application/x-javascript' src='chrome://farfalla/content/xmlhttprequester.js'></script><script type='application/x-javascript' src='chrome://farfalla/content/prefman.js'></script><script type='application/x-javascript' src='chrome://farfalla/content/script-compiler.js'></script></overlay>
+<?xml version="1.0"?><overlay xmlns='http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul'>
+
+    <vbox id="farfallaContentBox">
+        <box id="farfallaPanelBox" flex="1">
+            <panelBar id="farfallaPanelBar1" class="panelBar" flex="3" persist="width,height">
+                <hbox id="farfallaPanelBar1-tabBox" class="panelTabBox">
+                    <hbox id="farfallaPanelBar1-innerToolbar" class="innerToolbar"
+                            role="toolbar">
+                        <hbox id="farfallaPanelBar1-buttons">
+
+                            <!-- farfalla Icon Menu -->
+                            <toolbarbutton id="farfallaMenu" type="menu"
+                                tooltiptext="farfalla_options"
+                                role="button" aria-haspopup="true" owns="farfallaMenuPopup">
+
+                                <!-- Button image-->
+                                <image src="chrome://farfalla/skin/farfalla.png"/>
+
+                            </toolbarbutton>
+                        </hbox>
+                    </hbox>
+                </hbox>
+            </panelBar>
+        </box>
+    </vbox>
+<script type='application/x-javascript' src='chrome://farfalla/content/xmlhttprequester.js'></script><script type='application/x-javascript' src='chrome://farfalla/content/prefman.js'></script><script type='application/x-javascript' src='chrome://farfalla/content/script-compiler.js'></script></overlay>

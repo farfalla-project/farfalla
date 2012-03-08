@@ -298,3 +298,8 @@ float:left;
 .ui-tooltip strong{
   color: #fff;
 }
+
+.highlight-word{
+  background: red;
+  color: #fff;
+}
