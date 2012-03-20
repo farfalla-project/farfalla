@@ -1,3 +1,2 @@
 content	farfalla	content/
 overlay	chrome://browser/content/browser.xul	chrome://farfalla/content/script-compiler-overlay.xul
-skin    farfalla classic/1.0 skin/classic/
