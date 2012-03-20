@@ -1,0 +1,17 @@
+/* See license.txt for terms of usage */
+
+
+/* Farfalla Button */
+#farfalla-button, #farfallaStatusContextMenu {
+    list-style-image: url("chrome://farfalla/content/farfalla.png");
+}
+
+/* common style for all custom buttons */
+  .farfalla-button {
+    list-style-image: url("chrome://farfalla/content/farfalla.png");
+  }
+
+  .farfalla-button:hover {
+    list-style-image: url("chrome://farfalla/content/farfalla-active.png");
+  } 
+  
