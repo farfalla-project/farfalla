@@ -43,3 +43,7 @@
 #farfalla_buttons ul, #farfalla_buttons ul li, #farfalla_buttons ul li input{
   line-height: 38px !important;
 }
+
+#farfalla_buttons ul li input{
+  width: auto !important;
+}

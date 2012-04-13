@@ -14,7 +14,7 @@ jQuery.noConflict();
 // Main variables
 
         var options = farfalla_ui_options();
-        var sliding = '#farfalla_selection, #farfalla_active, #farfalla_home';
+        var sliding = '#farfalla_handle, #farfalla_selection, #farfalla_active, #farfalla_home';
         var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
 
 
@@ -182,7 +182,7 @@ jQuery.noConflict();
                                 {},
                                 function(data) {
                                     $.each(data.description.Plugin, function(i, plugin){
-                                        $('#farfalla_active ul').prepend('<li>'+plugin.name+'</li>');
+                                        // $('#farfalla_active ul').prepend('<li>'+plugin.name+'</li>');
                                         $('#farfalla_selection').hide();
 //                                        $('#farfalla_active').show();
                                         jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');

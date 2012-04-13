@@ -1,4 +1,4 @@
-﻿// Farfalla plugin: Font Size
+// Farfalla plugin: Font Size
 
 jQuery.noConflict();
 (function($) { 
@@ -15,8 +15,8 @@ jQuery.noConflict();
          $('*').css({
           'font-size': function(index, value) {
             return parseFloat(value) * 1.1;
-          },
-          'line-height' : '130%'
+          }/*,
+          'line-height' : '130%'*/
         });
       }
     } else if(data.value<0){
@@ -24,8 +24,8 @@ jQuery.noConflict();
           $('*').css({
             'font-size': function(index, value) {
               return parseFloat(value) * 0.9;
-            },
-           'line-height' : '130%'
+            }/*,
+           'line-height' : '130%'*/
           });
         }
       };
@@ -39,8 +39,8 @@ jQuery.noConflict();
       $('*').css({
           'font-size': function(index, value) {
           return parseFloat(value) * 1.1;
-        },
-          'line-height' : '130%'
+        }/*,
+          'line-height' : '130%'*/
       }); 
       increase+=1;
       $.farfalla_set_option('increase',increase);
@@ -52,8 +52,8 @@ jQuery.noConflict();
       $('*').css({
         'font-size': function(index, value) {
           return parseFloat(value) * 0.9;
-        },
-        'line-height' : '130%'
+        }/*,
+        'line-height' : '130%'*/
       }); 
       increase+=-1;
       $.farfalla_set_option('increase',increase);

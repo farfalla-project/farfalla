@@ -62,8 +62,9 @@ body{
 		padding: 0.4em; 
 	}
 
-		#change_profile{
-			padding: 4px; 
+		#farfalla_change_profile{
+			padding: 2px !important; 
+			line-height: 100% !important;
 			float: left;
 		}
 		
@@ -125,6 +126,7 @@ body{
 	#farfalla_buttons ul, #farfalla_buttons ul li{
 	list-style: none;
 	display: inline;
+	padding: 0;
 	}
 	
 	#farfalla_buttons ul li input{
@@ -134,7 +136,7 @@ body{
       border: 0;
       font-size: 18pt !important;
       font-weight: bold;
-      width: auto;
+      width: auto !important;
       height: auto;
 	}
 

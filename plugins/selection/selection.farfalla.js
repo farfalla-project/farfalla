@@ -16,12 +16,16 @@ jQuery.noConflict();
       return false;
     }
 
-    $('<div id="monitor" class="farfalla_hidden">').appendTo('body');
+    $('<div id="monitor" class="farfalla_hidden">').appendTo('body').hide();
 
     $('html').mouseup(function(){
 	  $('#monitor').html(''+getSelection())
     });
 
+    $('textarea, input').select(function(){
+	  $('#monitor').html(''+$(this).val())
+    });
+    
   });
 
 })(jQuery);
