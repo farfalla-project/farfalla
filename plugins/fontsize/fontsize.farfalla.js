@@ -5,30 +5,21 @@ jQuery.noConflict();
 
  $(function() {
 
-  
+
+    
   $.farfalla_get_option('increase', function(data){
 
     var increase = 0
 
-    if(data.value>0){
-      for(var i=1; i<=data.value; i++){
-         $('*').css({
-          'font-size': function(index, value) {
-            return parseFloat(value) * 1.1;
-          }/*,
-          'line-height' : '130%'*/
-        });
-      }
-    } else if(data.value<0){
-        for(var i=1; i>=data.value; i--){
-          $('*').css({
-            'font-size': function(index, value) {
-              return parseFloat(value) * 0.9;
-            }/*,
-           'line-height' : '130%'*/
-          });
-        }
-      };
+// restore font size on page load
+
+    var val = 1+(0.1*data.value);
+    var mozval = 'scale('+val+')';
+    $('body').css({
+      'zoom': val,
+      '-moz-transform': mozval,
+      '-moz-transform-origin': '0 0'
+    });
 
     if(data.value){    
       var increase = parseFloat(data.value);
@@ -36,25 +27,34 @@ jQuery.noConflict();
 
     // Increase Font Size
     $('#farfalla_buttons').farfalla_add_button('+','+','fontsize_increase','a','green','#fff',function(){
-      $('*').css({
-          'font-size': function(index, value) {
-          return parseFloat(value) * 1.1;
-        }/*,
-          'line-height' : '130%'*/
-      }); 
+
+      var val= 1+(0.1*increase)
+      var mozval = 'scale('+val+')';
+
+      $('body').css({
+        'zoom': val,
+        '-moz-transform': mozval,
+        '-moz-transform-origin': '0 0'
+      });
+
       increase+=1;
+
       $.farfalla_set_option('increase',increase);
       return increase;
     });
 
   // Decrease Font Size
     $('#farfalla_buttons').farfalla_add_button('-','-','fontsize_decrease','z','red', '#fff', function(){
-      $('*').css({
-        'font-size': function(index, value) {
-          return parseFloat(value) * 0.9;
-        }/*,
-        'line-height' : '130%'*/
-      }); 
+
+      var val= 1+(0.1*increase)
+      var mozval = 'scale('+val+')';
+
+      $('body').css({
+        'zoom': val,
+        '-moz-transform': mozval,
+        '-moz-transform-origin': '0 0'
+      });
+
       increase+=-1;
       $.farfalla_set_option('increase',increase);
       return increase;
@@ -63,9 +63,14 @@ jQuery.noConflict();
   // Reset Font Size
     $('#farfalla_buttons').farfalla_add_button('reset font','reset','fontsize_reset','r','yellow','#000',function(){
 
-//    this works fine, but should be rewritten in a more elegant way...
-      var jqxhr =  $.getJSON(farfalla_path+"backend/plugins/set_option/increase/0/?callback=?");
-      jqxhr.complete(function() {window.location.reload()});
+      $('body').css({
+        'zoom': 0,
+        '-moz-transform': 'scale(0)',
+        '-moz-transform-origin': '0 0'
+      }); 
+      increase=0;
+      $.farfalla_set_option('increase',increase);
+      return increase;
 
     });
 

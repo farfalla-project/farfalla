@@ -21,6 +21,7 @@ body{
 	float: right;
 	z-index: 20000;
 	right: 0;
+	
 }
 
     #farfalla_toolbar_margin{
@@ -34,10 +35,9 @@ body{
 		display: inline;
 		height:48px; 
 	}
-
-
+    
 	#farfalla_toolbar div form input, #farfalla_active input, #farfalla_toolbar select{
-		padding: 8px;
+		padding: 8px; 
 		background: #fff;
 		margin: 4px 3px; 
 		border: 0;
@@ -52,7 +52,7 @@ body{
 		height: 38px;
 		padding: 0;
 		vertical-align: center;
-		width: auto;
+/*		width: auto !important; */
 	}
 
 	#farfalla_toolbar option{
@@ -80,10 +80,10 @@ body{
 		margin: none;
 	}
 	
-	#farfalla_toolbar div#farfalla_home{
+    #farfalla_home{
 		width: 48px;
 		height:48px;
-		float:right;
+		float:left;
 	}
 	
 	#farfalla_home a img{

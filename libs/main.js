@@ -17,7 +17,7 @@ jQuery.noConflict();
         var sliding = '#farfalla_handle, #farfalla_selection, #farfalla_active, #farfalla_home';
         var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
 
-
+$('#farfalla_home').hide();
 // Farfalla core functions
 
         // Parses the options passed along with farfalla.js
@@ -48,27 +48,16 @@ jQuery.noConflict();
               }
             };
             $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
-            $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
 
             $('<img></img>').attr({
                 'src':farfalla_path+'images/farfalla_icon.png',
                 'alt':'Farfalla logo - Click to hide or display the toolbar'
             }).appendTo('#farfalla_logo');
-            
-            $('<a></a>').attr({
-            	'id':'farfalla_home_link',
-            	'href':'http://www.farfalla-project.org'
-            }).appendTo('#farfalla_home');
-            
-            $('<img></img>').attr({
-            	'id':'farfalla_home_icon',
-                'src':farfalla_path+'images/home_icon.png',
-                'alt':'Farfalla home - Link to the farfalla home page'
-            }).appendTo('#farfalla_home_link');
 
             $('<div></div>').attr('id','farfalla_handle')
               .css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
               .appendTo('#farfalla_toolbar');
+
 
             $('#farfalla_handle').mouseup(  
               function(){
@@ -96,13 +85,26 @@ jQuery.noConflict();
                     }
                 }).css('position','absolute');
 
+            $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
+
+            $('<a></a>').attr({
+            	'id':'farfalla_home_link',
+            	'href':'http://www.farfalla-project.org'
+            }).appendTo('#farfalla_home');
+            
+            $('<img></img>').attr({
+            	'id':'farfalla_home_icon',
+                'src':farfalla_path+'images/home_icon.png',
+                'alt':'Farfalla home - Link to the farfalla home page'
+            }).appendTo('#farfalla_home_link');
+
         };
 
         // Adds the profile selection form
 
         function farfalla_selection_create(top) {
 
-            $('<div></div>').attr('id','farfalla_selection').appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','farfalla_selection').insertBefore('#farfalla_home');
 
             $('<form></form>').attr({'id':'farfalla_toolbar_form','action':'#','method':'post'}).appendTo('#farfalla_selection');
                 $('<select></select>').attr({'id':'farfalla_profile','name':'farfalla_profile'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_form');
@@ -173,7 +175,7 @@ jQuery.noConflict();
 
         function farfalla_plugins_listing_create(id) {
 
-            $('<div></div>').attr('id','farfalla_active').appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','farfalla_active').insertBefore('#farfalla_home');
                 $('<ul></ul>').appendTo('#farfalla_active');
                         $('<input></input>').attr({'type':'button','id':'farfalla_change_profile','value':'loading ...'}).addClass('ui-corner-all').prependTo('#farfalla_active');
 
@@ -384,7 +386,7 @@ jQuery.noConflict();
         xpath = '/' + element.tagName.toLowerCase() + id + xpath;
       }
     return xpath;
-  } 
+  }
 
 
 });
