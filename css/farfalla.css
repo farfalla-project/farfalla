@@ -6,72 +6,56 @@ html{
 }
 
 body{
-	padding: 0;
-	margin: 0;
+}
+
+#farfalla_container{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  display: block;
+  background: #000;
+  z-index: 1000;
+}
+
+#farfalla_badge{
+  position: fixed;
+  top: 200px;
+  margin-left: -40px;
+  display: block;
+  width: 40px;
+  height: 120px;
+  background: #000;
+  z-index: 1001;
 }
 
 #farfalla_toolbar{
-	font-family: Helvetica, Calibri, sans;
-	font-size: 12pt; 
-	background: transparent url('../images/toolbar/menu-content.png') repeat-x;
-	border-right: 0;
+	font-family: Helvetica, Calibri, sans; 
+	background: #000;
 	color: #fff;
-	margin: 0;
-	overflow: hidden;
-	float: right;
-	z-index: 20000;
-	right: 0;
-	
+	margin: 20px;
+/*	overflow: hidden;*/
+/*	float: right; 
+	z-index: 100;
+    top: 0;
+	margin-left: 70%;
+	height: 100%; 
+	position: relative;
+	width: 30%;
+	padding: 20px;
+	display: block; */
 }
 
     #farfalla_toolbar_margin{
         display:block;
         width:4px;
-        height:48px;
-/*        background: url('../images/toolbar/menu-left.png') transparent no-repeat; */
     }
-	#farfalla_toolbar div{
-		float: left;
-		display: inline;
-		height:48px; 
-	}
-    
-	#farfalla_toolbar div form input, #farfalla_active input, #farfalla_toolbar select{
-		padding: 8px; 
-		background: #fff;
-		margin: 4px 3px; 
-		border: 0;
-		font-size: 1em; 
-		float: left;
-		line-height: 22px; 
-		height: 38px;
-		width: auto !important;
-	}
-
-	#farfalla_toolbar select{
-		height: 38px;
-		padding: 0;
-		vertical-align: center;
-/*		width: auto !important; */
-	}
-
-	#farfalla_toolbar option{
-		height: 36px;
-		background: #fff;
-		line-height: 36px; 
-		padding: 0.4em; 
-	}
-
-		#farfalla_change_profile{
-			padding: 2px !important; 
-			line-height: 100% !important;
-			float: left;
-		}
 		
-	#farfalla_logo{
-		width: 70px; 
-		height: 48px;  
-		float: left;
+	#farfalla_logo, #farfalla_home{
+		width: 100%; 
+        display:block;
+        background: #333;
 	}
 	
 	#farfalla_logo img{
@@ -80,25 +64,10 @@ body{
 		margin: none;
 	}
 	
-    #farfalla_home{
-		width: 48px;
-		height:48px;
-		float:left;
-	}
-	
 	#farfalla_home a img{
 		border: none;
 		padding: 2px;
 		margin: 0px;
-	}
-
-	#farfalla_toolbar div#farfalla_handle{
-		width: 24px; 
-		height: 44px;
-		background: url('../images/toolbar/farfalla_grabber.png') no-repeat;
-		float: left;
-		padding: 0;
-		margin: 4px 0 0 0;
 	}
 
 	#farfalla_active{
