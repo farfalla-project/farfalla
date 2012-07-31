@@ -261,6 +261,12 @@ $('#farfalla_home').hide();
           $.getJSON(farfalla_path+"backend/profiles/status/?callback=?", {},
           function(data){
 
+            if(data.top) {
+              farfalla_set_top(data.top);
+            } else if (options.top) {
+              farfalla_set_top(options.top);
+            }
+
             if(data.id == null){
               farfalla_selection_create();
               farfalla_selection_interaction();
@@ -300,6 +306,15 @@ $('#farfalla_home').hide();
 
         }
 
+        // Set 'top' value for toolbar positioning
+
+        function farfalla_set_top(value) {
+            if (value !== null){
+                $('#farfalla_badge').css('top',value);
+            } else {
+                $('#farfalla_badge').css('top','200px');
+            }
+        }
 
         // Hides the toolbar
 /*
