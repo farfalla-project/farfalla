@@ -9,7 +9,7 @@ body{
 }
 
 #farfalla_container{
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   width: 0;
@@ -92,10 +92,22 @@ body{
 			color: #fff;
 		}
 
+	#farfalla_toolbar_accordion h3 a:visited{
+	  color: #fff;
+	}
+	
+	#farfalla_toolbar_accordion .ui-accordion-content{
+	  background:#333;
+	  color: #fff;
+	}
+    #farfalla_toolbar_accordion .ui-accordion-header{
+	  background:#000;
+    }
+
 	#farfalla_buttons ul, #farfalla_buttons ul li{
-	list-style: none;
-	display: inline;
-	padding: 0;
+      list-style: none;
+      display: inline;
+      padding: 0;
 	}
 	
 	#farfalla_buttons ul li input{
