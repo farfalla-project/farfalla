@@ -5,6 +5,7 @@
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
+		echo $this->Form->input('group_id');
 		echo $this->Form->input('Profile');
 	?>
 	</fieldset>

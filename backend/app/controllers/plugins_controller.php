@@ -6,12 +6,19 @@ class PluginsController extends AppController {
 	var $components = array('RequestHandler');
 
 	function beforeFilter() {
-	        $this->Auth->allow('set_option','get_option');
+	        $this->Auth->allow('set_option','get_option','menu');
 	}
 
 	function index() {
 		$this->Plugin->recursive = 0;
 		$this->set('plugins', $this->paginate());
+	}
+
+	function menu() {
+		$this->Session->start();
+		$this->layout = 'ajax';
+		$this->RequestHandler->setContent('json', 'text/x-json');
+		$this->set('plugins', $this->Plugin->find('all', array('fields' => array('Plugin.id', 'Plugin.name'), 'recursive' => 0)));
 	}
 
 	function view($id = null) {
@@ -34,6 +41,8 @@ class PluginsController extends AppController {
 		}
 		$profiles = $this->Plugin->Profile->find('list');
 		$this->set(compact('profiles'));
+		$groups = $this->Plugin->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	function edit($id = null) {
@@ -54,6 +63,8 @@ class PluginsController extends AppController {
 		}
 		$profiles = $this->Plugin->Profile->find('list');
 		$this->set(compact('profiles'));
+		$groups = $this->Plugin->Group->find('list');
+		$this->set(compact('groups'));
 	}
 
 	function delete($id = null) {

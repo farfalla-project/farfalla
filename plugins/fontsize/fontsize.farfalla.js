@@ -26,8 +26,11 @@ jQuery.noConflict();
     }
 
     // Increase Font Size
-    $('#farfalla_buttons').farfalla_add_button('+','+','fontsize_increase','a','green','#fff',function(){
+//    $('#farfalla_buttons').farfalla_add_button('+','+','fontsize_increase','a','green','#fff',function(){
 
+    $('#fontsize').farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
+
+      increase+=1;
       var val= 1+(0.1*increase)
       var mozval = 'scale('+val+')';
 
@@ -37,15 +40,17 @@ jQuery.noConflict();
         '-moz-transform-origin': '0 0'
       });
 
-      increase+=1;
 
       $.farfalla_set_option('increase',increase);
       return increase;
     });
 
   // Decrease Font Size
-    $('#farfalla_buttons').farfalla_add_button('-','-','fontsize_decrease','z','red', '#fff', function(){
+//    $('#farfalla_buttons').farfalla_add_button('-','-','fontsize_decrease','z','red', '#fff', function(){
 
+    $('#fontsize').farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
+    
+      increase+=-1;
       var val= 1+(0.1*increase)
       var mozval = 'scale('+val+')';
 
@@ -55,13 +60,13 @@ jQuery.noConflict();
         '-moz-transform-origin': '0 0'
       });
 
-      increase+=-1;
       $.farfalla_set_option('increase',increase);
       return increase;
     });
     
   // Reset Font Size
-    $('#farfalla_buttons').farfalla_add_button('reset font','reset','fontsize_reset','r','yellow','#000',function(){
+//    $('#farfalla_buttons').farfalla_add_button('reset font','reset','fontsize_reset','r','yellow','#000',function(){
+    $('#fontsize').farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
 
       $('body').css({
         'zoom': 0,
