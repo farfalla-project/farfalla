@@ -191,9 +191,12 @@ $('#farfalla_home').hide();
                       $('#'+plugin.name+'Activator').click(
                         function() {
                           if($(this).attr('checked')=='checked'){
-                            $.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
-                            // qua occorre settare una variabile in cake?
-                            console.log('activated '+plugin.name);
+                            $.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js',
+                              function(){
+                                console.log('activated '+plugin.name);
+                                // qua occorre settare una variabile in cake?
+                              }
+                            );
                           } else {
                             // qua occorre resettare una variabile in cake?                                      
                             console.log('deactivated '+plugin.name);
@@ -517,8 +520,9 @@ $('#farfalla_home').hide();
         id > 1 ? (id = '[' + id + ']') : (id = '');
         xpath = '/' + element.tagName.toLowerCase() + id + xpath;
       }
-    return xpath;
-  }
+      return xpath;
+    }
+
 
 
 /*
