@@ -18,7 +18,7 @@ class PluginsController extends AppController {
 		$this->Session->start();
 		$this->layout = 'ajax';
 		$this->RequestHandler->setContent('json', 'text/x-json');
-		$this->set('plugins', $this->Plugin->find('all', array('fields' => array('Plugin.id', 'Plugin.name'), 'recursive' => 0)));
+		$this->set('plugins', $this->Plugin->find('all', array('fields' => array('Plugin.id', 'Plugin.name', 'Plugin.visible'), 'recursive' => 0)));
 	}
 
 	function view($id = null) {

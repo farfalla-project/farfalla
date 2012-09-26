@@ -28,7 +28,7 @@ $('#farfalla_home').hide();
 */
 
 
-        // Parses the options passed along with farfalla.js
+        // Parses the options passed along while including farfalla.js
 
         function farfalla_ui_options() {
 		  // if no options are passed, this is skipped (thanks to the "?" in the matching string)
@@ -51,7 +51,7 @@ $('#farfalla_home').hide();
             $('<div></div>').attr('id','farfalla_container').prependTo('body');
             $('<div></div>').attr('id','farfalla_badge').addClass('ui-corner-left').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
-            $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
+//            $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
 //            $('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
@@ -63,11 +63,11 @@ $('#farfalla_home').hide();
                         $('<img></img>').attr({
             	'id':'farfalla_home_icon',
                 'src':farfalla_path+'images/home_icon.png',
-                'alt':'Farfalla home - Link to the farfalla home page'
+                'alt':'Farfalla home - Link to the farfalla home page' // this needs translation
             }).appendTo('#farfalla_home_link');
             $('<img></img>').attr({
                 'src':farfalla_path+'images/farfalla_icon.png',
-                'alt':'Farfalla logo - Click to hide or display the toolbar'
+                'alt':'Farfalla logo - Click to hide or display the toolbar' // this needs translation
             }).appendTo('#farfalla_logo');
 
 
@@ -104,48 +104,6 @@ $('#farfalla_home').hide();
 
         function farfalla_toolbar_populate(top) {
 
-//              $('<select></select>').attr({'id':'farfalla_profile','name':'farfalla_profile'}).addClass('ui-corner-all').appendTo('#farfalla_toolbar_accordion');
-//              $('<option></option>').addClass('choose').html('Loading...').appendTo('#farfalla_profile');
-//              $('<option></option>').html('---').css('text-align','center').attr('disabled','disabled').appendTo('#farfalla_profile');
-
-
-/*            $.getJSON(
-              farfalla_path+"backend/plugins/menu/?callback=?",
-                {},
-                function(data) {
-                  $.each(data.profiles, function(){
-                      $('<h3></h3>')
-                        .attr({
-                          'id':this.Profile.id
-                        })
-                        .appendTo('#farfalla_toolbar_accordion');
-
-                      $('<a></a>')
-                        .attr({
-                          'href':'#'
-                        })
-                        .html(this.nameTranslation[0].content)
-                        .appendTo($('#'+this.Profile.id));
-
-                      $('<div></div>')
-//                        .html(this.descriptionTranslation[0].content)
-                        .html('<img src="'+farfalla_path+'images/loader.gif" alt="loading..." />')
-                        .attr('id','content_'+this.Profile.id)
-                        .insertAfter($('#'+this.Profile.id));
-
-/*
-                      $('#farfalla_option_'+this.Profile.id).qtip({
-                        content :  this.descriptionTranslation[0].content,
-                        position: {
-                          my: 'center right',
-                          at: 'center left',
-                          target: $('#farfalla_option_'+this.Profile.id)
-                        },
-                          style: 'ui-tooltip-dark'
-                      })
-* /
-                    });
-*/
             $.getJSON(
               farfalla_path+"backend/plugins/menu/?callback=?",
                 {},
@@ -156,6 +114,7 @@ $('#farfalla_home').hide();
                         .attr({
                           'id':'plugin_'+plugin.id
                         })
+                        .addClass('plugin_activator ui-corner-all')
                         .appendTo('#farfalla_toolbar_plugins');
 
                       $('<input></input>')
@@ -168,91 +127,50 @@ $('#farfalla_home').hide();
 
                       $('<label></label>')
                         .attr({
-                           'for': plugin.name+'Activator' 
+                           'for': plugin.name+'Activator',
+                           'class': 'plugin_activator_label'
                         })
                         .html(plugin.name)
                         .appendTo('#plugin_'+plugin.id);
 
-
-/*                      $('<a></a>')
-                        .attr({
-                          'href':'#'
-                        })
-                        .html(this.Plugin.name)
-                        .appendTo($('#plugin_'+this.Plugin.id));
-*/
-/*                      $('<div></div>')
-                        .html('<input name="'+this.Plugin.name+'Activator" id="'+this.Plugin.name+'Activator" type="checkbox"></input>')
-//                        .html('<img src="'+farfalla_path+'images/loader.gif" alt="loading..." />')
-                        .attr('id','content_'+this.Plugin.id)
-                        .insertAfter($('#'+this.Plugin.id));
-  */                      
-                      
-                      $('#'+plugin.name+'Activator').click(
+                      $('#'+plugin.name+'Activator').toggle(
                         function() {
-                          if($(this).attr('checked')=='checked'){
-                            $.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js',
-                              function(){
-                                console.log('activated '+plugin.name);
-                                // qua occorre settare una variabile in cake?
-                              }
-                            );
-                          } else {
-                            // qua occorre resettare una variabile in cake?                                      
+
+                            $(this).attr('checked','checked')
+                            console.log('activated '+plugin.name);
+                            //if(){ 
+                              head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+                            //}
+                          },
+                        function() {
+                            $(this).attr('checked',null)
                             console.log('deactivated '+plugin.name);
                           }
-                        });
+                      );
 
-/*
-                      $('#farfalla_option_'+this.Profile.id).qtip({
-                        content :  this.descriptionTranslation[0].content,
+                      $('#plugin_'+plugin.id).qtip({
+                        content :  plugin.name,
                         position: {
                           my: 'center right',
                           at: 'center left',
-                          target: $('#farfalla_option_'+this.Profile.id)
+                          target: $('#plugin_'+plugin.id)
                         },
                           style: 'ui-tooltip-dark'
-                      })
-*/
+                      }).click( function(){
+                        $('#'+plugin.name+'Activator').click();
+
+                      }).toggle(
+                        function(){$(this).css('background','#fff')},
+                        function(){$(this).css('background','#333')}
+                      )
+
+                      if(plugin.visible==0){
+                        $('#plugin_'+plugin.id).hide()
+                      }
+
                     });
                     
-/*                    $('#farfalla_toolbar_plugins').accordion({
-                      collapsible: true,
-                      autoHeight: false,
-                      active: false,
-                      change: function(event, ui) { 
-                      
-                        if(!ui.newHeader.next('div').hasClass('loaded')){
-                          $.getJSON(              
-                            farfalla_path+"backend/profiles/retrieve/"+ui.newHeader.attr('id')+"?callback=?",
-                            {},
-                            function(data) {
-                              ui.newHeader.next('div').html('');
-                              $.each(data.description.Plugin, function(i, plugin){
-                                ui.newHeader.next('div').append('<div id="'+plugin.name+'" class="farfalla_plugin"><h4>'+plugin.name+'</h4></div>').addClass('loaded');
-                                $('#'+plugin.name)
-                                  .append('<label for="'+plugin.name+'Activator">Activate this</label>');
-                                $('#'+plugin.name)
-                                  .append('<input name="'+plugin.name+'Activator" id="'+plugin.name+'Activator" type="checkbox"></input>');
-                                $('#'+plugin.name+'Activator').click(
-                                  function() {
-                                    if($(this).attr('checked')=='checked'){
-                                      $.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
-                                      // qua occorre settare una variabile in cake?
-                                      console.log('activated '+plugin.name);
-                                    } else {
-                                      // qua occorre resettare una variabile in cake?                                      
-                                      console.log('deactivated '+plugin.name);
-                                    }
-                                  });
-                              })
-                            }
-                          );
-                        }
-                      }
-                    });
-*/
-                    $('#farfalla_profile option[class=choose]').html(data.ui.choose);
+//                    $('#farfalla_profile option[class=choose]').html(data.ui.choose);
 
 /*
                     $('#farfalla_logo').qtip({
@@ -287,10 +205,11 @@ $('#farfalla_home').hide();
 */
                   }
                 );
+
         };
 
 
-        // Adds the plugins listing area
+        // Adds the plugins listing area (removed..)
 /*
         function farfalla_plugins_listing_create(id) {
 
@@ -314,6 +233,7 @@ $('#farfalla_home').hide();
     
         };
 */
+
 
         // Adds interaction to the activation button in the profile selection form
 
@@ -396,7 +316,7 @@ $('#farfalla_home').hide();
 
             $('#farfalla_badge').toggle(
               function() { 
-                $('#farfalla_container').animate({'width':'40%'})
+                $('#farfalla_container').animate({'width':'100px'})
                 $('#farfalla_toolbar').show('fast');
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               } ,
@@ -447,12 +367,12 @@ $('#farfalla_home').hide();
       console.log('Adding UI for '+plugin_name);
       switch(type){
         case 'slider':
-          $(this).append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
+          $('#'+plugin_name+'_options').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
           $('#'+plugin_name+'_slider').slider();
         break;
         
         case 'button':
-          $(this).append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
+          $('#'+plugin_name+'_options').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
           $('#'+name+'_button').click(callback);
         break;
       }

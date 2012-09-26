@@ -73,11 +73,11 @@ CSS:
 TODO:
 
 Changelog:
-	1/17/2010 - 1.3 - Hide keyboard when clicking outside of keyboard
-					  Tweek positioning to fit better on screen if page
-					  		scrolled or resized
-	1/15/2010 - 1.2 - Align keyboard with element it is called from
-					  Append keyboard DOM to elements parent instead of body
+    1/17/2010 - 1.3 - Hide keyboard when clicking outside of keyboard
+                      Tweek positioning to fit better on screen if page
+                              scrolled or resized
+    1/15/2010 - 1.2 - Align keyboard with element it is called from
+                      Append keyboard DOM to elements parent instead of body
     10/30/2009 - 1.1 - Change Preview window to clone the selected element
                             to match the proper formatting of the element
                             (i.e. not showing characters in password fields)
@@ -136,56 +136,56 @@ jQuery.widget('ui.keyboard', {
         ]
     },
 
-	_init: function(){
+    _init: function(){
         this.options.layout = this.options.layout || "qwerty";
         this.layouts.custom = this.options.customLayout || [['{cancel}']];
-		var ui = this;
-		var element = ui.element;
-		var keyboard = this._buildKeyboard(ui);
+        var ui = this;
+        var element = ui.element;
+        var keyboard = this._buildKeyboard(ui);
         var allKeys = keyboard.find('.ui-keyboard-button');
-		var inputKeys = allKeys.filter(':not(.ui-keyboard-actionkey)');
+        var inputKeys = allKeys.filter(':not(.ui-keyboard-actionkey)');
         var previewInput = keyboard.find('.ui-keyboard-preview');
         var decBtn = keyboard.find('[name=key_decimal]');
 
-		$(document)
-			.unbind('mousedown', this._hideonexternalclick)
-			.bind('mousedown', this._hideonexternalclick);
+        $(document)
+            .unbind('mousedown', this._hideonexternalclick)
+            .bind('mousedown', this._hideonexternalclick);
 
-		element
-			.focus(function(){
-				jQuery('.ui-keyboard').hide();
+        element
+            .focus(function(){
+                jQuery('.ui-keyboard').hide();
                 previewInput
                     .attr('value',element.attr('value'));
 
-				//glad this function is in jquery-ui
-				elementPosition = jQuery.datepicker._findPos(element.get(0));
+                //glad this function is in jquery-ui
+                elementPosition = jQuery.datepicker._findPos(element.get(0));
 
-				offset = {
-//					left : elementPosition[0],
-//					top : elementPosition[1]
-				};
+                offset = {
+//                    left : elementPosition[0],
+//                    top : elementPosition[1]
+                };
 
-				//and this one too
-				offset = jQuery.datepicker._checkOffset({dpDiv:keyboard, settings:{}}, offset, false);
+                //and this one too
+                offset = jQuery.datepicker._checkOffset({dpDiv:keyboard, settings:{}}, offset, false);
 
-				keyboard.fadeIn('fast');
-//					.css({
-//						position: "absolute",
-//						bottom: "36px",
-//					})
+                keyboard.fadeIn('fast');
+//                    .css({
+//                        position: "absolute",
+//                        bottom: "36px",
+//                    })
 
                 previewInput
                     .scrollTop(previewInput.attr('scrollHeight'));
-			});
+            });
 
-		jQuery(element).parent()
-			.append(keyboard);
+        jQuery(element).parent()
+            .append(keyboard);
 
-		inputKeys
-			.click(function(){
- 				previewInput
+        inputKeys
+            .click(function(){
+                 previewInput
                     .attr('value', previewInput.attr('value') + this.value)
-			});
+            });
 
         allKeys.click(function(){
             previewInput.scrollTop(previewInput.attr('scrollHeight'));
@@ -208,40 +208,40 @@ jQuery.widget('ui.keyboard', {
 
                 });
         }
-	},
+    },
 
-	_hideonexternalclick: function(e){
-		if($(e.target).closest('.ui-keyboard').length < 1){
-			jQuery('.ui-keyboard').hide();
-		}
-	},
+    _hideonexternalclick: function(e){
+        if($(e.target).closest('.ui-keyboard').length < 1){
+            jQuery('.ui-keyboard').hide();
+        }
+    },
 
-	_buildKeyboard: function(ui){
-		var container = jQuery('<div></div>')
-			.addClass('ui-keyboard')
-			.addClass('ui-widget-content')
-			.addClass('ui-widget')
-			.hide();
+    _buildKeyboard: function(ui){
+        var container = jQuery('<div></div>')
+            .addClass('ui-keyboard')
+            .addClass('ui-widget-content')
+            .addClass('ui-widget')
+            .hide();
 
         //build preview display
 
         var previewInput = ui.element.clone()
             .attr('name','preview')
-			.attr('readonly','readonly')
-			.addClass('ui-state-active')
-			.addClass('ui-keyboard-preview');
+            .attr('readonly','readonly')
+            .addClass('ui-state-active')
+            .addClass('ui-keyboard-preview');
 
-		//build preview container and append preview display
-		var entryPreview = jQuery('<div></div>')
-			.append(previewInput)
+        //build preview container and append preview display
+        var entryPreview = jQuery('<div></div>')
+            .append(previewInput)
             .appendTo(container);
 
 
-		//build default button
-		keyBtn = jQuery('<input />')
-			.attr('type','button')
-			.addClass('ui-keyboard-button')
-			.addClass('ui-state-default');
+        //build default button
+        keyBtn = jQuery('<input />')
+            .attr('type','button')
+            .addClass('ui-keyboard-button')
+            .addClass('ui-state-default');
 
         actionKey = keyBtn.clone()
             .addClass('ui-keyboard-actionkey');
@@ -249,8 +249,8 @@ jQuery.widget('ui.keyboard', {
         for( row in this.layouts[this.options.layout] ){
             currentRow = this.layouts[this.options.layout][row];
             newRow = jQuery('<div></div>')
-			    .attr('id','ui-keyboard-row'+row)
-			    .addClass('ui-keyboard-row')
+                .attr('id','ui-keyboard-row'+row)
+                .addClass('ui-keyboard-row')
                 .appendTo(container);
 
             for( set in currentRow ){
@@ -389,8 +389,8 @@ jQuery.widget('ui.keyboard', {
 
         }
 
-		return container;
-	}
+        return container;
+    }
 })
 
 
@@ -400,67 +400,84 @@ jQuery.widget('ui.keyboard', {
 
   $(function() {
 
+    var keyboards;
 
-	$('input[type=text], input[class=lst], input[type=password], textarea').keyboard({
-		layout:'qwerty'
-	});
+    $.keyboard_on = function () {
+    
+      if (keyboards) {
+        keyboards.hide().appendTo('body');
+        keyboards = null;
+      }
 
-/*	$(window).scroll(function(){
-		$('.ui-keyboard')
-//			.css('margin-top', ($(window).scrollTop()) + 'px')
-			.animate({'marginTop': ($(window).scrollTop()) + 'px'}, 'fast' );
-	});
-*/
+      $('input[type=text], input[class=lst], input[type=password], textarea').keyboard({
+        layout:'qwerty'
+      });
 
-	$('.ui-keyboard').css({
-		'width' : '60%',
-		'background' : '#999',
-		'border' : '1px solid #666',
-		'position' : 'fixed',
-		'z-index' : '10000',
-		'left' : '20%',
-		'right' : '20%',
-		'align' : 'center',
-		'bottom' : 0
-	}).addClass('ui-corner-all');
+      $('.ui-keyboard').css({
+        'width' : '60%',
+        'background' : '#999',
+        'border' : '1px solid #666',
+        'position' : 'fixed',
+        'z-index' : '10000',
+        'left' : '20%',
+        'right' : '20%',
+        'align' : 'center',
+        'bottom' : 0
+      }).addClass('ui-corner-all');
 
-	$('.ui-keyboard-keyset').css({
-		'width' : '98%',
-		'margin' : 'auto 1%',
-	});
+      $('.ui-keyboard-keyset').css({
+        'width' : '98%',
+        'margin' : 'auto 1%',
+      });
 
-	$('.ui-keyboard-preview').css({
-		'width' : '98%',
-		'margin' : '1%',
-		'border' : '3px solid red',
-		'font-size' : '20px',
-		'background' : '#fff',
-		'color' : '#000',
-		'margin' : '0'
-	}).addClass('ui-corner-all');
+      $('.ui-keyboard-preview').css({
+        'width' : '98%',
+        'margin' : '1%',
+        'border' : '3px solid red',
+        'font-size' : '20px',
+        'background' : '#fff',
+        'color' : '#000',
+        'margin' : '0'
+      }).addClass('ui-corner-all');
 
-	$('.ui-keyboard-button').css({
-		'width' : '7%',
-		'height' : '2em',
-		'margin' : '.4% .2%',
-		'display' : 'inline',
-		'font-size' : '20px',
-		'background' : '#333',
-		'text-align' : 'center',
-		'color' : 'white',
-		'border' : 'none'
-	}).addClass('ui-corner-all');
+      $('.ui-keyboard-button').css({
+        'width' : '7%',
+        'height' : '2em',
+        'margin' : '.4% .2%',
+        'display' : 'inline',
+        'font-size' : '20px',
+        'background' : '#333',
+        'text-align' : 'center',
+        'color' : 'white',
+        'border' : 'none'
+      }).addClass('ui-corner-all');
 
-	$('.ui-keyboard-actionkey').css('width', '4em').addClass('ui-corner-all');
+      $('.ui-keyboard-actionkey').css('width', '4em').addClass('ui-corner-all');
 
-	$('.ui-keyboard-space').css({
-		'width' : '50%'
-	}).addClass('ui-corner-all');
+      $('.ui-keyboard-space').css({
+        'width' : '50%'
+      }).addClass('ui-corner-all');
 
-	$('.ui-state-highlight').css({
-		'background' : '#fc0',
-		'color' : '#000'
-	});
+      $('.ui-state-highlight').css({
+        'background' : '#fc0',
+        'color' : '#000'
+      });
+    }
+
+    $.keyboard_off = function () {
+      keyboards = $('.ui-keyboard').detach()
+    }
+
+    $.keyboard_on()
+
+    $('#keyboardActivator').click( function(){
+      if($(this).attr('checked')=='checked'){
+        $.keyboard_on()
+        
+      } else {
+        $.keyboard_off()
+      }
+    });
 
   });
 

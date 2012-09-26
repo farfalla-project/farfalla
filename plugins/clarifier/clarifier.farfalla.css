@@ -1,0 +1,33 @@
+.creamBackground {
+  background-color: rgb(250, 252, 209);
+}
+
+.inputClarifier {
+  border: 2px solid navy;
+  background-color: rgb(255, 255, 225);
+}
+
+.fontClarifier{
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 14pt;
+}
+
+.boldClarifier {
+  font-weight:bold;
+}
+
+.h1Clarifier {
+  font-size:18pt;
+}
+
+.h2Clarifier {
+  font-size:16pt;
+}
+
+.leftAlignClarifier{
+  text-align:left;
+}
+
+.linespacingClarifier{
+  line-height:200%;
+}

@@ -26,7 +26,7 @@ body{
   display: block;
   width: 40px;
   height: 120px;
-  background: #000;
+  background: url('../images/farfalla_badge_eng.png') #000;
   z-index: 1001;
 }
 
@@ -35,16 +35,8 @@ body{
 	background: #000;
 	color: #fff;
 	margin: 20px;
-/*	overflow: hidden;*/
-/*	float: right; 
-	z-index: 100;
-    top: 0;
-	margin-left: 70%;
-	height: 100%; 
-	position: relative;
-	width: 30%;
-	padding: 20px;
-	display: block; */
+	position: absolute;
+	top: 0;
 }
 
     #farfalla_toolbar_margin{
@@ -53,15 +45,15 @@ body{
     }
 		
 	#farfalla_logo, #farfalla_home{
-		width: 100%; 
+		width: 42px;
+		height: 42px; 
         display:block;
-        background: #333;
 	}
 	
 	#farfalla_logo img{
 		border: none;
 		padding: 2px 2px 2px 6px;
-		margin: none;
+		margin: auto;
 	}
 	
 	#farfalla_home a img{
@@ -131,7 +123,7 @@ body{
 	/*display:none;*/
 	margin: 0;
 	position: absolute;
-	z-index: 20000;
+	z-index: 900;
 }
 
 .callout {
@@ -205,7 +197,7 @@ margin: 0 0 0 50%;
 padding: 1ex;
 position: absolute;
 width: 45%;
-z-index: 30000;
+z-index: 901;
 clear: both;
 }
 
@@ -286,3 +278,32 @@ float:left;
   background: red;
   color: #fff;
 }
+
+.plugin_activator{
+  display: block;
+  width: 42px;
+  height: 42px;
+  background: #333;
+  margin: 2px;
+  float:left;
+  border:1px solid #fff;
+}
+
+.plugin_activator_label{
+  display:none;
+}
+
+.plugin_activator input{
+  display: none;
+}
+
+.plugin_options {
+  position: absolute;
+  z-index: 1100;
+  margin: 0 40%;
+  background: #000;
+  top: 100px;
+  border: 1px solid #fff;
+  padding: 1em;
+}
+
