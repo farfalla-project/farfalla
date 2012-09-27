@@ -1,6 +1,6 @@
 // Main Farfalla Library: includes the functions used to draw the toolbar and the reusable functions for plugins
 jQuery.noConflict();
-(function($) { 
+(function($) {
   $(function() {
 
 // Inclusion of the needed css stylesheets
@@ -16,6 +16,97 @@ jQuery.noConflict();
         var options = farfalla_ui_options();
         var sliding = '#farfalla_selection, #farfalla_active, #farfalla_home';
         var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
+        var active_plugins = new Array();
+
+/*
+    #######################################
+    #                                     #
+    #    Reusable functions for plugins   #
+    #                                     #
+    #######################################
+*/
+
+    // Add plugin-specific UI
+    // ...
+
+    $.fn.farfalla_add_ui = function( plugin_name, type, name, value, callback ){
+      console.log('Adding UI for '+plugin_name);
+      switch(type){
+        case 'slider':
+          $('#'+plugin_name+'_options').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
+          $('#'+plugin_name+'_slider').slider();
+        break;
+
+        case 'button':
+          $('#'+plugin_name+'_options').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
+          $('#'+name+'_button').click(callback);
+        break;
+      }
+    }
+
+    // A function for adding buttons to the toolbar
+    // name -> text displayed on the button
+    // id -> unique identifier for the button: the final id will be something like button_id
+    // accesskey -> the value for the accesskey attribute useful for activating the buttons from the keyboard
+    // callback -> a function to be triggered by the button
+    // ...
+
+    $.fn.farfalla_add_button = function( name, text, id, accesskey, bgcolor, txtcolor, callback ){
+      $('<li></li>').appendTo('#farfalla_buttons ul');
+      $('<input></input>')
+        .attr({
+          'value': text,
+          'type':'button',
+          'id':'button_'+id,
+          'accesskey':accesskey
+        })
+        .css('cssText',
+          'background : '+bgcolor+' !important; border : 2px solid '+txtcolor+' !important; color : '+txtcolor+' !important;'
+        )
+        .addClass('ui-corner-all')
+        .addClass('plugin-button')
+        .appendTo('#farfalla_buttons ul li:last');
+      $('#button_'+id).click(callback);
+      $('#farfalla_buttons').show();
+    };
+
+    // A function for getting options from the Cakephp session array
+
+    $.farfalla_get_option = function( option, callback ){
+
+      $.getJSON(
+         farfalla_path+"backend/plugins/get_option/"+option+"/?callback=?",
+         {}, callback
+      );
+
+    };
+
+    // A function for setting options in the Cakephp session array
+
+    $.farfalla_set_option = function( option, value ){
+
+      if(value==null){
+        $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
+
+      } else {
+        $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/"+value+"/?callback=?");
+
+      }
+
+    };
+
+    // A function for getting the XPath of an element
+
+    $.getXPath = function ( element ) {
+    var xpath = '';
+    for ( ; element && element.nodeType == 1; element = element.parentNode )
+      {
+        var id = $(element.parentNode).children(element.tagName).index(element) + 1;
+        id > 1 ? (id = '[' + id + ']') : (id = '');
+        xpath = '/' + element.tagName.toLowerCase() + id + xpath;
+      }
+      return xpath;
+    }
 
 $('#farfalla_home').hide();
 
@@ -83,17 +174,17 @@ $('#farfalla_home').hide();
 
             $('#farfalla_badge')
               .css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
-              .mouseup(  
+              .mouseup(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
                 })
-              .mousedown(  
+              .mousedown(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
                 })
               .draggable({
                 'axis':'y',
-                stop: function(event, ui) { 
+                stop: function(event, ui) {
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
               });
@@ -119,7 +210,7 @@ $('#farfalla_home').hide();
 
                       $('<input></input>')
                         .attr({
-                           'name': plugin.name+'Activator', 
+                           'name': plugin.name+'Activator',
                            'id': plugin.name+'Activator',
                            'type':'checkbox'
                         })
@@ -138,13 +229,13 @@ $('#farfalla_home').hide();
 
                             $(this).attr('checked','checked')
                             console.log('activated '+plugin.name);
-                            //if(){ 
-                              head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
-                            //}
+                            head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+                            farfalla_track_plugins(plugin.id,1);
                           },
                         function() {
                             $(this).attr('checked',null)
                             console.log('deactivated '+plugin.name);
+                            farfalla_track_plugins(plugin.id,0);
                           }
                       );
 
@@ -169,7 +260,10 @@ $('#farfalla_home').hide();
                       }
 
                     });
-                    
+
+                    farfalla_autoactivate_plugins();
+
+
 //                    $('#farfalla_profile option[class=choose]').html(data.ui.choose);
 
 /*
@@ -230,7 +324,7 @@ $('#farfalla_home').hide();
                                     $('#farfalla_change_profile').val(data.ui.reset)
                                 }
                             );
-    
+
         };
 */
 
@@ -290,22 +384,8 @@ $('#farfalla_home').hide();
                 farfalla_set_top(options.top);
               }
 
-//              if(data.id == null){
               farfalla_toolbar_populate();
-//                farfalla_selection_interaction();
-                // session settings for toolbar visibility have precedence over website options...
-/*
-              if(data.show==1 || (data.show == null && options.visibility==1)){
-                $('#farfalla_logo').click();
-              } else {
-                farfalla_hide_toolbar(0);
-              }
-*/
-//              } else {
-//                farfalla_plugins_listing_create(data.id);
-//                farfalla_plugins_listing_interaction();
-//                farfalla_hide_toolbar(data.show);
-//              }
+
             })
           };
 
@@ -315,15 +395,15 @@ $('#farfalla_home').hide();
         function farfalla_toggle_visibility() {
 
             $('#farfalla_badge').toggle(
-              function() { 
+              function() {
                 $('#farfalla_container').animate({'width':'100px'})
                 $('#farfalla_toolbar').show('fast');
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
-              } ,
+              },
               function() {
                 $('#farfalla_container').animate({'width':'0'})
                 $('#farfalla_toolbar').hide('fast');
-                $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});                
+                $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
             );
 
@@ -340,7 +420,7 @@ $('#farfalla_home').hide();
             }
         }
 
-        // Hides the toolbar
+        // Hide the toolbar
 /*
         function farfalla_hide_toolbar(value) {
             if(value != 1){
@@ -350,99 +430,33 @@ $('#farfalla_home').hide();
         };
 */
 
+        // Track activated/deactivated plugins for consistent browsing in different pages
 
+        function farfalla_track_plugins(id, value) {
+          if(value==1){
+            active_plugins.push(id);
+          } else {
+            active_plugins.splice(active_plugins.indexOf(name),1);
+          }
+          $.farfalla_set_option('active_plugins',active_plugins);
+        }
 
-/*
-    #######################################
-    #                                     #
-    #    Reusable functions for plugins   #
-    #                                     #
-    #######################################
-*/
+        function farfalla_autoactivate_plugins() {
 
-    // Add plugin-specific UI
-    // ...
+          $.farfalla_get_option('active_plugins', function(data){
 
-    $.fn.farfalla_add_ui = function( plugin_name, type, name, value, callback ){
-      console.log('Adding UI for '+plugin_name);
-      switch(type){
-        case 'slider':
-          $('#'+plugin_name+'_options').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
-          $('#'+plugin_name+'_slider').slider();
-        break;
-        
-        case 'button':
-          $('#'+plugin_name+'_options').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
-          $('#'+name+'_button').click(callback);
-        break;
-      }
-    }
+            if(data.value){
+            console.log(data.value.split(','))
+              active = data.value.split(',')
+              $.each(active, function(index, value){
+//                console.log($('#'+value+'Activator'));
+                $('#plugin_'+value).click();
+              })
+            }
 
-    // A function for adding buttons to the toolbar
-    // name -> text displayed on the button
-    // id -> unique identifier for the button: the final id will be something like button_id
-    // accesskey -> the value for the accesskey attribute useful for activating the buttons from the keyboard
-    // callback -> a function to be triggered by the button
-    // ...
+          })
 
-    $.fn.farfalla_add_button = function( name, text, id, accesskey, bgcolor, txtcolor, callback ){
-      $('<li></li>').appendTo('#farfalla_buttons ul');    
-      $('<input></input>')
-        .attr({
-          'value': text,
-          'type':'button',
-          'id':'button_'+id,
-          'accesskey':accesskey
-        })
-        .css('cssText',
-          'background : '+bgcolor+' !important; border : 2px solid '+txtcolor+' !important; color : '+txtcolor+' !important;'
-        )
-        .addClass('ui-corner-all')
-        .addClass('plugin-button')
-        .appendTo('#farfalla_buttons ul li:last');
-      $('#button_'+id).click(callback);
-      $('#farfalla_buttons').show();
-    };
-
-    // A function for getting options from the Cakephp session array
-
-    $.farfalla_get_option = function( option, callback ){
-
-      $.getJSON(
-         farfalla_path+"backend/plugins/get_option/"+option+"/?callback=?",
-         {}, callback
-      );
-      
-    };
-    
-    // A function for setting options in the Cakephp session array
-                
-    $.farfalla_set_option = function( option, value ){
-      
-      
-      if(value==null){
-        $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
-      
-      } else {
-        $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/"+value+"/?callback=?");
-        
-      }
-      
-    };
-
-    // A function for getting the XPath of an element
-
-    $.getXPath = function ( element ) {
-    var xpath = '';
-    for ( ; element && element.nodeType == 1; element = element.parentNode )
-      {
-        var id = $(element.parentNode).children(element.tagName).index(element) + 1;
-        id > 1 ? (id = '[' + id + ']') : (id = '');
-        xpath = '/' + element.tagName.toLowerCase() + id + xpath;
-      }
-      return xpath;
-    }
-
+        }
 
 
 /*
@@ -467,8 +481,6 @@ $('#farfalla_home').hide();
 
 // end "if" to determine wether to add the toolbar or not
     };
-
-
 
 });
 })(jQuery);

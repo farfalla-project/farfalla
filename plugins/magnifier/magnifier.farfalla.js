@@ -4,7 +4,7 @@ jQuery.noConflict();
   $(function() {
 
     // Include htmlClean plugin
-    headjs(farfalla_path +'libs/jquery.htmlClean-min.js');
+    $.getScript(farfalla_path +'libs/jquery.htmlClean-min.js');
 
     jQuery.expr[':'].hasText = function(element, index) {
        // if there is only one child, and it is a text node
