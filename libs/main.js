@@ -14,9 +14,13 @@ jQuery.noConflict();
 // Main variables
 
         var options = farfalla_ui_options();
-        var sliding = '#farfalla_selection, #farfalla_active, #farfalla_home';
         var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
         var active_plugins = new Array();
+        if($.cookie('farfalla_active_plugins')){
+          var remember_profile = 1
+        } else {
+          var remember_profile = 0
+        }
 
 /*
     #######################################
@@ -108,7 +112,7 @@ jQuery.noConflict();
       return xpath;
     }
 
-$('#farfalla_home').hide();
+//$('#farfalla_home').hide();
 
 /*
     #######################################
@@ -145,7 +149,10 @@ $('#farfalla_home').hide();
 //            $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
 //            $('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','farfalla_remember_profile').addClass('plugin_activator ui-corner-all').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
+
+
 //            $('<ul></ul>').appendTo('#farfalla_buttons');
             $('<a></a>').attr({
             	'id':'farfalla_home_link',
@@ -188,8 +195,29 @@ $('#farfalla_home').hide();
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
               });
+              
+            $('#farfalla_remember_profile').toggle(
+              function() {
+				farfalla_remember_profile();
+				remember_profile = 1;
+				$(this).css('background','#fff');
+              },
+              function() {
+                farfalla_forget_profile();
+                remember_profile = 0;
+				$(this).css('background','#333');
+              }
+            );
         };
 
+        function farfalla_remember_profile() {
+          $.cookie('farfalla_active_plugins', active_plugins, { expires: 7 })
+          console.log(active_plugins)
+        }
+
+        function farfalla_forget_profile() {
+          $.cookie('farfalla_active_plugins',null)
+        }
 
         // Adds the profile selection form
 
@@ -420,16 +448,6 @@ $('#farfalla_home').hide();
             }
         }
 
-        // Hide the toolbar
-/*
-        function farfalla_hide_toolbar(value) {
-            if(value != 1){
-                $(sliding).hide('slow');
-                $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{} );
-            }
-        };
-*/
-
         // Track activated/deactivated plugins for consistent browsing in different pages
 
         function farfalla_track_plugins(id, value) {
@@ -438,23 +456,36 @@ $('#farfalla_home').hide();
           } else {
             active_plugins.splice(active_plugins.indexOf(name),1);
           }
+          if(remember_profile==1){
+            farfalla_remember_profile()
+          }
           $.farfalla_set_option('active_plugins',active_plugins);
         }
 
         function farfalla_autoactivate_plugins() {
 
-          $.farfalla_get_option('active_plugins', function(data){
+          if($.cookie('farfalla_active_plugins')!=null){
+console.log($.cookie('farfalla_active_plugins'));
+            active = $.cookie('farfalla_active_plugins').split(',')
+            $.each(active, function(index, value){
+              $('#plugin_'+value).click();
+            })
 
-            if(data.value){
-            console.log(data.value.split(','))
-              active = data.value.split(',')
-              $.each(active, function(index, value){
-//                console.log($('#'+value+'Activator'));
-                $('#plugin_'+value).click();
-              })
-            }
+            $('#farfalla_remember_profile').click();            
+console.log('cookie button reactivated')
+          } else {
 
-          })
+            $.farfalla_get_option('active_plugins', function(data){
+
+              if(data.value){
+                active = data.value.split(',')
+                $.each(active, function(index, value){
+                  $('#plugin_'+value).click();
+                })
+              }
+              
+            })
+          }
 
         }
 

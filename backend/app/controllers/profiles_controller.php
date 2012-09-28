@@ -41,7 +41,7 @@ class ProfilesController extends AppController {
 	}
 
 	function reset() {
-		$this->Session->delete('id');
+		$this->Session->delete('active_plugins');
 		$this->layout = 'ajax';
 	    $this->RequestHandler->setContent('json', 'text/x-json');
 	}

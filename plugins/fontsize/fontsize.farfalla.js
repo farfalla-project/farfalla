@@ -40,13 +40,13 @@ jQuery.noConflict();
           var mozval = 'scale('+val+')';
 
           $('body').css({
-            'zoom': val,
-            '-moz-transform': mozval,
-            '-moz-transform-origin': '0 0'
+            'zoom': val
+            ,'-moz-transform': mozval
+//            ,'-moz-transform-origin': '0 0'
           });
 
 
-		  $('html').css({'width':$(window).width()+'px'});
+		  $('body').css({'width':$(window).width()+'px'});
 
           console.log($(window).width());
 
@@ -64,9 +64,9 @@ jQuery.noConflict();
 
           $('body').css({
             'zoom': val,
-            '-moz-transform': mozval,
-            '-moz-transform-origin': '0 0',
-            'width':'100%'
+            '-moz-transform': mozval
+//            '-moz-transform-origin': '0 0',
+//            'width':'100%'
           });
 
           $.farfalla_set_option('increase',increase);
@@ -78,8 +78,8 @@ jQuery.noConflict();
 
           $('body').css({
             'zoom': 0,
-            '-moz-transform': 'scale(1)',
-            '-moz-transform-origin': '0 0'
+            '-moz-transform': 'scale(1)'
+//            '-moz-transform-origin': '0 0'
           }); 
           increase=0;
           $.farfalla_set_option('increase',increase);
@@ -101,8 +101,8 @@ jQuery.noConflict();
         var mozval = 'scale('+val+')';
         $('body').css({
           'zoom': val,
-          '-moz-transform': mozval,
-          '-moz-transform-origin': '0 0'
+          '-moz-transform': mozval
+//          '-moz-transform-origin': '0 0'
         });
 
         if(data.value){    
@@ -120,8 +120,8 @@ jQuery.noConflict();
       $('#fontsize_options').hide();
       $('body').css({
         'zoom': 0,
-        '-moz-transform': 'scale(1)',
-        '-moz-transform-origin': '0 0'
+        '-moz-transform': 'scale(1)'
+//        '-moz-transform-origin': '0 0'
       }); 
       
     }

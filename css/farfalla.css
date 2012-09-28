@@ -48,6 +48,7 @@ body{
 		width: 42px;
 		height: 42px; 
         display:block;
+        float:left;
 	}
 	
 	#farfalla_logo img{
