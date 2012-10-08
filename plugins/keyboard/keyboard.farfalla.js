@@ -101,8 +101,8 @@ jQuery.widget('ui.keyboard', {
                 '{sp:.5} A S D F G H J K L : " {return}'],
             ['{sp:1} z x c v b n m , . / {shift}',
                 '{sp:1} Z X C V B N M < > ? {shift}' ],
-            ['{accept} {space} {cancel} {bksp} {empty}',
-                '{accept} {space} {cancel} {bksp} {empty}']
+            ['{clear} {space} {cancel} {bksp} {accept}',
+                '{clear} {space} {cancel} {bksp} {accept}']
         ],
         "alpha": [
             ['1 2 3 4 5 6 7 8 9 0 - = `',
@@ -113,8 +113,8 @@ jQuery.widget('ui.keyboard', {
                 '{sp:.5} K L M N O P Q R S : " {return}'],
             ['{sp:1} t u v w x y z , . / {shift}',
                 '{sp:1} T U V W X Y Z < > ? {shift}' ],
-            ['{accept} {space} {cancel} {bksp} {empty}',
-                '{accept} {space} {cancel} {bksp} {empty}']
+            ['{clear} {space} {cancel} {bksp} {accept}',
+                '{clear} {space} {cancel} {bksp} {accept}']
         ],
         "dvorak": [
             ['1 2 3 4 5 6 7 8 9 0 [ ] `',
@@ -125,8 +125,8 @@ jQuery.widget('ui.keyboard', {
                 '{sp:.5} A O E U I D H T N S _ {return}'],
             ['{sp:1} ; q j k x b m w v z {shift}',
                 '{sp:1} : Q J K X B M W V Z {shift}' ],
-            ['{accept} {space} {cancel} {bksp} {empty}',
-                '{accept} {space} {cancel} {bksp} {empty}']
+            ['{clear} {space} {cancel} {bksp} {accept}',
+                '{clear} {space} {cancel} {bksp} {accept}']
         ],
         "num": [
             ['1 2 3 {bksp}'],
@@ -296,10 +296,10 @@ jQuery.widget('ui.keyboard', {
                                 })
                                 .appendTo(newSet);
              
-                        }else if(action == 'empty'){
+                        }else if(action == 'clear'){
                             actionKey.clone()
-                                .attr('name','key_empty')
-                                .attr('value','Empty')
+                                .attr('name','key_clear')
+                                .attr('value','Clear')
                                 .click(function(){
                                     previewInput.attr('value','');
                                 })

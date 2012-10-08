@@ -7,9 +7,7 @@ jQuery.noConflict();
 
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui-1.7.2.custom.css').prependTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
-
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.css').appendTo('head');
-
 
 // Main variables
 
@@ -30,10 +28,51 @@ jQuery.noConflict();
     #######################################
 */
 
+    // Add plugin configuration area
+
+    $.farfalla_create_plugin_options = function ( div_id ){
+
+      $('<div></div>')
+        .attr({
+          'id': div_id,
+          'class':'plugin_options'
+        })
+        .hide()
+        .appendTo('#farfalla_toolbar');
+
+      $('<div></div>')
+        .attr({
+          'id': div_id+'_actions',
+          'class':'plugin_options_actions'
+        })
+        .appendTo('#'+div_id)
+        
+
+      $('<input />')
+        .attr({
+          'id':div_id+'_confirm',
+          'class':'plugin_options_confirm',
+          'type':'button',
+          'value':'V'
+        })
+        .appendTo('#'+div_id+'_actions')
+
+      $('<input />')
+        .attr({
+          'id':div_id+'_deactivate',
+          'class':'plugin_options_deactivate',
+          'type':'button',
+          'value':'X'
+        })
+        .appendTo('#'+div_id+'_actions')
+
+    }
+
+
     // Add plugin-specific UI
     // ...
 
-    $.fn.farfalla_add_ui = function( plugin_name, type, name, value, callback ){
+    $.farfalla_add_ui = function( plugin_name, type, name, value, callback ){
       console.log('Adding UI for '+plugin_name);
       switch(type){
         case 'slider':
@@ -47,6 +86,8 @@ jQuery.noConflict();
         break;
       }
     }
+    
+    
 
     // A function for adding buttons to the toolbar
     // name -> text displayed on the button
@@ -146,12 +187,19 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_container').prependTo('body');
             $('<div></div>').attr('id','farfalla_badge').addClass('ui-corner-left').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
-//            $('<div></div>').attr('id','farfalla_logo').appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','farfalla_logo')
+              .html('<h1><a href="http://farfalla-project.org/">Farfalla project</a></h1><p>Accessibility preferences</p>')
+              .appendTo('#farfalla_toolbar');
 //            $('<div></div>').attr('id','farfalla_buttons').hide().appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_remember_profile').addClass('plugin_activator ui-corner-all').appendTo('#farfalla_toolbar');
-            $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
+//            $('<div></div>').attr('id','farfalla_home').appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
 
+            $('#farfalla_toolbar_shade').click( function() {
+              $(this).hide();
+              $('.plugin_options').hide();
+            });
 
 //            $('<ul></ul>').appendTo('#farfalla_buttons');
             $('<a></a>').attr({
@@ -270,11 +318,11 @@ jQuery.noConflict();
                       $('#plugin_'+plugin.id).qtip({
                         content :  plugin.name,
                         position: {
-                          my: 'center right',
-                          at: 'center left',
+                          my: 'top center',
+                          at: 'bottom center',
                           target: $('#plugin_'+plugin.id)
                         },
-                          style: 'ui-tooltip-dark'
+                        style: 'ui-tooltip-dark'
                       }).click( function(){
                         $('#'+plugin.name+'Activator').click();
 
@@ -412,6 +460,10 @@ jQuery.noConflict();
                 farfalla_set_top(options.top);
               }
 
+              if(data.show==1) {
+                $('#farfalla_badge').click()
+              }
+
               farfalla_toolbar_populate();
 
             })
@@ -424,16 +476,20 @@ jQuery.noConflict();
 
             $('#farfalla_badge').toggle(
               function() {
-                $('#farfalla_container').animate({'width':'100px'})
+                $('#farfalla_container').animate({'width':'360px'})
                 $('#farfalla_toolbar').show('fast');
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
                 $('#farfalla_container').animate({'width':'0'})
                 $('#farfalla_toolbar').hide('fast');
+                $('.plugin_options').hide();
+                $('#farfalla_toolbar_shade').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
             );
+
+
 
         }
 
@@ -447,6 +503,7 @@ jQuery.noConflict();
                 $('#farfalla_badge').css('top','200px');
             }
         }
+
 
         // Track activated/deactivated plugins for consistent browsing in different pages
 

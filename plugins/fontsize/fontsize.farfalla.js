@@ -6,15 +6,11 @@ jQuery.noConflict();
   $(function() {
 
 
-    $('<div></div>')
-     .attr({
-       'id':'fontsize_options',
-       'class':'plugin_options'
-     })
-     .hide()
-     .appendTo('body');
 
-      $.farfalla_get_option('increase', function(data){
+
+    $.farfalla_create_plugin_options('fontsize_options');
+
+    $.farfalla_get_option('increase', function(data){
 
         var increase = 0
 
@@ -33,7 +29,7 @@ jQuery.noConflict();
         }
 
         // Increase Font Size
-        $('#fontsize').farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
+        $.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
 
           increase+=1;
           var val= 1+(0.1*increase)
@@ -56,7 +52,7 @@ jQuery.noConflict();
         });
 
         // Decrease Font Size
-        $('#fontsize').farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
+        $.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
      
           increase+=-1;
           var val= 1+(0.1*increase)
@@ -74,7 +70,8 @@ jQuery.noConflict();
         });
      
         // Reset Font Size
-        $('#fontsize').farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
+/*
+        $.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
 
           $('body').css({
             'zoom': 0,
@@ -86,7 +83,7 @@ jQuery.noConflict();
           return increase;
 
         });
-
+*/
    
       });
 
@@ -109,8 +106,9 @@ jQuery.noConflict();
           var increase = parseFloat(data.value);
         }
 
-        $('#fontsize_options').fadeIn('slow');
-
+        $('#fontsize_options').fadeIn('fast');
+        $('#farfalla_toolbar_shade').show();
+        
       });
      
     }
@@ -118,25 +116,46 @@ jQuery.noConflict();
     $.fontsize_off = function () {
 
       $('#fontsize_options').hide();
+      $('#farfalla_toolbar_shade').hide();
       $('body').css({
         'zoom': 0,
         '-moz-transform': 'scale(1)'
-//        '-moz-transform-origin': '0 0'
       }); 
       
     }
+    
+    $('#fontsize_options_deactivate').click( function() {
+
+      $('#fontsizeActivator').parent('div').click()
+
+    });
+
+    $('#fontsize_options_confirm').click( function() {
+
+      $('#fontsize_options').hide();
+      $('#farfalla_toolbar_shade').hide();
+
+    });
+
+
    
     $.fontsize_on()
 
     $('#fontsizeActivator').click( function(){
+ 
       if($(this).attr('checked')=='checked'){
+
         $.fontsize_on()
-        
+
       } else {
+
         $.fontsize_off()
+
       }
+ 
     });
 
-    
+
+
   });
 })(jQuery);

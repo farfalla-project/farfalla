@@ -1,8 +1,8 @@
 /* CORE */
 html{
-	padding: 0;
-	margin: 0;
-	top: 0;
+  padding: 0;
+  margin: 0;
+  top: 0;
 }
 
 body{
@@ -17,119 +17,131 @@ body{
   display: block;
   background: #000;
   z-index: 1000;
+  border-left: 2px solid #fff;
 }
 
 #farfalla_badge{
   position: fixed;
   top: 200px;
-  margin-left: -40px;
+  margin-left: -42px;
   display: block;
   width: 40px;
   height: 120px;
   background: url('../images/farfalla_badge_eng.png') #000;
   z-index: 1001;
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+
 }
 
 #farfalla_toolbar{
-	font-family: Helvetica, Calibri, sans; 
-	background: #000;
-	color: #fff;
-	margin: 20px;
-	position: absolute;
-	top: 0;
+  position: fixed;
+  font-family: Helvetica, Calibri, sans; 
+  background: #000;
+  color: #fff;
+  margin: 20px;
+  position: absolute;
+  top: 0;
 }
 
     #farfalla_toolbar_margin{
         display:block;
         width:4px;
     }
-		
-	#farfalla_logo, #farfalla_home{
-		width: 42px;
-		height: 42px; 
+    
+
+  #farfalla_logo{
+      width: 100%;
+      display: block;
+  }
+
+    #farfalla_home{
+    width: 42px;
+    height: 42px; 
         display:block;
         float:left;
-	}
-	
-	#farfalla_logo img{
-		border: none;
-		padding: 2px 2px 2px 6px;
-		margin: auto;
-	}
-	
-	#farfalla_home a img{
-		border: none;
-		padding: 2px;
-		margin: 0px;
-	}
+  }
+  
+  #farfalla_logo img{
+    border: none;
+    padding: 2px 2px 2px 6px;
+    margin: auto;
+  }
+  
+  #farfalla_home a img{
+    border: none;
+    padding: 2px;
+    margin: 0px;
+  }
 
-	#farfalla_active{
-		display: block;
-		float: left;
-	}
+  #farfalla_active{
+    display: block;
+    float: left;
+  }
 
-		#farfalla_active ul{
-			list-style: none;
-			display: block;
-			float: left;
-			padding: 0;
-			margin:0;
-			top:0;
-		}
-
-		#farfalla_active ul li{
-			display: inline;
-			float: left;
-			padding: 1ex; 
-			margin:0;
-			color: #fff;
-		}
-
-	#farfalla_toolbar_accordion h3 a:visited{
-	  color: #fff;
-	}
-	
-	#farfalla_toolbar_accordion .ui-accordion-content{
-	  background:#333;
-	  color: #fff;
-	}
-    #farfalla_toolbar_accordion .ui-accordion-header{
-	  background:#000;
+    #farfalla_active ul{
+      list-style: none;
+      display: block;
+      float: left;
+      padding: 0;
+      margin:0;
+      top:0;
     }
 
-	#farfalla_buttons ul, #farfalla_buttons ul li{
+    #farfalla_active ul li{
+      display: inline;
+      float: left;
+      padding: 1ex; 
+      margin:0;
+      color: #fff;
+    }
+
+  #farfalla_toolbar_accordion h3 a:visited{
+    color: #fff;
+  }
+  
+  #farfalla_toolbar_accordion .ui-accordion-content{
+    background:#333;
+    color: #fff;
+  }
+    #farfalla_toolbar_accordion .ui-accordion-header{
+    background:#000;
+    }
+
+  #farfalla_buttons ul, #farfalla_buttons ul li{
       list-style: none;
       display: inline;
       padding: 0;
-	}
-	
-	#farfalla_buttons ul li input{
-/* 	  height: 80%; */
-	  margin: 3px 2px;
+  }
+  
+  #farfalla_buttons ul li input{
+/*     height: 80%; */
+    margin: 3px 2px;
       background: #fff;
       border: 0;
       font-size: 18pt !important;
       font-weight: bold;
       width: auto !important;
       height: auto;
-	}
+  }
 
-/*		#farfalla_buttons ul li img{
-		padding: 4px; 
-		cursor: pointer;
-		}*/
+/*    #farfalla_buttons ul li img{
+    padding: 4px; 
+    cursor: pointer;
+    }*/
 
 #highlighter{
-	border: 6px solid red;
-	/*display:none;*/
-	margin: 0;
-	position: absolute;
-	z-index: 900;
+  border: 6px solid red;
+  /*display:none;*/
+  margin: 0;
+  position: absolute;
+  z-index: 900;
 }
 
 .callout {
     position: absolute;
-	font-family:arial;
+  font-family:arial;
     padding: 5px;
     border: 2px solid #000;
     background-color: #666;
@@ -206,7 +218,7 @@ clear: both;
 color: #fff;
 }
 
-.monitor *	{
+.monitor *  {
 color: #fff;
 }
 
@@ -285,7 +297,7 @@ float:left;
   width: 42px;
   height: 42px;
   background: #333;
-  margin: 2px;
+  margin: 20px;
   float:left;
   border:1px solid #fff;
 }
@@ -299,12 +311,46 @@ float:left;
 }
 
 .plugin_options {
-  position: absolute;
+  position: fixed;
   z-index: 1100;
-  margin: 0 40%;
-  background: #000;
-  top: 100px;
-  border: 1px solid #fff;
-  padding: 1em;
+  background: #fff;
+  padding: 12px;
+  display:block;
+  width: 200px;
+  height: 200px;
+  margin: auto 50px;
+/*
+  -webkit-box-shadow:inset 0 0 45px #383838;
+  -moz-box-shadow:inset 0 0 45px #383838;
+  box-shadow:inset 0 0 45px #383838;
+*/
 }
+
+#farfalla_toolbar_shade {
+  position: fixed;
+  z-index: 1000;
+  margin: 0;
+  background: #000;
+  padding: 0;
+  display:block;
+  width: 100%;
+  height: 100%;
+  float:left;
+  margin: 0;
+  margin-left: -14px;
+  top: 0;
+  -moz-opacity:.80; filter:alpha(opacity=80); opacity:.80;
+}
+
+.plugin_options_actions{
+  position: relative;
+  top: 140px;
+  width: 100%;
+  text-align: center;
+}
+
+.plugin_options_actions input{
+  margin: 20px;
+}
+
 
