@@ -5,9 +5,9 @@ jQuery.noConflict();
 
 // Inclusion of the needed css stylesheets
 
-    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui-1.7.2.custom.css').prependTo('head');
+    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui.custom.min.css').prependTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
-    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.css').appendTo('head');
+    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.min.css').appendTo('head');
 
 // Main variables
 
@@ -322,7 +322,10 @@ jQuery.noConflict();
                           at: 'bottom center',
                           target: $('#plugin_'+plugin.id)
                         },
-                        style: 'ui-tooltip-dark'
+                        style: {
+                          classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
+                          width: 'auto'
+                        }
                       }).click( function(){
                         $('#'+plugin.name+'Activator').click();
 

@@ -10,21 +10,27 @@ jQuery.noConflict();
 
     $.farfalla_create_plugin_options('fontsize_options');
 
-    $.farfalla_get_option('increase', function(data){
-
-        var increase = 0
-
-        // restore font size on plugin load
-
-        var val = 1+(0.1*data.value);
+    $.farfalla_change_size = function (val) {
         var mozval = 'scale('+val+')';
         $('body').css({
           'zoom': val,
           '-moz-transform': mozval,
           '-moz-transform-origin': '0 0'
         });
+        $('body').width($(window).width()/val);
+    }
 
-        if(data.value){    
+    $.farfalla_get_option('increase', function(data){
+
+        var increase = 0
+
+        // restore font size on plugin load
+
+        var value = 1+(0.1*data.value);
+
+        $.farfalla_change_size(value);
+
+        if(data.value){
           var increase = parseFloat(data.value);
         }
 
@@ -32,20 +38,9 @@ jQuery.noConflict();
         $.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
 
           increase+=1;
-          var val= 1+(0.1*increase)
-          var mozval = 'scale('+val+')';
+          var value= 1+(0.1*increase)
 
-          $('body').css({
-            'zoom': val
-            ,'-moz-transform': mozval
-//            ,'-moz-transform-origin': '0 0'
-          });
-
-
-		  $('body').css({'width':$(window).width()+'px'});
-
-          console.log($(window).width());
-
+          $.farfalla_change_size(value);
 
           $.farfalla_set_option('increase',increase);
           return increase;
@@ -55,15 +50,9 @@ jQuery.noConflict();
         $.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
      
           increase+=-1;
-          var val= 1+(0.1*increase)
-          var mozval = 'scale('+val+')';
+          var value= 1+(0.1*increase)
 
-          $('body').css({
-            'zoom': val,
-            '-moz-transform': mozval
-//            '-moz-transform-origin': '0 0',
-//            'width':'100%'
-          });
+          $.farfalla_change_size(value);
 
           $.farfalla_set_option('increase',increase);
           return increase;
@@ -95,12 +84,8 @@ jQuery.noConflict();
         // restore font size on plugin activation
 
         var val = 1+(0.1*data.value);
-        var mozval = 'scale('+val+')';
-        $('body').css({
-          'zoom': val,
-          '-moz-transform': mozval
-//          '-moz-transform-origin': '0 0'
-        });
+
+        $.farfalla_change_size();
 
         if(data.value){    
           var increase = parseFloat(data.value);
@@ -121,7 +106,8 @@ jQuery.noConflict();
         'zoom': 0,
         '-moz-transform': 'scale(1)'
       }); 
-      
+	  $('body').width("");
+
     }
     
     $('#fontsize_options_deactivate').click( function() {
