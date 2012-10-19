@@ -153,6 +153,15 @@ jQuery.noConflict();
       return xpath;
     }
 
+    $.fn.farfalla_switch_on = function () {
+      $(this).parent('div').css('background','#fff')
+    }
+
+    $.fn.farfalla_switch_off = function () {
+      $(this).parent('div').css('background','#333')
+    }
+
+
 //$('#farfalla_home').hide();
 
 /*
@@ -328,11 +337,13 @@ jQuery.noConflict();
                         }
                       }).click( function(){
                         $('#'+plugin.name+'Activator').click();
-
-                      }).toggle(
-                        function(){$(this).css('background','#fff')},
-                        function(){$(this).css('background','#333')}
+                      })
+/*
+                      .toggle(
+                        function(){$(this).farfalla_switch_on()},
+                        function(){$(this).farfalla_switch_off()}
                       )
+*/
 
                       if(plugin.visible==0){
                         $('#plugin_'+plugin.id).hide()
@@ -479,12 +490,12 @@ jQuery.noConflict();
 
             $('#farfalla_badge').toggle(
               function() {
-                $('#farfalla_container').animate({'width':'360px'})
+                $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/})
                 $('#farfalla_toolbar').show('fast');
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
-                $('#farfalla_container').animate({'width':'0'})
+                $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/})
                 $('#farfalla_toolbar').hide('fast');
                 $('.plugin_options').hide();
                 $('#farfalla_toolbar_shade').hide();

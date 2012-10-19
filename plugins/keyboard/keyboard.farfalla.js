@@ -403,6 +403,8 @@ jQuery.widget('ui.keyboard', {
     var keyboards;
 
     $.keyboard_on = function () {
+
+      $('#keyboardActivator').farfalla_switch_on();
     
       if (keyboards) {
         keyboards.hide().appendTo('body');
@@ -465,6 +467,7 @@ jQuery.widget('ui.keyboard', {
     }
 
     $.keyboard_off = function () {
+      $('#keyboardActivator').farfalla_switch_off();
       keyboards = $('.ui-keyboard').detach()
     }
 

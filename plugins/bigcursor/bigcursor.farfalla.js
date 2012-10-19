@@ -13,12 +13,14 @@ jQuery.noConflict();
     }).appendTo($('head'));
 
     $.bigcursor_on = function () {
+      $('#bigcursorActivator').farfalla_switch_on();
       $('html').addClass('farfalla_bigcursor_arrow');
       $('a, input').addClass('farfalla_bigcursor_pointer');
     };
 
 
     $.bigcursor_off = function () {
+      $('#bigcursorActivator').farfalla_switch_off()
       $('html').removeClass('farfalla_bigcursor_arrow');
       $('a, input').removeClass('farfalla_bigcursor_pointer');
     };

@@ -21,6 +21,8 @@ jQuery.noConflict();
 
     $.magnifier_on = function () {
 
+      $('#magnifierActivator').farfalla_switch_on();
+
 //      $('<div id="farfalla_debug"></div>').appendTo('body');
 
 
@@ -155,6 +157,7 @@ jQuery.noConflict();
     
     $.magnifier_off = function () {
 
+      $('#magnifierActivator').farfalla_switch_off();
        mags = $('#monitor, #highlighter').detach();
        $('html').unbind('keydown');
 

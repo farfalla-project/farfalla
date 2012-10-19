@@ -18,6 +18,8 @@ jQuery.noConflict();
 
       $.clarifier_on = function () {
 
+        $('#clarifierActivator').farfalla_switch_on();
+
         // Set <html> background color to cream, but only in case it is white
 
         if($('html').css('background-color')=='transparent'||$('html').css('background-color')=='rgba(0, 0, 0, 0)'){
@@ -62,6 +64,7 @@ jQuery.noConflict();
 
       $.clarifier_off = function () {
 
+        $('#clarifierActivator').farfalla_switch_off();
         $('*').removeClass('creamBackground');
         $('input, textarea').removeClass('inputClarifier');
         $('*').removeClass('fontClarifier');
