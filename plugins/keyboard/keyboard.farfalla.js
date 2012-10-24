@@ -404,7 +404,7 @@ jQuery.widget('ui.keyboard', {
 
     $.keyboard_on = function () {
 
-      $('#keyboardActivator').farfalla_switch_on();
+      $('#keyboardActivator').farfalla_switch_on('keyboard');
     
       if (keyboards) {
         keyboards.hide().appendTo('body');
@@ -467,18 +467,17 @@ jQuery.widget('ui.keyboard', {
     }
 
     $.keyboard_off = function () {
-      $('#keyboardActivator').farfalla_switch_off();
+      $('#keyboardActivator').farfalla_switch_off('keyboard');
       keyboards = $('.ui-keyboard').detach()
     }
 
     $.keyboard_on()
 
     $('#keyboardActivator').click( function(){
-      if($(this).attr('checked')=='checked'){
-        $.keyboard_on()
-        
-      } else {
+      if($(this).hasClass('active')){
         $.keyboard_off()
+      } else {
+        $.keyboard_on()
       }
     });
 

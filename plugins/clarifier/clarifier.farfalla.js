@@ -18,7 +18,7 @@ jQuery.noConflict();
 
       $.clarifier_on = function () {
 
-        $('#clarifierActivator').farfalla_switch_on();
+        $('#clarifierActivator').farfalla_switch_on('clarifier');
 
         // Set <html> background color to cream, but only in case it is white
 
@@ -64,7 +64,7 @@ jQuery.noConflict();
 
       $.clarifier_off = function () {
 
-        $('#clarifierActivator').farfalla_switch_off();
+        $('#clarifierActivator').farfalla_switch_off('clarifier');
         $('*').removeClass('creamBackground');
         $('input, textarea').removeClass('inputClarifier');
         $('*').removeClass('fontClarifier');
@@ -80,10 +80,10 @@ jQuery.noConflict();
     $.clarifier_on()
 
     $('#clarifierActivator').click( function(){
-      if($(this).attr('checked')=='checked'){
-        $.clarifier_on()
-      } else {
+      if($(this).hasClass('active')){
         $.clarifier_off()
+      } else {
+        $.clarifier_on()
       }
     });
 

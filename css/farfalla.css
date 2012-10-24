@@ -18,6 +18,9 @@ body{
   background: #000;
   z-index: 1000;
   border-left: 2px solid #fff;
+  -webkit-box-shadow: 0 0 6px #383838;
+  -moz-box-shadow: 0 0 6px #383838;
+  box-shadow: 0 0 6px #383838;
 }
 
 #farfalla_badge{
@@ -28,11 +31,13 @@ body{
   width: 40px;
   height: 120px;
   background: url('../images/farfalla_badge_eng.png') #000;
-  z-index: 1001;
+  z-index: 1010;
   border-left: 2px solid #fff;
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;
-
+  -webkit-box-shadow: 0 0 6px #383838;
+  -moz-box-shadow: 0 0 6px #383838;
+  box-shadow: 0 0 6px #383838;
 }
 
 #farfalla_toolbar{
@@ -309,12 +314,10 @@ float:left;
 
 .plugin_activator{
   display: block;
-  width: 42px;
-  height: 42px;
-  background: #333;
+  width: 52px;
+  height: 52px;
   margin: 20px;
   float:left;
-  border:1px solid #fff;
 }
 
 .plugin_activator_label{
@@ -322,7 +325,7 @@ float:left;
 }
 
 .plugin_activator input{
-  display: none;
+/*  display: none; */
 }
 
 .plugin_options {
@@ -355,3 +358,6 @@ float:left;
 }
 
 
+.active{
+  background: #fff;
+}

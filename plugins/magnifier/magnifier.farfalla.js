@@ -21,7 +21,7 @@ jQuery.noConflict();
 
     $.magnifier_on = function () {
 
-      $('#magnifierActivator').farfalla_switch_on();
+      $('#magnifierActivator').farfalla_switch_on('magnifier');
 
 //      $('<div id="farfalla_debug"></div>').appendTo('body');
 
@@ -157,7 +157,7 @@ jQuery.noConflict();
     
     $.magnifier_off = function () {
 
-      $('#magnifierActivator').farfalla_switch_off();
+      $('#magnifierActivator').farfalla_switch_off('magnifier');
        mags = $('#monitor, #highlighter').detach();
        $('html').unbind('keydown');
 
@@ -166,10 +166,10 @@ jQuery.noConflict();
     $.magnifier_on()
 
     $('#magnifierActivator').click( function(){
-      if($(this).attr('checked')=='checked'){
-        $.magnifier_on()
-      } else {
+      if($(this).hasClass('active')){
         $.magnifier_off()
+      } else {
+        $.magnifier_on()
       }
     });
 
