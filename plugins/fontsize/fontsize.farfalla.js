@@ -10,6 +10,14 @@ jQuery.noConflict();
 
     $.farfalla_create_plugin_options('fontsize_options');
 
+    var position = $('#fontsizeActivator').position();
+    var width = $('#fontsize_options').width();
+
+    $('#fontsize_options').css({
+      'top' : position.top+20,
+      'left' : position.left-width
+    });
+
     $.farfalla_change_size = function (val) {
         var mozval = 'scale('+val+')';
         $('body').css({
@@ -93,7 +101,7 @@ jQuery.noConflict();
           var increase = parseFloat(data.value);
         }
 
-        $('#fontsize_options').fadeIn('fast');
+        $('#fontsize_options').show('fast');
         $('#farfalla_toolbar_shade').show();
         
       });
@@ -119,13 +127,14 @@ jQuery.noConflict();
 
     });
 
+/*
     $('#fontsize_options_confirm').click( function() {
 
       $('#fontsize_options').hide();
       $('#farfalla_toolbar_shade').hide();
 
     });
-
+*/
 
    
     $.fontsize_on();

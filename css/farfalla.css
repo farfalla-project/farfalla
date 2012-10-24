@@ -330,31 +330,29 @@ float:left;
 
 .plugin_options {
   position: absolute;
-  z-index: 1100;
+/*  padding: 12px;*/
   background: #fff;
-  padding: 12px;
   display:block;
-  width: 200px;
-  height: 200px;
-  margin: auto 50px;
-/*
-  -webkit-box-shadow:inset 0 0 45px #383838;
-  -moz-box-shadow:inset 0 0 45px #383838;
-  box-shadow:inset 0 0 45px #383838;
-*/
+  height: 52px;
+  z-index: 1200;
 }
 
-
+.plugin_options input{
+  width:42px;
+  height:42px;
+  margin:5px;
+}
 
 .plugin_options_actions{
-  position: relative;
+/*  position: relative;
   top: 140px;
   width: 100%;
-  text-align: center;
+  text-align: center;*/
+  display:inline;
 }
 
 .plugin_options_actions input{
-  margin: 20px;
+/*  margin: 20px;*/
 }
 
 
