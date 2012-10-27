@@ -8,15 +8,7 @@ jQuery.noConflict();
 
 
 
-    $.farfalla_create_plugin_options('fontsize_options');
-
-    var position = $('#fontsizeActivator').position();
-    var width = $('#fontsize_options').width();
-
-    $('#fontsize_options').css({
-      'top' : position.top+20,
-      'left' : position.left-width
-    });
+    $.farfalla_create_plugin_options('fontsize');
 
     $.farfalla_change_size = function (val) {
         var mozval = 'scale('+val+')';

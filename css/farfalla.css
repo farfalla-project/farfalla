@@ -1,8 +1,10 @@
 /* CORE */
 html{
+/*
   padding: 0;
   margin: 0;
   top: 0;
+*/
 }
 
 body{
@@ -74,13 +76,19 @@ body{
   #farfalla_logo{
       width: 100%;
       display: block;
+      text-align: center;
   }
 
-    #farfalla_home{
+  #farfalla_logo a:link, #farfalla_logo a:visited{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  #farfalla_home{
     width: 42px;
     height: 42px; 
-        display:block;
-        float:left;
+    display:block;
+    float:left;
   }
   
   #farfalla_logo img{
@@ -320,6 +328,14 @@ float:left;
   float:left;
 }
 
+#farfalla_remember_profile{
+  display: block;
+  width: 52px;
+  height: 52px;
+  margin: 20px;
+  float:right;
+}
+
 .plugin_activator_label{
   display:none;
 }
@@ -358,4 +374,11 @@ float:left;
 
 .active{
   background: #fff;
+}
+
+.farfalla_toolbar_separator{
+  border-top: 2px solid #fff;
+  width: 100%;
+  display:block;
+  clear: both;
 }

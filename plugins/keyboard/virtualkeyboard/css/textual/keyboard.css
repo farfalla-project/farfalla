@@ -1,0 +1,320 @@
+html.VirtualKeyboardPopup, body.VirtualKeyboardPopup {
+        padding: 0;
+        margin: 0;
+}
+
+#virtualKeyboard {
+        border: 1px solid #686888;
+        background: #ECE9D8;
+        height: 173px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 428px;
+}
+/*
+*  global overrides
+*/
+#virtualKeyboard * {
+        border: 0;
+        color: black; 
+        cursor: default;
+        margin: 0;
+        padding: 0;
+}
+#virtualKeyboard #kbDesk {
+        display: inline-block;
+        margin: 4px 2px 0 4px;
+        padding: 0;
+        position: relative;
+        font-size: 1px;
+        overflow: hidden;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+}
+
+#virtualKeyboard #kbDesk div.kbButton {
+        float: left;
+        height: 25px;
+        overflow: hidden;
+        padding: 1px 2px 2px 1px;
+        position: relative;
+        width: 25px;
+        z-index: 2;
+}
+#virtualKeyboard #kbDesk div.kbButton a {
+        background: #cfccbe;
+        border: 1px outset #eee;
+        display: block;
+        height: 100%;
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+}
+
+#virtualKeyboard #kbDesk.capsLock div.kbButton span.normal {
+        text-transform: uppercase;
+}
+
+#virtualKeyboard #kbDesk div.kbButtonHover a {
+        background: #f0eddd;
+        border-color: #000;
+}
+#virtualKeyboard #kbDesk div.kbButtonDown a {
+        border-style: inset;
+}
+#virtualKeyboard #kbDesk div.kbButton span {
+        display: block;
+        font-family: Verdana;
+        font-size: 13px;
+        font-weight: normal;
+        overflow: visible;
+        text-align: center;
+}
+
+#virtualKeyboard #kbDesk div.kbButton span.title {
+        text-transform: capitalize;
+        font-size: 10px !important;
+        line-height: 22px;
+}
+
+#virtualKeyboard #kbDesk div.kbButton span.shifted,
+#virtualKeyboard #kbDesk div.kbButton span.alted {
+        color: green;
+        font-size: 6pt;
+        height: 100%;
+        line-height: 1.1;
+        position: absolute;
+        right: -5px;
+        top: 0;
+        text-transform: none;
+        vertical-align: bottom;
+        width: 100%;
+}
+#virtualKeyboard #kbDesk div.kbButton span.alted {
+        color: blue;
+        right: 7px;
+}
+#virtualKeyboard #kbDesk div.kbButton span.normal {
+        position: absolute;
+        bottom: 4px;
+        left: 5px;
+        text-indent: 0;
+}
+#virtualKeyboard #kbDesk span.deadKey {
+        color: red;
+}
+
+#virtualKeyboard #kbDesk div#kb_b13 {
+        float: right;
+        left: -2px;
+        top: 28px;
+        width: 37px;
+}
+
+#virtualKeyboard #kbDesk div#kb_benter {
+        float: right;
+        left: -2px;
+        width: 58px;
+}
+
+#virtualKeyboard #kbDesk div#kb_benter[id] {
+        z-index: 0;
+}
+
+#virtualKeyboard #kbDesk div#kb_bbackspace {
+        width: 53px;
+        float: right;
+        margin-top: -28px;
+        left: -2px
+}
+
+#virtualKeyboard #kbDesk div#kb_btab {
+        width: 41px;
+}
+
+#virtualKeyboard #kbDesk div#kb_bcaps {
+        width: 48px;
+}
+
+#virtualKeyboard #kbDesk div#kb_bshift_left,
+#virtualKeyboard #kbDesk div#kb_bshift_right {
+        width: 52px;
+}
+
+#virtualKeyboard #kbDesk div#kb_balt_left,
+#virtualKeyboard #kbDesk div#kb_balt_right {
+        width: 32px;
+}
+
+#virtualKeyboard #kbDesk div#kb_balt_left {
+        left: 53px;
+        margin-right: 53px;
+}
+
+#virtualKeyboard #kbDesk div#kb_bctrl_left,
+#virtualKeyboard #kbDesk div#kb_bctrl_right {
+        float: left;
+        width: 32px;
+}
+#virtualKeyboard #kbDesk div#kb_bctrl_right {
+        float: right;
+        left: -2px;
+}
+#virtualKeyboard #kbDesk div#kb_bdel {
+        width: 27px;
+}
+#virtualKeyboard #kbDesk div#kb_bspace {
+        width: 166px;
+}
+
+#virtualKeyboard select#kb_langselector,
+#virtualKeyboard select#kb_mappingselector {
+        border: 1px solid black;
+        bottom: 2px;
+        position: absolute;
+        right: 2px;
+        width: 125px;
+}
+#virtualKeyboard select#kb_mappingselector {
+        right: 140px;
+}
+#virtualKeyboard select,
+#virtualKeyboard select option {
+        background: #fff;
+        font-family: Arial, Tahoma, Verdana sans-serif;
+        font-size: 11px;
+}
+#virtualKeyboard select optgroup option {
+        padding-left: 20px;
+}
+
+#virtualKeyboard #copyrights {
+        bottom: 4px;
+        color: blue;
+        font-family: tahoma, verdana, arial;
+        font-size: 9px;
+        left: 2px;
+        line-height: normal;
+        position: absolute;
+}
+#virtualKeyboard #copyrights a {
+        font-size: 9px;
+        color: blue;
+        cursor: default;
+        outline: 0;
+}
+
+/**
+ *
+ *  Styles for the IME field
+ *
+ */
+#VirtualKeyboardIME {
+   background: #ECE9D8;
+   border: 1px outset #eee;
+   position: absolute;
+   z-index: 2;
+}
+#VirtualKeyboardIME div {
+   font-size: 11px;
+}
+#VirtualKeyboardIME table,
+#VirtualKeyboardIME table td {
+   border-collapse: collapse;
+   margin: 0;
+   padding: 0;
+   text-align: right;
+   white-space: nowrap;
+}
+#VirtualKeyboardIME table td.IMEControl {
+   padding: 1px;
+}
+
+#VirtualKeyboardIME td.IMEContent {
+   border-top: 0;
+   border-bottom: 0;
+   margin: 0 12px;
+   overflow: auto;
+   white-space: nowrap;
+}
+#VirtualKeyboardIME td.IMEContent a {
+   background: #cfccbe;
+   border: 1px outset #eee;
+   color: #000;
+   display: block;
+   margin: 0 1px 1px 0;
+   padding: 0;
+   text-decoration: none;
+}
+#VirtualKeyboardIME td.IMEContent a:hover {
+   background: #f0eddd;
+   border-style: inset;
+}
+#VirtualKeyboardIME div.left,
+#VirtualKeyboardIME div.right {
+   border-bottom: 10px solid #ECE9D8;
+   border-top: 10px solid #ECE9D8;
+   font-size: 1px;
+   overflow: hidden;
+}
+#VirtualKeyboardIME div.left {
+   border-left: 0px solid #000;
+   border-right: 10px solid #000;
+}
+#VirtualKeyboardIME div.right {
+   border-left: 10px solid #000;
+   border-right: 0px solid #000;
+}
+#VirtualKeyboardIME td.IMEInfo {
+   height: 13px;
+   vertical-align: middle;
+}
+#VirtualKeyboardIME td.IMEInfo div {
+   position: relative;
+   width: 100%;
+}
+#VirtualKeyboardIME td.IMEInfo div.showAll div.arrow,
+#VirtualKeyboardIME td.IMEInfo div.showPage div.arrow {
+   border-left: 10px solid #ECE9D8;
+   border-right: 10px solid #ECE9D8;
+   top: 2px;
+   left: 50%;
+   margin-left: -10px;
+   overflow: hidden;
+   position: absolute;
+   height: 0;
+   width: 0;
+}
+
+#VirtualKeyboardIME td.IMEInfo div.showAll div.arrow {
+   border-bottom: 0px solid #000;
+   border-top: 10px solid #000;
+}
+#VirtualKeyboardIME td.IMEInfo div.showPage div.arrow {
+   border-bottom: 10px solid #000;
+   border-top: 0px solid #000;
+}
+#VirtualKeyboardIME td.IMEInfo div.IMEPageCounter {
+   float: left;
+   width: auto;
+}
+
+/************************************
+* Place for the locale-dependent styles
+* overload fonts here
+*
+* Language-dependend class name is equal to uppercased language domain code (ZH in zh-CN)
+*/
+#virtualKeyboard #kbDesk.ZH div.kbButton span {
+        font-family: MingLiU, SimSun, "Arial Unicode MS";
+        font-size: 13px;
+}
+#virtualKeyboard #kbDesk.ZH div.kbButton span.alted,
+#virtualKeyboard #kbDesk.ZH div.kbButton span.shifted {
+        font-size: 9px;
+}
+#VirtualKeyboardIME.ZH div.IMEContent {
+        font-family: SimSun, "Arial Unicode MS";
+        font-size: 16px;
+}

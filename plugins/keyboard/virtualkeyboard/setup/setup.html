@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>Virtual Keyboard layouts setup page</title>
+ <script type="text/javascript" src="io.js"></script>
+ <script type="text/javascript" src="../extensions/helpers.js"></script>
+ <script type="text/javascript" src="../extensions/ext/array.js"></script>
+ <script type="text/javascript">
+
+  function cvt () {
+
+      var res = null
+         ,cnt = 0
+         ,tb = document.getElementById('targetkbd').tBodies[0]
+         ,ads = {}
+         ,str = ""
+         ,f = null
+         ,nl = "\n";
+
+      for (var i in layouts) {
+          var el = document.getElementsByName(i)[0];
+          str = "";
+          if (el.checked) {
+              res = layouts[i].getConvertedLayout();
+              if (res.normal.length == 47) {
+                  tb.rows[cnt].cells[4].innerHTML = "<b style=\"color: green\">Yes</b>";
+                  if (IOsys.FileExists(addpath+layouts[i].code+'.js') && !ads[layouts[i].code]) {
+                    ads[layouts[i].code] = true;
+                    f = IOsys.GetFile(addpath+layouts[i].code+'.js');
+                    str += f.OpenAsTextStream(1,-2).Read(f.Size());
+                  }
+                  f = cbkpath+layouts[i].path.match(/^.+\\(.+)\.klc$/)[1]+'.js'
+                  if (IOsys.FileExists(f)) {
+                    f = IOsys.GetFile(f);
+                    res.cbk = f.OpenAsTextStream(1,-2).Read(f.Size()).replace(/[\r\n\s;]$/g);
+                  }
+                  layouts[i].domain = layouts[i].domain.toUpperCase();
+                  if (document.getElementById('group1').checked) {
+                      var code = layouts[i].domain==layouts[i].code?layouts[i].code
+                                                                   :layouts[i].domain+'-'+layouts[i].code
+                  } else if (document.getElementById('group2').checked) {
+                      var code = layouts[i].domain
+                  }
+
+                  str += "VirtualKeyboard.addLayout({code:'"+code+"',name:'"+layouts[i].name+"',"+nl+
+                                                   "keys:["+res.normal.join(",")+"]"+nl+
+                                                    (res.shift?",shift:{"+res.shift+"}"+nl:"")+
+                                                    (res.alt?",alt:{"+res.alt+"}"+nl:"")+
+                                                    (res.dk?",dk:"+res.dk:'')+
+                                                    (res.cbk?",cbk:"+res.cbk:"")+
+                                                   '});\n';
+                  try {
+                      var of = IOsys.OpenTextFile(gcf()+'out/layouts.js',8,true,0);
+                      of.Write(str);
+                      of.Close();
+                      var of = IOsys.OpenTextFile(gcf()+'out/layouts.tsv',8,true,0);
+                      of.Write(layouts[i].code+'\t'+layouts[i].name+'\t'+layouts[i].copyright+'\r\n');
+                      of.Close();
+                      tb.rows[cnt].cells[5].innerHTML = "<b style=\"color: green\">Yes</b>";
+                  } catch (e) {
+                      tb.rows[cnt].cells[5].innerHTML = "<b style=\"color: red\">Error: "+e.description+"</b>";
+                  }
+              } else {
+                  tb.rows[cnt].cells[4].innerHTML = "<b style=\"color: red\">Error "+res.normal.length+"</b>";
+                  tb.rows[cnt].cells[5].innerHTML = "<b style=\"color: red\">No</b>";
+              }
+          }
+          cnt++;
+      }
+  }
+ </script>
+<body >
+<p>Keyboard layouts converter</p>
+<div style="height: 400px; overflow: auto;">
+ <table id="targetkbd" border="0">
+  <thead>
+   <tr>
+    <th><input type="checkbox" onclick="var els=this.parentNode.parentNode.parentNode.parentNode.tBodies[0].getElementsByTagName('input'); for(var i in els) els[i].checked=this.checked;"</th>
+    <th>Layout Code</th>
+    <th>Layout Name</th>
+    <th>Copyright</th>
+    <th>Verified</th>
+    <th>Saved</th>
+   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+ </table>
+</div>
+<strong>Group languages by</strong><br />
+<label for="group1"><input type="radio" name="group" id="group1" value="lng" checked="true" />Language code (en-<strong>US</strong>)</label>&nbsp;
+<label for="group2"><input type="radio" name="group" id="group2" value="domain" />Language domain (<strong>en</strong>-US)</label>
+<br />
+<br />
+<button onclick="cvt()">Process selected</button>
+<script type="text/javascript">
+  /**
+   *  Function returns current folder in the filesystem
+   *
+   *  @return {String}
+   *  @scope public
+   */
+  function gcf() {
+      return unescape((document.location.href.substring(document.location.href.indexOf("///")+3,
+                                                        document.location.href.lastIndexOf('/')+1)))
+  }
+
+  var curpath = gcf()                   // current location
+     ,inpath  = curpath+'in/'           // .klc files location
+     ,outpath = curpath+'../'           // target for .js file, by default -- location of virtualkeyboard.js
+     ,addpath = inpath+'addons/'        // location of addon files, to be attached to the layouts
+     ,cbkpath = addpath+'callbacks/'    // location of callback definition files, 6th param of VirtualKeyboard.addLayout
+     ,fl = IOsys.GetFolder(inpath).GetFiles()
+     ,fc = new Enumerator(fl)
+     ,tb = document.getElementById('targetkbd').tBodies[0]
+     ,tr = td = null
+     ,of
+
+  var ConverterLayout = function (file) {
+      var self = this
+         ,fs = IOsys.readString(file);
+
+      self.path = file;
+      self.code = fs.match(/^localename\t"\w+-(\w+)/mi)[1]
+      self.domain = fs.match(/^localename\t"(\w+)-\w+/mi)[1].toUpperCase()
+
+      self.name = fs.match(/^kbd[^"]+\"([^"]+)/mi)[1].split(/\s-\s/)[0]
+      self.copyright = fs.match(/^copyright[^"]+\"([^"]+)/mi)[1]
+      if (self.copyright.match(/ilya lebedev/i)) self.copyright = ""
+      /**
+       *   String format
+       *
+       *   HexCode \t KeyId \t CapsEnabled \t NormalKey \t ShiftKey \t
+       *
+       *   @type {String}
+       */
+      self.strings = fs.replace(/(.|[\r\n])+?(^\d{2})/m,"$2").replace(/(\r\n){2,}(.|[\r\n])+/m,"").split(/[\r\n]+/).filter(function(a){return a.indexOf('-1')==0?"":a});
+
+      var columns = fs.match(/shiftstate\s+((?:(?!layout).|[\r\n])+)/i)[1].split(/\s.+[\r\n]+/)
+         ,ligatures = fs.match(/ligature(?:[\s\r\n]|\/\/.+)+((?:(?!keyname).|[\r\n])+)/i)
+         ,map = {
+             'normal'    : 0
+            ,'shift'     : 1
+            ,'ctrl'      : 2
+            ,'shft_ctrl' : 3
+            ,'alt'       : 6
+            ,'shft_alt'  : 7
+         }
+      /*
+      *  Column values
+      *  0 - normal key state
+      *  1 - Shift
+      *  2 - Ctrl 
+      *  3 - Shift+Ctrl
+      *  6 - AltGr (Shift+Ctrl)
+      *  7 - Shift+AltGr (Shift+Ctrl+Alt)
+      *
+      *  convert them to keys
+      */
+      for (var i=columns[columns.length-1]; i>=0; i--) {
+          var q = columns[i];
+          columns[i] = false
+          if (isNumeric(q))
+              columns[q] = parseInt(i)+3 // actual column number is 3
+      }
+      if (ligatures) {
+          ligatures = ligatures[1].split(/[\r\n]+/).map(function(a){return a.split(/\t/)});
+          for (var i=ligatures.length-1,tmp={}; i>=0; i--) {
+             if (!tmp[ligatures[i][0]]) {
+                 tmp[ligatures[i][0]] = [];
+             }
+             tmp[ligatures[i][0]][ligatures[i][1]] = ligatures[i].slice(2).filter(function(a){return parseInt(a,16)});
+          }
+          ligatures = tmp
+      }
+
+
+
+      self.getConvertedLayout = function () {
+          var fs = self.strings;
+          /*
+          *  Swap lines for MSKLC, because it save first key last
+          */
+          if (!self.strings.swapped) {
+              fs.splice(12,0,String(fs.splice(36,1)));
+              fs.splice(0,0,String(fs.splice(36,1)));
+              self.strings.swapped = true;
+          }
+
+          if (fs.length>47) fs.length = 47;
+
+          var VK = {'name' : self.name
+                   ,'code' : self.code
+                   ,'normal' : []
+                   ,'shift' : [[]]
+                   ,'alt' : [[]]
+                   ,'dk' : []
+                   }
+           
+          for (var z=0,fsL=fs.length; z<fsL; z++) {
+              var fr = fs[z].split(/\t/);
+
+              var ncc = columns[map.normal]
+                 ,scc = columns[map.shift]
+                 ,acc = columns[map.alt]
+                 ,nc = fr[ncc]&&4==fr[ncc].length&&parseInt(fr[ncc],16)>0?String.fromCharCode(parseInt(fr[ncc],16)):fr[ncc]
+                 ,sc = fr[scc]&&4==fr[scc].length&&parseInt(fr[scc],16)>0?String.fromCharCode(parseInt(fr[scc],16)):fr[scc]
+                 ,ac = fr[acc]&&4==fr[acc].length&&parseInt(fr[acc],16)>0?String.fromCharCode(parseInt(fr[acc],16)):fr[acc]
+
+              if ('%%' == nc) {
+                  VK.normal[VK.normal.length] = '['+Array(ligatures[fr[1]][map.normal]).join(',')+']'
+              } else {
+                  VK.normal[VK.normal.length] = nc.length==5&&parseInt(nc,16)?parseInt(nc,16):nc.charCodeAt(0)
+              }
+              /*
+              *  VirtualKeyboard asks to keep only unique symbols on one key
+              *
+              *  %% indicates a presence on ligature
+              */
+              if (parseInt(sc) == -1 || (sc.toLowerCase() == nc.toLowerCase() && '%%' != sc)) {
+                  if (VK.shift[VK.shift.length-1].length>0)
+                      VK.shift[VK.shift.length-1] = (VK.shift.length-1)+':['+VK.shift[VK.shift.length-1].join(",")+']';
+                  VK.shift[VK.normal.length] = []
+              } else {
+                  if ('%%' == sc) {
+                      VK.shift[VK.shift.length-1].push('['+Array(ligatures[fr[1]][map.shift]).join(',')+']')
+                  } else {
+                      VK.shift[VK.shift.length-1].push(sc.length==5&&parseInt(sc,16)?parseInt(sc,16):sc.charCodeAt(0))
+                  }
+              }
+              /*
+              *  VirtualKeyboard asks to keep only unique symbols on one key
+              */
+              if (null == ac || parseInt(ac) == -1 || (ac.toLowerCase() == nc.toLowerCase() && '%%' != sc)) {
+                  if (VK.alt[VK.alt.length-1].length>0)
+                      VK.alt[VK.alt.length-1] = (VK.alt.length-1)+':['+VK.alt[VK.alt.length-1].join(",")+']';
+                  VK.alt[VK.normal.length] = []
+              } else {
+                  if ('%%' == ac) {
+                      VK.alt[VK.alt.length-1].push('['+Array(ligatures[fr[1]][columns[map.alt]-3]).join(',')+']')
+                  } else {
+                      VK.alt[VK.alt.length-1].push(ac.length==5&&parseInt(ac,16)?parseInt(ac,16):ac.charCodeAt(0))
+                  }
+              }
+              if (fr[3].indexOf('@')>-1 && VK.dk.indexOf(parseInt(nc,16))==-1) VK.dk[VK.dk.length] = parseInt(nc,16)
+              if (fr[4].indexOf('@')>-1 && VK.dk.indexOf(parseInt(sc,16))==-1) VK.dk[VK.dk.length] = parseInt(sc,16)
+              if (fr[6].indexOf('@')>-1 && VK.dk.indexOf(parseInt(ac,16))==-1) VK.dk[VK.dk.length] = parseInt(ac,16)
+          }
+          /*
+          *  close maps...
+          */
+          if (VK.shift[VK.shift.length-1].length>0)
+            VK.shift[VK.shift.length-1] = (VK.shift.length-1)+':['+VK.shift[VK.shift.length-1].join(",")+']';
+          if (VK.alt[VK.alt.length-1].length>0)
+            VK.alt[VK.alt.length-1] = (VK.alt.length-1)+':['+VK.alt[VK.alt.length-1].join(",")+']';
+         /*
+         *  finished the reading... compute things alltogether
+         */
+
+         VK.shift = VK.shift.filter().join(",");
+         VK.alt = VK.alt.filter().join(",");
+         VK.dk = !isEmpty(VK.dk)?'['+VK.dk.join(",")+']':'';
+         return {
+             'normal' : VK.normal.filter()
+            ,'shift'  : VK.shift
+            ,'alt'    : VK.alt
+            ,'dk'     : VK.dk
+         }
+      }
+  }
+
+  var layouts = {
+  }
+
+  for (; !fc.atEnd(); fc.moveNext()) {
+      of = fc.item();
+      if (!of.Name.match(/\.klc$/)) continue;
+      tr = tb.insertRow();
+      td = tr.insertCell();
+      td.innerHTML = "<input type=\"checkbox\" name=\""+of.Name+"\" />";
+      layouts[of.Name] = new ConverterLayout(of.Path);
+      td = tr.insertCell();
+      td.innerHTML = layouts[of.Name].code;
+      td = tr.insertCell();
+      td.innerHTML = layouts[of.Name].name;
+      td = tr.insertCell();
+      td.innerHTML = layouts[of.Name].copyright;
+      td = tr.insertCell();
+      td.innerHTML = "<b style=\"color: red\">No</b>";
+      td = tr.insertCell();
+      td.innerHTML = "<b style=\"color: red\">No</b>";
+
+//      tr.innerHTML = "<td></td><td></td><td></td><td></td>"//<input type=\"checkbox\" name=\""+/*of.Name+*/"\" />"+of.Name+"</td>";
+  }
+
+
+</script>
+</body>
+</html>

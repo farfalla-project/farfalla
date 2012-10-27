@@ -30,11 +30,11 @@ jQuery.noConflict();
 
     // Add plugin configuration area
 
-    $.farfalla_create_plugin_options = function ( div_id ){
+    $.farfalla_create_plugin_options = function ( plugin_name ){
 
       $('<div></div>')
         .attr({
-          'id': div_id,
+          'id': plugin_name+'_options',
           'class':'plugin_options'
         })
         .hide()
@@ -42,11 +42,11 @@ jQuery.noConflict();
 
       $('<div></div>')
         .attr({
-          'id': div_id+'_actions',
+          'id': plugin_name+'_options_actions',
           'class':'plugin_options_actions'
         })
-        .appendTo('#'+div_id)
-        
+        .appendTo('#'+plugin_name+'_options')
+
 /*
       $('<input />')
         .attr({
@@ -57,14 +57,23 @@ jQuery.noConflict();
         })
         .appendTo('#'+div_id+'_actions')
 */
+
       $('<input />')
         .attr({
-          'id':div_id+'_deactivate',
+          'id':plugin_name+'_options_deactivate',
           'class':'plugin_options_deactivate',
           'type':'button',
           'value':'X'
         })
-        .appendTo('#'+div_id+'_actions')
+        .appendTo('#'+plugin_name+'_options_actions')
+
+      var position = $('#'+plugin_name+'Activator').position();
+      var width = $('#'+plugin_name+'_options').width();
+
+      $('#'+plugin_name+'_options').css({
+        'top' : position.top+20,
+        'left' : position.left-width
+      });
 
     }
 
@@ -207,15 +216,17 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_logo')
               .html('<h1><a href="http://farfalla-project.org/">Farfalla project</a></h1><p>Accessibility preferences</p>')
               .appendTo('#farfalla_toolbar');
+            $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
-            $('<div></div>').attr('id','farfalla_remember_profile').addClass('plugin_activator').appendTo('#farfalla_toolbar');
+            $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
+            $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
 
             $('#farfalla_toolbar_shade').click( function() {
               $(this).hide();
               $('.plugin_options').hide();
             });
-
+/*
             $('<a></a>').attr({
             	'id':'farfalla_home_link',
             	'href':'http://www.farfalla-project.org'
@@ -229,7 +240,7 @@ jQuery.noConflict();
                 'src':farfalla_path+'images/farfalla_icon.png',
                 'alt':'Farfalla logo - Click to hide or display the toolbar' // this needs translation
             }).appendTo('#farfalla_logo');
-
+*/
 
             if(options.border){
               if($.inArray(options.border, allowedColors)>=0){
@@ -262,12 +273,12 @@ jQuery.noConflict();
               function() {
 				farfalla_remember_profile();
 				remember_profile = 1;
-				$(this).css('background','#fff');
+				$(this).css('background','url("'+farfalla_path+'images/save_selected.png")')
               },
               function() {
                 farfalla_forget_profile();
                 remember_profile = 0;
-				$(this).css('background','#333');
+				$(this).css('background','url("'+farfalla_path+'images/save.png")')
               }
             );
         };
