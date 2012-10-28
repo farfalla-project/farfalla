@@ -16,7 +16,7 @@
 		
 		pm({
 			target: window.parent,
-			type: "pass-cookie", 
+			type: "pass-cookie",
 			data: $.JSONCookie('farfalla_plugins_cookie')
 			});
 
@@ -29,7 +29,7 @@
 
 			$('#change_profile').click(
 				function(){
-					$.cookie('farfalla_plugins_cookie', null, { path: '/' }); 
+					$.cookie('farfalla_plugins_cookie', null, { path: '/' });
 					window.location = 'form';
 		});
 
@@ -62,7 +62,7 @@
 		<div id="farfalla_active">
 		
 			<p><?php __('Loaded plugin(s): ', false) ?></p>
-        
+
 	        <ul>
 				<li>
 					<input type="button" id="change_profile" value="<?php __('change profile', false); ?>" />

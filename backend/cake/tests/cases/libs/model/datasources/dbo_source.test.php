@@ -4483,7 +4483,7 @@ class DboSourceTest extends CakeTestCase {
 		$commentTable = $this->db->fullTableName('comments');
 		$Article =& ClassRegistry::init('Article');
 		$Article->virtualFields = array(
-			'comment_count' => 'SELECT COUNT(*) FROM ' . $commentTable . 
+			'comment_count' => 'SELECT COUNT(*) FROM ' . $commentTable .
 				' AS Comment WHERE Article.id = Comment.article_id'
 		);
 		$result = $Article->find('all');

@@ -95,8 +95,8 @@ jQuery.noConflict();
         break;
       }
     }
-    
-    
+
+
 
     // A function for adding buttons to the toolbar
     // name -> text displayed on the button
@@ -220,12 +220,13 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
-            $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
-
+//            $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
+/*
             $('#farfalla_toolbar_shade').click( function() {
               $(this).hide();
               $('.plugin_options').hide();
             });
+*/
 /*
             $('<a></a>').attr({
             	'id':'farfalla_home_link',
@@ -268,7 +269,7 @@ jQuery.noConflict();
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
               });
-              
+
             $('#farfalla_remember_profile').toggle(
               function() {
 				farfalla_remember_profile();
@@ -557,7 +558,7 @@ jQuery.noConflict();
               $('#'+value+'Activator').click();
             })
 
-            $('#farfalla_remember_profile').click();            
+            $('#farfalla_remember_profile').click();
               console.log('cookie button reactivated')
           } else {
 
@@ -571,7 +572,7 @@ jQuery.noConflict();
                   $('#'+value+'Activator').click();
                 })
               }
-              
+
             })
           }
 

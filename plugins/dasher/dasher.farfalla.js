@@ -1,7 +1,6 @@
 ﻿// <reference path="jquery-1.6.1.min.js" />
 jQuery.noConflict();
-(function($) { 
-
+(function($) {
 
 $(document).ready(function ()
 {

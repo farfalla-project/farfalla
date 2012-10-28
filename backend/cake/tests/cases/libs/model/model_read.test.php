@@ -4791,7 +4791,7 @@ class ModelReadTest extends BaseModelTest {
 	}
 
 /**
- * test that calling unbindModel() with reset == true multiple times 
+ * test that calling unbindModel() with reset == true multiple times
  * leaves associations in the correct state.
  *
  * @return void

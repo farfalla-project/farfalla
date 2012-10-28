@@ -166,10 +166,10 @@ class TestHelper extends Helper {
 /**
  * expose a method as public
  *
- * @param string $options 
- * @param string $exclude 
- * @param string $insertBefore 
- * @param string $insertAfter 
+ * @param string $options
+ * @param string $exclude
+ * @param string $insertBefore
+ * @param string $insertAfter
  * @return void
  */
 	function parseAttributes($options, $exclude = null, $insertBefore = ' ', $insertAfter = null) {

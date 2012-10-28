@@ -3,7 +3,7 @@
 
 
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
   $(function() {
 

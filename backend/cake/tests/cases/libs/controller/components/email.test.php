@@ -69,7 +69,7 @@ class EmailTestComponent extends EmailComponent {
 /**
  * Allows mocks to be used with tests.
  *
- * @param array $config 
+ * @param array $config
  * @return void
  */
 	function _getSocket($config) {
@@ -461,7 +461,7 @@ TEMPDOC;
 		$this->assertPattern('/RCPT TO: <postmaster@localhost>\n/', $this->Controller->EmailTest->smtpSend);
 		$this->assertPattern('/RCPT TO: <root@localhost>\n/', $this->Controller->EmailTest->smtpSend);
 		$this->assertPattern(
-			'/To: postmaster@localhost, root@localhost[\n\r]/', 
+			'/To: postmaster@localhost, root@localhost[\n\r]/',
 			$this->Controller->EmailTest->smtpSend
 		);
 	}

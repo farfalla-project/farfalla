@@ -1,5 +1,5 @@
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
   $(function() {
 
@@ -16,7 +16,7 @@ jQuery.noConflict();
 	.prependTo('body')
 	.fadeIn(300);
 
-    
+
 
 
 

@@ -1296,7 +1296,7 @@ class App extends Object {
 /**
  * Determines if $__maps, $__objects and $__paths cache should be reset.
  *
- * @param boolean $reset 
+ * @param boolean $reset
  * @return boolean
  * @access private
  */	

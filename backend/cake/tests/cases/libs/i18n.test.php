@@ -90,7 +90,7 @@ class I18nTest extends CakeTestCase {
 		$this->assertEqual($cachedDom2['LC_MESSAGES']['dom2.foo'], 'Dom 2 Foo');
 		$this->assertEqual($cachedDom2['LC_MESSAGES']['dom2.bar'], 'Dom 2 Bar');
 
-		// modify cache entry manually to verify that dom1 entries now will be read from cache 
+		// modify cache entry manually to verify that dom1 entries now will be read from cache
 		$cachedDom1['LC_MESSAGES']['dom1.foo'] = 'FOO';
 		Cache::write('dom1_' . $lang, $cachedDom1, '_cake_core_');
 		$this->assertEqual(I18n::translate('dom1.foo', false, 'dom1'), 'FOO');

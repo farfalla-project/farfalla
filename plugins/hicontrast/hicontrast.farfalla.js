@@ -1,9 +1,9 @@
 // Farfalla plugin: High contrast
 
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
-  $(function() {  
+  $(function() {
 
   $.farfalla_add_css = function (style){
 
@@ -29,7 +29,7 @@ jQuery.noConflict();
       $.farfalla_add_css(data.value);
 
     }
-    
+
   });
 
   $.farfalla_add_ccs_button = function (style, name, accesskey, bgcolor, txtcolor){
@@ -43,21 +43,21 @@ jQuery.noConflict();
 
           $.farfalla_set_option('hicontrast');
           $.farfalla_remove_css(style);
-   
+
         }else{
-      
+
         // else, change to a new style
-      
+
           $.farfalla_remove_css(data.value);
           $.farfalla_set_option('hicontrast',style);
           $.farfalla_add_css(style);
-        
+
         }
 
       })
-    
+
     })
-  
+
   };
 
 // create the buttons

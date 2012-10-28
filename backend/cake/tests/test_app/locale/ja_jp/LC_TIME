@@ -42,7 +42,7 @@ t_fmt_ampm "<U0025><U0070><U0025><U0049><U6642><U0025><U004D><U5206><U0025><U005
 %
 am_pm	"<U5348><U524D>";"<U5348><U5F8C>"
 %
-% Appropriate date representation (date(1))   
+% Appropriate date representation (date(1))
 date_fmt	"<U0025><U0059><U5E74><U0020><U0025><U0062><U0020><U0025>/
 <U0065><U65E5><U0020><U0025><U0041><U0020><U0025><U0048><U003A><U0025>/
 <U004D><U003A><U0025><U0053><U0020><U0025><U005A>"

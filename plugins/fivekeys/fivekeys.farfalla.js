@@ -3,7 +3,7 @@
 // To do:
 
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
   $(function(){
 
@@ -113,7 +113,7 @@ jQuery.noConflict();
 
     	$('#highlighter').animate({'height' : $('.'+e.onClass).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $('.'+e.onClass).width() + 12 }, 300);
 
-    
+
 //		$('#highlighter').scrollIntoView(true);
 
 /* End of added code */

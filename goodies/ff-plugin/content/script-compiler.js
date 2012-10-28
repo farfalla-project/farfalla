@@ -133,7 +133,7 @@ openInTab: function(unsafeContentWin, url) {
 			break;
 		}
 	if (!isMyWindow) return;
- 
+
 	var loadInBackground, sendReferrer, referrer = null;
 	loadInBackground = tabBrowser.mPrefs.getBoolPref("browser.tabs.loadInBackground");
 	sendReferrer = tabBrowser.mPrefs.getIntPref("network.http.sendRefererHeader");
@@ -144,7 +144,7 @@ openInTab: function(unsafeContentWin, url) {
 	 }
 	 tabBrowser.loadOneTab(url, referrer, null, null, loadInBackground);
  },
- 
+
  hitch: function(obj, meth) {
 	var unsafeTop = new XPCNativeWrapper(unsafeContentWin, "top").top;
 
@@ -160,7 +160,7 @@ apiLeakCheck: function(allowedCaller) {
 	do {
 		if (2==stack.language) {
 			if ('chrome'!=stack.filename.substr(0, 6) &&
-				allowedCaller!=stack.filename 
+				allowedCaller!=stack.filename
 			) {
 				leaked=true;
 				break;

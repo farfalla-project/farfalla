@@ -1,5 +1,5 @@
 ﻿jQuery.noConflict();
-(function($) { 
+(function($) {
 
 /*
  * jPlayer Plugin for jQuery JavaScript Library

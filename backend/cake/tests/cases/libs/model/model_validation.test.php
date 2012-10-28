@@ -657,8 +657,8 @@ class ModelValidationTest extends BaseModelTest {
 				'published' => '1'
 			),
 			'Comment' => array(
-				array('word' => 'Hello'), 
-				array('word' => 'World'), 
+				array('word' => 'Hello'),
+				array('word' => 'World'),
 			)
 		);
 		$Article =& new Article();

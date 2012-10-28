@@ -1,9 +1,9 @@
 ﻿// Farfalla plugin: Readability
 
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
- $(function() {  
+ $(function() {
 
 // Create dialog form
   $('body').append('<div id="dialog-form"></div>');
@@ -49,7 +49,7 @@ jQuery.noConflict();
   var url = $(location).attr('href');
 
 /*
-  $.canc = function () {   
+  $.canc = function () {
     document.esper.testo.value = "";
 
     document.esper.indiceG.value="89 - (Lp / 10) + (3 x Fr)"
@@ -59,7 +59,7 @@ jQuery.noConflict();
 
 
 // Calculate the readability of a single block
-  $.fn.elab = function (val) {   
+  $.fn.elab = function (val) {
     $(this).wrap('<div class="farfalla_readability" id="readability_'+val+'">Readability index: <span class="farfalla_readability_score" id="readability_score_'+val+'"></span> <a href="#" id="farfalla_suggest_'+val+'">Suggest your own version</a></div>');
     var words=$(this).html().split(" ");
     var nW=words.length;
@@ -70,31 +70,31 @@ jQuery.noConflict();
     $('#readability_score_'+val).html(Math.round(89 - (10 *lW / nW ) + (300*nS/nW)))
   }
 
-// Create the interface for the insertion of alternative text   
+// Create the interface for the insertion of alternative text
   $.fn.addalt = function ( val ) {
     $('#farfalla_suggest_'+val).click(function() {
 //      alert('clicked');
-      $('#dialog-form').dialog('open');  
+      $('#dialog-form').dialog('open');
       return false;
     });
   }
 
-  
+
 // Send everything to the DB
-  $.fn.submitAltText = function (url, xpath, alttext, language) {    
-  
-    $.post(farfalla_path+'backend/alttexts/add', 
+  $.fn.submitAltText = function (url, xpath, alttext, language) {
+
+    $.post(farfalla_path+'backend/alttexts/add',
       {
         'data[Alttext][xpath]': xpath,
         'data[Alttext][url]': url,
         'data[Alttext][text]': alttext,
         'data[Alttext][language_id]': language
-      }, 
+      },
       function(data) {
         alert(data);
       }
     );
-      
+
   };
 
 

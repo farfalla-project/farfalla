@@ -30,7 +30,7 @@ jQuery.noConflict();
           if($(this).css('background-color')=='rgb(255, 255, 255)'){
             $(this).addClass('creamBackground');
           }
-          
+
         });
 
         $('input, textarea').addClass('inputClarifier');

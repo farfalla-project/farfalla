@@ -121,7 +121,7 @@ class SchemaShellTest extends CakeTestCase {
  * @var array
  * @access public
  */
-	var $fixtures = array('core.article', 'core.user', 'core.post', 'core.auth_user', 'core.author', 
+	var $fixtures = array('core.article', 'core.user', 'core.post', 'core.auth_user', 'core.author',
 		'core.comment', 'core.test_plugin_comment'
 	);
 

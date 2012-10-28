@@ -28,7 +28,7 @@ function fgetScripts(s){
 }
 
 if (fgetScripts('farfalla.js')){
-	var headID = document.getElementsByTagName("head")[0];         
+	var headID = document.getElementsByTagName("head")[0];
 	var farfallaScript = document.createElement('script');
 	var farfalla_path = 'http://farfalla-project.org/code/';
 	farfallaScript.type = 'text/javascript';

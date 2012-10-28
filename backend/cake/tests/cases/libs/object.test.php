@@ -766,7 +766,7 @@ class ObjectTest extends CakeTestCase {
 		$this->assertEqual($result, $expected);
 
 		$result = $this->object->requestAction(
-			array('controller' => 'request_action', 'action' => 'another_ra_test'), 
+			array('controller' => 'request_action', 'action' => 'another_ra_test'),
 			array('pass' => array('5', '7'))
 		);
 		$expected = 12;
@@ -822,7 +822,7 @@ class ObjectTest extends CakeTestCase {
 		$this->assertEqual($result['named'], $expected);
 
 		$result = $this->object->requestAction(
-			array('controller' => 'request_action', 'action' => 'params_pass'), 
+			array('controller' => 'request_action', 'action' => 'params_pass'),
 			array('named' => array('sort' => 'desc', 'limit' => 5))
 		);
 		$this->assertEqual($result['named'], $expected);

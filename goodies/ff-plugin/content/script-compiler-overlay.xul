@@ -18,24 +18,24 @@
         </toolbarbutton>
 
     </toolbarpalette>
-    
+
 
     <broadcasterset id="farfallaBroadcasterSet">
         <broadcaster id="farfallaStatus" />
     </broadcasterset>
 
 <!-- button details -->
-  <toolbarbutton id="farfalla-button" 
+  <toolbarbutton id="farfalla-button"
 
   label="Farfalla"
 
-  tooltiptext="Activates the Farfalla Toolbar" 
+  tooltiptext="Activates the Farfalla Toolbar"
 
   oncommand="alert('farfalla!')"
 
-  class="toolbarbutton-1 chromeclass-toolbar-additional farfalla-button" 
+  class="toolbarbutton-1 chromeclass-toolbar-additional farfalla-button"
 
-  /> 
-  
-    
+  />
+
+
 </overlay>

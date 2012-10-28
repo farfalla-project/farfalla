@@ -1,5 +1,5 @@
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
   $(function() {
 
@@ -74,7 +74,7 @@ jQuery.noConflict();
             $(this).addClass('farfalla-hover');
             var offset = $(this).offset();
             $('#highlighter').animate({
-              'height' : $(this).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $(this).width() + 12 
+              'height' : $(this).height() + 10, 'left' : (offset.left - 6) + 'px', 'top' : (offset.top - 10) + 'px', 'width' : $(this).width() + 12
             }, 300);
             $('#monitor')
               .html($.htmlClean($(this).html(), { allowedTags : ['a', 'ul', 'ol', 'li', 'br', 'p'] })+$(this).val())
@@ -83,7 +83,7 @@ jQuery.noConflict();
             $('#monitor *').css({'font-size': 'inherit', 'line-height': 'inherit'});
 
             $('#monitor a').each( function(i){
-              $(this).append('<span style="color:violet;"> ['+ (i+1) +']</span>');   
+              $(this).append('<span style="color:violet;"> ['+ (i+1) +']</span>');
             });
 
           },
@@ -150,11 +150,11 @@ jQuery.noConflict();
 
           default:requestedAction='null';
         }
-  
+
       });
 
     }
-    
+
     $.magnifier_off = function () {
 
       $('#magnifierActivator').farfalla_switch_off('magnifier');

@@ -46,7 +46,7 @@
 		if($comma>0){
 			$lang = substr($lang,0,$comma);
 		}
-	} 
+	}
 	
     switch ($lang) {
       case "it-IT" : $agent_language = "ita";

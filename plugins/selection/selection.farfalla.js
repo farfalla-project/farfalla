@@ -1,5 +1,5 @@
 jQuery.noConflict();
-(function($) { 
+(function($) {
 
 
   $(function() {
@@ -25,7 +25,7 @@ jQuery.noConflict();
     $('textarea, input').select(function(){
 	  $('#monitor').html(''+$(this).val())
     });
-    
+
   });
 
 })(jQuery);

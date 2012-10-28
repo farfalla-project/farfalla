@@ -2,8 +2,8 @@
 // Requires jplayer and at least one plugin producing text strings in the #monitor div
 
 jQuery.noConflict();
-(function($) { 
- 
+(function($) {
+
  $(function() {
 
 

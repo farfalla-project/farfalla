@@ -27,7 +27,7 @@ class TestMemcacheEngine extends MemcacheEngine {
 /**
  * public accessor to _parseServerString
  *
- * @param string $server 
+ * @param string $server
  * @return array
  */
 	function parseServerString($server) {
