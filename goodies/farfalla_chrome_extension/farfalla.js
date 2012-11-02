@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name           Farfalla
-// @namespace      userscripts.org
-// @description    Injects Farfalla helper
-// @version        0.4.1
-// @match          http://*/*
-// @match          https://*/*
-// @permissions    http://*/
-// @permissions    https://*/
-// @include        *
 //
 // Farfalla - Accessibility in the Cloud
 // http://farfalla-project.org/
@@ -16,8 +6,7 @@
 // Licensed under the AGPL Version 3 license.
 // http://farfalla-project.org/license
 //
-// ==/UserScript==
-	
+
 function fgetScripts(s){
 	var scripts = window.document.getElementsByTagName('script');
 	var output = true;
