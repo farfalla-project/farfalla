@@ -37,8 +37,11 @@ jQuery.noConflict();
           'id': plugin_name+'_options',
           'class':'plugin_options'
         })
+        .addClass('ui-corner-bottom')
         .hide()
-        .appendTo('#farfalla_toolbar');
+        .insertBefore('#farfalla_remember_profile');
+
+//        .appendTo('#farfalla_toolbar');
 
       $('<div></div>')
         .attr({
@@ -70,11 +73,19 @@ jQuery.noConflict();
       var position = $('#'+plugin_name+'Activator').position();
       var width = $('#'+plugin_name+'_options').width();
 
-      $('#'+plugin_name+'_options').css({
-        'top' : position.top+20,
+/*      $('#'+plugin_name+'_options').css({
+        'top' : position.top,
         'left' : position.left-width
       });
-
+*/
+/*
+      $('#'+plugin_name+'_options').position({
+        my: 'top',
+        at: 'bottom',
+        of: '#'+plugin_name+'Activator',
+        collision: "fit"
+      })
+*/
     }
 
 
@@ -220,12 +231,14 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
-            $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
+//            $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
 
+/*
             $('#farfalla_toolbar_shade').click( function() {
               $(this).hide();
               $('.plugin_options').hide();
             });
+*/
 
 /*
             $('<a></a>').attr({
@@ -512,7 +525,7 @@ jQuery.noConflict();
               function() {
                 $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/})
                 $('#farfalla_toolbar').hide('fast');
-                $('.plugin_options').hide();
+//                $('.plugin_options').hide();
                 $('#farfalla_toolbar_shade').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }

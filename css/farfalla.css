@@ -8,6 +8,8 @@ html{
 }
 
 body{
+  margin: 0;
+  padding: 0;
 }
 
 #farfalla_container{
@@ -345,18 +347,34 @@ float:left;
 }
 
 .plugin_options {
+/*
   position: absolute;
-/*  padding: 12px;*/
+  padding: 12px;*/
   background: #fff;
   display:block;
   height: 52px;
   z-index: 1200;
+  padding: 0 12px;
+/*
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  border-radius: 3px;
+*/
 }
 
 .plugin_options input{
   width:42px;
   height:42px;
   margin:5px;
+  padding: 3px;
+  border: 1px solid #000;
+  background: #666;
+  color: #fff;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
 }
 
 .plugin_options_actions{
