@@ -64,7 +64,7 @@ jQuery.noConflict();
             '-moz-transform': 'scale(1)',
             '-moz-transform-origin': 'top left'
           });
-          $('body').width($(window).width()/val);
+          $('body').width("");
 
           increase=0;
           $.farfalla_set_option('increase',increase);
@@ -102,7 +102,6 @@ jQuery.noConflict();
 
       $('#fontsizeActivator').farfalla_switch_off('fontsize');
       $('#fontsize_options').hide();
-//      $('#farfalla_toolbar_shade').hide();
       $('body').css({
         'zoom': 0,
         '-moz-transform': 'scale(1)'

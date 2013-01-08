@@ -45,7 +45,14 @@ jQuery.noConflict();
 
       $('<div></div>')
         .attr({
-          'id': plugin_name+'_options_actions',
+          'id': plugin_name+'_options_custom',
+          'class':'plugin_options_actions'
+        })
+        .appendTo('#'+plugin_name+'_options')
+
+      $('<div></div>')
+        .attr({
+          'id': plugin_name+'_options_common',
           'class':'plugin_options_actions'
         })
         .appendTo('#'+plugin_name+'_options')
@@ -68,7 +75,7 @@ jQuery.noConflict();
           'type':'button',
           'value':'X'
         })
-        .appendTo('#'+plugin_name+'_options_actions')
+        .appendTo('#'+plugin_name+'_options_common')
 
       var position = $('#'+plugin_name+'Activator').position();
       var width = $('#'+plugin_name+'_options').width();
@@ -96,12 +103,12 @@ jQuery.noConflict();
       console.log('Adding UI for '+plugin_name);
       switch(type){
         case 'slider':
-          $('#'+plugin_name+'_options').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
+          $('#'+plugin_name+'_options_custom').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
           $('#'+plugin_name+'_slider').slider();
         break;
 
         case 'button':
-          $('#'+plugin_name+'_options').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
+          $('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
           $('#'+name+'_button').click(callback);
         break;
       }
@@ -478,7 +485,7 @@ jQuery.noConflict();
 */
 
         // Adds interaction to the plugins list: reset the profiles selection
-
+/*
         function farfalla_plugins_listing_interaction() {
 
             $('#farfalla_change_profile').click( function(){
@@ -487,7 +494,7 @@ jQuery.noConflict();
                 jqxhr.complete(function() {window.location.reload()});
             });
         };
-
+*/
 
         // Checks if a profile has already been selected, then initializes what is needed
 
@@ -551,7 +558,9 @@ jQuery.noConflict();
 
         function farfalla_track_plugins(name, value) {
           if(value==1){
-            active_plugins.push(name);
+            if(active_plugins.indexOf(name)<0){
+              active_plugins.push(name);
+            }
           } else {
             active_plugins.splice(active_plugins.indexOf(name),1);
           }
