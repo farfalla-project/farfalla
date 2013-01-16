@@ -6,6 +6,15 @@ jQuery.noConflict();
   $(function() {
     
     $('<div id="farfalla_keyboard"></div>').appendTo('body');
+    $('<div id="farfalla_keyboard_shade"></div>')
+      .css({
+         'position':'absolute',
+         'display':'block',
+         'top':0,
+         'left':0,
+         'width':'100%',
+         'height':'100%'
+      }).hide().appendTo('body');
 
     $.keyboard_on = function () {
 
@@ -13,8 +22,9 @@ jQuery.noConflict();
 
       head.js(farfalla_path+'plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=soberTouch', function(){
         $('textarea, input[type=text]').click(function(){
+          $('#farfalla_keyboard_shade').css('top',$(window).scrollTop()).show();
           VirtualKeyboard.attachInput(this);
-          VirtualKeyboard.toggle($(this),'farfalla_keyboard');
+          VirtualKeyboard.open($(this),'farfalla_keyboard');
           var position = $(this).position()
           var height = $(this).height()
           $('#farfalla_keyboard').css({
@@ -22,6 +32,13 @@ jQuery.noConflict();
             'top' : position.top+height+10+'px',
             'left' : position.left
           })
+        })
+        $(window).scroll(function(){
+          $('#farfalla_keyboard_shade').css('top',$(window).scrollTop());
+        });
+        $('#farfalla_keyboard_shade').click(function(){
+          VirtualKeyboard.close();
+          $(this).hide();
         })
       });
 

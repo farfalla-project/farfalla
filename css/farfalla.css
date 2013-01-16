@@ -76,14 +76,23 @@ body{
 
 
   #farfalla_logo{
-      width: 100%;
-      display: block;
-      text-align: center;
+    width: 100%;
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 12pt;
   }
 
   #farfalla_logo a:link, #farfalla_logo a:visited{
     color: #fff;
     text-decoration: none;
+  }
+
+  #farfalla_logo h1{
+    font-size: 20pt;
+    font-family: Helvetica,Arial,sans;
+    letter-spacing: 0;
+    position: relative;
   }
 
   #farfalla_home{
