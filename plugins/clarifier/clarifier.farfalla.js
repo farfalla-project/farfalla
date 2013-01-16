@@ -13,7 +13,7 @@ jQuery.noConflict();
       $('<link></link>').attr({
         "rel":"stylesheet",
         "type":"text/css",
-        "href":farfalla_path+"/plugins/clarifier/clarifier.farfalla.css"
+        "href":farfalla_path+"plugins/clarifier/clarifier.farfalla.css"
       }).appendTo($('head'));
 
       $.clarifier_on = function () {

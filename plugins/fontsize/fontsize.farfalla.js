@@ -17,6 +17,14 @@ jQuery.noConflict();
         $('body').width($(window).width()/val);
     }
 
+    $.farfalla_reset_size = function () {
+      $('body').css({
+        'zoom': 0,
+        '-moz-transform': 'scale(1)'
+      });
+      $('body').width("");
+    }
+
     $.farfalla_get_option('increase', function(data){
 
         var increase = 0
@@ -59,12 +67,7 @@ jQuery.noConflict();
 
         $.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
 
-          $('body').css({
-            'zoom': 0,
-            '-moz-transform': 'scale(1)',
-            '-moz-transform-origin': 'top left'
-          });
-          $('body').width("");
+          $.farfalla_reset_size();
 
           increase=0;
           $.farfalla_set_option('increase',increase);
@@ -102,11 +105,7 @@ jQuery.noConflict();
 
       $('#fontsizeActivator').farfalla_switch_off('fontsize');
       $('#fontsize_options').hide();
-      $('body').css({
-        'zoom': 0,
-        '-moz-transform': 'scale(1)'
-      });
-	  $('body').width("");
+      $.farfalla_reset_size();
 
     }
 
