@@ -15,7 +15,7 @@ jQuery.noConflict();
     };
 
     // Quick fix for lists
-    $('ul').css('overflow','hidden');
+    $('ul, ol').css('overflow','hidden');
 
     var mags;
 

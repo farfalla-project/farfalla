@@ -19,7 +19,7 @@ body{
   width: 0;
   height: 100%;
   display: block;
-  background: #000;
+  background: #000 !important;
   z-index: 1000;
   border-left: 2px solid #fff;
   -webkit-box-shadow: 0 0 6px #383838;
@@ -34,7 +34,7 @@ body{
   display: block;
   width: 40px;
   height: 120px;
-  background: url('../images/farfalla_badge_eng.png') #000;
+  background: url('../images/farfalla_badge_eng.png') #000 !important;
   z-index: 1010;
   border-left: 2px solid #fff;
   border-top: 2px solid #fff;
@@ -47,7 +47,7 @@ body{
 #farfalla_toolbar{
   position: absolute;
   font-family: Helvetica, Calibri, sans;
-  background: #000;
+  background: #000 !important;
   color: #fff;
   margin: 20px;
   top: 0;
@@ -57,7 +57,7 @@ body{
   position: absolute;
   z-index: 1000;
   margin: 0;
-  background: #000;
+  background: #000 !important;
   padding: 0;
   display:block;
   width: 100%;
@@ -79,12 +79,12 @@ body{
     width: 100%;
     display: block;
     text-align: center;
-    color: #fff;
+    color: #fff !important;
     font-size: 12pt;
   }
 
   #farfalla_logo a:link, #farfalla_logo a:visited{
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
   }
 
@@ -157,7 +157,7 @@ body{
   #farfalla_buttons ul li input{
 /*     height: 80%; */
     margin: 3px 2px;
-      background: #fff;
+      background: #fff !important;
       border: 0;
       font-size: 18pt !important;
       font-weight: bold;
@@ -356,20 +356,11 @@ float:left;
 }
 
 .plugin_options {
-/*
-  position: absolute;
-  padding: 12px;*/
   background: #fff;
   display:block;
-  height: 52px;
   z-index: 1200;
   padding: 0 12px;
-/*
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  border-radius: 3px;
-*/
+  text-align: left;
 }
 
 .plugin_options input{
@@ -378,7 +369,7 @@ float:left;
   margin:5px;
   padding: 3px;
   border: 1px solid #000;
-  background: #666;
+  background: #666 !important;
   color: #fff;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -394,8 +385,10 @@ float:left;
   display:inline;
 }
 
-.plugin_options_actions input{
-/*  margin: 20px;*/
+.plugin_options_actions h2{
+  color: #000 !important;
+  margin: 0;
+  font-size: 12pt;
 }
 
 

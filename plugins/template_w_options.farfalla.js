@@ -7,30 +7,39 @@ jQuery.noConflict();
 
   $(function() {
 
+    $.farfalla_create_plugin_options('##plugin_name##');
+
     // New logic here
 
     $.##plugin_name##_on = function () {
       $('###plugin_name##Activator').farfalla_switch_on('##plugin_name##');
+      $('.plugin_options').hide();
+      $('###plugin_name##_options').slideDown('fast');
 
-     // New logic here
+    // New logic here
 
     }
 
     $.##plugin_name##_off = function () {
       $('###plugin_name##Activator').farfalla_switch_off('##plugin_name##');
+      $('###plugin_name##_options').hide();
 
     // New logic here
 
     }
 
-    $.##plugin_name##_on()
+    $.##plugin_name##_on();
+
+    $('###plugin_name##_options_deactivate').click( function() {
+
+      $.##plugin_name##_off();
+
+    });
 
     $('###plugin_name##Activator').click( function(){
-      if($(this).hasClass('active')){
-        $.##plugin_name##_off()
-      } else {
-        $.##plugin_name##_on()
-      }
+
+      $.##plugin_name##_on()
+
     });
 
   });

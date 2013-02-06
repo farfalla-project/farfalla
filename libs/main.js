@@ -114,6 +114,28 @@ jQuery.noConflict();
       }
     }
 
+    // Add plugin-specific section of UI elements
+    // ...
+
+    $.farfalla_add_ui_section = function( plugin_name, title ){
+
+        $('#'+plugin_name+'_options_custom').append('<h2>'+title+'</h2>');
+
+      }
+
+    // Add plugin-specific CSS
+    // ...
+
+    $.farfalla_add_css = function( plugin_name, sheet_name ) {
+      if($('link[href*="'+sheet_name+'"]').length == 0){
+        $('<link></link>').attr({
+          "rel":"stylesheet",
+          "type":"text/css",
+          "href":farfalla_path+"/plugins/"+plugin_name+"/css/"+sheet_name+".farfalla.css"
+        }).appendTo($('head'));
+      }
+    };
+
 
 
     // A function for adding buttons to the toolbar

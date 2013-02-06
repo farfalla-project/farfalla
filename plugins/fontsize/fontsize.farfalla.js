@@ -95,8 +95,9 @@ jQuery.noConflict();
           var increase = parseFloat(data.value);
         }
 
+        $('.plugin_options').slideUp('fast');
         $('#fontsize_options').slideDown('fast');
-//        $('#farfalla_toolbar_shade').show();
+
       });
 
     }

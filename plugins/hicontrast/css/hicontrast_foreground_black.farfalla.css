@@ -1,0 +1,16 @@
+body {color: #000000 !important}
+body * {color: #000000 !important}
+font {color: #000000 !important}
+a:link {color: #FF5223 !important}
+a:link * {color: #FF5223 !important}
+a:visited {color: #FF5223 !important}
+a:visited * {color: #FF5223 !important}
+a:hover {color: #0000FF !important}
+a:hover * {color: #0000FF !important}
+a:active {color: #0000FF !important}
+a:active * {color: #0000FF !important}
+input {color: #000000 !important}
+option {color: #000000 !important}
+textarea {color: #000000 !important}
+h1,h2,h3,h4,h5,h6 {color: #000000 !important}
+h1 font,h2 font,h3 font,h4 font,h5 font,h6 font {color: #000000 !important}

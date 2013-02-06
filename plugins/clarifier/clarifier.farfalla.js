@@ -25,7 +25,7 @@ jQuery.noConflict();
           $('html').addClass('creamBackground');
         }
 
-        $('*').each(function(){
+        $('*').not('#farfalla_container *').each(function(){
 
           if($(this).css('background-color')=='rgb(255, 255, 255)'){
             $(this).addClass('creamBackground');
@@ -37,15 +37,15 @@ jQuery.noConflict();
 
         // Set fonts to Tahoma, Arial, sans
 
-        $('*').addClass('fontClarifier');
+        $('*').not('#farfalla_container *').addClass('fontClarifier');
 
-        $('h1').addClass('h1Clarifier');
+        $('h1').not('#farfalla_container *').addClass('h1Clarifier');
 
-        $('h2').addClass('h2Clarifier');
+        $('h2').not('#farfalla_container *').addClass('h2Clarifier');
 
-        $('h1, h2, h3, h4, h5, h6, h7, h8, h9, h10').addClass('boldClarifier');
+        $('h1, h2, h3, h4, h5, h6, h7, h8, h9, h10').not('#farfalla_container *').addClass('boldClarifier');
 
-        $('*').each(function(){
+        $('*').not('#farfalla_container *').each(function(){
 
           if($(this).css('text-align')=='justify'){
             $(this).addClass('leftAlignClarifier');
@@ -55,7 +55,7 @@ jQuery.noConflict();
 
         // Set line height to 200% in <p> and <li> elements only
 
-        $('p, li').each(function(){
+        $('p, li').not('#farfalla_container *').each(function(){
           $(this).addClass('linespacingClarifier');
         });
 
