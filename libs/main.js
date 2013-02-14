@@ -116,7 +116,18 @@ $('#farfalla_home').hide();
                     {},
                     function(data) {
                         $.each(data.profiles, function(){
-                            $('<option>')
+                            $('<option></option>')
+                                .attr({
+                                  'value': this.Profile.id,
+                                  'title': this.Profile.description,
+                                  'id':'farfalla_option_'+this.Profile.id
+                                })
+                                .text(this.Profile.name)
+                                .appendTo('#farfalla_profile');
+
+
+/*
+                            $('<option></option>')
                                 .attr({
                                   'value': this.Profile.id,
                                   'title': this.descriptionTranslation[0].content,
@@ -124,6 +135,8 @@ $('#farfalla_home').hide();
                                 })
                                 .text(this.nameTranslation[0].content)
                                 .appendTo('#farfalla_profile');
+*/
+/*
                             $('#farfalla_option_'+this.Profile.id).qtip({
                                   content :  this.descriptionTranslation[0].content,
                                   position: {
@@ -133,6 +146,7 @@ $('#farfalla_home').hide();
                                   },
                                   style: 'ui-tooltip-dark'
                                 })
+  */
                         });
 
                         $('#farfalla_profile option[class=choose]').html(data.ui.choose);
