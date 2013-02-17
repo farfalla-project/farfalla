@@ -1,0 +1,568 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-02-24 20:50+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /controllers/alttexts_controller.php:13;35
+msgid "Invalid alttext"
+msgstr ""
+
+#: /controllers/alttexts_controller.php:23;40
+msgid "The alttext has been saved"
+msgstr ""
+
+#: /controllers/alttexts_controller.php:26;43
+msgid "The alttext could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/alttexts_controller.php:55
+msgid "Invalid id for alttext"
+msgstr ""
+
+#: /controllers/alttexts_controller.php:59
+msgid "Alttext deleted"
+msgstr ""
+
+#: /controllers/alttexts_controller.php:62
+msgid "Alttext was not deleted"
+msgstr ""
+
+#: /controllers/languages_controller.php:13;33
+msgid "Invalid language"
+msgstr ""
+
+#: /controllers/languages_controller.php:23;38
+msgid "The language has been saved"
+msgstr ""
+
+#: /controllers/languages_controller.php:26;41
+msgid "The language could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/languages_controller.php:51
+msgid "Invalid id for language"
+msgstr ""
+
+#: /controllers/languages_controller.php:55
+msgid "Language deleted"
+msgstr ""
+
+#: /controllers/languages_controller.php:58
+msgid "Language was not deleted"
+msgstr ""
+
+#: /controllers/plugins_controller.php:19;41;78;100
+msgid "Invalid plugin"
+msgstr ""
+
+#: /controllers/plugins_controller.php:29;46;88;105
+msgid "The plugin has been saved"
+msgstr ""
+
+#: /controllers/plugins_controller.php:32;49;91;108
+msgid "The plugin could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/plugins_controller.php:61;120
+msgid "Invalid id for plugin"
+msgstr ""
+
+#: /controllers/plugins_controller.php:65;124
+msgid "Plugin deleted"
+msgstr ""
+
+#: /controllers/plugins_controller.php:68;127
+msgid "Plugin was not deleted"
+msgstr ""
+
+#: /controllers/profiles_controller.php:56;78;99;138;160
+msgid "Invalid profile"
+msgstr ""
+
+#: /controllers/profiles_controller.php:66;83;105;148;165
+msgid "The profile has been saved"
+msgstr ""
+
+#: /controllers/profiles_controller.php:69;86;108;151;168
+msgid "The profile could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/profiles_controller.php:121;180
+msgid "Invalid id for profile"
+msgstr ""
+
+#: /controllers/profiles_controller.php:125;184
+msgid "Profile deleted"
+msgstr ""
+
+#: /controllers/profiles_controller.php:128;187
+msgid "Profile was not deleted"
+msgstr ""
+
+#: /controllers/users_controller.php:25
+msgid "The new user has been created. You can now login."
+msgstr ""
+
+#: /views/alttexts/add.ctp:4
+msgid "Add Alttext"
+msgstr ""
+
+#: /views/alttexts/add.ctp:12
+#: /views/alttexts/edit.ctp:13
+#: /views/languages/add.ctp:9
+#: /views/languages/edit.ctp:10
+#: /views/plugins/add.ctp:11
+#: /views/plugins/edit.ctp:12
+#: /views/profiles/add.ctp:27
+#: /views/profiles/copy.ctp:13
+#: /views/profiles/edit.ctp:14
+msgid "Submit"
+msgstr ""
+
+#: /views/alttexts/add.ctp:15
+#: /views/alttexts/edit.ctp:16
+#: /views/alttexts/index.ctp:12;55
+#: /views/alttexts/view.ctp:42
+#: /views/languages/add.ctp:12
+#: /views/languages/edit.ctp:13
+#: /views/languages/index.ctp:7;43
+#: /views/languages/view.ctp:17;39
+#: /views/plugins/add.ctp:14
+#: /views/plugins/edit.ctp:15
+#: /views/plugins/index.ctp:7;43
+#: /views/plugins/view.ctp:32;53
+#: /views/profiles/add.ctp:30
+#: /views/profiles/copy.ctp:16
+#: /views/profiles/edit.ctp:17
+#: /views/profiles/index.ctp:7;47
+#: /views/profiles/view.ctp:37;57
+msgid "Actions"
+msgstr ""
+
+#: /views/alttexts/add.ctp:18
+#: /views/alttexts/edit.ctp:20
+#: /views/alttexts/view.ctp:46
+#: /views/languages/add.ctp:16
+#: /views/languages/edit.ctp:18
+#: /views/languages/index.ctp:46
+#: /views/languages/view.ctp:23
+msgid "List Alttexts"
+msgstr ""
+
+#: /views/alttexts/add.ctp:19
+#: /views/alttexts/edit.ctp:21
+#: /views/alttexts/index.ctp:58
+#: /views/alttexts/view.ctp:48
+#: /views/languages/add.ctp:15
+#: /views/languages/edit.ctp:17
+#: /views/languages/view.ctp:21
+msgid "List Languages"
+msgstr ""
+
+#: /views/alttexts/add.ctp:20
+#: /views/alttexts/edit.ctp:22
+#: /views/alttexts/index.ctp:59
+#: /views/alttexts/view.ctp:49
+#: /views/languages/index.ctp:45
+#: /views/languages/view.ctp:22
+msgid "New Language"
+msgstr ""
+
+#: /views/alttexts/edit.ctp:4
+#: /views/alttexts/view.ctp:44
+msgid "Edit Alttext"
+msgstr ""
+
+#: /views/alttexts/edit.ctp:19
+#: /views/alttexts/index.ctp:35
+#: /views/languages/edit.ctp:16
+#: /views/languages/index.ctp:23
+#: /views/languages/view.ctp:60
+#: /views/plugins/edit.ctp:18
+#: /views/plugins/index.ctp:23
+#: /views/plugins/view.ctp:73
+#: /views/profiles/copy.ctp:19
+#: /views/profiles/duplicate.ctp:17
+#: /views/profiles/edit.ctp:20
+#: /views/profiles/index.ctp:23
+#: /views/profiles/view.ctp:76
+msgid "Delete"
+msgstr ""
+
+#: /views/alttexts/edit.ctp:19
+#: /views/alttexts/index.ctp:35
+#: /views/alttexts/view.ctp:45
+#: /views/languages/edit.ctp:16
+#: /views/languages/index.ctp:23
+#: /views/languages/view.ctp:20;60
+#: /views/plugins/edit.ctp:18
+#: /views/plugins/index.ctp:23
+#: /views/plugins/view.ctp:35;73
+#: /views/profiles/copy.ctp:19
+#: /views/profiles/duplicate.ctp:17
+#: /views/profiles/edit.ctp:20
+#: /views/profiles/index.ctp:23
+#: /views/profiles/view.ctp:40;76
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: /views/alttexts/index.ctp:2
+msgid "Alttexts"
+msgstr ""
+
+#: /views/alttexts/index.ctp:33
+#: /views/languages/index.ctp:21
+#: /views/languages/view.ctp:58
+#: /views/plugins/index.ctp:21
+#: /views/plugins/view.ctp:71
+#: /views/profiles/index.ctp:21
+#: /views/profiles/view.ctp:74
+msgid "View"
+msgstr ""
+
+#: /views/alttexts/index.ctp:34
+#: /views/languages/index.ctp:22
+#: /views/languages/view.ctp:59
+#: /views/plugins/index.ctp:22
+#: /views/plugins/view.ctp:72
+#: /views/profiles/index.ctp:22
+#: /views/profiles/view.ctp:75
+msgid "Edit"
+msgstr ""
+
+#: /views/alttexts/index.ctp:43
+#: /views/languages/index.ctp:31
+#: /views/plugins/index.ctp:31
+#: /views/profiles/index.ctp:35
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: /views/alttexts/index.ctp:48
+#: /views/languages/index.ctp:36
+#: /views/plugins/index.ctp:36
+#: /views/profiles/index.ctp:40
+msgid "previous"
+msgstr ""
+
+#: /views/alttexts/index.ctp:51
+#: /views/languages/index.ctp:39
+#: /views/plugins/index.ctp:39
+#: /views/profiles/index.ctp:43
+msgid "next"
+msgstr ""
+
+#: /views/alttexts/index.ctp:57
+#: /views/alttexts/view.ctp:47
+#: /views/languages/add.ctp:17
+#: /views/languages/edit.ctp:19
+#: /views/languages/index.ctp:47
+#: /views/languages/view.ctp:24;69
+msgid "New Alttext"
+msgstr ""
+
+#: /views/alttexts/view.ctp:2
+msgid "Alttext"
+msgstr ""
+
+#: /views/alttexts/view.ctp:4
+#: /views/languages/view.ctp:4;32
+#: /views/plugins/view.ctp:4;47
+#: /views/profiles/view.ctp:4;52
+msgid "Id"
+msgstr ""
+
+#: /views/alttexts/view.ctp:9
+#: /views/languages/view.ctp:33
+msgid "Url"
+msgstr ""
+
+#: /views/alttexts/view.ctp:14
+#: /views/languages/view.ctp:34
+msgid "Text"
+msgstr ""
+
+#: /views/alttexts/view.ctp:19
+#: /views/languages/view.ctp:2
+msgid "Language"
+msgstr ""
+
+#: /views/alttexts/view.ctp:24
+#: /views/languages/view.ctp:36
+msgid "Xpath"
+msgstr ""
+
+#: /views/alttexts/view.ctp:29
+#: /views/languages/view.ctp:37
+#: /views/plugins/view.ctp:19;51
+#: /views/profiles/view.ctp:24;55
+msgid "Created"
+msgstr ""
+
+#: /views/alttexts/view.ctp:34
+#: /views/languages/view.ctp:38
+#: /views/plugins/view.ctp:24;52
+#: /views/profiles/view.ctp:29;56
+msgid "Modified"
+msgstr ""
+
+#: /views/alttexts/view.ctp:45
+msgid "Delete Alttext"
+msgstr ""
+
+#: /views/languages/add.ctp:4
+msgid "Add Language"
+msgstr ""
+
+#: /views/languages/edit.ctp:4
+#: /views/languages/view.ctp:19
+msgid "Edit Language"
+msgstr ""
+
+#: /views/languages/index.ctp:2
+msgid "Languages"
+msgstr ""
+
+#: /views/languages/view.ctp:9
+#: /views/plugins/view.ctp:9;48
+#: /views/profiles/view.ctp:9;53
+msgid "Name"
+msgstr ""
+
+#: /views/languages/view.ctp:20
+msgid "Delete Language"
+msgstr ""
+
+#: /views/languages/view.ctp:28
+msgid "Related Alttexts"
+msgstr ""
+
+#: /views/languages/view.ctp:35
+msgid "Language Id"
+msgstr ""
+
+#: /views/layouts/default.ctp:25
+msgid "Farfalla: a web tool for accessibility -"
+msgstr ""
+
+#: /views/layouts/default.ctp:45
+msgid "Farfalla project: a web tool for accessibility"
+msgstr ""
+
+#: /views/layouts/default.ctp:56
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: /views/pages/form.ctp:113
+#: /views/profiles/menu.ctp:4
+msgid "Choose your profile..."
+msgstr ""
+
+#: /views/pages/form.ctp:116
+#: /views/profiles/menu.ctp:5
+msgid "get preferences"
+msgstr ""
+
+#: /views/pages/home.ctp:8
+msgid "Read a short description of the existing profiles."
+msgstr ""
+
+#: /views/pages/home.ctp:13
+msgid "Access the profile creation page."
+msgstr ""
+
+#: /views/pages/toolbar.ctp:64
+msgid "Loaded plugin(s): "
+msgstr ""
+
+#: /views/pages/toolbar.ctp:68
+#: /views/profiles/retrieve.ctp:3
+msgid "change profile"
+msgstr ""
+
+#: /views/plugins/add.ctp:4
+msgid "Add Plugin"
+msgstr ""
+
+#: /views/plugins/add.ctp:17
+#: /views/plugins/edit.ctp:19
+#: /views/plugins/view.ctp:36
+#: /views/profiles/add.ctp:34
+#: /views/profiles/copy.ctp:21
+#: /views/profiles/edit.ctp:22
+#: /views/profiles/index.ctp:50
+#: /views/profiles/view.ctp:43
+msgid "List Plugins"
+msgstr ""
+
+#: /views/plugins/add.ctp:18
+#: /views/plugins/edit.ctp:20
+#: /views/plugins/index.ctp:46
+#: /views/plugins/view.ctp:38
+#: /views/profiles/add.ctp:33
+#: /views/profiles/copy.ctp:20
+#: /views/profiles/duplicate.ctp:18
+#: /views/profiles/edit.ctp:21
+#: /views/profiles/view.ctp:41
+msgid "List Profiles"
+msgstr ""
+
+#: /views/plugins/add.ctp:19
+#: /views/plugins/edit.ctp:21
+#: /views/plugins/index.ctp:47
+#: /views/plugins/view.ctp:39;82
+#: /views/profiles/index.ctp:49
+#: /views/profiles/view.ctp:42
+msgid "New Profile"
+msgstr ""
+
+#: /views/plugins/edit.ctp:4
+#: /views/plugins/view.ctp:34
+msgid "Edit Plugin"
+msgstr ""
+
+#: /views/plugins/index.ctp:2
+msgid "Plugins"
+msgstr ""
+
+#: /views/plugins/index.ctp:45
+#: /views/plugins/view.ctp:37
+#: /views/profiles/add.ctp:35
+#: /views/profiles/copy.ctp:22
+#: /views/profiles/edit.ctp:23
+#: /views/profiles/index.ctp:51
+#: /views/profiles/view.ctp:44;85
+msgid "New Plugin"
+msgstr ""
+
+#: /views/plugins/view.ctp:2
+msgid "Plugin"
+msgstr ""
+
+#: /views/plugins/view.ctp:14;50
+#: /views/profiles/view.ctp:19;54
+msgid "Description"
+msgstr ""
+
+#: /views/plugins/view.ctp:35
+msgid "Delete Plugin"
+msgstr ""
+
+#: /views/plugins/view.ctp:43
+msgid "Related Profiles"
+msgstr ""
+
+#: /views/plugins/view.ctp:49
+#: /views/profiles/view.ctp:14
+msgid "Password"
+msgstr ""
+
+#: /views/profiles/add.ctp:6
+msgid "Add Profile"
+msgstr ""
+
+#: /views/profiles/add.ctp:8
+msgid "This page allows you to create a custom profile from scratch. You can also clone"
+msgstr ""
+
+#: /views/profiles/add.ctp:8
+msgid "one of the existing profiles"
+msgstr ""
+
+#: /views/profiles/add.ctp:8
+msgid "and edit it, adding or removing plugins."
+msgstr ""
+
+#: /views/profiles/add.ctp:12
+msgid "Choose a name for your profile: it could be your own name, or a description of what it is useful for."
+msgstr ""
+
+#: /views/profiles/add.ctp:16
+msgid "Choose a password: this will be required for editing your profile."
+msgstr ""
+
+#: /views/profiles/add.ctp:20
+msgid "Enter a description for your profile. It could be useful for other people wishing to use it. Don't worry, you will never enter your personal data in your profile."
+msgstr ""
+
+#: /views/profiles/add.ctp:24
+msgid "Now select the plugins you wish to include in your profile."
+msgstr ""
+
+#: /views/profiles/copy.ctp:5
+msgid "Copy Profile"
+msgstr ""
+
+#: /views/profiles/copy.ctp:7
+msgid "Choose a new name for your version of this profile. Remember this one was originally called <strong>"
+msgstr ""
+
+#: /views/profiles/copy.ctp:9
+#: /views/profiles/edit.ctp:10
+msgid "This is a description for your profile. It could be useful for other people wishing to use it."
+msgstr ""
+
+#: /views/profiles/copy.ctp:10
+msgid "These are the plugins available for inclusion in your profile."
+msgstr ""
+
+#: /views/profiles/duplicate.ctp:4
+#: /views/profiles/edit.ctp:5
+#: /views/profiles/view.ctp:39
+msgid "Edit Profile"
+msgstr ""
+
+#: /views/profiles/edit.ctp:8
+msgid "This is the name for your profile: it could be your own name, or a description of what it is useful for."
+msgstr ""
+
+#: /views/profiles/edit.ctp:11
+msgid "These are the plugins you wish to include in your profile."
+msgstr ""
+
+#: /views/profiles/index.ctp:2
+msgid "Profiles"
+msgstr ""
+
+#: /views/profiles/index.ctp:26
+msgid "New profile from this template"
+msgstr ""
+
+#: /views/profiles/menu.ctp:6
+msgid "Click on the Farfalla logo to show or hide the toolbar"
+msgstr ""
+
+#: /views/profiles/menu.ctp:7
+msgid "Go to <strong>Farfalla project</strong> website"
+msgstr ""
+
+#: /views/profiles/menu.ctp:8
+msgid "<strong>Drag the bar up and down from here</strong><br />The position will be remembered"
+msgstr ""
+
+#: /views/profiles/view.ctp:2
+msgid "Profile"
+msgstr ""
+
+#: /views/profiles/view.ctp:40
+msgid "Delete Profile"
+msgstr ""
+
+#: /views/profiles/view.ctp:48
+msgid "Related Plugins"
+msgstr ""
+
+#: /webroot/test.php:88
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
