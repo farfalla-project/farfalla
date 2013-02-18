@@ -35,6 +35,7 @@
  */
 	Configure::write('debug', 0);
 
+<<<<<<< HEAD
 /* Check if agent's language is supported */
 
     $agent_language = "eng"; // Default for unsupported locales
@@ -61,6 +62,9 @@
 
 
 	Configure::write('Config.language', $agent_language);
+=======
+//	Configure::write('Config.language', $agent_language);
+>>>>>>> master
 
 /**
  * CakePHP Log Level:
@@ -227,12 +231,12 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubFarfalleggiamento2G0FgaC9mi');
+	Configure::write('Security.salt', 'Dkjbofpo1ibfoibfi13bfoicqbeoqiebfoibYhG93b0qyJfIxfs2guVoUubFarfalleggiamento2G0FgaC9mi');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '7685930969696576945354249696749683645');
+	Configure::write('Security.cipherSeed', '768593096969657694535123456789023456789045678765434567894249696749683645');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
