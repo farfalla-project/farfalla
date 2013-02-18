@@ -18,7 +18,7 @@ class PluginsController extends AppController {
 	}
 	
 	public 	function beforeFilter() {
-        $this->Auth->allow('set_option','get_option');
+        $this->Auth->allow('set_option','get_option','menu');
 	}
 
 
@@ -36,6 +36,19 @@ class PluginsController extends AppController {
 		$options = array('conditions' => array('Plugin.' . $this->Plugin->primaryKey => $id));
 		$this->set('plugin', $this->Plugin->find('first', $options));
 	}
+
+/**
+ * menu method
+ *
+ * @return void
+ */
+
+	public function menu() {
+		$this->layout = 'ajax';
+		$this->RequestHandler->setContent('json', 'text/x-json');
+		$this->set('plugins', $this->Plugin->find('all', array('fields' => array('Plugin.id', 'Plugin.name', 'Plugin.visible'), 'recursive' => 0)));
+	}
+
 
 /**
  * add method

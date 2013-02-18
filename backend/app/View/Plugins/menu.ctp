@@ -12,7 +12,7 @@ echo($_GET['callback'].'(');
 echo('{"ui":');
 echo('{"choose":"' . $choose . '","logo":"' . $logo . '","handle":"' . $handle . '","home":"' . $home . '"},');
 echo('"plugins":');
-echo($javascript->object($plugins));
+echo($this->Js->object($plugins));
 echo('});');
 
 ?>

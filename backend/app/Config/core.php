@@ -35,36 +35,7 @@
  */
 	Configure::write('debug', 0);
 
-<<<<<<< HEAD
-/* Check if agent's language is supported */
-
-    $agent_language = "eng"; // Default for unsupported locales
-	$lang = null;
-
-	if($_SERVER['HTTP_ACCEPT_LANGUAGE']){
-		$lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-		$comma = strpos($lang,',');
-		if($comma>0){
-			$lang = substr($lang,0,$comma);
-		}
-	}
-
-    switch ($lang) {
-      case "it-IT" : $agent_language = "ita";
-      case "it-it" : $agent_language = "ita";
-      case "it" : $agent_language = "ita";
-//      case "es-es" : $agent_language = "esp";
-//      case "es" : $agent_language = "esp";
-
-      break;
-    }
-
-
-
-	Configure::write('Config.language', $agent_language);
-=======
 //	Configure::write('Config.language', $agent_language);
->>>>>>> master
 
 /**
  * CakePHP Log Level:
