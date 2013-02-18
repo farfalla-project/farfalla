@@ -5,3 +5,5 @@ goodies/deployment.sh
 goodies/deploy.php
 .com.apple.timemachine.supported
 backend/farfalla-backend.sql
+backend/app/Config/database.php
+backend/app/tmp/
