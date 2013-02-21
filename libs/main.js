@@ -109,7 +109,7 @@ jQuery.noConflict();
 
         case 'button':
           $('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
-          $('#'+name+'_button').click(callback);
+          $('#'+name+'_button').css('background','url("'+farfalla_path+'/plugins/'+plugin_name+'/icons/'+name+'.png")').click(callback);
         break;
       }
     }
@@ -131,11 +131,14 @@ jQuery.noConflict();
         $('<link></link>').attr({
           "rel":"stylesheet",
           "type":"text/css",
-          "href":farfalla_path+"/plugins/"+plugin_name+"/css/"+sheet_name+".farfalla.css"
+          "href":farfalla_path+"plugins/"+plugin_name+"/css/"+sheet_name+".farfalla.css"
         }).appendTo($('head'));
       }
     };
 
+    $.farfalla_remove_plugin_css = function(plugin_name){
+      $('link[href*="'+plugin_name+'_"]').remove();
+    }
 
 
     // A function for adding buttons to the toolbar

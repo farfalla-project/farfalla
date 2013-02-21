@@ -10,22 +10,20 @@ jQuery.noConflict();
         console.log($(this).css('background-color'));
       })
 */
-      $('<link></link>').attr({
-        "rel":"stylesheet",
-        "type":"text/css",
-        "href":farfalla_path+"plugins/clarifier/clarifier.farfalla.css"
-      }).appendTo($('head'));
+      $.farfalla_add_css('clarifier','clarifier');
 
       $.clarifier_on = function () {
 
         $('#clarifierActivator').farfalla_switch_on('clarifier');
+
+        $('#farfalla_container *').addClass('donttouchme');
 
         // Set <html> background color to cream, but only in case it is white
         if($('html').css('background-color')=='transparent'||$('html').css('background-color')=='rgba(0, 0, 0, 0)'){
           $('html').addClass('creamBackground');
         }
 
-        $('*').not('#farfalla_container *').each(function(){
+        $('*').not('.donttouchme').each(function(){
 
           if($(this).css('background-color')=='rgb(255, 255, 255)'){
             $(this).addClass('creamBackground');
@@ -37,15 +35,15 @@ jQuery.noConflict();
 
         // Set fonts to Tahoma, Arial, sans
 
-        $('*').not('#farfalla_container *').addClass('fontClarifier');
+        $('*').not('.donttouchme').addClass('fontClarifier');
 
-        $('h1').not('#farfalla_container *').addClass('h1Clarifier');
+        $('h1').not('.donttouchme').addClass('h1Clarifier');
 
-        $('h2').not('#farfalla_container *').addClass('h2Clarifier');
+        $('h2').not('.donttouchme').addClass('h2Clarifier');
 
-        $('h1, h2, h3, h4, h5, h6, h7, h8, h9, h10').not('#farfalla_container *').addClass('boldClarifier');
+        $('h1, h2, h3, h4, h5, h6, h7, h8, h9, h10').not('.donttouchme').addClass('boldClarifier');
 
-        $('*').not('#farfalla_container *').each(function(){
+        $('*').not('.donttouchme').each(function(){
 
           if($(this).css('text-align')=='justify'){
             $(this).addClass('leftAlignClarifier');
@@ -55,7 +53,7 @@ jQuery.noConflict();
 
         // Set line height to 200% in <p> and <li> elements only
 
-        $('p, li').not('#farfalla_container *').each(function(){
+        $('p, li').not('.donttouchme').each(function(){
           $(this).addClass('linespacingClarifier');
         });
 

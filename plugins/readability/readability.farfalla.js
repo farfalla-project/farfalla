@@ -1,4 +1,4 @@
-﻿// Farfalla plugin: Readability
+// Farfalla plugin: Readability
 
 jQuery.noConflict();
 (function($) {
