@@ -57,23 +57,15 @@ jQuery.noConflict();
         })
         .appendTo('#'+plugin_name+'_options')
 
-/*
-      $('<input />')
-        .attr({
-          'id':div_id+'_confirm',
-          'class':'plugin_options_confirm',
-          'type':'button',
-          'value':'V'
-        })
-        .appendTo('#'+div_id+'_actions')
-*/
-
       $('<input />')
         .attr({
           'id':plugin_name+'_options_deactivate',
           'class':'plugin_options_deactivate',
           'type':'button',
           'value':'X'
+        })
+        .css({
+          'background':'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_deactivate.png") no-repeat #fff'
         })
         .appendTo('#'+plugin_name+'_options_common')
 

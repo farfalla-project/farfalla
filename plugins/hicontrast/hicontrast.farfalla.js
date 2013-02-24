@@ -23,7 +23,7 @@ jQuery.noConflict();
     });
 
 
-    $.farfalla_add_ui_section('hicontrast','Manage');
+    $.farfalla_add_ui_section('hicontrast','Actions');
 
     $.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'reset', function(){
 
@@ -31,13 +31,13 @@ jQuery.noConflict();
 
     });
 
-    $('#farfalla_container *').addClass('donttouchme');
 
     $.hicontrast_on = function () {
 
       $('#hicontrastActivator').farfalla_switch_on('hicontrast');
       $('.plugin_options').slideUp('fast');
       $('#hicontrast_options').slideDown('fast');
+      $('#farfalla_container *').addClass('donttouchme');
 
     }
 

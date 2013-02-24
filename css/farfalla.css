@@ -364,16 +364,18 @@ float:left;
 }
 
 .plugin_options input{
-  width:42px;
-  height:42px;
+  width:62px;
+  height:62px;
   margin:5px;
-  padding: 3px;
-  border: 1px solid #000;
+/*  padding: 3px;  */
+  border: none;
   color: transparent;
+/*
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
   border-radius: 4px;
+*/
 }
 
 .plugin_options_actions{
