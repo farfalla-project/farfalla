@@ -35,14 +35,12 @@ jQuery.noConflict();
 
         $('<div id="monitor">')
           .html('<p style="font-size:30pt">Farfalla Magnification module: active</p>')
-          .addClass('monitor')
-          .addClass('ui-corner-all')
+          .addClass('monitor ui-corner-all')
           .prependTo('body')
           .fadeIn(300);
 
        $('<div id="highlighter">')
-         .addClass('highlighter')
-         .addClass('ui-corner-all')
+         .addClass('highlighter ui-corner-all donttouchme')
          .prependTo('body');
 
       }

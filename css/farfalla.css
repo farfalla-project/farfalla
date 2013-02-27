@@ -55,9 +55,9 @@ body{
 
 #farfalla_toolbar_shade {
   position: absolute;
-  z-index: 1000;
+  z-index: 999;
   margin: 0;
-  background: #000 !important;
+  background: transparent !important;
   padding: 0;
   display:block;
   width: 100%;

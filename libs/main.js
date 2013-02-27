@@ -255,14 +255,14 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
-//            $('<div></div>').attr('id','farfalla_toolbar_shade').hide().appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
 
-/*
+
             $('#farfalla_toolbar_shade').click( function() {
               $(this).hide();
-              $('.plugin_options').hide();
+              $('#farfalla_badge').click();
             });
-*/
+
 
 /*
             $('<a></a>').attr({
@@ -545,6 +545,7 @@ jQuery.noConflict();
               function() {
                 $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/})
                 $('#farfalla_toolbar').show('fast');
+                $('#farfalla_toolbar_shade').show();
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
