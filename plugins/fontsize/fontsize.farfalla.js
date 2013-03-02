@@ -95,7 +95,7 @@ jQuery.noConflict();
           var increase = parseFloat(data.value);
         }
 
-        $('.plugin_options').slideUp('fast');
+        $('.plugin_options').not('#fontsize_options').slideUp('fast');
         $('#fontsize_options').slideDown('fast');
 
       });

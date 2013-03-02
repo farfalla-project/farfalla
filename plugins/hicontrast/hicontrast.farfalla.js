@@ -50,7 +50,7 @@ jQuery.noConflict();
     $.hicontrast_on = function () {
 
       $('#hicontrastActivator').farfalla_switch_on('hicontrast');
-      $('.plugin_options').slideUp('fast');
+      $('.plugin_options').not('#hicontrast_options').slideUp('fast');
       $('#hicontrast_options').slideDown('fast');
       $('#farfalla_container *').addClass('donttouchme');
 

@@ -13,7 +13,7 @@ jQuery.noConflict();
 
     $.##plugin_name##_on = function () {
       $('###plugin_name##Activator').farfalla_switch_on('##plugin_name##');
-      $('.plugin_options').hide();
+      $('.plugin_options').not('###plugin_name##').slideUp('fast');
       $('###plugin_name##_options').slideDown('fast');
 
     // New logic here
