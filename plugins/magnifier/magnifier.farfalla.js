@@ -6,6 +6,9 @@ jQuery.noConflict();
     // Include htmlClean plugin
     head.js(farfalla_path +'libs/jquery.htmlClean-min.js');
 
+    $.farfalla_add_css('magnifier','magnifier');
+
+
     jQuery.expr[':'].hasText = function(element, index) {
        // if there is only one child, and it is a text node
        if (element.childNodes.length == 1 && element.firstChild.nodeType == 3) {
