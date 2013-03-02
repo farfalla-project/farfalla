@@ -6,7 +6,7 @@ jQuery.noConflict();
   $(function() {
     
     $('<div id="farfalla_keyboard"></div>').appendTo('body');
-    $('<div id="farfalla_keyboard_shade"></div>')
+    $('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
       .css({
          'position':'absolute',
          'display':'block',
@@ -32,6 +32,7 @@ jQuery.noConflict();
             'top' : position.top+height+10+'px',
             'left' : position.left
           })
+          $('#farfalla_keyboard *').addClass('donttouchme');
         })
         $(window).scroll(function(){
           $('#farfalla_keyboard_shade').css('top',$(window).scrollTop());

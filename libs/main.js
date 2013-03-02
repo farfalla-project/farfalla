@@ -323,7 +323,7 @@ jQuery.noConflict();
 
         function farfalla_remember_profile() {
           $.cookie('farfalla_active_plugins', active_plugins, { expires: 7 })
-          console.log(active_plugins)
+//          console.log(active_plugins)
         }
 
         function farfalla_forget_profile() {
@@ -592,7 +592,7 @@ jQuery.noConflict();
         function farfalla_autoactivate_plugins() {
 
           if($.cookie('farfalla_active_plugins')!=null){
-// console.log($.cookie('farfalla_active_plugins'));
+//  console.log('Cookie content: '+$.cookie('farfalla_active_plugins'));
             active = $.cookie('farfalla_active_plugins').split(',')
 
             $.each(active, function(index, value){
@@ -600,14 +600,14 @@ jQuery.noConflict();
             })
 
             $('#farfalla_remember_profile').click();
-              console.log('cookie button reactivated')
+//              console.log('cookie button reactivated')
           } else {
 
             $.farfalla_get_option('active_plugins', function(data){
 
               if(data.value){
                 active = data.value.split(',')
-                console.log(active);
+//                console.log(active);
 
                 $.each(active, function(index, value){
                   $('#'+value+'Activator').click();

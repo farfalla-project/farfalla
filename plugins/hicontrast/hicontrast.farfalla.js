@@ -11,6 +11,20 @@ jQuery.noConflict();
 
     $.farfalla_add_ui_section('hicontrast','Color schemes');
 
+    $.farfalla_get_option('colorscheme', function(data){
+
+      // restore color scheme on load
+
+      if(data.value){
+
+        $.farfalla_remove_plugin_css('hicontrast');
+        $.farfalla_add_css('hicontrast','hicontrast_'+data.value);
+
+      }
+
+    });
+
+
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
     $.each(colorSchemes, function(index, value){
@@ -18,6 +32,7 @@ jQuery.noConflict();
 
         $.farfalla_remove_plugin_css('hicontrast');
         $.farfalla_add_css('hicontrast','hicontrast_'+value);
+        $.farfalla_set_option('colorscheme',value);
 
       });
     });
