@@ -20,6 +20,7 @@ jQuery.noConflict();
       var remember_profile = 0
     }
 
+
 /*
     #######################################
     #                                     #
@@ -27,6 +28,17 @@ jQuery.noConflict();
     #                                     #
     #######################################
 */
+
+    // Bridge function for cakephp gettext translations
+
+    $.__ = function (string){
+      index = $.inArray(string,strings);
+      if(index>=0){
+        return translations[index];
+      } else {
+        return string;
+      }
+    }
 
     // Add plugin configuration area
 
@@ -40,8 +52,6 @@ jQuery.noConflict();
         .addClass('ui-corner-bottom')
         .hide()
         .insertBefore('#farfalla_remember_profile');
-
-//        .appendTo('#farfalla_toolbar');
 
       $('<div></div>')
         .attr({
@@ -249,7 +259,7 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_badge').addClass('ui-corner-left').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
             $('<div></div>').attr('id','farfalla_logo')
-              .html('<h1><a href="http://farfalla-project.org/">Farfalla project</a></h1><p>Accessibility preferences</p>')
+              .html('<h1><a href="http://farfalla-project.org/">'+$.__('ft_farfalla_project')+'</a></h1><p>'+$.__('ft_accessibility_preferences')+'</p>')
               .appendTo('#farfalla_toolbar');
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
@@ -323,7 +333,6 @@ jQuery.noConflict();
 
         function farfalla_remember_profile() {
           $.cookie('farfalla_active_plugins', active_plugins, { expires: 7 })
-//          console.log(active_plugins)
         }
 
         function farfalla_forget_profile() {
@@ -346,39 +355,9 @@ jQuery.noConflict();
                         })
                         .addClass('plugin_activator ui-corner-all')
                         .appendTo('#farfalla_toolbar_plugins');
-/*
-                      $('<input></input>')
-                        .attr({
-                           'name': plugin.name+'Activator',
-                           'id': plugin.name+'Activator',
-                           'type':'checkbox'
-                        })
-                        .appendTo('#plugin_'+plugin.name);
-                      $('<label></label>')
-                        .attr({
-                           'for': plugin.name+'Activator',
-                           'class': 'plugin_activator_label'
-                        })
-                        .html(plugin.name)
-                        .appendTo('#plugin_'+plugin.name);
-
-                      $('#'+plugin.name+'Activator').toggle(
-                        function() {
-                          $(this).attr('checked','checked')
-                          console.log('activated '+plugin.name);
-                          head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
-                          farfalla_track_plugins(plugin.name,1);
-                        },
-                        function() {
-                          $(this).attr('checked',null)
-                          console.log('deactivated '+plugin.name);
-                          farfalla_track_plugins(plugin.name,0);
-                        }
-                      );
-*/
 
                       $('#'+plugin.name+'Activator').qtip({
-                        content :  plugin.name,
+                        content :  $.__(plugin.name),
                         position: {
                           my: 'top center',
                           at: 'bottom center',
@@ -472,35 +451,7 @@ jQuery.noConflict();
 */
 
 
-        // Adds interaction to the activation button in the profile selection form
-/*
-        function farfalla_selection_interaction() {
 
-            $("#farfalla_profile").change(function() {
-
-            var farfalla_profile = $('#farfalla_profile').val();
-
-            $.getJSON(
-                farfalla_path+"backend/profiles/retrieve/"+$('#farfalla_profile').val()+"/?callback=?", {},
-
-                // Recall the plugins
-
-                function(data) {
-                    farfalla_plugins_listing_create($('#farfalla_profile').val());
-                    farfalla_plugins_listing_interaction();
-                    $('#farfalla_toolbar_plugins').fadeOut('slow');
-                    $('#farfalla_active').fadeIn('slow');
-                    farfalla_hide_toolbar(0);
-                }
-
-            );
-
-            // stop the call to the form "action"
-            return false;
-
-        });
-        };
-*/
 
         // Adds interaction to the plugins list: reset the profiles selection
 /*
