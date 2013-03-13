@@ -8,6 +8,8 @@ var strings = new Array(
  "ft_farfalla_project"
 ,"ft_accessibility_preferences"
 ,"ft_actions"
+,"save_session"
+,"reset"
 ,"hicontrast"
 ,"fontsize"
 ,"clarifier"
@@ -21,6 +23,8 @@ var translations = new Array(
   echo('"'. __('Farfalla project') .'"');
   echo(',"'. __('Accessibility Preferences') .'"');
   echo(',"'. __('Actions') .'"');
+  echo(',"'. __('Save current settings for the future') .'"');
+  echo(',"'. __('Reset all settings') .'"');
   echo(',"'. __('Contrast and color scheme control') .'"');
   echo(',"'. __('Font size control') .'"');
   echo(',"'. __('High readability') .'"');

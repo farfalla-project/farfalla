@@ -318,7 +318,8 @@ jQuery.noConflict();
                 }
               });
 
-            $('#farfalla_remember_profile').toggle(
+            $('#farfalla_remember_profile')
+            .toggle(
               function() {
 				farfalla_remember_profile();
 				remember_profile = 1;
@@ -329,16 +330,37 @@ jQuery.noConflict();
                 remember_profile = 0;
 				$(this).css('background','url("'+farfalla_path+'images/save.png")')
               }
-            );
+            ).qtip({
+              content :  $.__('save_session'),
+              position: {
+                my: 'top center',
+                at: 'bottom center'
+              },
+              style: {
+                classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
+                width: 'auto'
+              }
+             });
 
-            $('#farfalla_reset_all').click(function(){
+            $('#farfalla_reset_all')
+            .click(function(){
               $('.plugin_options_deactivate').click();
               $('.active').click();
               $.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
               farfalla_forget_profile();
               remember_profile = 0;
               $('#farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png")')
-            });
+            }).qtip({
+              content :  $.__('reset'),
+              position: {
+                my: 'top center',
+                at: 'bottom center'
+              },
+              style: {
+                classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
+                width: 'auto'
+              }
+             });
         };
 
         function farfalla_remember_profile() {
