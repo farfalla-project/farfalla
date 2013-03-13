@@ -50,7 +50,7 @@ class ProfilesController extends AppController {
 	}
 
 	public function reset() {
-		$this->Session->delete('id');
+		$this->Session->destroy();
 		$this->layout = 'ajax';
 	    $this->RequestHandler->setContent('json', 'text/x-json');
 	}

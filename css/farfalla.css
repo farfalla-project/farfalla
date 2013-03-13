@@ -258,12 +258,12 @@ float:left;
   float:left;
 }
 
-#farfalla_remember_profile{
+#farfalla_remember_profile, #farfalla_reset_all{
   display: block;
   width: 52px;
   height: 52px;
   margin: 20px;
-  float:right;
+  float:left;
 }
 
 .plugin_activator_label{
