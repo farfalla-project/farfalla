@@ -3,13 +3,13 @@ jQuery.noConflict();
 (function($) {
   $(function() {
 
-// Inclusion of the needed css stylesheets
+    // Inclusion of the needed css stylesheets
 
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui.custom.min.css').prependTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.min.css').appendTo('head');
 
-// Main variables
+    // Main variables
 
     var options = farfalla_ui_options();
     var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
@@ -47,7 +47,7 @@ jQuery.noConflict();
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options',
-          'class':'plugin_options'
+          'class':'plugin_options dontotuchme'
         })
         .addClass('ui-corner-bottom')
         .hide()
@@ -82,19 +82,6 @@ jQuery.noConflict();
       var position = $('#'+plugin_name+'Activator').position();
       var width = $('#'+plugin_name+'_options').width();
 
-/*      $('#'+plugin_name+'_options').css({
-        'top' : position.top,
-        'left' : position.left-width
-      });
-*/
-/*
-      $('#'+plugin_name+'_options').position({
-        my: 'top',
-        at: 'bottom',
-        of: '#'+plugin_name+'Activator',
-        collision: "fit"
-      })
-*/
     }
 
 
@@ -223,9 +210,6 @@ jQuery.noConflict();
       console.log('deactivated '+plugin_name);
     }
 
-
-//$('#farfalla_home').hide();
-
 /*
     #######################################
     #                                     #
@@ -256,7 +240,7 @@ jQuery.noConflict();
         function farfalla_toolbar_create() {
 
             $('<div></div>').attr('id','farfalla_container').prependTo('body');
-            $('<div></div>').attr('id','farfalla_badge').addClass('ui-corner-left').appendTo('#farfalla_container');
+            $('<div></div>').attr('id','farfalla_badge').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
             $('<div></div>').attr('id','farfalla_logo')
               .html('<h1><a href="http://farfalla-project.org/">'+$.__('ft_farfalla_project')+'</a></h1><p>'+$.__('ft_accessibility_preferences')+'</p>')
@@ -275,22 +259,6 @@ jQuery.noConflict();
             });
 
 
-/*
-            $('<a></a>').attr({
-            	'id':'farfalla_home_link',
-            	'href':'http://www.farfalla-project.org'
-            }).appendTo('#farfalla_home');
-                        $('<img></img>').attr({
-            	'id':'farfalla_home_icon',
-                'src':farfalla_path+'images/home_icon.png',
-                'alt':'Farfalla home - Link to the farfalla home page' // this needs translation
-            }).appendTo('#farfalla_home_link');
-            $('<img></img>').attr({
-                'src':farfalla_path+'images/farfalla_icon.png',
-                'alt':'Farfalla logo - Click to hide or display the toolbar' // this needs translation
-            }).appendTo('#farfalla_logo');
-*/
-
             if(options.border){
               if($.inArray(options.border, allowedColors)>=0){
                 $('#farfalla_badge').css({
@@ -300,6 +268,7 @@ jQuery.noConflict();
                 });
               }
             };
+
 
             $('#farfalla_badge')
               .css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
@@ -416,86 +385,11 @@ jQuery.noConflict();
 
                     farfalla_autoactivate_plugins();
 
-
-//                    $('#farfalla_profile option[class=choose]').html(data.ui.choose);
-
-/*
-                    $('#farfalla_logo').qtip({
-                      content : data.ui.logo,
-                      position: {
-                        my: 'top right',
-                        at: 'bottom center',
-                        target: $('#farfalla_logo')
-                      },
-                      style: 'ui-tooltip-dark'
-                    });
-
-                    $('#farfalla_handle').qtip({
-                      content : data.ui.handle,
-                      position: {
-                        my: 'top right',
-                        at: 'bottom center',
-                        target: $('#farfalla_handle')
-                      },
-                      style: 'ui-tooltip-dark'
-                    });
-
-                    $('#farfalla_home').qtip({
-                      content : data.ui.home,
-                      position: {
-                        my: 'top right',
-                        at: 'bottom center',
-                        target: $('#farfalla_home')
-                      },
-                      style: 'ui-tooltip-dark'
-                    });
-*/
                   }
 
                 );
 
         };
-
-
-        // Adds the plugins listing area (removed..)
-/*
-        function farfalla_plugins_listing_create(id) {
-
-            $('<div></div>').attr('id','farfalla_active').insertBefore('#farfalla_home');
-                $('<ul></ul>').appendTo('#farfalla_active');
-                        $('<input></input>').attr({'type':'button','id':'farfalla_change_profile','value':'loading ...'}).addClass('ui-corner-all').prependTo('#farfalla_active');
-
-                            $.getJSON(
-                                farfalla_path+'backend/profiles/retrieve/'+id+'/?callback=?',
-                                {},
-                                function(data) {
-                                    $.each(data.description.Plugin, function(i, plugin){
-                                        // $('#farfalla_active ul').prepend('<li>'+plugin.name+'</li>');
-                                        $('#farfalla_selection').hide();
-//                                        $('#farfalla_active').show();
-                                        jQuery.getScript(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
-                                    });
-                                    $('#farfalla_change_profile').val(data.ui.reset)
-                                }
-                            );
-
-        };
-*/
-
-
-
-
-        // Adds interaction to the plugins list: reset the profiles selection
-/*
-        function farfalla_plugins_listing_interaction() {
-
-            $('#farfalla_change_profile').click( function(){
-                $('#farfalla_active').fadeOut();
-                var jqxhr = $.getJSON(farfalla_path+'backend/profiles/reset/?callback=?');
-                jqxhr.complete(function() {window.location.reload()});
-            });
-        };
-*/
 
         // Checks if a profile has already been selected, then initializes what is needed
 
@@ -534,7 +428,6 @@ jQuery.noConflict();
               function() {
                 $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/})
                 $('#farfalla_toolbar').hide('fast');
-//                $('.plugin_options').hide();
                 $('#farfalla_toolbar_shade').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
@@ -575,7 +468,6 @@ jQuery.noConflict();
         function farfalla_autoactivate_plugins() {
 
           if($.cookie('farfalla_active_plugins')!=null){
-//  console.log('Cookie content: '+$.cookie('farfalla_active_plugins'));
             active = $.cookie('farfalla_active_plugins').split(',')
 
             $.each(active, function(index, value){
@@ -583,15 +475,12 @@ jQuery.noConflict();
             })
 
             $('#farfalla_remember_profile').click();
-//              console.log('cookie button reactivated')
           } else {
 
             $.farfalla_get_option('active_plugins', function(data){
 
               if(data.value){
                 active = data.value.split(',')
-//                console.log(active);
-
                 $.each(active, function(index, value){
                   $('#'+value+'Activator').click();
                 })
