@@ -2,10 +2,26 @@
 
 $this->layout = 'ajax';
 
+$language = substr(Configure::read('Config.language'),0,2);
+
+$known_languages = array(
+  "en"
+  ,"it"
+  ,"es"
+);
+
+if(in_array($language, $known_languages)){
+  $lang_code = $language;
+} else {
+  $lang_code = "en";
+}
+
 ?>
 
+var detected_language = <?php echo ('"'. $lang_code .'";'); ?>
+
 var strings = new Array(
- "ft_farfalla_project"
+"ft_farfalla_project"
 ,"ft_accessibility_preferences"
 ,"ft_actions"
 ,"save_session"

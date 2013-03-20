@@ -271,7 +271,13 @@ jQuery.noConflict();
 
 
             $('#farfalla_badge')
-              .css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
+              .css({
+                'background': 'url("'+farfalla_path+'images/farfalla_badge_'+detected_language+'.png")',
+                'background-position':'center center',
+                'background-repeat':'no-repeat',
+                'background-color':'#000',
+                'cursor':'url(\''+farfalla_path+'images/hand.png\'), auto'
+              })
               .mouseup(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
