@@ -9,40 +9,40 @@ jQuery.noConflict();
 
     $.farfalla_create_plugin_options('hicontrast');
 
-    $.farfalla_add_ui_section('hicontrast','Color schemes');
-
-    $.farfalla_get_option('colorscheme', function(data){
-
-      // restore color scheme on load
-
-      if(data.value){
-
-        $.farfalla_remove_plugin_css('hicontrast');
-        $.farfalla_add_css('hicontrast','hicontrast_'+data.value);
-
-      }
-
-    });
-
+    $.farfalla_add_ui_section('hicontrast',$.__('Color_schemes'));
 
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
     $.each(colorSchemes, function(index, value){
       $.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, index, function(){
 
+        $('#farfalla_active_option input').unwrap();
         $.farfalla_remove_plugin_css('hicontrast');
         $.farfalla_add_css('hicontrast','hicontrast_'+value);
         $.farfalla_set_option('colorscheme',value);
+        $('#hicontrast_'+value+'_button').wrap('<div id="farfalla_active_option" class="donttouchme"></div>');
 
       });
     });
 
+    $.farfalla_get_option('colorscheme', function(data){
 
-    $.farfalla_add_ui_section('hicontrast','Actions');
+      // restore color scheme on load
+
+      if(data.value){
+        $('#hicontrast_'+data.value+'_button').click();
+      }
+
+    });
+
+    $.farfalla_add_ui_section('hicontrast',$.__('Actions'));
 
     $.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'reset', function(){
 
       $.farfalla_remove_plugin_css('hicontrast');
+      $('#farfalla_active_option input').unwrap();
+      $.farfalla_set_option('colorscheme');
+
 
     });
 

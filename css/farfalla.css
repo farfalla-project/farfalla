@@ -159,6 +159,7 @@ body{
       list-style: none;
       display: inline;
       padding: 0;
+      float: left;
   }
 
   #farfalla_buttons ul li input{
@@ -316,6 +317,7 @@ float:left;
   color: #000 !important;
   margin: 0;
   font-size: 12pt;
+  padding: 12px 0 0 12px;
 }
 
 
@@ -328,4 +330,11 @@ float:left;
   width: 100%;
   display:block;
   clear: both;
+}
+
+#farfalla_active_option{
+  display: inline;
+  padding: 22px 0;
+  margin: 0;
+  background: url('../images/farfalla_active_option.png');
 }

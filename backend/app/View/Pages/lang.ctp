@@ -32,6 +32,8 @@ var strings = new Array(
 ,"magnifier"
 ,"keyboard"
 ,"bigcursor"
+,"Color_schemes"
+,"Actions"
 );
 
 var translations = new Array(
@@ -47,6 +49,8 @@ var translations = new Array(
   echo(',"'. __('Selective magnification') .'"');
   echo(',"'. __('Onscreen virtual keyboard') .'"');
   echo(',"'. __('Larger mouse cursor') .'"');
+  echo(',"'. __('Color schemes') .'"');
+  echo(',"'. __('Actions') .'"');
 ?>
 
 );

@@ -47,7 +47,7 @@ jQuery.noConflict();
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options',
-          'class':'plugin_options dontotuchme'
+          'class':'plugin_options donttouchme'
         })
         .addClass('ui-corner-bottom')
         .hide()
@@ -56,21 +56,21 @@ jQuery.noConflict();
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options_custom',
-          'class':'plugin_options_actions'
+          'class':'plugin_options_actions donttouchme'
         })
         .appendTo('#'+plugin_name+'_options')
 
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options_common',
-          'class':'plugin_options_actions'
+          'class':'plugin_options_actions donttouchme'
         })
         .appendTo('#'+plugin_name+'_options')
 
       $('<input />')
         .attr({
           'id':plugin_name+'_options_deactivate',
-          'class':'plugin_options_deactivate',
+          'class':'plugin_options_deactivate donttouchme',
           'type':'button',
           'value':'X'
         })
@@ -98,8 +98,9 @@ jQuery.noConflict();
 
         case 'button':
           $('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
-          $('#'+name+'_button').css('background','url("'+farfalla_path+'/plugins/'+plugin_name+'/icons/'+name+'.png")').click(callback);
+          $('#'+name+'_button').addClass('donttouchme').css('background','url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+name+'.png")').click(callback);
         break;
+
       }
     }
 
