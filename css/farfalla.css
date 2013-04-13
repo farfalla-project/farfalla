@@ -102,6 +102,14 @@ body{
     position: relative;
   }
 
+  #farfalla_logo p{
+    font-size: 12pt;
+    font-family: Helvetica,Arial,sans;
+    letter-spacing: 0;
+    position: relative;
+    text-align: center;
+  }
+
   #farfalla_home{
     width: 42px;
     height: 42px;

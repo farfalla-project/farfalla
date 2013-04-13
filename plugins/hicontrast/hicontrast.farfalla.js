@@ -61,6 +61,8 @@ jQuery.noConflict();
       $('#hicontrastActivator').farfalla_switch_off('hicontrast');
       $('#hicontrast_options').hide();
       $.farfalla_remove_plugin_css('hicontrast');
+      $('#farfalla_active_option input').unwrap();
+      $.farfalla_set_option('colorscheme');
 
     }
 
