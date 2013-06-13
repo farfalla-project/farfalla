@@ -20,7 +20,7 @@ body{
   height: 100%;
   display: block;
   background: #000 !important;
-  z-index: 1000;
+  z-index: 99999;
   border-left: 2px solid #fff;
   -webkit-box-shadow: 0 0 6px #383838;
   -moz-box-shadow: 0 0 6px #383838;
@@ -34,7 +34,7 @@ body{
   display: block;
   width: 40px;
   height: 180px;
-  z-index: 1011;
+  z-index: 10000;
   border-left: 2px solid #fff;
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;

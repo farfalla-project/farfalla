@@ -427,14 +427,14 @@ jQuery.noConflict();
 
             $('#farfalla_badge').toggle(
               function() {
-                $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/})
-                $('#farfalla_toolbar').show('fast');
+                $('#farfalla_toolbar').show();
                 $('#farfalla_toolbar_shade').show();
+                $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/});
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
-                $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/})
-                $('#farfalla_toolbar').hide('fast');
+                $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/});
+                $('#farfalla_toolbar').hide();
                 $('#farfalla_toolbar_shade').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
