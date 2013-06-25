@@ -20,6 +20,27 @@ jQuery.noConflict();
       var remember_profile = 0
     }
 
+    $('body').attr('id','farfalla_body').css('padding',0);
+
+    var snapper = new Snap({
+      element: document.getElementById('farfalla_body'),
+      disable: 'left',
+      dragger: null,
+      addBodyClasses: true,
+      hyperextensible: false,
+      resistance: 0.5,
+      flickThreshold: 50,
+      transitionSpeed: 0.3,
+      easing: 'ease',
+      maxPosition: 360,
+      minPosition: -360,
+      tapToClose: false,
+      touchToDrag: true,
+      slideIntent: 40,
+      minDragDistance: 5
+    });
+            
+        
 
 /*
     #######################################
@@ -240,9 +261,11 @@ jQuery.noConflict();
 
         function farfalla_toolbar_create() {
 
-            $('<div></div>').attr('id','farfalla_container').prependTo('body');
-            $('<div></div>').attr('id','farfalla_badge').appendTo('#farfalla_container');
-            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
+            $('<div></div>').attr('id','farfalla_container').addClass('snap-drawers').prependTo('body');
+//            $('<div></div>').attr('id','farfalla_badge').appendTo('#farfalla_container');
+            $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('body');
+//            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
+            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_logo')
               .html('<h1><a href="http://farfalla-project.org/">'+$.__('ft_farfalla_project')+'</a></h1><p>'+$.__('ft_accessibility_preferences')+'</p>')
               .appendTo('#farfalla_toolbar');
@@ -427,14 +450,16 @@ jQuery.noConflict();
 
             $('#farfalla_badge').toggle(
               function() {
-                $('#farfalla_toolbar').show();
+snapper.open('right');
+//                $('#farfalla_toolbar').show();
                 $('#farfalla_toolbar_shade').show();
-                $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/});
+//                $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/});
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
-                $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/});
-                $('#farfalla_toolbar').hide();
+snapper.close();
+//                $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/});
+//                $('#farfalla_toolbar').hide();
                 $('#farfalla_toolbar_shade').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }

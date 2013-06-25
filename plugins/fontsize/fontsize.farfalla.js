@@ -8,12 +8,12 @@ jQuery.noConflict();
     $.farfalla_create_plugin_options('fontsize');
 
     $.farfalla_change_size = function (val) {
-        var mozval = 'scale('+val+')';
         $('body').css({
           'zoom': val,
-          '-moz-transform': mozval,
+          '-moz-transform': 'scale('+val+')',
           '-moz-transform-origin': 'top left'
         });
+        console.log($('body').width()/val);
         $('body').width($(window).width()/val);
     }
 

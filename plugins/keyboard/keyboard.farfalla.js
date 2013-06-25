@@ -12,15 +12,17 @@ jQuery.noConflict();
     $.create_keyboard = function () {
       $('<div id="farfalla_keyboard"></div>')
         .css({
-          'position':'relative',
+          'position':'absolute',
           'display':'block',
+          'top':0,
+          'left':0,
           'z-index':10000000
-        }).appendTo('#farfalla_keyboard_wrapper');
+        }).prependTo('body');
     }
 
     $.destroy_keyboard_wrapper = function () {
       $('#farfalla_keyboard').detach();
-      $('#farfalla_keyboard_wrapper *:first-child').unwrap();
+//      $('#farfalla_keyboard_wrapper *:first-child').unwrap();
     };
 
     $('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
