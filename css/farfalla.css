@@ -204,7 +204,7 @@ background: #f66 url('');
 }
 
 /* Plugins > Virtual keyboard */
-
+/*
 .ui-keyboard-button{
 border: 1px solid #666;
 margin: .1em;
@@ -223,7 +223,7 @@ width: 4em;
 .ui-keyboard-preview{
 text-align: left;
 }
-
+*/
 .hidden{
 visibility: hidden;
 }

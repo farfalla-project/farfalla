@@ -8,7 +8,6 @@ jQuery.noConflict();
 
     $.farfalla_add_css('magnifier','magnifier');
 
-
     jQuery.expr[':'].hasText = function(element, index) {
        // if there is only one child, and it is a text node
        if (element.childNodes.length == 1 && element.firstChild.nodeType == 3) {
@@ -26,9 +25,6 @@ jQuery.noConflict();
 
       $('#magnifierActivator').farfalla_switch_on('magnifier');
 
-//      $('<div id="farfalla_debug"></div>').appendTo('body');
-
-
       if (mags) {
 
         mags.prependTo('body');
@@ -36,13 +32,17 @@ jQuery.noConflict();
 
       } else {
 
-        $('<div id="monitor">')
+        $('<div id="monitor"></div>')
           .html('<p style="font-size:30pt">Farfalla Magnification module: active</p>')
           .addClass('monitor ui-corner-all')
           .prependTo('body')
           .fadeIn(300);
 
-       $('<div id="highlighter">')
+       $('<div id="farfalla_link_selector"></div>')
+          .hide()
+          .prependTo('body');
+
+       $('<div id="highlighter"></div>')
          .addClass('highlighter ui-corner-all donttouchme')
          .prependTo('body');
 
@@ -71,6 +71,7 @@ jQuery.noConflict();
       $('h1, h2, h3, h4, h5, p, ul, ol, input, textarea, th:hasText, td:last-child, td:hasText, pre, label, dt, dd, div:hasText, address').each(function() {
         $(this).hover(
           function() {
+            $('#farfalla_link_selector').html('').hide();
             $('.farfalla-hover').removeClass('farfalla-hover');
             $(this).addClass('farfalla-hover');
             var offset = $(this).offset();
@@ -89,7 +90,6 @@ jQuery.noConflict();
 
           },
           function() {
-//          $(this).removeClass('farfalla_red');
             // kept this, just in case...
           })
         });
@@ -109,7 +109,7 @@ jQuery.noConflict();
           } else  {
             $('#farfalla_link_selector').show().append(value);
             if ($('#farfalla_link_selector').html()>length) {
-              $('#farfalla_link_selector').html('');
+              $('#farfalla_link_selector').html('').hide();
             }
           }
         }
