@@ -61,6 +61,16 @@ jQuery.noConflict();
       }
     }
 
+    // A function to move focus and caret to the end of textareas and input elements.
+    // Source: http://stackoverflow.com/questions/637287/how-can-you-move-the-cursor-to-the-last-position-of-a-textarea-in-javascript
+
+    $.fn.focusToEnd = function() {
+        return this.each(function() {
+            var v = $(this).val();
+            $(this).focus().val("").val(v);
+        });
+    };
+
     // Add plugin configuration area
 
     $.farfalla_create_plugin_options = function ( plugin_name ){
@@ -169,7 +179,7 @@ jQuery.noConflict();
           'accesskey':accesskey
         })
         .css('cssText',
-          'background : '+bgcolor+' !important; border : 2px solid '+txtcolor+' !important; color : '+txtcolor+' !important;'
+          'background : '+bgcolor+' !important; /* border : 2px solid '+txtcolor+' !important; */ color : '+txtcolor+' !important;'
         )
         .addClass('ui-corner-all')
         .addClass('plugin-button')
@@ -290,6 +300,9 @@ jQuery.noConflict();
                   'border-top': '2px solid '+options.border,
                   'border-bottom': '2px solid '+options.border
                 });
+                $('#farfalla_toolbar').css({
+                  'border-left': '2px solid '+options.border,
+                });
               }
             };
 
@@ -297,7 +310,7 @@ jQuery.noConflict();
             $('#farfalla_badge')
               .css({
                 'background': 'url("'+farfalla_path+'images/farfalla_badge_'+detected_language+'.png")',
-                'background-position':'center center',
+                'background-position':'12px 12px',
                 'background-repeat':'no-repeat',
                 'background-color':'#000',
                 'cursor':'url(\''+farfalla_path+'images/hand.png\'), auto'
@@ -309,6 +322,14 @@ jQuery.noConflict();
               .mousedown(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
+                })
+              .mouseover(
+                function(){
+                  $(this).animate({'width':'150px'})
+                })
+              .mouseleave(
+                function(){
+                  $(this).animate({'width':'50px'})
                 })
               .draggable({
                 'axis':'y',
