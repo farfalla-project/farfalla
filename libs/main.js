@@ -272,9 +272,9 @@ jQuery.noConflict();
         function farfalla_toolbar_create() {
 
             $('<div></div>').attr('id','farfalla_container').addClass('snap-drawers').prependTo('body');
-//            $('<div></div>').attr('id','farfalla_badge').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('body');
-//            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
+            $('<div>Accessibility</div>').attr('id','farfalla_badge_label').addClass('donttouchme').hide().appendTo('#farfalla_badge');
+            $('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_logo')
               .html('<h1><a href="http://farfalla-project.org/">'+$.__('ft_farfalla_project')+'</a></h1><p>'+$.__('ft_accessibility_preferences')+'</p>')
@@ -307,14 +307,15 @@ jQuery.noConflict();
             };
 
 
-            $('#farfalla_badge')
+            $('#farfalla_badge_logo')
               .css({
                 'background': 'url("'+farfalla_path+'images/farfalla_badge_'+detected_language+'.png")',
                 'background-position':'12px 12px',
                 'background-repeat':'no-repeat',
-                'background-color':'#000',
                 'cursor':'url(\''+farfalla_path+'images/hand.png\'), auto'
-              })
+              });
+
+            $('#farfalla_badge')
               .mouseup(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/hand.png\'), auto')
@@ -325,11 +326,11 @@ jQuery.noConflict();
                 })
               .mouseover(
                 function(){
-                  $(this).animate({'width':'150px'})
+                  $('#farfalla_badge_label').show();
                 })
               .mouseleave(
                 function(){
-                  $(this).animate({'width':'50px'})
+                  $('#farfalla_badge_label').hide();
                 })
               .draggable({
                 'axis':'y',

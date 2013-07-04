@@ -27,9 +27,10 @@ body{
   float:right;
   margin: 0;
   display: block;
-  width: 52px;
-  height: 50px;
+  width: auto;
+  height: auto;
   z-index: 10001;
+  background-color:#000;
 /*  border-left: 2px solid #fff;
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;*/
@@ -49,9 +50,26 @@ body{
 
 }
 
+#farfalla_badge_logo{
+  display:block;
+  width: 52px;
+  height: 50px;
+  float:right;
+}
+
+#farfalla_badge_label{
+  display:block;
+  width: auto;
+  float:left;
+  color:#fff;
+  font-family: Helvetica, Arial, sans;
+  padding: 12px;
+  font-size: 18px;
+}
+
 #farfalla_toolbar{
   position: absolute;
-  font-family: Helvetica, Calibri, sans;
+  font-family: Helvetica, Arial, sans;
   background: #000 !important;
   color: #fff;
   margin: 0;
@@ -256,7 +274,7 @@ float:left;
 }
 
 .ui-tooltip{
-  font-family: Helvetica, Calibri, sans;
+  font-family: Helvetica, Arial, sans;
   font-size: 12pt !important;
   line-height: 14pt !important;
 }
@@ -357,5 +375,4 @@ float:left;
 .ui-tooltip{
 -webkit-transform: translate3d(360px, 0px, 0px);
 transform: translate3d(360px, 0px, 0px);
-
 }
