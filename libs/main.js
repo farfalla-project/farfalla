@@ -333,7 +333,8 @@ jQuery.noConflict();
                   $('#farfalla_badge_label').hide();
                 })
               .draggable({
-                'axis':'y',
+                axis:'y',
+                containment:'window',
                 stop: function(event, ui) {
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
@@ -382,6 +383,16 @@ jQuery.noConflict();
                 width: 'auto'
               }
              });
+
+
+// Make the side badge scroll with the page
+/*
+            $(window).scroll(function(){
+              $('#farfalla_badge')
+                .css({'margin-top': ($(window).scrollTop()) + 'px'});
+            });
+*/
+
         };
 
         function farfalla_remember_profile() {
@@ -498,7 +509,7 @@ snapper.close();
             if (value !== null){
                 $('#farfalla_badge').css('top',value);
             } else {
-                $('#farfalla_badge').css('top','200px');
+                $('#farfalla_badge').css('top','0px');
             }
         }
 
@@ -568,6 +579,7 @@ snapper.close();
 
 // end "if" to determine wether to add the toolbar or not
     };
+
 
 });
 })(jQuery);
