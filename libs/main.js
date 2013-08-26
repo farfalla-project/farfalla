@@ -273,6 +273,9 @@ jQuery.noConflict();
 
             $('<div></div>').attr('id','farfalla_container').addClass('snap-drawers').prependTo('body');
             $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('body');
+              if(window.location !== window.parent.location){
+                $('#farfalla_container, #farfalla_badge').hide();
+              };
             $('<div>Accessibility</div>').attr('id','farfalla_badge_label').addClass('donttouchme').hide().appendTo('#farfalla_badge');
             $('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
@@ -569,7 +572,7 @@ snapper.close();
 
 // determine wether to add the toolbar or not
 
-    if(window.location.href.search(farfalla_path)=='-1' && window.location.href.search('lisp8.formazione.unimib.it')=='-1' && window.location == window.parent.location){
+    if(window.location.href.search(farfalla_path)=='-1'){
 
         farfalla_toolbar_create();
 
@@ -578,6 +581,7 @@ snapper.close();
         farfalla_toggle_visibility();
 
 // end "if" to determine wether to add the toolbar or not
+
     };
 
 
