@@ -6,36 +6,93 @@ jQuery.noConflict();
   $(function() {
 
     $.farfalla_create_plugin_options('fontsize');
+    
+    $.fn.set_as_irregular_fontsize = function(){
+      $(this)
+        .addClass('fontsize-irregular')
+        .attr('original-font-size', $(this).css('font-size'));    
+    };
+
+    $.fn.set_as_irregular_lineheight = function(){
+      $(this)
+        .addClass('linehieght-irregular')
+        .attr('original-line-height', $(this).css('line-height'));    
+    };
+
+// mark with a specific class those elements that have explicit font-size set
+
+
+    $('*').each(function(){
+      var styles = $(this).attr('style'),
+        value;
+      styles && styles.split(';').forEach(function(e) {
+        var style = e.split(':');
+        if ($.trim(style[0]) === 'font-size') {
+          value = style[1];
+        }
+      });
+      if(value){
+        $(this).set_as_irregular_fontsize();
+      }
+    })
+
+    $('*').each(function(){
+      var styles = $(this).attr('style'),
+        value;
+      styles && styles.split(';').forEach(function(e) {
+        var style = e.split(':');
+        if ($.trim(style[0]) === 'line-height') {
+          value = style[1];
+        }
+      });
+      if(value){
+        $(this).set_as_irregular_lineheight();
+      }
+    })
+
+    $('textarea, input, label, span')
+      .each(function(){
+        $(this).set_as_irregular_fontsize();
+      });
 
     $.farfalla_change_size = function (val) {
-        $('body').css({
-          'zoom': val,
-          '-moz-transform': 'scale('+val+')',
-          '-moz-transform-origin': 'top left'
-        });
-        console.log($('body').width()/val);
-        $('body').width($(window).width()/val);
+
+      bodySize = parseInt($('body').css('font-size'));
+    
+      $('body').css({
+        'font-size':bodySize+val*2+'px',
+        'line-height':(bodySize+val*2)*1.4+'px'
+      });
+
+      $('.fontsize-irregular').not('.donttouchme').each( function(){
+        thisSize = parseInt($(this).css('font-size'));
+        $(this).css({
+          'font-size':thisSize+val*2+'px',
+          'line-height':(thisSize+val*2)*1.4+'px'
+        })
+        
+      });
+      
     }
 
     $.farfalla_reset_size = function () {
       $('body').css({
-        'zoom': 0,
-        '-moz-transform': 'scale(1)'
+        'font-size':'',
+        'line-height':''
       });
-      $('body').width("");
+      $('.fontsize-irregular').each(function(){
+        $(this).css('font-size', $(this).attr('original-font-size'));
+      })
+
     }
 
     $.farfalla_get_option('increase', function(data){
 
         var increase = 0
 
-        // restore font size on plugin load
+        var value = data.value;
 
-        var value = 1+(0.1*data.value);
-
-        $.farfalla_change_size(value);
-
-        if(data.value){
+        if(value){
           var increase = parseFloat(data.value);
         }
 
@@ -43,9 +100,9 @@ jQuery.noConflict();
         $.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
 
           increase+=1;
-          var value= 1+(0.1*increase)
+          var value= increase;
 
-          $.farfalla_change_size(value);
+          $.farfalla_change_size(1);
 
           $.farfalla_set_option('increase',increase);
           return increase;
@@ -55,9 +112,9 @@ jQuery.noConflict();
         $.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
 
           increase+=-1;
-          var value= 1+(0.1*increase)
+          var value= increase;
 
-          $.farfalla_change_size(value);
+          $.farfalla_change_size(-1);
 
           $.farfalla_set_option('increase',increase);
           return increase;
@@ -87,12 +144,10 @@ jQuery.noConflict();
 
         // restore font size on plugin activation
 
-        var value = 1+(0.1*data.value);
-
-        $.farfalla_change_size(value);
-
         if(data.value){
-          var increase = parseFloat(data.value);
+          for (var i=0;i<data.value;i++){ 
+            $.farfalla_change_size(1);
+          }
         }
 
         $('.plugin_options').not('#fontsize_options').slideUp('fast');
@@ -104,9 +159,9 @@ jQuery.noConflict();
 
     $.fontsize_off = function () {
 
-      $('#fontsizeActivator').farfalla_switch_off('fontsize');
       $('#fontsize_options').hide();
       $.farfalla_reset_size();
+      $('#fontsizeActivator').farfalla_switch_off('fontsize');
 
     }
 

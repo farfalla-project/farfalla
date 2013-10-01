@@ -193,7 +193,7 @@ body{
 
   #farfalla_buttons ul li input{
 /*     height: 80%; */
-    margin: 3px 2px;
+      margin: 3px 2px;
       background: #fff !important;
       border: 0;
       font-size: 18pt !important;
@@ -327,7 +327,8 @@ float:left;
   margin:5px;
 /*  padding: 3px;  */
   border: none;
-  color: transparent;
+  color: transparent !important;
+  text-shadow: none;
 /*
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;

@@ -22,6 +22,7 @@ var detected_language = <?php echo ('"'. $lang_code .'";'); ?>
 
 var strings = new Array(
 "ft_farfalla_project"
+,"ft_accessibility"
 ,"ft_accessibility_preferences"
 ,"ft_actions"
 ,"save_session"
@@ -39,6 +40,7 @@ var strings = new Array(
 var translations = new Array(
 <?php
   echo('"'. __('Farfalla project') .'"');
+  echo(',"'. __('Accessibility') .'"');
   echo(',"'. __('Accessibility Preferences') .'"');
   echo(',"'. __('Actions') .'"');
   echo(',"'. __('Save current settings for the future') .'"');

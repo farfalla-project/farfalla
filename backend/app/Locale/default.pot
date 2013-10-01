@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2013-03-20 09:04+0100\n"
+"POT-Creation-Date: 2013-10-01 17:41+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -116,7 +116,7 @@ msgstr ""
 #: View/Groups/edit.ctp:13
 #: View/Groups/index.ctp:9;40
 #: View/Groups/view.ctp:27;49
-#: View/Pages/lang.ctp:43;53
+#: View/Pages/lang.ctp:45;55
 #: View/Plugins/add.ctp:15
 #: View/Plugins/edit.ctp:16
 #: View/Plugins/index.ctp:12;48
@@ -296,47 +296,51 @@ msgstr ""
 msgid "Visible"
 msgstr ""
 
-#: View/Pages/lang.ctp:41
+#: View/Pages/lang.ctp:42
 msgid "Farfalla project"
 msgstr ""
 
-#: View/Pages/lang.ctp:42
-msgid "Accessibility Preferences"
+#: View/Pages/lang.ctp:43
+msgid "Accessibility"
 msgstr ""
 
 #: View/Pages/lang.ctp:44
-msgid "Save current settings for the future"
-msgstr ""
-
-#: View/Pages/lang.ctp:45
-msgid "Reset all settings"
+msgid "Accessibility Preferences"
 msgstr ""
 
 #: View/Pages/lang.ctp:46
-msgid "Contrast and color scheme control"
+msgid "Save current settings for the future"
 msgstr ""
 
 #: View/Pages/lang.ctp:47
-msgid "Font size control"
+msgid "Reset all settings"
 msgstr ""
 
 #: View/Pages/lang.ctp:48
-msgid "High readability"
+msgid "Contrast and color scheme control"
 msgstr ""
 
 #: View/Pages/lang.ctp:49
-msgid "Selective magnification"
+msgid "Font size control"
 msgstr ""
 
 #: View/Pages/lang.ctp:50
-msgid "Onscreen virtual keyboard"
+msgid "High readability"
 msgstr ""
 
 #: View/Pages/lang.ctp:51
-msgid "Larger mouse cursor"
+msgid "Selective magnification"
 msgstr ""
 
 #: View/Pages/lang.ctp:52
+msgid "Onscreen virtual keyboard"
+msgstr ""
+
+#: View/Pages/lang.ctp:53
+msgid "Larger mouse cursor"
+msgstr ""
+
+#: View/Pages/lang.ctp:54
 msgid "Color schemes"
 msgstr ""
 
