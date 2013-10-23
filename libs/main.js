@@ -78,6 +78,7 @@ jQuery.noConflict();
 
     $.farfalla_create_plugin_options = function ( plugin_name ){
 
+      if($('#'+plugin_name+'_options').length==0){
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options',
@@ -105,16 +106,17 @@ jQuery.noConflict();
         .attr({
           'id':plugin_name+'_options_deactivate',
           'class':'plugin_options_deactivate donttouchme',
-          'type':'button',
-          'value':'X'
-        })
-        .css({
-          'background':'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_deactivate.png") no-repeat #fff'
-        })
-        .appendTo('#'+plugin_name+'_options_common')
+            'type':'button',
+            'value':'X'
+          })
+          .css({
+            'background':'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_deactivate.png") no-repeat #fff'
+          })
+          .appendTo('#'+plugin_name+'_options_common')
 
-      var position = $('#'+plugin_name+'Activator').position();
-      var width = $('#'+plugin_name+'_options').width();
+        var position = $('#'+plugin_name+'Activator').position();
+        var width = $('#'+plugin_name+'_options').width();
+      }
 
     }
 
@@ -131,8 +133,10 @@ jQuery.noConflict();
         break;
 
         case 'button':
-          $('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
-          $('#'+name+'_button').addClass('donttouchme').css('background','url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+name+'.png")').click(callback);
+          if($('#'+name+'_button').length==0){
+            $('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
+            $('#'+name+'_button').addClass('donttouchme').css('background','url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+name+'.png")').click(callback);
+          }
         break;
 
       }
@@ -164,8 +168,7 @@ jQuery.noConflict();
       $('link[href*="'+plugin_name+'_"]').remove();
     }
 
-
-    // A function for adding buttons to the toolbar
+    // A function to add buttons to the toolbar
     // name -> text displayed on the button
     // id -> unique identifier for the button: the final id will be something like button_id
     // accesskey -> the value for the accesskey attribute useful for activating the buttons from the keyboard
@@ -205,7 +208,7 @@ jQuery.noConflict();
     // A function for setting options in the Cakephp session array
 
     $.farfalla_set_option = function( option, value ){
-
+console.log(value);
       if(value==null){
         $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
 
@@ -418,7 +421,8 @@ jQuery.noConflict();
                         .addClass('plugin_activator ui-corner-all')
                         .appendTo('#farfalla_toolbar_plugins');
 
-                      $('#'+plugin.name+'Activator').qtip({
+                      $('#'+plugin.name+'Activator')
+                      .qtip({
                         content :  $.__(plugin.name),
                         position: {
                           my: 'top center',
@@ -474,32 +478,24 @@ jQuery.noConflict();
             })
           };
 
-
         // Adds the show/hide effect to the toolbar logo
 
         function farfalla_toggle_visibility() {
 
             $('#farfalla_badge').toggle(
               function() {
-snapper.open('right');
-//                $('#farfalla_toolbar').show();
+                snapper.open('right');
                 $('#farfalla_toolbar_shade').show();
-//                $('#farfalla_container').animate({'width':'360px'/*,'left':$(window).width()-360+'px'*/});
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
-snapper.close();
-//                $('#farfalla_container').animate({'width':'0'/*,'left':$(window).width()+'px'*/});
-//                $('#farfalla_toolbar').hide();
+                snapper.close();
                 $('#farfalla_toolbar_shade').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
             );
 
-
-
         }
-
 
         // Set 'top' value for toolbar positioning
 
@@ -522,7 +518,6 @@ snapper.close();
             });
 
         }
-
 
         // Track activated/deactivated plugins for consistent browsing in different pages
 
@@ -565,7 +560,6 @@ snapper.close();
           }
 
         }
-
 
 /*
     #######################################
