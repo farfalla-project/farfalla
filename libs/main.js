@@ -120,7 +120,6 @@ jQuery.noConflict();
 
     }
 
-
     // Add plugin-specific UI
     // ...
 
@@ -523,7 +522,7 @@ console.log(value);
 
         function farfalla_track_plugins(name, value) {
           if(value==1){
-            if(active_plugins.indexOf(name)<0){
+            if(active_plugins.indexOf(name)==-1){
               active_plugins.push(name);
             }
           } else {
@@ -533,6 +532,7 @@ console.log(value);
             farfalla_remember_profile()
           }
           $.farfalla_set_option('active_plugins',active_plugins);
+          console.log(active_plugins)
         }
 
         function farfalla_autoactivate_plugins() {

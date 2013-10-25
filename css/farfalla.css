@@ -16,11 +16,8 @@ body{
   position: fixed;
   right: 0;
   top: 0;
-/*  width: 266px; */
   height: 100%;
-/*  display: block;*/
   background: #333 !important;
-/*  border-left: 2px solid #fff; */
 }
 
 #farfalla_badge{
@@ -78,7 +75,7 @@ body{
   -webkit-box-shadow: -1px 2px 3px #999;
   -moz-box-shadow: -1px 2px 3px #999;
   box-shadow: -1px 2px 3px #999;
-  z-index: 2147483647;
+  z-index: 100000;
 }
 
 #farfalla_toolbar_shade {

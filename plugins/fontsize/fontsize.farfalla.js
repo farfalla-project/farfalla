@@ -12,7 +12,9 @@ jQuery.noConflict();
       $('#farfalla-fontsize-container').css({
         'zoom': value,
         '-moz-transform': 'scale('+value+')',
-        '-moz-transform-origin': 'top left'
+        '-moz-transform-origin': 'top left',
+        'position':'absolute',
+        'z-index':0
       });
       $('#farfalla-fontsize-container').width($('body').width()/value);
       $.farfalla_set_option('increase',val);
@@ -70,7 +72,7 @@ jQuery.noConflict();
     $.fontsize_on = function () {
 
       if($('#farfalla-fontsize-container').length==0){
-        $('body > *:not(#farfalla_container, #farfalla_badge)').wrapAll('<div id="farfalla-fontsize-container" />');
+        $('body > *').not('#farfalla_container, script').wrapAll('<div id="farfalla-fontsize-container" />');
       }
 
       $('#fontsizeActivator').farfalla_switch_on('fontsize');
