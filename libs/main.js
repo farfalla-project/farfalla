@@ -20,11 +20,13 @@ jQuery.noConflict();
       var remember_profile = 0
     }
 
+/*
     $('body').attr('id','farfalla_body').css({
-      'padding':0, 
       'overflow-x': 'visible'
     });
+*/
 
+/*
     var snapper = new Snap({
       element: document.getElementById('farfalla_body'),
       disable: 'left',
@@ -42,8 +44,8 @@ jQuery.noConflict();
       slideIntent: 40,
       minDragDistance: 5
     });
-            
-        
+*/
+
 
 /*
     #######################################
@@ -276,16 +278,18 @@ console.log(value);
 
         function farfalla_toolbar_create() {
 
-            $('<div></div>').attr('id','farfalla_container').addClass('snap-drawers').prependTo('body');
+            $('<div></div>').attr('id','farfalla_container')/*.addClass('snap-drawers')*/.prependTo('body');
+/*
             $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('body');
               if(window.location !== window.parent.location){
                 $('#farfalla_container, #farfalla_badge').hide();
               };
             $('<div></div>').html($.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().appendTo('#farfalla_badge');
             $('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
+*/
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
             $('<div></div>').attr('id','farfalla_logo')
-              .html('<h1><a href="http://farfalla-project.org/" class="donttouchme">'+$.__('ft_farfalla_project')+'</a></h1><p class="donttouchme">'+$.__('ft_accessibility_preferences')+'</p>')
+/*              .html('<h1><a href="http://farfalla-project.org/" class="donttouchme">'+$.__('ft_farfalla_project')+'</a></h1><p class="donttouchme">'+$.__('ft_accessibility_preferences')+'</p>') */
               .appendTo('#farfalla_toolbar');
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
@@ -364,8 +368,8 @@ console.log(value);
             ).qtip({
               content :  $.__('save_session'),
               position: {
-                my: 'top center',
-                at: 'bottom center'
+                my: 'center right',
+                at: 'center left'
               },
               style: {
                 classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
@@ -384,8 +388,8 @@ console.log(value);
             }).qtip({
               content :  $.__('reset'),
               position: {
-                my: 'top center',
-                at: 'bottom center'
+                my: 'center right',
+                at: 'center left'
               },
               style: {
                 classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
@@ -403,7 +407,7 @@ console.log(value);
           $.cookie('farfalla_active_plugins',null)
         }
 
-        // Adds the profile selection form
+        // Adds the plugin icons
 
         function farfalla_toolbar_populate(top) {
 
@@ -424,8 +428,8 @@ console.log(value);
                       .qtip({
                         content :  $.__(plugin.name),
                         position: {
-                          my: 'top center',
-                          at: 'bottom center',
+                          my: 'center right',
+                          at: 'center left',
                           target: $('#'+plugin.name+'Activator')
                         },
                         style: {
