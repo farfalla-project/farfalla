@@ -86,9 +86,11 @@ jQuery.noConflict();
           'id': plugin_name+'_options',
           'class':'plugin_options donttouchme'
         })
-        .addClass('ui-corner-bottom')
+//        .addClass('ui-corner-bottom')
         .hide()
-        .insertBefore('#farfalla_remember_profile');
+
+//        .insertBefore('#farfalla_remember_profile');
+        .insertAfter($('#'+plugin_name+'Activator'));
 
       $('<div></div>')
         .attr({
@@ -278,10 +280,21 @@ console.log(value);
 
         function farfalla_toolbar_create() {
 
-            $('<div></div>').attr('id','farfalla_container')/*.addClass('snap-drawers')*/.prependTo('body');
-/*
-            $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('body');
-              if(window.location !== window.parent.location){
+            $('<div></div>')
+              .attr('id','farfalla_container')
+              .addClass('donttouchme')
+              .prependTo('body');
+
+
+            $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('#farfalla_container');
+            $('<img />').attr({
+              'id':'farfalla_logo',
+              'src':farfalla_path+'/images/farfalla_icon.png',
+              'alt':'Farfalla logo'
+              })
+              .appendTo('#farfalla_badge');
+
+/*              if(window.location !== window.parent.location){
                 $('#farfalla_container, #farfalla_badge').hide();
               };
             $('<div></div>').html($.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().appendTo('#farfalla_badge');
@@ -300,11 +313,13 @@ console.log(value);
 
 
             $('#farfalla_toolbar_shade').click( function() {
+/*
               $(this).hide();
               $('#farfalla_badge').click();
+*/
             });
 
-
+/*
             if(options.border){
               if($.inArray(options.border, allowedColors)>=0){
                 $('#farfalla_badge').css({
@@ -317,9 +332,12 @@ console.log(value);
                 });
               }
             };
+*/
 
-            $('#farfalla_toolbar').css('height',$(window).height())
+//            $('#farfalla_toolbar').css('height',$(window).height())
+            $('#farfalla_container').addClass('ui-corner-left');
 
+/*
             $('#farfalla_badge_logo')
               .css({
                 'background': 'url("'+farfalla_path+'images/farfalla_badge_'+detected_language+'.png")',
@@ -327,6 +345,9 @@ console.log(value);
                 'background-repeat':'no-repeat',
                 'cursor':'url(\''+farfalla_path+'images/hand.png\'), auto'
               });
+*/
+
+
 
             $('#farfalla_badge')
               .mouseup(
@@ -336,7 +357,8 @@ console.log(value);
               .mousedown(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
-                })
+                });
+/*
               .mouseover(
                 function(){
                   $('#farfalla_badge_label').show();
@@ -345,9 +367,12 @@ console.log(value);
                 function(){
                   $('#farfalla_badge_label').hide();
                 })
+*/
+              $('#farfalla_container')
               .draggable({
                 axis:'y',
                 containment:'window',
+                handle:'#farfalla_badge',
                 stop: function(event, ui) {                  
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
@@ -438,6 +463,7 @@ console.log(value);
                         }
                       })
                       .click( function(){
+//                          $('.plugin_activator').css('width','120px');
                           head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
 					      $(this).unbind('click'); // first click only!
                         }

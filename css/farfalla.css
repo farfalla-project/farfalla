@@ -13,44 +13,26 @@ body{
 }
 
 #farfalla_container{
-  position: absolute;
-  right: 64px;
-  top: 0;
-  height: 100%;
-  background: #333 !important;
+  position: absolute !important;
+  top: 16px;
+  right: 0;
+  -webkit-box-shadow: -1px 2px 3px #999;
+  -moz-box-shadow: -1px 2px 3px #999;
+  box-shadow: -1px 2px 3px #999;
+  z-index: 100000;
+  background: #000;
 }
 
 #farfalla_badge{
-  float:right;
   margin: 0;
   display: block;
-  width: auto;
-  height: auto;
-  z-index: 10001;
-  background-color:#000;
-/*  border-left: 2px solid #fff;
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #fff;*/
-  -webkit-box-shadow: -2px 2px 2px #999;
-  -moz-box-shadow: -2px 2px 2px #999;
-  box-shadow: -2px 2px 2px #999;
-  -moz-border-radius-topleft: 2px;
-  -moz-border-radius-bottomleft: 2px;
-  -webkit-border-top-left-radius: 2px;
-  -webkit-border-bottom-left-radius: 2px;
-  -khtml-border-top-left-radius: 2px;
-  -khtml-border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-  -webkit-transform: translate3d(2px, 0px, 0px);
-  transform: translate3d(2px, 0px, 0px);
+  width: 100%;
 }
 
-#farfalla_badge_logo{
-  display:block;
-  width: 52px;
-  height: 50px;
-  float:right;
+#farfalla_logo{
+  margin: 0 3px;
+  width: 56px;
+  padding-top: 12px;
 }
 
 #farfalla_badge_label{
@@ -64,18 +46,11 @@ body{
 }
 
 #farfalla_toolbar{
-  position: absolute;
   font-family: Helvetica, Arial, sans;
   background: #000 !important;
   color: #fff;
   margin: 0;
   top: 0;
-  width:64px;
-  height:100%;
-  -webkit-box-shadow: -1px 2px 3px #999;
-  -moz-box-shadow: -1px 2px 3px #999;
-  box-shadow: -1px 2px 3px #999;
-  z-index: 100000;
 }
 
 #farfalla_toolbar_shade {
@@ -98,15 +73,6 @@ body{
         display:block;
         width:4px;
     }
-
-
-  #farfalla_logo{
-    width: 100%;
-    display: block;
-    text-align: center;
-    color: #fff !important;
-    font-size: 12pt;
-  }
 
   #farfalla_logo a:link, #farfalla_logo a:visited{
     color: #fff !important;
@@ -275,6 +241,10 @@ float:left;
   line-height: 14pt !important;
 }
 
+.ui-tooltip-light{
+  border-color: #000 !important;
+}
+
 .ui-tooltip strong{
   color: #fff;
 }
@@ -285,11 +255,11 @@ float:left;
 }
 
 .plugin_activator{
-  display: block;
+/*  display: block; */
   width: 52px;
   height: 52px;
   margin: 6px 6px;
-  float:left;
+/*  float:left; */
 }
 
 #farfalla_remember_profile, #farfalla_reset_all{
@@ -297,7 +267,7 @@ float:left;
   width: 52px;
   height: 52px;
   margin: 6px 6px;
-  float:left;
+/*  float:left; */
 }
 
 .plugin_activator_label{
@@ -311,17 +281,18 @@ float:left;
 .plugin_options {
   background: #fff;
   display:block;
-  z-index: 1200;
+/*  z-index: 1200;*/
   padding: 0 12px;
   text-align: left;
-  width: 90%;
-  margin: 0 5%;
+  width: 256px;
+  margin: 0 2px;
+  position: relative;
 }
 
 .plugin_options input{
   width:62px;
   height:62px;
-  margin:5px;
+/*  margin:5px; */
 /*  padding: 3px;  */
   border: none;
   color: transparent !important;
@@ -363,10 +334,11 @@ float:left;
 }
 
 #farfalla_active_option{
-  display: inline;
-  padding: 22px 0;
+  display: inline-block;
+  /* float: left; */
   margin: 0;
-  background: url('../images/farfalla_active_option.png');
+  background: url('../images/farfalla_active_option.png') no-repeat;
+  background-position: -4px;
 }
 
 .ui-tooltip{
