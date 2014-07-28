@@ -366,6 +366,10 @@ console.log(value);
               .mousedown(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
+                })
+              .click(
+                function(){
+                  $('.plugin_options').hide();
                 });
 /*
               .mouseover(
@@ -507,11 +511,11 @@ console.log(value);
               } else if (options.top) {
                 farfalla_set_top(options.top);
               }
-
+/*
               if(data.show==1) {
                 $('#farfalla_badge').click()
               }
-
+*/
               farfalla_toolbar_populate();
 
             })
@@ -575,6 +579,8 @@ console.log(value);
           console.log(active_plugins)
         }
 
+        // Track activated/deactivated plugins for consistent browsing in different pages
+
         function farfalla_autoactivate_plugins() {
 
           if($.cookie('farfalla_active_plugins')!=null){
@@ -597,6 +603,7 @@ console.log(value);
               }
 
             })
+
           }
 
         }
