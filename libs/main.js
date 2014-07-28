@@ -76,6 +76,15 @@ jQuery.noConflict();
         });
     };
 
+    // Simple image preloader (to be used for icons till sprites will be implemented)
+
+    $.fn.preload = function() {
+      this.each(function(){
+        $('<img/>')[0].src = this;
+      });
+    }
+
+
     // Add plugin configuration area
 
     $.farfalla_create_plugin_options = function ( plugin_name ){
@@ -473,6 +482,7 @@ console.log(value);
                         $('#'+plugin.name+'Activator').hide()
                       } else {
                         $('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
+                        $([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
                       }
 
                     });
