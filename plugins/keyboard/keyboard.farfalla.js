@@ -51,7 +51,7 @@ jQuery.noConflict();
       $('#keyboardActivator').farfalla_switch_on('keyboard');
 
       head.js(farfalla_path+'plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
-        $('textarea, input[type=text], input:not([type])').click(function(){
+        $('textarea, input[type=text], input[type=password], input[type=email], input:not([type])').click(function(){
           $('#farfalla_keyboard_shade').css('top',$(window).scrollTop()).show();
           $(this).addClass('farfalla_keyboard_target');
           $('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
