@@ -54,9 +54,12 @@ jQuery.noConflict();
         $('textarea, input[type=text], input[type=password], input[type=email], input:not([type])').click(function(){
           $('#farfalla_keyboard_shade').css('top',$(window).scrollTop()).show();
           $(this).addClass('farfalla_keyboard_target');
-          $('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
-            .val($('.farfalla_keyboard_target').val())
-            .css({
+          console.log($('#farfalla_keyboard_monitor').length);
+
+          if($('#farfalla_keyboard_monitor').length != 1){
+            $('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
+              .val($('.farfalla_keyboard_target').val())
+              .css({
               'background':'#eee',
               'color':'#000',
               'font-size':'16px',
@@ -67,8 +70,9 @@ jQuery.noConflict();
               'border':'1px solid #666',
               'height': 'auto'
             })
-            .prependTo('#farfalla_keyboard')
-            .focusToEnd();
+              .prependTo('#farfalla_keyboard')
+              .focusToEnd();
+          }
           VirtualKeyboard.open('farfalla_keyboard_monitor','farfalla_keyboard');
           VirtualKeyboard.attachInput('farfalla_keyboard_monitor');
           $('#farfalla_keyboard *').addClass('donttouchme');

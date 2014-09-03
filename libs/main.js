@@ -433,7 +433,7 @@ console.log(value);
                 at: 'center left'
               },
               style: {
-                classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
+                classes: 'ui-tooltip-light ui-tooltip-shadow',
                 width: 'auto'
               }
              });
@@ -453,7 +453,7 @@ console.log(value);
                 at: 'center left'
               },
               style: {
-                classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
+                classes: 'ui-tooltip-light ui-tooltip-shadow',
                 width: 'auto'
               }
              });
@@ -494,7 +494,7 @@ console.log(value);
                           target: $('#'+plugin.name+'Activator')
                         },
                         style: {
-                          classes: 'ui-tooltip-light ui-tooltip-shadow ui-tooltip-rounded',
+                          classes: 'ui-tooltip-light ui-tooltip-shadow',
                           width: 'auto'
                         }
                       })
