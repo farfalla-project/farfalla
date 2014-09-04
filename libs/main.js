@@ -29,8 +29,8 @@ jQuery.noConflict();
     // Inclusion of the needed css stylesheets
 
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui.custom.min.css').prependTo('head');
-    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.min.css').appendTo('head');
+    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
 
     // Main variables
 
@@ -433,7 +433,7 @@ console.log(value);
                 at: 'center left'
               },
               style: {
-                classes: 'ui-tooltip-light ui-tooltip-shadow',
+                classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
                 width: 'auto'
               }
              });
@@ -453,7 +453,7 @@ console.log(value);
                 at: 'center left'
               },
               style: {
-                classes: 'ui-tooltip-light ui-tooltip-shadow',
+                classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
                 width: 'auto'
               }
              });
@@ -494,12 +494,11 @@ console.log(value);
                           target: $('#'+plugin.name+'Activator')
                         },
                         style: {
-                          classes: 'ui-tooltip-light ui-tooltip-shadow',
+                          classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
                           width: 'auto'
                         }
                       })
                       .click( function(){
-//                          $('.plugin_activator').css('width','120px');
                           head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
 					      $(this).unbind('click'); // first click only!
                         }
