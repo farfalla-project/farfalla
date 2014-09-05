@@ -12,10 +12,10 @@
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Affero General Public License for more details.
+ *  GNU Affero General Public License for more detail
  *
- *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *   You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -27,11 +27,11 @@ jQuery.noConflict();
   $(function() {
 
     // Inclusion of the needed css stylesheets
-
+/*
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui.custom.min.css').prependTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.min.css').appendTo('head');
     $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
-
+*/
     // Main variables
 
     var options = farfalla_ui_options();
@@ -42,12 +42,6 @@ jQuery.noConflict();
     } else {
       var remember_profile = 0
     }
-
-/*
-    $('body').attr('id','farfalla_body').css({
-      'overflow-x': 'visible'
-    });
-*/
 
 /*
     var snapper = new Snap({
@@ -322,6 +316,8 @@ console.log(value);
             $('<img />').attr({
               'id':'farfalla_logo',
               'src':farfalla_path+'/images/farfalla_icon.png',
+              'height':'42px',
+              'width':'60px',
               'alt':'Farfalla logo'
               })
               .appendTo('#farfalla_badge');
@@ -409,7 +405,7 @@ console.log(value);
                 axis:'y',
                 containment:'window',
                 handle:'#farfalla_badge',
-                stop: function(event, ui) {                  
+                stop: function(event, ui) {
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
               });
@@ -570,7 +566,7 @@ console.log(value);
             } else {
                 $('#farfalla_badge').css('top','0px');
             }
-            
+
             // Make the side badge scroll with the page
 
             var startingTop = $('#farfalla_badge').position().top;
