@@ -16,15 +16,12 @@
 }
 
 #farfalla_badge{
-  margin: 0;
   display: block;
-  width: 100%;
 }
 
 #farfalla_logo{
-  margin: 0 3px;
-  width: 56px;
-  padding-top: 12px;
+  width: 48px;
+  padding: 8px;
 }
 
 #farfalla_badge_label{
@@ -49,7 +46,7 @@
   position: absolute;
   z-index: 999;
   margin: 0;
-  background: transparent !important;
+  background: red !important;
   padding: 0;
   display:block;
   width: 100%;

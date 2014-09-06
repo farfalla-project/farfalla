@@ -316,8 +316,8 @@ console.log(value);
             $('<img />').attr({
               'id':'farfalla_logo',
               'src':farfalla_path+'/images/farfalla_icon.png',
-              'height':'42px',
-              'width':'60px',
+              'height':'36px',
+              'width':'48px',
               'alt':'Farfalla logo'
               })
               .appendTo('#farfalla_badge');
@@ -328,7 +328,8 @@ console.log(value);
             $('<div></div>').html($.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().appendTo('#farfalla_badge');
             $('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
 */
-            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
+            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
+
             $('<div></div>').attr('id','farfalla_logo')
 /*              .html('<h1><a href="http://farfalla-project.org/" class="donttouchme">'+$.__('ft_farfalla_project')+'</a></h1><p class="donttouchme">'+$.__('ft_accessibility_preferences')+'</p>') */
               .appendTo('#farfalla_toolbar');
@@ -338,6 +339,7 @@ console.log(value);
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_reset_all').css('background','url("'+farfalla_path+'images/reset.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
+
 
 
             $('#farfalla_toolbar_shade').click( function() {
@@ -363,7 +365,7 @@ console.log(value);
 */
 
 //            $('#farfalla_toolbar').css('height',$(window).height())
-            $('#farfalla_container').addClass('ui-corner-left');
+//            $('#farfalla_container').addClass('ui-corner-left');
 
 /*
             $('#farfalla_badge_logo')
@@ -545,13 +547,15 @@ console.log(value);
 
             $('#farfalla_badge').toggle(
               function() {
-                snapper.open('right');
-                $('#farfalla_toolbar_shade').show();
+                // snapper.open('right');
+//                $('#farfalla_toolbar_shade').show();
+                $('#farfalla_toolbar').show();
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
-                snapper.close();
-                $('#farfalla_toolbar_shade').hide();
+                // snapper.close();
+//                $('#farfalla_toolbar_shade').hide();
+                $('#farfalla_toolbar').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
             );
