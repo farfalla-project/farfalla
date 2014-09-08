@@ -83,12 +83,6 @@ jQuery.noConflict();
 (function($) {
   $(function() {
 
-    // Inclusion of the needed css stylesheets
-/*
-    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery-ui.custom.min.css').prependTo('head');
-    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/jquery.qtip.min.css').appendTo('head');
-    $('<link>').attr('type','text/css').attr('rel','stylesheet').attr('href',farfalla_path+'css/farfalla.css').appendTo('head');
-*/
     // Main variables
 
     var options = farfalla_ui_options();
@@ -99,27 +93,6 @@ jQuery.noConflict();
     } else {
       var remember_profile = 0
     }
-
-/*
-    var snapper = new Snap({
-      element: document.getElementById('farfalla_body'),
-      disable: 'left',
-      dragger: null,
-      addBodyClasses: true,
-      hyperextensible: false,
-      resistance: 0.5,
-      flickThreshold: 50,
-      transitionSpeed: 0.3,
-      easing: 'ease',
-      maxPosition: 360,
-      minPosition: -360,
-      tapToClose: false,
-      touchToDrag: true,
-      slideIntent: 40,
-      minDragDistance: 5
-    });
-*/
-
 
 /*
     #######################################
@@ -167,7 +140,7 @@ jQuery.noConflict();
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options',
-          'class':'plugin_options donttouchme'
+          'class':'plugin_options ui-corner-all donttouchme'
         })
 //        .addClass('ui-corner-bottom')
         .hide()
