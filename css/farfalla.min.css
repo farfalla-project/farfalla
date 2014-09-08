@@ -29,13 +29,13 @@
   width: auto;
   float:left;
   color:#fff;
-  font-family: Helvetica, Arial, sans;
+  font-family: 'Exo', Helvetica, Arial, sans;
   padding: 12px;
   font-size: 18px;
 }
 
 #farfalla_toolbar{
-  font-family: Helvetica, Arial, sans;
+  font-family: 'Exo', Helvetica, Arial, sans;
   background: #000 !important;
   color: #fff;
   margin: 0;
@@ -70,14 +70,14 @@
 
   #farfalla_logo h1{
     font-size: 20pt;
-    font-family: Helvetica,Arial,sans;
+    font-family: 'Exo', Helvetica,Arial,sans;
     letter-spacing: 0;
     position: relative;
   }
 
   #farfalla_logo p{
     font-size: 12pt;
-    font-family: Helvetica,Arial,sans;
+    font-family: 'Exo', Helvetica,Arial,sans;
     letter-spacing: 0;
     position: relative;
     text-align: center;
@@ -211,7 +211,7 @@
 */
 
 .ui-tooltip-farfalla{
-  font-family: Helvetica, Arial, sans;
+  font-family: 'Exo', Helvetica, Arial, sans;
   font-size: 12pt;
   line-height: 14pt;
   background-color:#fff;
