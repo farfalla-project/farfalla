@@ -86,7 +86,7 @@ jQuery.noConflict();
     // Main variables
 
     var options = farfalla_ui_options();
-    var allowedColors = new Array("white","yellow","orange","red","purple","navy","blue","cyan","lime","green");
+    console.log(options);
     var active_plugins = new Array();
     if($.cookie('farfalla_active_plugins')){
       var remember_profile = 1
@@ -142,10 +142,7 @@ jQuery.noConflict();
           'id': plugin_name+'_options',
           'class':'plugin_options ui-corner-all donttouchme'
         })
-//        .addClass('ui-corner-bottom')
         .hide()
-
-//        .insertBefore('#farfalla_remember_profile');
         .insertAfter($('#'+plugin_name+'Activator'));
 
       $('<div></div>')
@@ -331,6 +328,22 @@ console.log(value);
           return options;
         };
 
+        // Applies custom colors to the toolbar
+
+        function farfalla_toolbar_color() {
+          if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
+            $('#farfalla_container, #farfalla_toolbar')
+            .css('background',options.background);
+          }
+        }
+
+        // Applies custom top positioning to the toolbar
+
+        function farfalla_toolbar_top() {
+          if(options.top.match(/[0-9]+$/i)!==null){
+            farfalla_set_top(options.top);
+          }
+        }
 
         // Creates the main toolbar
 
@@ -359,6 +372,8 @@ console.log(value);
             $('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
 */
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
+            farfalla_toolbar_color();
+            farfalla_toolbar_top();
 
             $('<div></div>').attr('id','farfalla_logo')
 /*              .html('<h1><a href="http://farfalla-project.org/" class="donttouchme">'+$.__('ft_farfalla_project')+'</a></h1><p class="donttouchme">'+$.__('ft_accessibility_preferences')+'</p>') */
@@ -596,22 +611,22 @@ console.log(value);
 
         function farfalla_set_top(value) {
             if (value !== null){
-                $('#farfalla_badge').css('top',value);
+                $('#farfalla_container').css('top',value+'px');
             } else {
-                $('#farfalla_badge').css('top','0px');
+                $('#farfalla_container').css('top','0px');
             }
 
             // Make the side badge scroll with the page
 
-            var startingTop = $('#farfalla_badge').position().top;
-
+//            var startingTop = $('#farfalla_badge').position().top;
+/*
             $(window).scroll(function(){
               $('#farfalla_badge')
                 .css({'top': $(window).scrollTop() + startingTop + 'px'});
               $('#farfalla_toolbar')
                 .css({'top': $(window).scrollTop() + 'px'});
             });
-
+*/
         }
 
         // Track activated/deactivated plugins for consistent browsing in different pages

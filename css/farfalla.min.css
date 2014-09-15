@@ -6,7 +6,7 @@
 
 #farfalla_container{
   position: absolute !important;
-  top: 16px;
+  top: 30px;
   right: 0;
   -webkit-box-shadow: -1px 2px 3px #999;
   -moz-box-shadow: -1px 2px 3px #999;
@@ -36,7 +36,7 @@
 
 #farfalla_toolbar{
   font-family: 'Exo', Helvetica, Arial, sans;
-  background: #000 !important;
+  background: #000;
   color: #fff;
   margin: 0;
   top: 0;
@@ -168,6 +168,18 @@
   position: relative;
 }
 
+.plugin_options:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: 88px;
+  width: 0;
+  border-width: 0 16px 16px;
+  border-style: solid;
+  border-color: #fff transparent;
+}
+
 .plugin_options input{
   width:62px;
   height:62px;
@@ -213,6 +225,7 @@
 .ui-tooltip-farfalla{
   font-family: 'Exo', Helvetica, Arial, sans;
   font-size: 12pt;
+  font-weight: bold;
   line-height: 14pt;
   background-color:#fff;
   border-color:#000 ;
