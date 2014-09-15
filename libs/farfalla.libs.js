@@ -331,17 +331,21 @@ console.log(value);
         // Applies custom colors to the toolbar
 
         function farfalla_toolbar_color() {
-          if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
-            $('#farfalla_container, #farfalla_toolbar')
-            .css('background',options.background);
+          if(options.background){
+            if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
+              $('#farfalla_container, #farfalla_toolbar')
+              .css('background',options.background);
+            }
           }
         }
 
         // Applies custom top positioning to the toolbar
 
         function farfalla_toolbar_top() {
-          if(options.top.match(/[0-9]+$/i)!==null){
-            farfalla_set_top(options.top);
+          if(options.top){
+            if(options.top.match(/[0-9]+$/i)!==null){
+              farfalla_set_top(options.top);
+            }
           }
         }
 
