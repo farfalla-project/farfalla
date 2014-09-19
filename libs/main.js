@@ -398,7 +398,7 @@ console.log(value);
               .draggable({
                 axis:'y',
                 containment:'window',
-                handle:'#farfalla_badge',
+//                handle:'#farfalla_badge',
                 stop: function(event, ui) {
                   $.getJSON(farfalla_path+"backend/profiles/top/"+$(this).css('top')+"/?callback=?",{});
                 }
