@@ -86,7 +86,7 @@ jQuery.noConflict();
     // Main variables
 
     var options = farfalla_ui_options();
-    console.log(options);
+//    console.log(options);
     var active_plugins = new Array();
     if($.cookie('farfalla_active_plugins')){
       var remember_profile = 1
@@ -181,7 +181,7 @@ jQuery.noConflict();
     // ...
 
     $.farfalla_add_ui = function( plugin_name, type, name, value, callback ){
-      console.log('Adding UI for '+plugin_name);
+//      console.log('Adding UI for '+plugin_name);
       switch(type){
         case 'slider':
           $('#'+plugin_name+'_options_custom').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
@@ -264,7 +264,7 @@ jQuery.noConflict();
     // A function for setting options in the Cakephp session array
 
     $.farfalla_set_option = function( option, value ){
-console.log(value);
+//  console.log(value);
       if(value==null){
         $.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
 
@@ -293,7 +293,7 @@ console.log(value);
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_selected.png") no-repeat'
       })
       farfalla_track_plugins(plugin_name,1);
-      console.log('activated '+plugin_name);
+//      console.log('activated '+plugin_name);
     }
 
     $.fn.farfalla_switch_off = function ( plugin_name ) {
@@ -301,7 +301,7 @@ console.log(value);
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'.png") no-repeat'
       })
       farfalla_track_plugins(plugin_name,0);
-      console.log('deactivated '+plugin_name);
+//      console.log('deactivated '+plugin_name);
     }
 
 /*
@@ -647,7 +647,7 @@ console.log(value);
             farfalla_remember_profile()
           }
           $.farfalla_set_option('active_plugins',active_plugins);
-          console.log(active_plugins)
+//          console.log(active_plugins)
         }
 
         // Track activated/deactivated plugins for consistent browsing in different pages

@@ -36,7 +36,8 @@ function fgetPath(){
 
 	var farfalla_script = fgetScriptNodes(search);
 
-	end = farfalla_script.indexOf(search);
+	var end = farfalla_script.indexOf(search);
+
 	if (end == -1){
 		end = farfalla_script.length;
 		}
@@ -60,8 +61,8 @@ var farfalla_path = fgetPath();
 //# sourceMappingURL=head.load.min.js.map
 
   head.load(farfalla_path+'css/exo.css', farfalla_path+'css/farfalla.min.css');
-  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/farfalla.libs.min.js');
-//  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/jquery.min.js', farfalla_path+'libs/jquery-ui.custom.min.js', farfalla_path+'libs/jquery.qtip.min.js', farfalla_path+'libs/jquery.cookie.min.js', farfalla_path+'libs/main.js');
+//  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/farfalla.libs.min.js');
+  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/jquery.min.js', farfalla_path+'libs/jquery-ui.custom.min.js', farfalla_path+'libs/jquery.qtip.min.js', farfalla_path+'libs/jquery.cookie.min.js', farfalla_path+'libs/main.js');
 
 // Google analytics monitoring code
 
