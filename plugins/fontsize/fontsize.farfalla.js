@@ -117,7 +117,7 @@ jQuery.noConflict();
           $.farfalla_change_size(data.value);
         }
 
-        $('.plugin_options').not('#fontsize_options').slideUp('fast');
+//        $('.plugin_options').not('#fontsize_options').slideUp('fast');
         $('#fontsize_options').slideDown('fast');
 
       });
@@ -132,16 +132,12 @@ jQuery.noConflict();
 
     }
 
-    $('#fontsize_options_deactivate').click( function() {
-
-      $.fontsize_off();
-
-    });
-
-    $('#fontsizeActivator').click( function(){
-
-      $.fontsize_on();
-
+    $('#fontsize_options_switch').click( function(){
+      if($(this).hasClass('plugin_options_switch_on')){
+        $.fontsize_off()
+      } else {
+        $.fontsize_on()
+      }
     });
 
     $.fontsize_on();

@@ -63,7 +63,7 @@ jQuery.noConflict();
 
         });
 
-        $('input, textarea').addClass('inputClarifier');
+        $('input, textarea').not('.donttouchme').addClass('inputClarifier');
 
         // Set fonts to Tahoma, Arial, sans
 
@@ -105,16 +105,15 @@ jQuery.noConflict();
 
       }
 
-
-    $.clarifier_on()
-
-    $('#clarifierActivator').click( function(){
-      if($(this).hasClass('active')){
+    $('#clarifier_options_switch').click( function(){
+      if($(this).hasClass('plugin_options_switch_on')){
         $.clarifier_off()
       } else {
         $.clarifier_on()
       }
     });
+
+    $.clarifier_on();
 
 
   });

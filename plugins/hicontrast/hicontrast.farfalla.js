@@ -39,7 +39,7 @@ jQuery.noConflict();
 
     $.farfalla_create_plugin_options('hicontrast');
 
-    $.farfalla_add_ui_section('hicontrast',$.__('Color_schemes'));
+//    $.farfalla_add_ui_section('hicontrast',$.__('Color_schemes'));
 
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
@@ -65,7 +65,7 @@ jQuery.noConflict();
 
     });
 
-    $.farfalla_add_ui_section('hicontrast',$.__('Actions'));
+//    $.farfalla_add_ui_section('hicontrast',$.__('Actions'));
 
     $.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'reset', function(){
 
@@ -76,11 +76,10 @@ jQuery.noConflict();
 
     });
 
-
     $.hicontrast_on = function () {
 
       $('#hicontrastActivator').farfalla_switch_on('hicontrast');
-      $('.plugin_options').not('#hicontrast_options').slideUp('fast');
+//      $('.plugin_options').not('#hicontrast_options').slideUp('fast');
       $('#hicontrast_options').slideDown('fast');
       $('#farfalla_container *').addClass('donttouchme');
 
@@ -96,19 +95,16 @@ jQuery.noConflict();
 
     }
 
+    $('#hicontrast_options_switch').click( function(){
+      if($(this).hasClass('plugin_options_switch_on')){
+        $.hicontrast_off()
+      } else {
+        $.hicontrast_on()
+      }
+    });
+
     $.hicontrast_on();
 
-    $('#hicontrast_options_deactivate').click( function() {
-
-      $.hicontrast_off();
-
-    });
-
-    $('#hicontrastActivator').click( function(){
-
-      $.hicontrast_on()
-
-    });
 
   });
 

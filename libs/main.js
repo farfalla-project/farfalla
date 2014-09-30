@@ -29,7 +29,6 @@ jQuery.noConflict();
     // Main variables
 
     var options = farfalla_ui_options();
-//    console.log(options);
     var active_plugins = new Array();
     if($.cookie('farfalla_active_plugins')){
       var remember_profile = 1
@@ -94,7 +93,7 @@ jQuery.noConflict();
           'class':'plugin_options_actions donttouchme'
         })
         .appendTo('#'+plugin_name+'_options')
-
+/*
       $('<div></div>')
         .attr({
           'id': plugin_name+'_options_common',
@@ -106,14 +105,14 @@ jQuery.noConflict();
         .attr({
           'id':plugin_name+'_options_deactivate',
           'class':'plugin_options_deactivate donttouchme',
-            'type':'button',
-            'value':'X'
-          })
-          .css({
-            'background':'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_deactivate.png") no-repeat #fff'
-          })
-          .appendTo('#'+plugin_name+'_options_common')
-
+          'type':'button',
+          'value':'X'
+        })
+        .css({
+          'background':'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_deactivate.png") no-repeat #fff'
+        })
+        .appendTo('#'+plugin_name+'_options_common')
+*/
         var position = $('#'+plugin_name+'Activator').position();
         var width = $('#'+plugin_name+'_options').width();
       }
@@ -235,6 +234,7 @@ jQuery.noConflict();
       $(this).addClass('active').css({
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_selected.png") no-repeat'
       })
+      $('#'+plugin_name+'_options_switch').addClass('plugin_options_switch_on');
       farfalla_track_plugins(plugin_name,1);
 //      console.log('activated '+plugin_name);
     }
@@ -242,9 +242,9 @@ jQuery.noConflict();
     $.fn.farfalla_switch_off = function ( plugin_name ) {
       $(this).removeClass('active').css({
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'.png") no-repeat'
-      })
+      });
+      $('#'+plugin_name+'_options_switch').removeClass('plugin_options_switch_on');
       farfalla_track_plugins(plugin_name,0);
-//      console.log('deactivated '+plugin_name);
     }
 
 /*
@@ -301,7 +301,6 @@ jQuery.noConflict();
               .addClass('donttouchme')
               .prependTo('body');
 
-
             $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('#farfalla_container');
             $('<img />').attr({
               'id':'farfalla_logo',
@@ -333,14 +332,14 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
 
 
-
-            $('#farfalla_toolbar_shade').click( function() {
 /*
+            $('#farfalla_toolbar_shade').click( function() {
+
               $(this).hide();
               $('#farfalla_badge').click();
-*/
-            });
 
+            });
+*/
 /*
             if(options.border){
               if($.inArray(options.border, allowedColors)>=0){
@@ -430,7 +429,7 @@ jQuery.noConflict();
 
             $('#farfalla_reset_all')
             .click(function(){
-              $('.plugin_options_deactivate').click();
+              $('.plugin_options_switch').click();
               $('.active').click();
               $.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
               farfalla_forget_profile();
@@ -468,46 +467,56 @@ jQuery.noConflict();
                 function(data) {
                   $.each(data.plugins, function(){
                       var plugin = this.Plugin;
-                      $('<div></div>')
-                        .attr({
-                          'id':plugin.name+'Activator'
-                        })
-                        .addClass('plugin_activator ui-corner-all')
-                        .appendTo('#farfalla_toolbar_plugins');
 
-                      $('#'+plugin.name+'Activator')
-                      .qtip({
-                        content :  $.__(plugin.name),
-                        position: {
-                          my: 'center right',
-                          at: 'center left',
-                          target: $('#'+plugin.name+'Activator')
-                        },
-                        style: {
-                          classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
-                          width: 'auto'
-                        }
-                      })
-                      .click( function(){
-                          head.js(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
-					      $(this).unbind('click'); // first click only!
-                        }
-                      );
+                      if(plugin.visible==1){
 
+                        $('<div></div>')
+                          .attr({
+                            'id':plugin.name+'Activator'
+                          })
+                          .addClass('plugin_activator ui-corner-all')
+                          .appendTo('#farfalla_toolbar_plugins');
+
+                        $('<input />')
+                         .attr({
+                           'id':plugin.name+'_options_switch',
+                           'class':'plugin_options_switch donttouchme',
+                           'type':'button',
+                           'value':'X'
+                          })
+                          .click( function(){
+                            head.load(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+                            $(this).unbind('click'); // first click only!
+                          })
+                          .insertBefore('#'+plugin.name+'Activator');
+
+                        $('#'+plugin.name+'Activator')
+                        .qtip({
+                          content :  $.__(plugin.name),
+                          position: {
+                            my: 'center right',
+                            at: 'center left',
+                            target: $('#'+plugin.name+'Activator')
+                          },
+                          style: {
+                            classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
+                            width: 'auto'
+                          }
+                        });
+
+/*
                       if(plugin.visible==0){
                         $('#'+plugin.name+'Activator').hide()
                       } else {
-                        $('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
-                        $([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
-                      }
+*/
+                      $('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
+                      $([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
 
-                    });
+//                    });
+                    }
 
-                    farfalla_autoactivate_plugins();
-
-                  }
-
-                );
+                  })
+                });
 
         };
 
@@ -539,14 +548,10 @@ jQuery.noConflict();
 
             $('#farfalla_badge').toggle(
               function() {
-                // snapper.open('right');
-//                $('#farfalla_toolbar_shade').show();
                 $('#farfalla_toolbar').show();
                 $.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
-                // snapper.close();
-//                $('#farfalla_toolbar_shade').hide();
                 $('#farfalla_toolbar').hide();
                 $.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }

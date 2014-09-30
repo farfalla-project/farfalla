@@ -23,13 +23,14 @@ jQuery.noConflict();
       $('<div id="farfalla_keyboard"></div>')
         .css({
           'position':'fixed',
+          '_position':'absolute',
           'display':'block',
           'bottom':0,
           'right':0,
           'left':0,
           'width':'608px',
           'margin':'auto',
-          'z-index':10000000
+          'z-index':100000
         }).prependTo('body');
     }
 
@@ -41,7 +42,7 @@ jQuery.noConflict();
          'left':0,
          'width':'100%',
          'height':'100%',
-         'z-index':1000000
+         'z-index':99999
       }).hide().appendTo('body');
 
     $.keyboard_on = function () {
@@ -50,11 +51,11 @@ jQuery.noConflict();
 
       $('#keyboardActivator').farfalla_switch_on('keyboard');
 
-      head.js(farfalla_path+'plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
+      head.load(farfalla_path+'plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
         $('textarea, input[type=text], input[type=password], input[type=email], input[type=search], input:not([type])').click(function(){
           $('#farfalla_keyboard_shade').css('top',$(window).scrollTop()).show();
           $(this).addClass('farfalla_keyboard_target');
-          console.log($('#farfalla_keyboard_monitor').length);
+//          console.log($('#farfalla_keyboard_monitor').length);
 
           if($('#farfalla_keyboard_monitor').length != 1){
             $('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
@@ -96,8 +97,8 @@ jQuery.noConflict();
 
     $.keyboard_on()
 
-    $('#keyboardActivator').click( function(){
-      if($(this).hasClass('active')){
+    $('#keyboard_options_switch').click( function(){
+      if($(this).hasClass('plugin_options_switch_on')){
         $.keyboard_off()
       } else {
         $.keyboard_on()

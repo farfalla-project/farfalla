@@ -56,16 +56,15 @@ jQuery.noConflict();
       $('a, input').removeClass('farfalla_bigcursor_pointer');
     };
 
-    $.bigcursor_on()
-
-    $('#bigcursorActivator').click( function(){
-      if($(this).hasClass('active')){
+    $('#bigcursor_options_switch').click( function(){
+      if($(this).hasClass('plugin_options_switch_on')){
         $.bigcursor_off()
       } else {
         $.bigcursor_on()
       }
     });
 
+    $.bigcursor_on();
 
   });
 
