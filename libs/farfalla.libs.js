@@ -378,6 +378,7 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
 */
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
+//            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
             farfalla_toolbar_color();
             farfalla_toolbar_top();
 
@@ -441,7 +442,11 @@ jQuery.noConflict();
                 })
               .click(
                 function(){
-                  $('.plugin_options').hide();
+                  if($('#farfalla_toolbar').hasClass('visible')){
+                    $('#farfalla_toolbar').removeClass('visible').hide();
+                  } else {
+                    $('#farfalla_toolbar').addClass('visible').show();
+                  }
                 });
 /*
               .mouseover(
@@ -489,7 +494,7 @@ jQuery.noConflict();
 
             $('#farfalla_reset_all')
             .click(function(){
-              $('.plugin_options_switch').click();
+              $('.plugin_options_switch_on').click();
               $('.active').click();
               $.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
               farfalla_forget_profile();
@@ -564,18 +569,13 @@ jQuery.noConflict();
                           }
                         });
 
-/*
-                      if(plugin.visible==0){
-                        $('#'+plugin.name+'Activator').hide()
-                      } else {
-*/
                       $('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
                       $([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
 
-//                    });
                     }
 
                   })
+                  farfalla_autoactivate_plugins();
                 });
 
         };
@@ -597,7 +597,7 @@ jQuery.noConflict();
                 $('#farfalla_badge').click()
               }
 */
-              farfalla_toolbar_populate();
+              farfalla_toolbar_populate(30);
 
             })
           };
@@ -661,23 +661,25 @@ jQuery.noConflict();
         // Track activated/deactivated plugins for consistent browsing in different pages
 
         function farfalla_autoactivate_plugins() {
-
           if($.cookie('farfalla_active_plugins')!=null){
-            active = $.cookie('farfalla_active_plugins').split(',')
+
+            var active = $.cookie('farfalla_active_plugins').split(',');
 
             $.each(active, function(index, value){
-              $('#'+value+'Activator').click();
+              $('#'+value+'_options_switch').click();
             })
 
             $('#farfalla_remember_profile').click();
+
           } else {
 
             $.farfalla_get_option('active_plugins', function(data){
-
               if(data.value){
-                active = data.value.split(',')
+
+                var active = data.value.split(',');
+
                 $.each(active, function(index, value){
-                  $('#'+value+'Activator').click();
+                  $('#'+value+'_options_switch').click();
                 })
               }
 
@@ -705,7 +707,9 @@ jQuery.noConflict();
 
         farfalla_check_status();
 
-        farfalla_toggle_visibility();
+//        farfalla_autoactivate_plugins();
+
+//        farfalla_toggle_visibility();
 
 // end "if" to determine wether to add the toolbar or not
 
