@@ -10,6 +10,7 @@
 .fontClarifier{
   font-family: Tahoma, Arial, sans-serif;
   font-size: 14pt;
+  line-height: 2em !important;
 }
 
 .boldClarifier {
