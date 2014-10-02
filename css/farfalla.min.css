@@ -201,20 +201,20 @@
 }
 
 .plugin_options_switch{
-  background: url('../images/switch-off.png') no-repeat;
+  background: url('../images/switch-off.png') no-repeat !important;
   width: 80px !important;
-  height: 26px;
-  border: none;
+  height: 26px !important;
+  border: none !important;
   color: transparent !important;
   font-size:0px !important;
-  text-shadow: none;
-  margin: 13px 0 13px 100px;
-  float: left;
-  cursor: pointer;
+  text-shadow: none !important;
+  margin: 13px 0 13px 100px !important;
+  float: left !important;
+  cursor: pointer !important;
 }
 
 .plugin_options_switch_on{
-  background: url('../images/switch-on.png') no-repeat;
+  background: url('../images/switch-on.png') no-repeat !important;
 }
 
 .active{
