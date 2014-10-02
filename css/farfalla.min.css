@@ -210,6 +210,7 @@
   text-shadow: none;
   margin: 13px 0 13px 100px;
   float: left;
+  cursor: pointer;
 }
 
 .plugin_options_switch_on{

@@ -2,15 +2,19 @@
   background-color: rgb(250, 252, 209) !important;
 }
 
+.fontClarifier{
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 14pt;
+  line-height: 1.5em !important;
+}
+
 .inputClarifier {
   border: 2px solid navy;
   background-color: rgb(255, 255, 225);
 }
 
-.fontClarifier{
-  font-family: Tahoma, Arial, sans-serif;
-  font-size: 14pt;
-  line-height: 2em !important;
+input.fontClarifier{
+  line-height: 1em !important;
 }
 
 .boldClarifier {

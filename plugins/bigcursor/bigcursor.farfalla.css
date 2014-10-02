@@ -1,2 +1,2 @@
-.farfalla_bigcursor_arrow{ cursor:url('cursors/Arrow.cur'), auto}
-.farfalla_bigcursor_pointer{ cursor:url('cursors/Pointer.cur'), auto}
+.farfalla_bigcursor_arrow{ cursor:url(Arrow.png),url('http://farfalla-project.org/code/farfalla/plugins/bigcursor/Arrow.cur'),auto !important;}
+.farfalla_bigcursor_pointer{ cursor:url(Pointer.png),url('http://farfalla-project.org/code/farfalla/plugins/bigcursor/Pointer.cur'),auto;}

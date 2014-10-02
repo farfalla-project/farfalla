@@ -46,13 +46,13 @@ jQuery.noConflict();
 
     $.bigcursor_on = function () {
       $('#bigcursorActivator').farfalla_switch_on('bigcursor');
-      $('html').addClass('farfalla_bigcursor_arrow');
+      $('body').addClass('farfalla_bigcursor_arrow');
       $('a, input').addClass('farfalla_bigcursor_pointer');
     };
 
     $.bigcursor_off = function () {
       $('#bigcursorActivator').farfalla_switch_off('bigcursor')
-      $('html').removeClass('farfalla_bigcursor_arrow');
+      $('body').removeClass('farfalla_bigcursor_arrow');
       $('a, input').removeClass('farfalla_bigcursor_pointer');
     };
 
