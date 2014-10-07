@@ -500,7 +500,9 @@ jQuery.noConflict();
               farfalla_forget_profile();
               remember_profile = 0;
               $('#farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png")')
-            }).qtip({
+            })
+/*
+            .qtip({
               content :  $.__('reset'),
               position: {
                 my: 'center right',
@@ -511,7 +513,7 @@ jQuery.noConflict();
                 width: 'auto'
               }
              });
-
+*/
         };
 
         function farfalla_remember_profile() {

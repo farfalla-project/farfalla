@@ -141,10 +141,14 @@
       height: auto;
   }
 
+.farfalla_button{
+  border: none;
+}
+
 .plugin_activator{
   width: 52px;
   height: 52px;
-  margin: 6px 162px 6px 6px;
+  margin: 6px 156px 6px 6px;
 }
 
 #farfalla_remember_profile, #farfalla_reset_all{
@@ -152,6 +156,11 @@
   width: 52px;
   height: 52px;
   margin: 6px 6px;
+  float: left;
+}
+
+#farfalla_reset_all{
+  margin-left:30px;
 }
 
 .plugin_activator_label{
@@ -163,7 +172,7 @@
   display:block;
   padding: 0 12px;
   text-align: left;
-  width: 192px;
+  width: 186px;
   margin: 0 2px;
   position: relative;
 }
@@ -173,7 +182,7 @@
   display: block;
   position: absolute;
   top: -15px;
-  left: 88px;
+  left: 122px;
   width: 0;
   border-width: 0 16px 16px;
   border-style: solid;

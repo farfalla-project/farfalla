@@ -331,6 +331,8 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_reset_all').css('background','url("'+farfalla_path+'images/reset.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
+            $('<div title="Reset">Reset?</div>').attr('id','farfalla_reset_dialog').appendTo('body');
+
 
 
 /*
@@ -434,13 +436,11 @@ jQuery.noConflict();
 
             $('#farfalla_reset_all')
             .click(function(){
-              $('.plugin_options_switch_on').click();
-              $('.active').click();
-              $.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
-              farfalla_forget_profile();
-              remember_profile = 0;
-              $('#farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png")')
-            }).qtip({
+//              alert('Reset?');
+              $('#farfalla_reset_dialog').dialog('open');
+            });
+/*
+            .qtip({
               content :  $.__('reset'),
               position: {
                 my: 'center right',
@@ -451,8 +451,24 @@ jQuery.noConflict();
                 width: 'auto'
               }
              });
-
+*/
         };
+
+        function farfalla_reset_all() {
+          $('.plugin_options_switch_on').click();
+          $('.active').click();
+          $.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
+          farfalla_forget_profile();
+          remember_profile = 0;
+          $('#farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png")')
+        }
+
+            $('#farfalla_reset_dialog').dialog({
+              buttons: {
+                "Ok": function() { farfalla_reset_all() },
+                "No way!": function() { $(this).dialog('close') }
+              }
+            });
 
         function farfalla_remember_profile() {
           $.cookie('farfalla_active_plugins', active_plugins, { expires: 7 })
