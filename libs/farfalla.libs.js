@@ -343,7 +343,7 @@ jQuery.noConflict();
         function farfalla_toolbar_color() {
           if(options.background){
             if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
-              $('#farfalla_container, #farfalla_toolbar')
+              $('#farfalla_container, #farfalla_toolbar, .ui-dialog, .ui-dialog-buttonpane')
               .css('background',options.background);
             }
           }
@@ -514,15 +514,9 @@ jQuery.noConflict();
 
             $('#farfalla_reset_dialog').dialog({
               autoOpen: false,
-//              modal: true,
-              title: 'Reset'
-            });
-
-            $('#farfalla_reset_all')
-            .click(function(){
-//              alert('Reset?');
-              $('#farfalla_reset_dialog').dialog({
-                buttons: [
+              modal: true,
+              title: 'Reset',
+              buttons: [
                   {
                     text: "Ok",
                     click: function() {
@@ -535,7 +529,12 @@ jQuery.noConflict();
                     click: function() { $(this).dialog('close'); }
                   }
                 ]
-              }).dialog('open');
+            });
+
+            $('#farfalla_reset_all')
+            .click(function(){
+//              alert('Reset?');
+              $('#farfalla_reset_dialog').dialog('open');
             });
 
 

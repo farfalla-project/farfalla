@@ -269,3 +269,13 @@
 .ui-tooltip-farfalla .ui-tooltip-titlebar{
   background-color:#f1f1f1;
 }
+
+/*
+    Dialog ovverrides
+*/
+
+.ui-dialog{
+  z-index: 100000;
+  border: 2px solid #fff;
+  background: #fff;
+}
