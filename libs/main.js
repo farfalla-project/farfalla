@@ -459,7 +459,7 @@ jQuery.noConflict();
                     click: function() { $(this).dialog('close'); }
                   }
                 ]
-            });
+            }).parent('div').removeClass('ui-corner-all');
 
             $('#farfalla_reset_all')
             .click(function(){
