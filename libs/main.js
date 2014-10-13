@@ -305,7 +305,7 @@ jQuery.noConflict();
             $('<img />').attr({
               'id':'farfalla_logo',
               'src':farfalla_path+'/images/farfalla_icon.png',
-              'height':'36px',
+              'height':'34px',
               'width':'48px',
               'alt':'Farfalla logo'
               })
