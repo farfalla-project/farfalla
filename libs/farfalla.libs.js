@@ -343,7 +343,7 @@ jQuery.noConflict();
         function farfalla_toolbar_color() {
           if(options.background){
             if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
-              $('#farfalla_container, #farfalla_toolbar, .ui-dialog, .ui-dialog-buttonpane')
+              $('#farfalla_container, #farfalla_toolbar, .ui-widget-content')
               .css('background',options.background);
             }
           }
@@ -397,8 +397,6 @@ jQuery.noConflict();
 */
             $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
 //            $('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
-            farfalla_toolbar_color();
-            farfalla_toolbar_top();
 
             $('<div></div>').attr('id','farfalla_logo')
 /*              .html('<h1><a href="http://farfalla-project.org/" class="donttouchme">'+$.__('ft_farfalla_project')+'</a></h1><p class="donttouchme">'+$.__('ft_accessibility_preferences')+'</p>') */
@@ -410,7 +408,6 @@ jQuery.noConflict();
             $('<div></div>').attr('id','farfalla_reset_all').css('background','url("'+farfalla_path+'images/reset.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
             $('<div title="Reset">Reset?</div>').attr('id','farfalla_reset_dialog').appendTo('body');
-
 
 
 /*
@@ -552,6 +549,10 @@ jQuery.noConflict();
               }
              });
 */
+            farfalla_toolbar_color();
+            farfalla_toolbar_top();
+
+
         };
 
         // Stores a cookie with the list of active plugins

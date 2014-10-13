@@ -275,7 +275,17 @@
 */
 
 .ui-dialog{
-  z-index: 100000;
+  z-index: 10000 !important;
+}
+
+.ui-dialog .ui-dialog-content{
   border: 2px solid #fff;
-  background: #fff;
+}
+
+.ui-widget-overlay{
+  z-index: 9999 !important;
+}
+
+.ui-widget-content{
+  border: 2px solid #fff;
 }
