@@ -89,14 +89,7 @@
     position: relative;
     text-align: center;
   }
-/*
-  #farfalla_home{
-    width: 42px;
-    height: 42px;
-    display:block;
-    float:left;
-  }
-*/
+
   #farfalla_logo img{
     border: none;
     padding: 2px 2px 2px 6px;
@@ -253,7 +246,7 @@
 }
 
 /*
-    qTip2 ovverrides
+    qTip2 overrides
 */
 
 .ui-tooltip-farfalla{
@@ -261,9 +254,9 @@
   font-size: 12pt;
   font-weight: bold;
   line-height: 14pt;
-  background-color: #fff;
-  border-color: #000 ;
-  color: #000 ;
+  border: 1px solid #000;
+  color: #000;
+  background: #fff;
 }
 
 .ui-tooltip-farfalla .ui-tooltip-titlebar{
@@ -278,14 +271,14 @@
   z-index: 10000 !important;
 }
 
-.ui-dialog .ui-dialog-content{
-  border: 2px solid #fff;
-}
-
 .ui-widget-overlay{
   z-index: 9999 !important;
 }
 
-.ui-widget-content{
-  border: 2px solid #fff !important;
+/*
+  Jobmetoo logo
+*/
+
+#jobmetoo_logo_img{
+  margin: 0 12px 12px 12px;
 }

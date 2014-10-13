@@ -339,6 +339,16 @@ jQuery.noConflict();
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_reset_all').css('background','url("'+farfalla_path+'images/reset.png") no-repeat').appendTo('#farfalla_toolbar');
+            $('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
+            $('<img />').attr({
+              'id':'jobmetoo_logo_img',
+              'src':farfalla_path+'images/jobmetoo_logo.png',
+              'alt':'logo di Jobmetoo', //localization needed
+              'width':'164px',
+              'height':'32px'
+            }).appendTo($('#jobmetoo_logo'));
+            $('#jobmetoo_logo_img').wrap('<a href="http://www.jobmetoo.com/" title="Jump to Jobmetoo website"></a>');
+
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
             $('<div title="Reset">Reset?</div>').attr('id','farfalla_reset_dialog').appendTo('body');
 
