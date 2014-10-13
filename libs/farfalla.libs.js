@@ -345,6 +345,11 @@ jQuery.noConflict();
             if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
               $('#farfalla_container, #farfalla_toolbar, .ui-widget-content')
               .css('background',options.background);
+              $('.ui-tooltip-farfalla')
+              .css({
+                'border': '2px solid '+options.background,
+                'color': options.background
+              });
             }
           }
         }
@@ -469,6 +474,9 @@ jQuery.noConflict();
                 })
               .click(
                 function(){
+
+                $('#farfalla_container').css('left','auto');
+
                   if($('#farfalla_toolbar').hasClass('visible')){
                     $('#farfalla_toolbar').removeClass('visible').hide();
                   } else {
