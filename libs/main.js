@@ -346,6 +346,17 @@ jQuery.noConflict();
             $('<div class="farfalla_toolbar_separator"></div>').appendTo($('#farfalla_toolbar'));
             $('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'images/save.png") no-repeat').appendTo('#farfalla_toolbar');
             $('<div></div>').attr('id','farfalla_reset_all').css('background','url("'+farfalla_path+'images/reset.png") no-repeat').appendTo('#farfalla_toolbar');
+
+            $('<div></div>').attr({
+              'id': 'farfalla_reset_all_options',
+              'class':'plugin_options ui-corner-all donttouchme'
+            }).hide().insertAfter($('#farfalla_reset_all'));
+            $('<div><input id="farfalla_reset_all_button" type="button">Reset all</input></div>').attr({
+              'id': 'farfalla_reset_all_options_custom',
+              'class':'plugin_options_actions donttouchme'
+            }).appendTo('#farfalla_reset_all_options')
+            
+
             $('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
             $('<img />').attr({
               'id':'jobmetoo_logo_img',
@@ -357,7 +368,7 @@ jQuery.noConflict();
             $('#jobmetoo_logo_img').wrap('<a href="http://www.jobmetoo.com/" title="Jump to Jobmetoo website"></a>');
 
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
-            $('<div title="Reset">Reset?</div>').attr('id','farfalla_reset_dialog').appendTo('body');
+//            $('<div title="Reset">Reset?</div>').attr('id','farfalla_reset_dialog').appendTo('body');
 
 
 /*
@@ -470,7 +481,7 @@ jQuery.noConflict();
                 render : function() {farfalla_toolbar_color();}
               }
              });
-
+/*
             $('#farfalla_reset_dialog').dialog({
               autoOpen: false,
               modal: true,
@@ -489,11 +500,11 @@ jQuery.noConflict();
                   }
                 ]
             }).parent('div').removeClass('ui-corner-all');
-
+*/
             $('#farfalla_reset_all')
             .click(function(){
-//              alert('Reset?');
-              $('#farfalla_reset_dialog').dialog('open');
+              $('#farfalla_reset_all_options').show();
+//              $('#farfalla_reset_dialog').dialog('open');
             });
 
 

@@ -161,7 +161,7 @@
 }
 
 #farfalla_reset_all{
-  margin-left:30px;
+  margin-left:50px;
 }
 
 .plugin_activator_label{
@@ -176,6 +176,7 @@
   width: 186px;
   margin: 0 2px;
   position: relative;
+  clear: both;
 }
 
 .plugin_options:before {
