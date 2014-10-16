@@ -276,14 +276,9 @@ jQuery.noConflict();
         function farfalla_toolbar_color() {
           if(options.background){
             if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
-              $('#farfalla_container, #farfalla_toolbar, .ui-widget-content')
-              .css('background',options.background);
-              $('div.ui-tooltip-farfalla')
-              .css({
-                'border': '2px solid '+options.background,
-                'color': options.background
-              });
-              $('#farfalla_reset_all_button').css('color',options.background);
+              $('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
+              $('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
+              $('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
             }
           }
         }
