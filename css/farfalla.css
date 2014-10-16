@@ -1,7 +1,7 @@
 /* CORE */
 
 #farfalla_container{
-  position: fixed !important;
+  position: fixed;
   top: 30px;
   right: 0;
 /*
@@ -162,6 +162,15 @@
 
 #farfalla_reset_all{
   margin-left:50px;
+}
+
+#farfalla_reset_all_button{
+  display: block;
+  padding: 0.9em;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.2em;
 }
 
 .plugin_activator_label{

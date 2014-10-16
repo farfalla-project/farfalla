@@ -283,8 +283,7 @@ jQuery.noConflict();
                 'border': '2px solid '+options.background,
                 'color': options.background
               });
-              console.log($('div.ui-tooltip-tip canvas'))
-
+              $('#farfalla_reset_all_button').css('color',options.background);
             }
           }
         }
@@ -351,7 +350,7 @@ jQuery.noConflict();
               'id': 'farfalla_reset_all_options',
               'class':'plugin_options ui-corner-all donttouchme'
             }).hide().insertAfter($('#farfalla_reset_all'));
-            $('<div><input id="farfalla_reset_all_button" type="button">Reset all</input></div>').attr({
+            $('<div><p><a id="farfalla_reset_all_button" href="#">Reset all</a></p></div>').attr({
               'id': 'farfalla_reset_all_options_custom',
               'class':'plugin_options_actions donttouchme'
             }).appendTo('#farfalla_reset_all_options')
@@ -501,10 +500,16 @@ jQuery.noConflict();
                 ]
             }).parent('div').removeClass('ui-corner-all');
 */
-            $('#farfalla_reset_all')
-            .click(function(){
-              $('#farfalla_reset_all_options').show();
-//              $('#farfalla_reset_dialog').dialog('open');
+            $('#farfalla_reset_all').click(function(){
+              if($('#farfalla_reset_all_options').hasClass('visible')){
+                $('#farfalla_reset_all_options').removeClass('visible').hide();
+              } else {
+                $('#farfalla_reset_all_options').addClass('visible').show();
+              }
+            });
+            $('#farfalla_reset_all_button').click(function(){
+              farfalla_reset_all();
+              $('#farfalla_reset_all_options').hide();
             });
 
 
