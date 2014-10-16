@@ -345,7 +345,7 @@ jQuery.noConflict();
             if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
               $('#farfalla_container, #farfalla_toolbar, .ui-widget-content')
               .css('background',options.background);
-              $('.ui-tooltip-farfalla')
+              $('div.ui-tooltip-farfalla, div.ui-tooltip-tip canvas')
               .css({
                 'border': '2px solid '+options.background,
                 'color': options.background
@@ -518,12 +518,21 @@ jQuery.noConflict();
             ).qtip({
               content :  $.__('save_session'),
               position: {
-                my: 'center right',
+                my: 'top right',
                 at: 'center left'
               },
               style: {
                 classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
-                width: 'auto'
+                width: 'auto',
+                tip: {
+                  corner: 'right top',
+                  border: 2,
+                  width: 20,
+                  height: 12
+                }
+              },
+              events: {
+                render : function() {farfalla_toolbar_color();}
               }
              });
 
@@ -622,13 +631,22 @@ jQuery.noConflict();
                         .qtip({
                           content :  $.__(plugin.name),
                           position: {
-                            my: 'center right',
-                            at: 'center left',
+                            my: 'right bottom',
+                            at: 'bottom left',
                             target: $('#'+plugin.name+'Activator')
                           },
                           style: {
                             classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
-                            width: 'auto'
+                            width: 'auto',
+                            tip: {
+                              corner: 'right center',
+                              offset: 6,
+                              width: 20,
+                              height: 12
+                            }
+                          },
+                          events: {
+                            render : function() {farfalla_toolbar_color();}
                           }
                         });
 
