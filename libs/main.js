@@ -278,7 +278,7 @@ jQuery.noConflict();
             if(options.background.match(/^#([0-9a-f]{3}){1,2}$/i)!==null){
               $('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
               $('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
-              $('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
+							              $('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
             }
           }
         }
@@ -349,17 +349,17 @@ jQuery.noConflict();
               'id': 'farfalla_reset_all_options_custom',
               'class':'plugin_options_actions donttouchme'
             }).appendTo('#farfalla_reset_all_options')
-            
-
-            $('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
-            $('<img />').attr({
-              'id':'jobmetoo_logo_img',
-              'src':farfalla_path+'images/jobmetoo_logo.png',
-              'alt':'logo di Jobmetoo', //localization needed
-              'width':'164px',
-              'height':'32px'
-            }).appendTo($('#jobmetoo_logo'));
-            $('#jobmetoo_logo_img').wrap('<a href="http://www.jobmetoo.com/" title="Jump to Jobmetoo website"></a>');
+            if(window.location.href.search('jobmetoo.com')=='-1'){
+              $('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
+              $('<img />').attr({
+                'id':'jobmetoo_logo_img',
+                'src':farfalla_path+'images/jobmetoo_logo.png',
+                'alt':'logo di Jobmetoo', //localization needed
+                'width':'164px',
+                'height':'32px'
+              }).appendTo($('#jobmetoo_logo'));
+              $('#jobmetoo_logo_img').wrap('<a href="http://www.jobmetoo.com/" title="Jump to Jobmetoo website"></a>');
+            }
 
             $('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
 //            $('<div title="Reset">Reset?</div>').attr('id','farfalla_reset_dialog').appendTo('body');
@@ -458,15 +458,14 @@ jQuery.noConflict();
             ).qtip({
               content :  $.__('save_session'),
               position: {
-                my: 'top right',
+                my: 'center right',
                 at: 'center left'
               },
               style: {
                 classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
                 width: 'auto',
                 tip: {
-                  corner: 'right top',
-                  border: 2,
+                  corner: 'right center',
                   width: 20,
                   height: 12
                 }
@@ -586,7 +585,6 @@ jQuery.noConflict();
                             width: 'auto',
                             tip: {
                               corner: 'right center',
-                              offset: 6,
                               width: 20,
                               height: 12
                             }
