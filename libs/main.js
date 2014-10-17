@@ -544,7 +544,8 @@ jQuery.noConflict();
         function farfalla_toolbar_populate(top) {
 
             $.getJSON(
-              farfalla_path+"backend/plugins/menu/?callback=?",
+//              farfalla_path+"backend/plugins/menu/?callback=?",
+              farfalla_path+"json/menu.php?callback=?",
                 {},
                 function(data) {
                   $.each(data.plugins, function(){
