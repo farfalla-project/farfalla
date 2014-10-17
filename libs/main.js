@@ -550,9 +550,7 @@ jQuery.noConflict();
                 function(data) {
                   $.each(data.plugins, function(){
                       var plugin = this.Plugin;
-
-                      if(plugin.visible==1){
-
+                      if(plugin.visible==1&&(jQuery.browser.mobile==false||plugin.mobile)){
                         $('<div></div>')
                           .attr({
                             'id':plugin.name+'Activator'
