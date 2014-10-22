@@ -345,7 +345,7 @@ jQuery.noConflict();
               'id': 'farfalla_reset_all_options',
               'class':'plugin_options ui-corner-all donttouchme'
             }).hide().insertAfter($('#farfalla_reset_all'));
-            $('<div><p><a id="farfalla_reset_all_button" href="#">Reset all</a></p></div>').attr({
+            $('<div><p><a id="farfalla_reset_all_button" href="#">'+$.__('reset')+'</a></p></div>').attr({
               'id': 'farfalla_reset_all_options_custom',
               'class':'plugin_options_actions donttouchme'
             }).appendTo('#farfalla_reset_all_options')
