@@ -416,8 +416,7 @@ jQuery.noConflict();
               'id': 'farfalla_reset_all_options_custom',
               'class':'plugin_options_actions donttouchme'
             }).appendTo('#farfalla_reset_all_options')
-console.log(window.location.href.search('jobmetoo.[com|dev]'));
-            if(window.location.href.search('jobmetoo.[com|dev]')=='-1'){
+            if(window.location.href.search('jobmetoo.com')=='-1'){
               $('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
               $('<img />').attr({
                 'id':'jobmetoo_logo_img',
@@ -612,14 +611,13 @@ console.log(window.location.href.search('jobmetoo.[com|dev]'));
         function farfalla_toolbar_populate(top) {
 
             $.getJSON(
-              farfalla_path+"backend/plugins/menu/?callback=?",
+//              farfalla_path+"backend/plugins/menu/?callback=?",
+              farfalla_path+"json/menu.php?callback=?",
                 {},
                 function(data) {
                   $.each(data.plugins, function(){
                       var plugin = this.Plugin;
-
-                      if(plugin.visible==1){
-
+                      if(plugin.visible==1&&(jQuery.browser.mobile==false||plugin.mobile)){
                         $('<div></div>')
                           .attr({
                             'id':plugin.name+'Activator'

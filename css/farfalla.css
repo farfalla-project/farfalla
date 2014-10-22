@@ -208,6 +208,7 @@
   color: transparent !important;
   font-size:0px !important;
   text-shadow: none;
+  margin: 0;
 }
 
 .plugin_options_actions{
