@@ -22,6 +22,10 @@
   border-bottom: 2px solid #fff;
 }
 
+#farfalla_container *{
+  box-sizing: content-box;
+}
+
 #farfalla_badge{
   display: block;
 }
