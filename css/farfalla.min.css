@@ -23,6 +23,8 @@
 }
 
 #farfalla_container *{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
 }
 
@@ -212,6 +214,9 @@
 }
 
 .plugin_options input{
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
   width:62px;
   height:62px;
   border: none;
@@ -233,6 +238,9 @@
 }
 
 .plugin_options_switch{
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
   background: url('../images/switch-off.png') no-repeat !important;
   width: 80px !important;
   height: 26px !important;
