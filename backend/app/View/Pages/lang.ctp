@@ -25,6 +25,8 @@ var strings = new Array(
 ,"ft_accessibility"
 ,"ft_accessibility_preferences"
 ,"ft_actions"
+,"ft_url_title"
+,"ft_url_title_jm2"
 ,"save_session"
 ,"reset"
 ,"hicontrast"
@@ -43,6 +45,8 @@ var translations = new Array(
   echo(',"'. __('Accessibility') .'"');
   echo(',"'. __('Accessibility Preferences') .'"');
   echo(',"'. __('Actions') .'"');
+  echo(',"'. __('Jump to the Farfalla project website') .'"');
+  echo(',"'. __('Jump to the web accessibility page') .'"');
   echo(',"'. __('Save current settings for the future') .'"');
   echo(',"'. __('Reset all settings') .'"');
   echo(',"'. __('Contrast and color scheme control') .'"');

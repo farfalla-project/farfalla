@@ -313,6 +313,7 @@ jQuery.noConflict();
               .addClass('donttouchme')
               .prependTo('body');
 
+
             $('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('#farfalla_container');
             $('<img />').attr({
               'id':'farfalla_logo',
@@ -322,6 +323,24 @@ jQuery.noConflict();
               'alt':'Farfalla logo'
               })
               .appendTo('#farfalla_badge');
+
+            var farfalla_url = 'http://farfalla-project.org/';
+            var farfalla_url_title = $.__('ft_url_title');
+
+            if(window.location.href.search('jobmetoo.com')>0){
+              farfalla_url = 'http://www.jobmetoo.com/page/web-accessibility';
+              farfalla_url_title = $.__('ft_url_title');
+            }
+
+            $('<div><a>Farfalla project</a></div>')
+              .attr('id','farfalla_lettering')
+              .addClass('donttouchme')
+              .hide()
+              .appendTo('#farfalla_badge');
+            $('#farfalla_badge a').attr({
+               'href': farfalla_url,
+               'title': farfalla_url_title
+            })
 
 /*              if(window.location !== window.parent.location){
                 $('#farfalla_container, #farfalla_badge').hide();
@@ -411,16 +430,18 @@ jQuery.noConflict();
               .mousedown(
                 function(){
                   $(this).css('cursor','url(\''+farfalla_path+'images/grab.png\'), auto')
-                })
+                });
+
+            $('#farfalla_logo')
               .click(
                 function(){
 
                 $('#farfalla_container').css('left','auto');
 
                   if($('#farfalla_toolbar').hasClass('visible')){
-                    $('#farfalla_toolbar').removeClass('visible').hide();
+                    $('#farfalla_toolbar, #farfalla_lettering').removeClass('visible').hide();
                   } else {
-                    $('#farfalla_toolbar').addClass('visible').show();
+                    $('#farfalla_toolbar, #farfalla_lettering').addClass('visible').show();
                   }
                 });
 /*

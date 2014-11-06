@@ -32,7 +32,26 @@
   display: block;
 }
 
+#farfalla_lettering{
+  font-family: 'Helvetica', sans;
+  color: #fff;
+  float: left;
+  padding: 18px 0 0 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#farfalla_lettering a:link, #farfalla_lettering a:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+#farfalla_lettering a:hover {
+  color: #0f0;
+}
+
 #farfalla_logo{
+  float: left;
   width: 48px;
   padding: 8px;
 }
