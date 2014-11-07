@@ -17,7 +17,7 @@
 // http://farfalla-project.org/license
 //
 // ==/UserScript==
-	
+
 function fgetScripts(s){
 	var scripts = window.document.getElementsByTagName('script');
 	var output = true;
@@ -32,7 +32,7 @@ function fgetScripts(s){
 if (fgetScripts('farfalla.js')){
 	var headID = document.getElementsByTagName("head")[0];
 	var farfallaScript = document.createElement('script');
-	var farfalla_path = 'http://localhost/farfalla/';
+	var farfalla_path = 'http://code.farfalla-project.org/';
 	farfallaScript.type = 'text/javascript';
 	farfallaScript.src = farfalla_path+'farfalla.js';
 	headID.appendChild(farfallaScript);
