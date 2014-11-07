@@ -41,7 +41,7 @@
 }
 
 #farfalla_lettering a:hover {
-  color: #0f0;
+  color: #d7442a;
 }
 
 #farfalla_logo{
@@ -324,6 +324,10 @@
   Jobmetoo logo
 */
 
+#jobmetoo_logo p{
+  padding-left: 16px;
+}
+
 #jobmetoo_logo_img{
-  margin: 0 12px 12px 12px;
+  margin: -12px 12px 12px 12px;
 }

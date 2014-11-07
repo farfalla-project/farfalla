@@ -917,14 +917,23 @@ jQuery.noConflict();
               'alt':'Farfalla logo'
               })
               .appendTo('#farfalla_badge');
+
+            var farfalla_url = 'http://farfalla-project.org/';
+            var farfalla_url_title = $.__('ft_url_title');
+
+            if(window.location.href.search('jobmetoo.com')>0){
+              farfalla_url = 'http://www.jobmetoo.com/page/accessibilita-web';
+              farfalla_url_title = $.__('ft_url_title');
+            }
+
             $('<div><a>Farfalla project</a></div>')
               .attr('id','farfalla_lettering')
               .addClass('donttouchme')
               .hide()
               .appendTo('#farfalla_badge');
             $('#farfalla_badge a').attr({
-               'href':'http://farfalla-project.org/',
-               'title':'Go to the "Farfalla project" website'
+               'href': farfalla_url,
+               'title': farfalla_url_title
             })
 
 /*              if(window.location !== window.parent.location){
@@ -955,12 +964,14 @@ jQuery.noConflict();
             }).appendTo('#farfalla_reset_all_options')
             if(window.location.href.search('jobmetoo.com')=='-1'){
               $('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
+              $('<p>Powered by</p>')
+              .appendTo($('#jobmetoo_logo'));
               $('<img />').attr({
                 'id':'jobmetoo_logo_img',
                 'src':farfalla_path+'images/jobmetoo_logo.png',
                 'alt':'logo di Jobmetoo', //localization needed
-                'width':'164px',
-                'height':'32px'
+                'width':'152px',
+                'height':'30px'
               }).appendTo($('#jobmetoo_logo'));
               $('#jobmetoo_logo_img').wrap('<a href="http://www.jobmetoo.com/" title="Jump to Jobmetoo website"></a>');
             }
