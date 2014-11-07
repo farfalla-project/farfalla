@@ -332,8 +332,9 @@
 
 #jobmetoo_logo p{
   padding-left: 16px;
+  margin: 0;
 }
 
 #jobmetoo_logo_img{
-  margin: -12px 12px 12px 12px;
+  margin: 0 12px 12px 12px;
 }
