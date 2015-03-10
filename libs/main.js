@@ -231,7 +231,7 @@ jQuery.noConflict();
     }
 
     $.fn.farfalla_switch_on = function ( plugin_name ) {
-      $(this).addClass('active').css({
+      $(this).addClass('farfalla_active').css({
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_selected.png") no-repeat'
       })
       $('#'+plugin_name+'_options_switch').addClass('plugin_options_switch_on');
@@ -240,7 +240,7 @@ jQuery.noConflict();
     }
 
     $.fn.farfalla_switch_off = function ( plugin_name ) {
-      $(this).removeClass('active').css({
+      $(this).removeClass('farfalla_active').css({
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'.png") no-repeat'
       });
       $('#'+plugin_name+'_options_switch').removeClass('plugin_options_switch_on');
@@ -297,7 +297,7 @@ jQuery.noConflict();
 
         function farfalla_reset_all() {
           $('.plugin_options_switch_on').click();
-          $('.active').click();
+          $('.farfalla_active').click();
           $.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           farfalla_forget_profile();
           remember_profile = 0;
