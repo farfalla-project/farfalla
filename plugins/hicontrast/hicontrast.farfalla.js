@@ -41,7 +41,7 @@ jQuery.noConflict();
 
 //    $.farfalla_add_ui_section('hicontrast',$.__('Color_schemes'));
 
-    var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
+    var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","blue_yellow","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
     $.each(colorSchemes, function(index, value){
       $.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, index, function(){
