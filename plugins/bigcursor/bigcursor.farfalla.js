@@ -32,9 +32,6 @@
   _gafbigcursor('send', 'pageview');
 
 
-
-$f = jQuery.noConflict(true);
-
     $f('<link></link>').attr({
       "rel":"stylesheet",
       "type":"text/css",
@@ -62,6 +59,3 @@ $f = jQuery.noConflict(true);
     });
 
     $f.bigcursor_on();
-
-  });
-

@@ -29,9 +29,6 @@
   _gafclarifier('create', 'UA-9777827-28', {'cookieName':'_gafclarifier'});
   _gafclarifier('send', 'pageview');
 
-
-$f = jQuery.noConflict(true);
-
 /*
       $f('html').each( function(){
         console.log($f(this).css('background-color'));
@@ -109,6 +106,3 @@ $f = jQuery.noConflict(true);
     });
 
     $f.clarifier_on();
-
-
-  });

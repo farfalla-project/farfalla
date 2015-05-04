@@ -32,8 +32,6 @@
   _gafhicontrast('send', 'pageview');
 
 
-$f = jQuery.noConflict(true);
-
     $f.farfalla_create_plugin_options('hicontrast');
 
 //    $f.farfalla_add_ui_section('hicontrast',$f.__('Color_schemes'));
@@ -101,6 +99,3 @@ $f = jQuery.noConflict(true);
     });
 
     $f.hicontrast_on();
-
-
-  });

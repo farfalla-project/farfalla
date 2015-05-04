@@ -63,7 +63,7 @@ var farfalla_path = retrieveURL('farfalla');
 
   head.load(farfalla_path+'css/farfalla.min.css');
   head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/farfalla.libs.min.js');
-//  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/jquery.min.js', farfalla_path+'libs/jquery-migrate-1.2.1.js', farfalla_path+'libs/jquery-ui.custom.min.js', farfalla_path+'libs/jquery.qtip.min.js', farfalla_path+'libs/jquery.cookie.min.js', farfalla_path+'libs/detectmobilebrowser.js', farfalla_path+'libs/main.js');
+//  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/jquery.min.js', farfalla_path+'libs/jquery-migrate-1.2.1.js', farfalla_path+'libs/jquery-ui.custom.min.js', farfalla_path+'libs/jquery.qtip.min.js', farfalla_path+'libs/noconflict.js', farfalla_path+'libs/jquery.cookie.min.js', farfalla_path+'libs/detectmobilebrowser.js', farfalla_path+'libs/main.js');
 
 // Google analytics monitoring code
 

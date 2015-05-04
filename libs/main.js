@@ -22,8 +22,6 @@
 Main Farfalla Library: includes the functions used to draw the toolbar and the reusable functions for plugins
 */
 
-$f = jQuery.noConflict(true);
-
     // Main variables
 
     var options = farfalla_ui_options();

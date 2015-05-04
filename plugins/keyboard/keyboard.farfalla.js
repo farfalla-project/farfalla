@@ -11,10 +11,6 @@
   _gafkeyboard('send', 'pageview');
 
 
-
-
-$f = jQuery.noConflict(true);
-
     $f.create_keyboard = function () {
       $f('<div id="farfalla_keyboard"></div>')
         .css({
@@ -100,5 +96,3 @@ $f = jQuery.noConflict(true);
         $f.keyboard_on()
       }
     });
-
-  });

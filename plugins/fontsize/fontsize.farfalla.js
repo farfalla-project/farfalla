@@ -31,9 +31,6 @@
   _gaffontsize('send', 'pageview');
 
 
-
-$f = jQuery.noConflict(true);
-
     $f.farfalla_create_plugin_options('fontsize');
 
     $f.farfalla_change_size = function (val) {
@@ -138,5 +135,3 @@ $f = jQuery.noConflict(true);
     });
 
     $f.fontsize_on();
-
-  });
