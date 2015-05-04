@@ -2,25 +2,21 @@
 
 // Google analytics monitoring code
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-9777827-10']);
-  _gaq.push(['_trackPageview']);
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gafkeyboard');
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+  _gafkeyboard('create', 'UA-9777827-24', {'cookieName':'_gafkeyboard'});
+  _gafkeyboard('send', 'pageview');
 
 
 
-jQuery.noConflict();
-(function($) { 
 
-  $(function() {
+$f = jQuery.noConflict(true);
 
-    $.create_keyboard = function () {
-      $('<div id="farfalla_keyboard"></div>')
+    $f.create_keyboard = function () {
+      $f('<div id="farfalla_keyboard"></div>')
         .css({
           'position':'fixed',
           '_position':'absolute',
@@ -34,7 +30,7 @@ jQuery.noConflict();
         }).prependTo('body');
     }
 
-    $('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
+    $f('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
       .css({
          'position':'absolute',
          'display':'block',
@@ -45,21 +41,21 @@ jQuery.noConflict();
          'z-index':99999
       }).hide().appendTo('body');
 
-    $.keyboard_on = function () {
+    $f.keyboard_on = function () {
 
-      $.create_keyboard();
+      $f.create_keyboard();
 
-      $('#keyboardActivator').farfalla_switch_on('keyboard');
+      $f('#keyboardActivator').farfalla_switch_on('keyboard');
 
       head.load(farfalla_path+'plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
-        $('textarea, input[type=text], input[type=password], input[type=email], input[type=search], input:not([type])').click(function(){
-          $('#farfalla_keyboard_shade').css('top',$(window).scrollTop()).show();
-          $(this).addClass('farfalla_keyboard_target');
-//          console.log($('#farfalla_keyboard_monitor').length);
+        $f('textarea, input[type=text], input[type=password], input[type=email], input[type=search], input:not([type])').click(function(){
+          $f('#farfalla_keyboard_shade').css('top',$f(window).scrollTop()).show();
+          $f(this).addClass('farfalla_keyboard_target');
+//          console.log($f('#farfalla_keyboard_monitor').length);
 
-          if($('#farfalla_keyboard_monitor').length != 1){
-            $('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
-              .val($('.farfalla_keyboard_target').val())
+          if($f('#farfalla_keyboard_monitor').length != 1){
+            $f('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
+              .val($f('.farfalla_keyboard_target').val())
               .css({
               'background':'#eee',
               'color':'#000',
@@ -76,35 +72,33 @@ jQuery.noConflict();
           }
           VirtualKeyboard.open('farfalla_keyboard_monitor','farfalla_keyboard');
           VirtualKeyboard.attachInput('farfalla_keyboard_monitor');
-          $('#farfalla_keyboard *').addClass('donttouchme');
-          $('#farfalla_keyboard').click(function(){
-            $('.farfalla_keyboard_target').val(($('#farfalla_keyboard_monitor').val()));
+          $f('#farfalla_keyboard *').addClass('donttouchme');
+          $f('#farfalla_keyboard').click(function(){
+            $f('.farfalla_keyboard_target').val(($f('#farfalla_keyboard_monitor').val()));
           });
         })
-        $('#farfalla_keyboard_shade').click(function(){
+        $f('#farfalla_keyboard_shade').click(function(){
           VirtualKeyboard.close();
-          $('#farfalla_keyboard_monitor').remove();
-          $('.farfalla_keyboard_target').removeClass('farfalla_keyboard_target');
-          $(this).hide();
+          $f('#farfalla_keyboard_monitor').remove();
+          $f('.farfalla_keyboard_target').removeClass('farfalla_keyboard_target');
+          $f(this).hide();
         })
       });
 
     }
 
-    $.keyboard_off = function () {
-      $('#keyboardActivator').farfalla_switch_off('keyboard');
+    $f.keyboard_off = function () {
+      $f('#keyboardActivator').farfalla_switch_off('keyboard');
     } 
 
-    $.keyboard_on()
+    $f.keyboard_on()
 
-    $('#keyboard_options_switch').click( function(){
-      if($(this).hasClass('plugin_options_switch_on')){
-        $.keyboard_off()
+    $f('#keyboard_options_switch').click( function(){
+      if($f(this).hasClass('plugin_options_switch_on')){
+        $f.keyboard_off()
       } else {
-        $.keyboard_on()
+        $f.keyboard_on()
       }
     });
 
   });
-
-})(jQuery);

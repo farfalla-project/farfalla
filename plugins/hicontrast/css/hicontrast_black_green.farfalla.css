@@ -44,3 +44,10 @@ h4 font,h5 font,h6 font:not(.donttouchme) {font-size: 1.0em}
 input:not(.donttouchme) {height: 1.6em !important}
 option:not(.donttouchme) {height: 1.6em !important}
 textarea:not(.donttouchme) {height:       !important}
+
+
+/* Keyboard specific CSS */
+#farfalla_keyboard_shade{background-color: #000000 !important;}
+#farfalla_keyboard_monitor {background-color: #000000 !important; border: 2px solid #33FF33 !important; color: #33FF33 !important;}
+#virtualKeyboard {background-color: #000000 !important; color: #33FF33 !important;}
+.kbButton a span {color: #33FF33 !important;}

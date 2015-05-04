@@ -26,46 +26,42 @@
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gafbigcursor');
 
-  ga('create', 'UA-9777827-29', 'farfalla-project.org');
-  ga('send', 'pageview');
+  _gafbigcursor('create', 'UA-9777827-29', {'cookieName':'_gafbigcursor'});
+  _gafbigcursor('send', 'pageview');
 
 
 
-jQuery.noConflict();
-(function($) {
+$f = jQuery.noConflict(true);
 
-  $(function(){
-
-    $('<link></link>').attr({
+    $f('<link></link>').attr({
       "rel":"stylesheet",
       "type":"text/css",
       "href":farfalla_path+"/plugins/bigcursor/bigcursor.farfalla.css"
-    }).appendTo($('head'));
+    }).appendTo($f('head'));
 
-    $.bigcursor_on = function () {
-      $('#bigcursorActivator').farfalla_switch_on('bigcursor');
-      $('body').addClass('farfalla_bigcursor_arrow');
-      $('a, input').addClass('farfalla_bigcursor_pointer');
+    $f.bigcursor_on = function () {
+      $f('#bigcursorActivator').farfalla_switch_on('bigcursor');
+      $f('body').addClass('farfalla_bigcursor_arrow');
+      $f('a, input').addClass('farfalla_bigcursor_pointer');
     };
 
-    $.bigcursor_off = function () {
-      $('#bigcursorActivator').farfalla_switch_off('bigcursor')
-      $('body').removeClass('farfalla_bigcursor_arrow');
-      $('a, input').removeClass('farfalla_bigcursor_pointer');
+    $f.bigcursor_off = function () {
+      $f('#bigcursorActivator').farfalla_switch_off('bigcursor')
+      $f('body').removeClass('farfalla_bigcursor_arrow');
+      $f('a, input').removeClass('farfalla_bigcursor_pointer');
     };
 
-    $('#bigcursor_options_switch').click( function(){
-      if($(this).hasClass('plugin_options_switch_on')){
-        $.bigcursor_off()
+    $f('#bigcursor_options_switch').click( function(){
+      if($f(this).hasClass('plugin_options_switch_on')){
+        $f.bigcursor_off()
       } else {
-        $.bigcursor_on()
+        $f.bigcursor_on()
       }
     });
 
-    $.bigcursor_on();
+    $f.bigcursor_on();
 
   });
 
-})(jQuery);

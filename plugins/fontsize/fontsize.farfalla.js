@@ -25,43 +25,40 @@
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gaffontsize');
 
-  ga('create', 'UA-9777827-27', 'farfalla-project.org');
-  ga('send', 'pageview');
+  _gaffontsize('create', 'UA-9777827-27', {'cookieName':'_gaffontsize'});
+  _gaffontsize('send', 'pageview');
 
 
 
-jQuery.noConflict();
-(function($) {
+$f = jQuery.noConflict(true);
 
-  $(function() {
+    $f.farfalla_create_plugin_options('fontsize');
 
-    $.farfalla_create_plugin_options('fontsize');
-
-    $.farfalla_change_size = function (val) {
+    $f.farfalla_change_size = function (val) {
       var value = 1+val*0.1;
-      $('#farfalla-fontsize-container').css({
+      $f('#farfalla-fontsize-container').css({
         'zoom': value,
         '-moz-transform': 'scale('+value+')',
         '-moz-transform-origin': 'top left',
         'position':'absolute',
         'z-index':0
       });
-      $('#farfalla-fontsize-container').width($('body').width()/value);
-      $.farfalla_set_option('increase',val);
+      $f('#farfalla-fontsize-container').width($f('body').width()/value);
+      $f.farfalla_set_option('increase',val);
     }
 
-    $.farfalla_reset_size = function () {
-      $('#farfalla-fontsize-container').css({
+    $f.farfalla_reset_size = function () {
+      $f('#farfalla-fontsize-container').css({
         'zoom': 1,
         '-moz-transform': 'scale(1)'
       });
-      $('#farfalla-fontsize-container').width($('body').width());
-      $.farfalla_set_option('increase',0);
+      $f('#farfalla-fontsize-container').width($f('body').width());
+      $f.farfalla_set_option('increase',0);
     }
 
-    $.farfalla_get_option('increase', function(data){
+    $f.farfalla_get_option('increase', function(data){
 
         var increase = 0
 
@@ -72,28 +69,28 @@ jQuery.noConflict();
         }
 
         // Increase Font Size
-        $.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
 
           increase+=1;
           var value= increase;
-          $.farfalla_change_size(value);
+          $f.farfalla_change_size(value);
           return increase;
         });
 
         // Decrease Font Size
-        $.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
 
           increase+=-1;
           var value= increase;
-          $.farfalla_change_size(value);
+          $f.farfalla_change_size(value);
           return increase;
         });
 
         // Reset Font Size
 
-        $.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
 
-          $.farfalla_reset_size();
+          $f.farfalla_reset_size();
           increase=0;
           return increase;
 
@@ -101,46 +98,45 @@ jQuery.noConflict();
 
       });
 
-    $.fontsize_on = function () {
+    $f.fontsize_on = function () {
 
-      if($('#farfalla-fontsize-container').length==0){
-        $('body > *').not('#farfalla_container, script').wrapAll('<div id="farfalla-fontsize-container" />');
+      if($f('#farfalla-fontsize-container').length==0){
+        $f('body > *').not('#farfalla_container, script').wrapAll('<div id="farfalla-fontsize-container" />');
       }
 
-      $('#fontsizeActivator').farfalla_switch_on('fontsize');
+      $f('#fontsizeActivator').farfalla_switch_on('fontsize');
 
-      $.farfalla_get_option('increase', function(data){
+      $f.farfalla_get_option('increase', function(data){
 
         // restore font size on plugin activation
 
         if(data.value > 0){
-          $.farfalla_change_size(data.value);
+          $f.farfalla_change_size(data.value);
         }
 
-//        $('.plugin_options').not('#fontsize_options').slideUp('fast');
-        $('#fontsize_options').slideDown('fast');
+//        $f('.plugin_options').not('#fontsize_options').slideUp('fast');
+        $f('#fontsize_options').slideDown('fast');
 
       });
 
     }
 
-    $.fontsize_off = function () {
+    $f.fontsize_off = function () {
 
-      $('#fontsize_options').hide();
-      $.farfalla_reset_size();
-      $('#fontsizeActivator').farfalla_switch_off('fontsize');
+      $f('#fontsize_options').hide();
+      $f.farfalla_reset_size();
+      $f('#fontsizeActivator').farfalla_switch_off('fontsize');
 
     }
 
-    $('#fontsize_options_switch').click( function(){
-      if($(this).hasClass('plugin_options_switch_on')){
-        $.fontsize_off()
+    $f('#fontsize_options_switch').click( function(){
+      if($f(this).hasClass('plugin_options_switch_on')){
+        $f.fontsize_off()
       } else {
-        $.fontsize_on()
+        $f.fontsize_on()
       }
     });
 
-    $.fontsize_on();
+    $f.fontsize_on();
 
   });
-})(jQuery);
