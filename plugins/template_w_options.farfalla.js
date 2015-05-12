@@ -21,47 +21,37 @@
 // Farfalla plugin: ##plugin_name##
 // This is a template for new plugins. Replace ##plugin_name## with the exact name of a new plugin to start creating yours.
 
+$f.farfalla_create_plugin_options('##plugin_name##');
 
-jQuery.noConflict();
-(function($) {
+// New logic here
 
-  $(function() {
+$f.##plugin_name##_on = function () {
+  $f('###plugin_name##Activator').farfalla_switch_on('##plugin_name##');
+  $f('.plugin_options').not('###plugin_name##').slideUp('fast');
+  $f('###plugin_name##_options').slideDown('fast');
 
-    $.farfalla_create_plugin_options('##plugin_name##');
+// New logic here
 
-    // New logic here
+}
 
-    $.##plugin_name##_on = function () {
-      $('###plugin_name##Activator').farfalla_switch_on('##plugin_name##');
-      $('.plugin_options').not('###plugin_name##').slideUp('fast');
-      $('###plugin_name##_options').slideDown('fast');
+$f.##plugin_name##_off = function () {
+  $f('###plugin_name##Activator').farfalla_switch_off('##plugin_name##');
+  $f('###plugin_name##_options').hide();
 
-    // New logic here
+// New logic here
 
-    }
+}
 
-    $.##plugin_name##_off = function () {
-      $('###plugin_name##Activator').farfalla_switch_off('##plugin_name##');
-      $('###plugin_name##_options').hide();
+$f.##plugin_name##_on();
 
-    // New logic here
+$f('###plugin_name##_options_deactivate').click( function() {
 
-    }
+  $f.##plugin_name##_off();
 
-    $.##plugin_name##_on();
+});
 
-    $('###plugin_name##_options_deactivate').click( function() {
+$f('###plugin_name##Activator').click( function(){
 
-      $.##plugin_name##_off();
+  $f.##plugin_name##_on()
 
-    });
-
-    $('###plugin_name##Activator').click( function(){
-
-      $.##plugin_name##_on()
-
-    });
-
-  });
-
-})(jQuery);
+});
