@@ -35,3 +35,7 @@ input.fontClarifier{
 .linespacingClarifier{
   line-height:200%;
 }
+
+.fontUppercase{
+  text-transform: uppercase;
+}
