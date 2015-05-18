@@ -525,7 +525,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               $f('#farfalla_reset_all_options').hide();
             });
 
-
+            // Keep the toolbar on the right side of the window on resize
+            $f(window).scroll(function(){
+              $f('#farfalla_container').css('margin-right',0-$f(window).scrollLeft());
+            });
 
 /*
             .qtip({
@@ -750,11 +753,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         farfalla_check_status();
 
-//        farfalla_autoactivate_plugins();
+    }; // end "if" to determine wether to add the toolbar or not
 
-//        farfalla_toggle_visibility();
-
-// end "if" to determine wether to add the toolbar or not
-
-    };
 

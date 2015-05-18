@@ -39,3 +39,7 @@ input.fontClarifier{
 .fontUppercase{
   text-transform: uppercase;
 }
+
+.fontSmallcaps{
+  font-variant: small-caps;
+}

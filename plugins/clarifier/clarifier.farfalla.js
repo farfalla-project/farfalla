@@ -48,10 +48,30 @@ $f.clarifier_uppercase = function () {
   })
 };
 
+// Adds or removes small caps setting
+
+$f.clarifier_smallcaps = function () {
+  $f.farfalla_get_option('smallcaps', function(data){
+	if(data.value==1){
+      $f.farfalla_set_option('smallcaps');
+      $f('.fontSmallcaps').removeClass('fontSmallcaps');
+    } else {
+      $f('*').addClass('fontSmallcaps');
+      $f.farfalla_set_option('smallcaps',1);
+    }
+  })
+};
+
 // Adds an activation button for the global uppercase effect
 
 $f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'uppercase', function(){
   $f.clarifier_uppercase();
+});
+
+// Adds an activation button for the global 'small caps' effect
+
+$f.farfalla_add_ui('clarifier', 'button', 'clarifier_smallcaps', 'smallcaps', function(){
+  $f.clarifier_smallcaps();
 });
 
 // Check if global uppercase setting is on and apply it if positive
@@ -60,6 +80,16 @@ $f.clarifier_uppercase_init = function () {
   $f.farfalla_get_option('uppercase', function(data){
 	if(data.value==1){
       $f('*').addClass('fontUppercase');
+    }
+  })
+};
+
+// Check if global smallcaps setting is on and apply it if positive
+
+$f.clarifier_smallcaps_init = function () {
+  $f.farfalla_get_option('smallcaps', function(data){
+	if(data.value==1){
+      $f('*').addClass('fontSmallcaps');
     }
   })
 };
@@ -105,6 +135,7 @@ $f.clarifier_on = function () {
   });
 
   $f.clarifier_uppercase_init();
+  $f.clarifier_smallcaps_init();
 
 }
 
@@ -122,6 +153,7 @@ $f.clarifier_off = function () {
   $f('*').removeClass('leftAlignClarifier');
   $f('p, li').removeClass('linespacingClarifier');
   $f('.fontUppercase').removeClass('fontUppercase');
+  $f('.fontSmallcaps').removeClass('fontSmallcaps');
 
 }
 

@@ -23,7 +23,7 @@ if (!Array.prototype.indexOf)
 
 var retrieveURL = function(filename) {
     var scripts = document.getElementsByTagName('script');
-    console.log(scripts);
+//    console.log(scripts);
     if (scripts && scripts.length > 0) {
         for (var i in scripts) {
             if (scripts[i].src && scripts[i].src.match(new RegExp(filename+'\\.js'))) {
