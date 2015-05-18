@@ -181,6 +181,7 @@
   width: 52px;
   height: 52px;
   margin: 6px 156px 6px 6px;
+  cursor: pointer !important;
 }
 
 #farfalla_remember_profile, #farfalla_reset_all{

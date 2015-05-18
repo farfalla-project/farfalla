@@ -546,7 +546,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             farfalla_toolbar_color();
             farfalla_toolbar_top();
 
-
         };
 
         // Stores a cookie with the list of active plugins
@@ -613,7 +612,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           events: {
                             render : function() {farfalla_toolbar_color();}
                           }
-                        });
+                        })
+                        .click(function(){ $f('#'+plugin.name+'_options_switch').click(); });
 
                       $f('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
                       $f([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
