@@ -701,7 +701,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Add plugin-specific UI
     // ...
 
-    $f.farfalla_add_ui = function( plugin_name, type, name, value, callback ){
+    $f.farfalla_add_ui = function( plugin_name, type, name, value, neutral_bg, callback ){
 //      console.log('Adding UI for '+plugin_name);
       switch(type){
         case 'slider':
@@ -711,8 +711,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         case 'button':
           if($f('#'+name+'_button').length==0){
+		    neutral_bg = neutral_bg || 0;
+            var bgcolor = '#000';
+            if(options.background&&options.background!==null){bgcolor=options.background};
+            if(neutral_bg == 1){bgcolor='transparent'};
             $f('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
-            $f('#'+name+'_button').addClass('donttouchme').css('background','url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+name+'.png")').click(callback);
+            $f('#'+name+'_button').addClass('donttouchme').css('background',bgcolor+' url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+name+'.png") no-repeat scroll center').click(callback);
+            $f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
           }
         break;
 
@@ -853,10 +858,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Applies custom colors to the toolbar
 
         $f.farfalla_toolbar_color = function() {
-          if(options.background.match(/^#([A-Fa-f0-9]{6})$/i)!==null){
-            $f('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
-            $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
-            $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
+          if(options.background){
+            if(options.background.match(/^#([A-Fa-f0-9]{6})$/i)!==null){
+              $f('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
+              $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
+              $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
+            }
           }
         }
 

@@ -31,6 +31,7 @@
   _gafhicontrast('create', 'UA-9777827-26', {'cookieName':'_gafhicontrast'});
   _gafhicontrast('send', 'pageview');
 
+//    $f('.farfalla_selected_plugin_option').css('background-color',options.background);
 
     $f.farfalla_create_plugin_options('hicontrast');
 
@@ -39,13 +40,14 @@
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","blue_yellow","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
     $f.each(colorSchemes, function(index, value){
-      $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, index, function(){
+      $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, index, 1, function(){
 
-        $f('#farfalla_active_option input').unwrap();
+        $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
         $f.farfalla_remove_plugin_css('hicontrast');
         $f.farfalla_add_css('hicontrast','hicontrast_'+value);
         $f.farfalla_set_option('colorscheme',value);
-        $f('#hicontrast_'+value+'_button').wrap('<div id="farfalla_active_option" class="donttouchme"></div>');
+        $f(this).addClass('farfalla_selected_plugin_option');
+//        $f('#hicontrast_'+value+'_button').wrap('<div id="farfalla_active_option" class="donttouchme"></div>');
 
       });
     });
@@ -62,10 +64,10 @@
 
 //    $f.farfalla_add_ui_section('hicontrast',$f.__('Actions'));
 
-    $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'reset', function(){
+    $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'reset', 1, function(){
 
       $f.farfalla_remove_plugin_css('hicontrast');
-      $f('#farfalla_active_option input').unwrap();
+      $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
       $f.farfalla_set_option('colorscheme');
 
 
@@ -85,7 +87,7 @@
       $f('#hicontrastActivator').farfalla_switch_off('hicontrast');
       $f('#hicontrast_options').hide();
       $f.farfalla_remove_plugin_css('hicontrast');
-      $f('#farfalla_active_option input').unwrap();
+      $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
       $f.farfalla_set_option('colorscheme');
 
     }

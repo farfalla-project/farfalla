@@ -66,7 +66,7 @@
         }
 
         // Increase Font Size
-        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', function(){
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', '+', 1, function(){
 
           increase+=1;
           var value= increase;
@@ -75,7 +75,7 @@
         });
 
         // Decrease Font Size
-        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', function(){
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', '-', 1, function(){
 
           increase+=-1;
           var value= increase;
@@ -85,7 +85,7 @@
 
         // Reset Font Size
 
-        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', function(){
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'reset', 1, function(){
 
           $f.farfalla_reset_size();
           increase=0;

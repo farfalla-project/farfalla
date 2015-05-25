@@ -174,7 +174,7 @@
   }
 
 .farfalla_button{
-  border: none;
+  border-radius: 50%;
 }
 
 .plugin_activator{
@@ -237,13 +237,15 @@
   -webkit-box-sizing: border-box !important;
   -moz-box-sizing: border-box !important;
   box-sizing: border-box !important;
-  width:62px;
-  height:62px;
+  width:52px !important;
+  height:52px !important;
   border: none;
   color: transparent !important;
   font-size:0px !important;
   text-shadow: none;
-  margin: 0;
+  margin: 3px;
+  padding: 0;
+  cursor: pointer !important;
 }
 
 .plugin_options_actions{
@@ -255,6 +257,10 @@
   margin: 0;
   font-size: 12pt;
   padding: 12px 0 0 12px;
+}
+
+.farfalla_selected_plugin_option{
+  background-color: #000 !important;
 }
 
 .plugin_options_switch{
