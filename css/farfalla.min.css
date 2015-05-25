@@ -181,7 +181,7 @@
   width: 52px;
   height: 52px;
   margin: 6px 156px 6px 6px;
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
 #farfalla_remember_profile, #farfalla_reset_all{
@@ -245,7 +245,7 @@
   text-shadow: none;
   margin: 3px;
   padding: 0;
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
 .plugin_options_actions{
@@ -276,7 +276,7 @@
   text-shadow: none !important;
   margin: 13px 0 13px 100px !important;
   float: left !important;
-  cursor: pointer !important;
+  cursor: pointer;
 }
 
 .plugin_options_switch_on{
