@@ -259,12 +259,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Applies custom colors to the toolbar
 
         $f.farfalla_toolbar_color = function() {
-          if(options.background){
-            if(options.background.match(/^#([0-9a-f]{3}){1,2}$f/i)!==null){
-              $f('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
-              $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
-							              $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
-            }
+          if(options.background.match(/^#([A-Fa-f0-9]{6})$/i)!==null){
+            $f('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
+            $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
+            $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
           }
         }
 
@@ -420,17 +418,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 });
 
             $f('#farfalla_logo')
-              .click(
-                function(){
-
+            .click(
+              function(){
                 $f('#farfalla_container').css('left','auto');
-
-                  if($f('#farfalla_toolbar').hasClass('visible')){
-                    $f('#farfalla_toolbar, #farfalla_lettering').removeClass('visible').hide();
-                  } else {
-                    $f('#farfalla_toolbar, #farfalla_lettering').addClass('visible').show();
-                  }
-                });
+                if($f('#farfalla_toolbar').hasClass('visible')){
+                  $f('#farfalla_toolbar, #farfalla_lettering').removeClass('visible').hide();
+                } else {
+                  $f('#farfalla_toolbar, #farfalla_lettering').addClass('visible').show();
+                }
+              }
+            );
 /*
               .mouseover(
                 function(){
@@ -441,15 +438,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                   $f('#farfalla_badge_label').hide();
                 })
 */
-              $f('#farfalla_container')
-              .draggable({
-                axis:'y',
-                containment:'window',
-//                handle:'#farfalla_badge',
-                stop: function(event, ui) {
-                  $f.getJSON(farfalla_path+"backend/profiles/top/"+$f(this).css('top')+"/?callback=?",{});
-                }
-              });
+            $f('#farfalla_container')
+            .draggable({
+              axis:'y',
+              containment:'window',
+//              handle:'#farfalla_badge',
+              stop: function(event, ui) {
+                $f.getJSON(farfalla_path+"backend/profiles/top/"+$f(this).css('top')+"/?callback=?",{});
+              }
+            });
 
             $f('#farfalla_remember_profile')
             .toggle(
@@ -463,7 +460,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 remember_profile = 0;
 				$f(this).css('background','url("'+farfalla_path+'images/save.png")')
               }
-            ).qtip({
+            )
+            .qtip({
               content :  $f.__('save_session'),
               position: {
                 my: 'center right',
@@ -599,7 +597,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                             }
                           },
                           events: {
-                            render : function() {farfalla_toolbar_color();}
+                            render : function() {$f.farfalla_toolbar_color();}
                           }
                         })
                         .click(function(){ $f('#'+plugin.name+'_options_switch').click(); });
@@ -736,6 +734,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Main variables
 
     var options = $f.farfalla_ui_options();
+
     var active_plugins = new Array();
     if($f.cookie('farfalla_active_plugins')){
       var remember_profile = 1
