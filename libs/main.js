@@ -148,7 +148,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           "rel":"stylesheet",
           "type":"text/css",
           "href":farfalla_path+"plugins/"+plugin_name+"/css/"+sheet_name+".farfalla.css"
-        }).appendTo($f('head'));
+        }).prependTo($f('head'));
       }
     };
 

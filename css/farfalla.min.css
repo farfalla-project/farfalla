@@ -246,6 +246,7 @@
   margin: 3px;
   padding: 0;
   cursor: pointer;
+  display: inline;
 }
 
 .plugin_options_actions{
