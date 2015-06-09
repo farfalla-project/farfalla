@@ -949,9 +949,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 */
             $f('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
 
+/*
             $f('<div></div>').attr('id','farfalla_logo')
-/*              .html('<p class="donttouchme">'+$f.__('ft_accessibility_preferences')+'</p>') */
+              .html('<p class="donttouchme">'+$f.__('ft_accessibility_preferences')+'</p>')
               .appendTo('#farfalla_toolbar');
+*/
             $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
             $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
