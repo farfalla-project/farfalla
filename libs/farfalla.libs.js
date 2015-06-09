@@ -926,10 +926,25 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                'title': farfalla_url_title
             })
 
+            $f('<div></div>').html($f.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().prependTo('#farfalla_badge');
+
+            $f('#farfalla_badge')
+              .mouseover(
+                function(){
+                  $f('#farfalla_badge_label').show();
+                  console.log($f('#farfalla_badge_label').hasClass('blocked'));
+                })
+              .mouseleave(
+                function(){
+                  if($f('#farfalla_badge_label').hasClass('blocked')==false){
+                    $f('#farfalla_badge_label').hide()
+                  };
+                });
+
+
 /*              if(window.location !== window.parent.location){
                 $f('#farfalla_container, #farfalla_badge').hide();
               };
-            $f('<div></div>').html($f.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().appendTo('#farfalla_badge');
             $f('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
 */
             $f('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
@@ -1024,22 +1039,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               function(){
                 $f('#farfalla_container').css('left','auto');
                 if($f('#farfalla_toolbar').hasClass('visible')){
+                  $f('#farfalla_badge_label').removeClass('blocked').hide();
                   $f('#farfalla_toolbar, #farfalla_lettering').removeClass('visible').hide();
                 } else {
+                  $f('#farfalla_badge_label').addClass('blocked').show();
                   $f('#farfalla_toolbar, #farfalla_lettering').addClass('visible').show();
                 }
               }
             );
-/*
-              .mouseover(
-                function(){
-                  $f('#farfalla_badge_label').show();
-                })
-              .mouseleave(
-                function(){
-                  $f('#farfalla_badge_label').hide();
-                })
-*/
+
             $f('#farfalla_container')
             .draggable({
               axis:'y',
@@ -1247,6 +1255,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 $f.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
+                $f('#farfalla_badge_label').removeClass('blocked').hide();
                 $f('#farfalla_toolbar').hide();
                 $f.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }

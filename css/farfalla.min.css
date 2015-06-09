@@ -35,10 +35,10 @@
 #farfalla_lettering{
   font-family: 'Helvetica', sans;
   color: #fff;
-  float: left;
-  padding: 18px 0 0 0;
+  clear: left;
   font-size: 18px;
   font-weight: bold;
+  padding: 8px 0 0 12px;
 }
 
 #farfalla_lettering a:link, #farfalla_lettering a:visited {
