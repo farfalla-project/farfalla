@@ -28,6 +28,7 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','_gaffontsize');
 
   _gaffontsize('create', 'UA-9777827-27', {'cookieName':'_gaffontsize'});
+  _gaffontsize('set', 'anonymizeIp', true);
   _gaffontsize('send', 'pageview');
 
 

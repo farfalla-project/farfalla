@@ -29,6 +29,7 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','_gafbigcursor');
 
   _gafbigcursor('create', 'UA-9777827-29', {'cookieName':'_gafbigcursor'});
+  _gafbigcursor('set', 'anonymizeIp', true);
   _gafbigcursor('send', 'pageview');
 
 

@@ -8,6 +8,7 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','_gafkeyboard');
 
   _gafkeyboard('create', 'UA-9777827-24', {'cookieName':'_gafkeyboard'});
+  _gafkeyboard('set', 'anonymizeIp', true);
   _gafkeyboard('send', 'pageview');
 
 

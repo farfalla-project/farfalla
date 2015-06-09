@@ -76,4 +76,5 @@ var version = '1.0';
   })(window,document,'script','//www.google-analytics.com/analytics.js','_gafarfalla');
 
   _gafarfalla('create', 'UA-9777827-10', {'cookieName':'_gafarfalla'});
+  _gafarfalla('set', 'anonymizeIp', true);
   _gafarfalla('send', 'pageview');

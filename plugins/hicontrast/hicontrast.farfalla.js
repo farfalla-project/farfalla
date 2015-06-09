@@ -29,6 +29,7 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','_gafhicontrast');
 
   _gafhicontrast('create', 'UA-9777827-26', {'cookieName':'_gafhicontrast'});
+  _gafhicontrast('set', 'anonymizeIp', true);
   _gafhicontrast('send', 'pageview');
 
 //    $f('.farfalla_selected_plugin_option').css('background-color',options.background);
