@@ -34,6 +34,8 @@ var retrieveURL = function(filename) {
 };
 
 var farfalla_path = retrieveURL('farfalla');
+var version = '1.0';
+
 //
 // Call the basically required scripts...
 //
@@ -61,9 +63,10 @@ var farfalla_path = retrieveURL('farfalla');
     s.parentNode.insertBefore(wf, s);
   })();
 
-  head.load(farfalla_path+'css/farfalla.min.css');
-//  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/farfalla.libs.min.js');
-  head.load(farfalla_path+'backend/pages/lang', farfalla_path+'libs/jquery.min.js', farfalla_path+'libs/jquery-migrate-1.2.1.js', farfalla_path+'libs/jquery-ui.custom.min.js', farfalla_path+'libs/jquery.qtip.min.js', farfalla_path+'libs/noconflict.js', farfalla_path+'libs/jquery.cookie.min.js', farfalla_path+'libs/detectmobilebrowser.js', farfalla_path+'libs/main.js');
+
+  head.load(farfalla_path+'css/farfalla.min.css?v='+version);
+//  head.load(farfalla_path+'backend/pages/lang?v='+version, farfalla_path+'libs/farfalla.libs.min.js?v='+version);
+  head.load(farfalla_path+'backend/pages/lang?v='+version, farfalla_path+'libs/jquery.min.js?v='+version, farfalla_path+'libs/jquery-migrate-1.2.1.js?v='+version, farfalla_path+'libs/jquery-ui.custom.min.js?v='+version, farfalla_path+'libs/jquery.qtip.min.js?v='+version, farfalla_path+'libs/noconflict.js?v='+version, farfalla_path+'libs/jquery.cookie.min.js?v='+version, farfalla_path+'libs/detectmobilebrowser.js?v='+version, farfalla_path+'libs/main.js?v='+version);
 
 // Google analytics monitoring code
 

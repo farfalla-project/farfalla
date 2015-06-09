@@ -339,10 +339,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('<div></div>').attr('id','farfalla_badge_logo').addClass('donttouchme').appendTo('#farfalla_badge');
 */
             $f('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
-//            $f('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container');
 
             $f('<div></div>').attr('id','farfalla_logo')
-/*              .html('<h1><a href="http://farfalla-project.org/" class="donttouchme">'+$f.__('ft_farfalla_project')+'</a></h1><p class="donttouchme">'+$f.__('ft_accessibility_preferences')+'</p>') */
+/*              .html('<p class="donttouchme">'+$f.__('ft_accessibility_preferences')+'</p>') */
               .appendTo('#farfalla_toolbar');
             $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
@@ -399,8 +398,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             };
 */
 
-//            $f('#farfalla_toolbar').css('height',$f(window).height())
-//            $f('#farfalla_container').addClass('ui-corner-left');
+/*
+            $f('#farfalla_toolbar').css('height',$f(window).height())
+            $f('#farfalla_container').addClass('ui-corner-left');
+*/
 
 /*
             $f('#farfalla_badge_logo')
@@ -581,7 +582,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                            'value':'X'
                           })
                           .click( function(){
-                            head.load(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js');
+                            head.load(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+version);
                             $f(this).unbind('click'); // first click only!
                           })
                           .insertBefore('#'+plugin.name+'Activator');
