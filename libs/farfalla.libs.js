@@ -932,7 +932,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .mouseover(
                 function(){
                   $f('#farfalla_badge_label').show();
-                  console.log($f('#farfalla_badge_label').hasClass('blocked'));
                 })
               .mouseleave(
                 function(){

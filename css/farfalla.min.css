@@ -179,7 +179,7 @@
 .plugin_activator{
   width: 52px;
   height: 52px;
-  margin: 6px 156px 6px 6px;
+  margin: 6px 132px 6px 6px;
   cursor: pointer;
 }
 
@@ -212,9 +212,9 @@
 .plugin_options {
   background: #fff;
   display:block;
-  padding: 0 12px;
+  padding: 0 6px;
   text-align: left;
-  width: 186px;
+  width: 174px;
   margin: 4px 2px;
   position: relative;
   clear: both;
