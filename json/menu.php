@@ -4,6 +4,7 @@
             "id": "1",
             "name": "magnifier",
             "visible": false,
+            "glyph":"b",
             "mobile": false
         }
     }, {
@@ -11,6 +12,7 @@
             "id": "2",
             "name": "keyboard",
             "visible": true,
+            "glyph":"g",
             "mobile": false
         }
     }, {
@@ -18,6 +20,7 @@
             "id": "3",
             "name": "text-to-speech",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -25,6 +28,7 @@
             "id": "4",
             "name": "fontsize",
             "visible": true,
+            "glyph":"e",
             "mobile": true
         }
     }, {
@@ -32,6 +36,7 @@
             "id": "6",
             "name": "hicontrast",
             "visible": true,
+            "glyph":"a",
             "mobile": true
         }
     }, {
@@ -39,6 +44,7 @@
             "id": "7",
             "name": "addalt",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -46,6 +52,7 @@
             "id": "18",
             "name": "imagination",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -53,6 +60,7 @@
             "id": "19",
             "name": "virtual-mouse",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -60,6 +68,7 @@
             "id": "9",
             "name": "bigcursor",
             "visible": true,
+            "glyph":"d",
             "mobile": false
         }
     }, {
@@ -67,6 +76,7 @@
             "id": "10",
             "name": "fivekeys",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -74,6 +84,7 @@
             "id": "11",
             "name": "step-by-step",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -81,6 +92,7 @@
             "id": "12",
             "name": "selection",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -88,6 +100,7 @@
             "id": "13",
             "name": "jplayer",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -95,6 +108,7 @@
             "id": "14",
             "name": "dasher",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -102,6 +116,7 @@
             "id": "15",
             "name": "readability",
             "visible": false,
+            "glyph":"",
             "mobile": false
         }
     }, {
@@ -109,6 +124,7 @@
             "id": "17",
             "name": "clarifier",
             "visible": true,
+            "glyph":"c",
             "mobile": true
         }
     }]

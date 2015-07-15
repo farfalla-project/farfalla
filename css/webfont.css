@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "farfalla-icons";
+  src:url("../fonts/farfalla-icons.eot");
+  src:url("../fonts/farfalla-icons.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/farfalla-icons.woff") format("woff"),
+    url("../fonts/farfalla-icons.ttf") format("truetype"),
+    url("../fonts/farfalla-icons.svg#farfalla-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "farfalla-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="f-icon-"]:before,
+[class*=" f-icon-"]:before {
+  font-family: "farfalla-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.f-icon-move:before {
+  content: "m";
+}
+.f-icon-reset:before {
+  content: "r";
+}
+.f-icon-save:before {
+  content: "s";
+}
+.f-icon-iconvault-83690dbd87f59ea7643751b95f34c0a8-1:before {
+  content: "d";
+}
+.f-icon-iconvault-83690dbd87f59ea7643751b95f34c0a8-2:before {
+  content: "e";
+}
+.f-icon-iconvault-83690dbd87f59ea7643751b95f34c0a8-3:before {
+  content: "g";
+}
+.f-icon-unif100-iconvault:before {
+  content: "a";
+}
+.f-icon-unif101-iconvault:before {
+  content: "b";
+}
+.f-icon-unif102-iconvault:before {
+  content: "c";
+}
+.f-icon-switch-on:before {
+  content: "h";
+}
+.f-icon-switch-off:before {
+  content: "i";
+}

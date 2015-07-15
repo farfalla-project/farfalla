@@ -12,7 +12,7 @@ exec('uglifyjs libs/farfalla.libs.js > libs/farfalla.libs.min.js');
 
 echo "JS libs minified...\n\n";
 
-exec('cat css/jquery-ui.custom.min.css css/jquery.qtip.min.css css/farfalla.css > css/farfalla.min.css');
+exec('cat css/jquery-ui.custom.min.css css/jquery.qtip.min.css css/webfont.css css/farfalla.css > css/farfalla.min.css');
 
 echo "All required libs and CSS have just been merged into single files!\n\n";
 

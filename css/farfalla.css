@@ -171,10 +171,24 @@
 }
 
 .plugin_activator{
-  width: 52px;
   height: 52px;
-  margin: 6px 132px 6px 6px;
   cursor: pointer;
+  width: 158px;
+  margin: 0px;
+  padding: 0px 12px;
+}
+
+.farfalla_plugin_icon{
+  font-family: farfalla-icons;
+  text-transform: none !important;
+  font-variant: none !important;
+  font-size: 30px;
+  line-height: 48px;
+  display: block;
+  height: 48px;
+  width: 48px;
+  float: left;
+  text-align: center;
 }
 
 #farfalla_remember_profile, #farfalla_reset_all{
@@ -258,27 +272,33 @@
 }
 
 .plugin_options_switch{
-  -webkit-box-sizing: border-box !important;
-  -moz-box-sizing: border-box !important;
+  font-family: "farfalla-icons";
+  text-transform: none !important;
+  font-variant: none !important;
   box-sizing: border-box !important;
-  background: url('../images/switch-off.png') no-repeat !important;
   width: 80px !important;
-  height: 26px !important;
-  border: none !important;
-  color: transparent !important;
-  font-size:0px !important;
+  height: 48px !important;
+  border: medium none !important;
+  color: #FFF !important;
+  font-size: 70px !important;
   text-shadow: none !important;
-  margin: 13px 0 13px 100px !important;
-  float: left !important;
+  margin: 0px;
+  float: right;
   cursor: pointer;
+  background: transparent none repeat scroll 0% 0%;
+  padding: 0px;
+  line-height: 48px;
 }
 
 .plugin_options_switch_on{
-  background: url('../images/switch-on.png') no-repeat !important;
+  font-family: "farfalla-icons";
+/*  background: url('../images/switch-on.png') no-repeat !important; */
 }
 
-.farfalla_active{
+.farfalla_active span.farfalla_plugin_icon{
   background: #fff;
+  color: #000;
+  border-radius: 50% !important;
 }
 
 .farfalla_toolbar_separator{

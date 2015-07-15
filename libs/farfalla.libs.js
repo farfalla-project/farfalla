@@ -815,19 +815,25 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     }
 
     $f.fn.farfalla_switch_on = function ( plugin_name ) {
-      $f(this).addClass('farfalla_active').css({
+      $f(this).addClass('farfalla_active')
+/*
+      .css({
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_selected.png") no-repeat'
       })
-      $f('#'+plugin_name+'_options_switch').addClass('plugin_options_switch_on');
+*/
+      $f('#'+plugin_name+'_options_switch').attr('value','h').addClass('plugin_options_switch_on');
       $f.farfalla_track_plugins(plugin_name,1);
 //      console.log('activated '+plugin_name);
     }
 
     $f.fn.farfalla_switch_off = function ( plugin_name ) {
-      $f(this).removeClass('farfalla_active').css({
+      $f(this).removeClass('farfalla_active')
+/*
+      .css({
         'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'.png") no-repeat'
       });
-      $f('#'+plugin_name+'_options_switch').removeClass('plugin_options_switch_on');
+*/
+      $f('#'+plugin_name+'_options_switch').attr('value','i').removeClass('plugin_options_switch_on');
       $f.farfalla_track_plugins(plugin_name,0);
     }
 
@@ -1170,7 +1176,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                   $f.each(data.plugins, function(){
                       var plugin = this.Plugin;
                       if(plugin.visible==1&&($f.browser.mobile==false||plugin.mobile)){
-                        $f('<div></div>')
+                        $f('<div><span class="farfalla_plugin_icon">'+plugin.glyph+'</a></div>')
                           .attr({
                             'id':plugin.name+'Activator'
                           })
@@ -1182,13 +1188,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                            'id':plugin.name+'_options_switch',
                            'class':'plugin_options_switch donttouchme',
                            'type':'button',
-                           'value':'X'
+                           'value':'i'
                           })
                           .click( function(){
                             head.load(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+version);
-                            $f(this).unbind('click'); // first click only!
+                            $f(this).attr('value','h').unbind('click'); // first click only!
                           })
-                          .insertBefore('#'+plugin.name+'Activator');
+                          .appendTo('#'+plugin.name+'Activator');
 
                         $f('#'+plugin.name+'Activator')
                         .qtip({
@@ -1211,10 +1217,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                             render : function() {$f.farfalla_toolbar_color();}
                           }
                         })
+
+                        $f('#'+plugin.name+'Activator span.farfalla_plugin_icon')
                         .click(function(){ $f('#'+plugin.name+'_options_switch').click(); });
 
-                      $f('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
-                      $f([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
+//                      $f('#'+plugin.name+'Activator').css({'background':'url("'+farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'.png") no-repeat'});
+//                      $f([farfalla_path+'plugins/'+plugin.name+'/icons/'+plugin.name+'_selected.png']).preload()
 
                     }
 

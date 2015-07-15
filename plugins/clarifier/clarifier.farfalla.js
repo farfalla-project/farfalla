@@ -38,7 +38,8 @@ $f.farfalla_add_css('clarifier','clarifier');
 // Uppercase on
 
 $f.clarifier_uppercase_on = function () {
-  $f('*').addClass('fontUppercase');
+  $f('*').not('.donttouchme').addClass('fontUppercase');
+  console.log($f('*').not('.plugin_options_switch'));
   $f.farfalla_set_option('uppercase',1);
 }
 
@@ -52,7 +53,7 @@ $f.clarifier_uppercase_off = function () {
 // Smallcaps on
 
 $f.clarifier_smallcaps_on = function () {
-  $f('*').addClass('fontSmallcaps');
+  $f('*').not('.donttouchme').addClass('fontSmallcaps');
   $f.farfalla_set_option('smallcaps',1);
 }
 
@@ -156,8 +157,6 @@ $f.clarifier_on = function () {
 $f.clarifier_off = function () {
   $f('#clarifierActivator').farfalla_switch_off('clarifier');
   $f('#clarifier_options').hide();
-
-  $f('#clarifierActivator').farfalla_switch_off('clarifier');
   $f('*').removeClass('creamBackground');
   $f('input, textarea').removeClass('inputClarifier');
   $f('*').removeClass('fontClarifier');
@@ -170,9 +169,7 @@ $f.clarifier_off = function () {
   $f('.fontSmallcaps').removeClass('fontSmallcaps');
 
 }
-
-$f.clarifier_on();
-
+/*
 $f('#clarifier_options_deactivate').click( function() {
 
   $f.clarifier_off();
@@ -183,7 +180,7 @@ $f('#clarifierActivator').click( function(){
 
   $f.clarifier_on()
 
-});
+}); */
 
 $f('#clarifier_options_switch').click( function(){
   if($f(this).hasClass('plugin_options_switch_on')){
@@ -192,3 +189,5 @@ $f('#clarifier_options_switch').click( function(){
 	$f.clarifier_on()
   }
 });
+
+$f.clarifier_on();
