@@ -271,7 +271,7 @@
   background-color: #000 !important;
 }
 
-.plugin_options_switch{
+input[type="button"].plugin_options_switch{
   font-family: "farfalla-icons";
   text-transform: none !important;
   font-variant: none !important;

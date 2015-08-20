@@ -65,6 +65,7 @@ var version = '1.0';
 
 
   head.load(farfalla_path+'css/farfalla.min.css?v='+version);
+  head.load(farfalla_path+'css/webfont.css?v='+version);
 //  head.load(farfalla_path+'backend/pages/lang?v='+version, farfalla_path+'libs/farfalla.libs.min.js?v='+version);
   head.load(farfalla_path+'backend/pages/lang?v='+version, farfalla_path+'libs/jquery.min.js?v='+version, farfalla_path+'libs/jquery-migrate-1.2.1.js?v='+version, farfalla_path+'libs/jquery-ui.custom.min.js?v='+version, farfalla_path+'libs/jquery.qtip.min.js?v='+version, farfalla_path+'libs/noconflict.js?v='+version, farfalla_path+'libs/jquery.cookie.min.js?v='+version, farfalla_path+'libs/detectmobilebrowser.js?v='+version, farfalla_path+'libs/main.js?v='+version);
 

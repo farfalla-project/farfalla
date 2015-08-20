@@ -8,11 +8,11 @@
 
 @font-face {
   font-family: "farfalla-icons";
-  src:url("../fonts/farfalla-icons.eot");
-  src:url("../fonts/farfalla-icons.eot?#iefix") format("embedded-opentype"),
-    url("../fonts/farfalla-icons.woff") format("woff"),
-    url("../fonts/farfalla-icons.ttf") format("truetype"),
-    url("../fonts/farfalla-icons.svg#farfalla-icons") format("svg");
+  src:local('farfalla icons'), local('farfalla-icons'), url(http://localhost/farfalla/fonts/farfalla-icons.eot);
+  src:local('farfalla icons'), local('farfalla-icons'), url(http://localhost/farfalla/fonts/farfalla-icons.eot?#iefix) format("embedded-opentype"),
+    url(http://localhost/farfalla/fonts/farfalla-icons.woff) format("woff"),
+    url(http://localhost/farfalla/fonts/farfalla-icons.ttf) format("truetype"),
+    url(http://localhost/farfalla/fonts/farfalla-icons.svg#farfalla-icons) format("svg");
   font-weight: normal;
   font-style: normal;
 
@@ -350,7 +350,7 @@
   background-color: #000 !important;
 }
 
-.plugin_options_switch{
+input[type="button"].plugin_options_switch{
   font-family: "farfalla-icons";
   text-transform: none !important;
   font-variant: none !important;
