@@ -1,4 +1,4 @@
-/*  Skin made by Bastiaan Fronik (info [ at ] bastiaanfronik dot com) 
+/*  Skin made by Bastiaan Fronik (info [ at ] bastiaanfronik dot com)
     based on stylesheet of WingedFox */
 html.VirtualKeyboardPopup, body.VirtualKeyboardPopup {
         padding: 0;
@@ -13,19 +13,20 @@ html.VirtualKeyboardPopup, body.VirtualKeyboardPopup {
         padding-right: 2px;
         position: relative;
         width: 606px;
+        box-sizing: content-box;
 }
 /*
 *  global overrides
 */
 #virtualKeyboard * {
         border: 0;
-        color: black; 
+        color: black;
         cursor: default;
         margin: 0;
         padding: 0;
 }
 #virtualKeyboard #kbDesk {
-        display: inline-block; 
+        display: inline-block;
         margin: 0;
         padding: 4px 2px 0 2px;
 /*IE5.5 will ignore the rule below */
