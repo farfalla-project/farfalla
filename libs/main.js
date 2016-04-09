@@ -51,14 +51,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         });
     };
 
-    // Simple image preloader (to be used for icons till sprites will be implemented)
-
-    $f.fn.preload = function() {
-      this.each(function(){
-        $f('<img/>')[0].src = this;
-      });
-    }
-
     // Add plugin configuration area
 
     $f.farfalla_create_plugin_options = function ( plugin_name ){
@@ -67,7 +59,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
       $f('<div></div>')
         .attr({
           'id': plugin_name+'_options',
-          'class':'plugin_options ui-corner-all donttouchme'
+          'class':'plugin_options donttouchme'
         })
         .hide()
         .insertAfter($f('#'+plugin_name+'Activator'));
@@ -78,26 +70,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           'class':'plugin_options_actions donttouchme'
         })
         .appendTo('#'+plugin_name+'_options')
-/*
-      $f('<div></div>')
-        .attr({
-          'id': plugin_name+'_options_common',
-          'class':'plugin_options_actions donttouchme'
-        })
-        .appendTo('#'+plugin_name+'_options')
-
-      $f('<input />')
-        .attr({
-          'id':plugin_name+'_options_deactivate',
-          'class':'plugin_options_deactivate donttouchme',
-          'type':'button',
-          'value':'X'
-        })
-        .css({
-          'background':'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_deactivate.png") no-repeat #fff'
-        })
-        .appendTo('#'+plugin_name+'_options_common')
-*/
         var position = $f('#'+plugin_name+'Activator').position();
         var width = $f('#'+plugin_name+'_options').width();
       }
@@ -108,13 +80,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // ...
 
     $f.farfalla_add_ui = function( plugin_name, type, name, value, neutral_bg, callback ){
-//      console.log('Adding UI for '+plugin_name);
       switch(type){
+/*
         case 'slider':
           $f('#'+plugin_name+'_options_custom').append('<div id="'+plugin_name+'_slider" class="farfalla_slider"></div>');
           $f('#'+plugin_name+'_slider').slider();
         break;
-
+*/
         case 'button':
           if($f('#'+name+'_button').length==0){
 		    neutral_bg = neutral_bg || 0;
@@ -196,7 +168,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // A function for setting options in the Cakephp session array
 
     $f.farfalla_set_option = function( option, value ){
-//  console.log(value);
       if(value==null){
         $f.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
 
@@ -222,23 +193,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     $f.fn.farfalla_switch_on = function ( plugin_name ) {
       $f(this).addClass('farfalla_active')
-/*
-      .css({
-        'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'_selected.png") no-repeat'
-      })
-*/
       $f('#'+plugin_name+'_options_switch').attr('value','h').addClass('plugin_options_switch_on');
       $f.farfalla_track_plugins(plugin_name,1);
-//      console.log('activated '+plugin_name);
     }
 
     $f.fn.farfalla_switch_off = function ( plugin_name ) {
       $f(this).removeClass('farfalla_active')
-/*
-      .css({
-        'background': 'url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+plugin_name+'.png") no-repeat'
-      });
-*/
       $f('#'+plugin_name+'_options_switch').attr('value','i').removeClass('plugin_options_switch_on');
       $f.farfalla_track_plugins(plugin_name,0);
     }

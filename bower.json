@@ -1,0 +1,29 @@
+{
+  "name": "farfalla-project",
+  "authors": [
+    "Andrea Mangiatordi <andrea@mangiatordi.net>"
+  ],
+  "description": "A Cloud-Based Accessibility Toolbar",
+  "main": "libs/main.js",
+  "keywords": [
+    "accessibility"
+  ],
+  "license": "AGPL v3",
+  "homepage": "http://farfalla-project.org",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.3",
+    "jquery-ui": "^1.11.4",
+    "qtip2": "^2.2.1",
+    "jquery.cookie": "^1.4.1",
+    "detect-mobile-browser": "^0.0.1",
+    "font-awesome": "^4.5.0"
+  }
+}
