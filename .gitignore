@@ -8,3 +8,5 @@ goodies/deploy.php
 backend/farfalla-backend.sql
 backend/app/Config/database.php
 backend/app/tmp/
+bower_components/
+node_modules/
