@@ -10,3 +10,4 @@ backend/app/Config/database.php
 backend/app/tmp/
 bower_components/
 node_modules/
+backups/

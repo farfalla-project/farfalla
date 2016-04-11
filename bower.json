@@ -24,6 +24,7 @@
     "qtip2": "^2.2.1",
     "jquery.cookie": "^1.4.1",
     "detect-mobile-browser": "^0.0.1",
-    "font-awesome": "^4.5.0"
+    "font-awesome": "^4.5.0",
+    "qunit": "^1.23.0"
   }
 }

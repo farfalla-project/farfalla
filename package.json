@@ -1,7 +1,7 @@
 {
   "name": "farfalla",
   "version": "1.0.0",
-  "description": "An accessibility toolbar for any website",
+  "description": "Farfalla project - An accessibility toolbar for any website",
   "main": "farfalla.js",
   "directories": {
     "test": "tests"
@@ -9,7 +9,9 @@
   "dependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0"
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -22,8 +24,7 @@
   "keywords": [
     "accessibility",
     "cloud",
-    "user",
-    "experience"
+    "user experience"
   ],
   "author": "Andrea Mangiatordi",
   "license": "AGPL-3.0",

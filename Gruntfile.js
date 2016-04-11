@@ -7,13 +7,13 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['src/**/*.js'],
+        src: ['src/js/vendor/*.js','src/js/*.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        banner: '/*! <%= pkg.description %> - generated on <%= grunt.template.today("dd-mm-yyyy") %> */\n'
       },
       dist: {
         files: {
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       files: ['test/**/*.html']
     },
     jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+      files: ['Gruntfile.js', 'src/js/*.js', 'test/**/*.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -39,6 +39,16 @@ module.exports = function(grunt) {
     watch: {
       files: ['<%= jshint.files %>'],
       tasks: ['jshint', 'qunit']
+    },
+    bower_concat:{
+      all: {
+        dest: "src/js/vendor/bower.js",
+        destCss: "src/css/vendor/bower.css",
+        exclude: [
+          'qunit',
+          'font-awesome'
+        ]
+      }
     }
   });
 
@@ -47,9 +57,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-bower-concat');
 
-  grunt.registerTask('test', ['jshint', 'qunit']);
+  grunt.registerTask('test', ['jshint', 'bower_concat', 'qunit']);
 
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'bower_concat', 'qunit', 'concat', 'uglify']);
 
 };
