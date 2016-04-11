@@ -59,8 +59,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-concat');
 
-  grunt.registerTask('test', ['jshint', 'bower_concat', 'qunit']);
+  grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'qunit']);
 
-  grunt.registerTask('default', ['jshint', 'bower_concat', 'qunit', 'concat', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'bower_concat', 'concat', 'uglify', 'qunit']);
 
 };

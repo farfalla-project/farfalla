@@ -272,9 +272,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .addClass('donttouchme')
               .prependTo('body');
 
-/*
+
             $f('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('#farfalla_container');
-*/
+
             $f('<img />').attr({
               'id':'farfalla_logo',
               'src':farfalla_path+'dist/images/farfalla_icon.png',
@@ -626,7 +626,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Track activated/deactivated plugins for consistent browsing in different pages
 
         $f.farfalla_autoactivate_plugins = function() {
-          if($f.cookie('farfalla_active_plugins')!==null){
+
+          if($f.cookie('farfalla_active_plugins') && $f.cookie('farfalla_active_plugins')!==null){
 
             var active = $f.cookie('farfalla_active_plugins').split(',');
 
