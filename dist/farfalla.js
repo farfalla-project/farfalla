@@ -32619,7 +32619,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             if(options.background&&options.background!==null){bgcolor=options.background;}
             if(neutral_bg == 1){bgcolor='transparent';}
             $f('#'+plugin_name+'_options_custom').append('<input type="button" id="'+name+'_button" class="farfalla_button" name="'+name+'" value="'+value+'"></input>');
-            $f('#'+name+'_button').addClass('donttouchme').css('background',bgcolor+' url("'+farfalla_path+'plugins/'+plugin_name+'/icons/'+name+'.png") no-repeat scroll center').click(callback);
+            $f('#'+name+'_button').addClass('donttouchme').css('background',bgcolor+' url("'+farfalla_path+'src/plugins/'+plugin_name+'/icons/'+name+'.png") no-repeat scroll center').click(callback);
             $f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
           }
         break;
@@ -32644,7 +32644,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         $f('<link></link>').attr({
           "rel":"stylesheet",
           "type":"text/css",
-          "href":farfalla_path+"plugins/"+plugin_name+"/css/"+sheet_name+".farfalla.css"
+          "href":farfalla_path+"src/plugins/"+plugin_name+"/css/"+sheet_name+".farfalla.css"
         }).prependTo($f('head'));
       }
     };
@@ -33027,7 +33027,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                            'value':'i'
                           })
                           .click( function(){
-                            head.load(farfalla_path+'plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+version);
+                            head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+version);
                             $f(this).attr('value','h').unbind('click'); // first click only!
                           })
                           .appendTo('#'+plugin.name+'Activator');

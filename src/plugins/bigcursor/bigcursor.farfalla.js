@@ -36,7 +36,7 @@
     $f('<link></link>').attr({
       "rel":"stylesheet",
       "type":"text/css",
-      "href":farfalla_path+"/plugins/bigcursor/bigcursor.farfalla.css"
+      "href":farfalla_path+"src/plugins/bigcursor/bigcursor.farfalla.css"
     }).appendTo($f('head'));
 
     $f.bigcursor_on = function () {

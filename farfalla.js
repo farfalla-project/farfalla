@@ -34,7 +34,7 @@ var retrieveURL = function(filename) {
 };
 
 var farfalla_path = retrieveURL('farfalla');
-var version = '1.0.4';
+var version = '1.0.8';
 
 //
 // Call the basically required scripts...
