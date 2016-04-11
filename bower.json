@@ -8,7 +8,7 @@
   "keywords": [
     "accessibility"
   ],
-  "license": "AGPL v3",
+  "license": "AGPL-3.0",
   "homepage": "http://farfalla-project.org",
   "private": true,
   "ignore": [
