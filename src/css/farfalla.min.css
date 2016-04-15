@@ -105,6 +105,9 @@
 
 #farfalla_badge{
   display: block;
+  font-size: 22px;
+  color: #fff;
+  padding: 12px;
 }
 
 #farfalla_lettering{
@@ -136,7 +139,7 @@
   float:left;
   color:#fff;
   font-family: 'Exo', Helvetica, Arial, sans;
-  padding: 12px;
+  padding-right: 12px;
   font-size: 18px;
 }
 
@@ -439,4 +442,15 @@ input[type="button"].plugin_options_switch{
 
 #jobmetoo_logo_img{
   margin: 0 12px 12px 12px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
 }

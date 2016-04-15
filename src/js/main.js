@@ -273,8 +273,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .prependTo('body');
 
 
-            $f('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('#farfalla_container');
+            $f('<div></div>')
+              .attr('id','farfalla_badge')
+              .css('color','#fff')
+              .addClass('donttouchme')
+              // translation needed over here
+              .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility')+'</span>')
+              .prependTo('#farfalla_container');
 
+/*
             $f('<img />').attr({
               'id':'farfalla_logo',
               'src':farfalla_path+'dist/images/farfalla_icon.png',
@@ -283,7 +290,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               'alt':'Farfalla logo'
               })
               .appendTo('#farfalla_badge');
-
+*/
             var farfalla_url = 'http://farfalla-project.org/';
             var farfalla_url_title = $f.__('ft_url_title');
 
@@ -292,11 +299,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               farfalla_url_title = $f.__('ft_url_title');
             }
 
+/*
             $f('<div><a>Farfalla project</a></div>')
               .attr('id','farfalla_lettering')
               .addClass('donttouchme')
               .hide()
               .appendTo('#farfalla_badge');
+*/
 
             $f('#farfalla_badge a').attr({
                'href': farfalla_url,
@@ -356,10 +365,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .mousedown(
                 function(){
                   $f(this).css('cursor','url(\''+farfalla_path+'dist/images/grab.png\'), auto');
-                });
-
-            $f('#farfalla_logo')
-            .click(
+                })
+              .click(
               function(){
                 $f('#farfalla_container').css('left','auto');
                 if($f('#farfalla_toolbar').hasClass('visible')){

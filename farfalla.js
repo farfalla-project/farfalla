@@ -67,7 +67,9 @@ var version = '1.0.9';
   head.load(farfalla_path+'src/css/farfalla.min.css?v='+version, // this needs a better location
             farfalla_path+'bower_components/font-awesome/css/font-awesome.min.css?v='+version,
             farfalla_path+'backend/pages/lang?v='+version,
-            farfalla_path+'dist/farfalla.min.js?v='+version);
+//            farfalla_path+'dist/farfalla.min.js?v='+version);
+            farfalla_path+'src/js/vendor/bower.js?v='+version,
+            farfalla_path+'src/js/main.js?v='+version);
 
 //  head.load(farfalla_path+'src/css/webfont.css?v='+version);
 //  head.load(farfalla_path+'backend/pages/lang?v='+version, farfalla_path+'libs/farfalla.libs.min.js?v='+version);
