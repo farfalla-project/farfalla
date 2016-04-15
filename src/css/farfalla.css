@@ -175,9 +175,9 @@
 .plugin_activator{
   height: 52px;
   cursor: pointer;
-  width: 158px;
+/*  width: 158px; */
   margin: 0px;
-  padding: 0px 12px;
+/*  padding: 0px 12px;*/
 }
 
 .farfalla_plugin_icon{
@@ -188,14 +188,14 @@
   line-height: 48px;
   display: block;
   height: 48px;
-  width: 48px;
+/*  width: 48px; */
   float: left;
   text-align: center;
 }
 
 #farfalla_remember_profile, #farfalla_reset_all{
   display: block;
-  width: 52px;
+/*  width: 52px;*/
   height: 52px;
   margin: 6px 6px;
   float: left;
@@ -224,7 +224,7 @@
   display:block;
   padding: 0 6px;
   text-align: left;
-  width: 174px;
+/*  width: 174px;*/
   margin: 4px 2px;
   position: relative;
   clear: both;
@@ -278,7 +278,7 @@ input[type="button"].plugin_options_switch{
   text-transform: none !important;
   font-variant: none !important;
   box-sizing: border-box !important;
-  width: 80px !important;
+/*  width: 80px !important; */
   height: 48px !important;
   border: medium none !important;
   color: #FFF !important;
