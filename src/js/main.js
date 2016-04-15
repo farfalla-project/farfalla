@@ -278,7 +278,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .css('color','#fff')
               .addClass('donttouchme')
               // translation needed over here
-              .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility')+'</span>')
+              .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility_preferences')+'</span>')
               .prependTo('#farfalla_container');
 
 /*
