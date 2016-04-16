@@ -1,15 +1,6 @@
 <?php echo($_GET['callback']); ?>({
     "plugins": [{
         "Plugin": {
-            "id": "1",
-            "name": "keyboard",
-            "visible": true,
-            "icon":"keyboard-o",
-            "mobile": false
-        }
-    }, {
-        "Plugin": {
-            "id": "2",
             "name": "fontsize",
             "visible": true,
             "icon":"search-plus",
@@ -17,7 +8,6 @@
         }
     }, {
         "Plugin": {
-            "id": "3",
             "name": "hicontrast",
             "visible": true,
             "icon":"adjust",
@@ -25,7 +15,6 @@
         }
     }, {
         "Plugin": {
-            "id": "4",
             "name": "bigcursor",
             "visible": true,
             "icon":"mouse-pointer",
@@ -33,11 +22,17 @@
         }
     }, {
         "Plugin": {
-            "id": "5",
             "name": "clarifier",
             "visible": true,
             "icon":"lightbulb-o",
             "mobile": true
+        }
+    }, {
+        "Plugin": {
+            "name": "keyboard",
+            "visible": true,
+            "icon":"keyboard-o",
+            "mobile": false
         }
     }]
 });

@@ -220,13 +220,14 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         $f.farfalla_ui_options = function() {
 		  // if no options are passed, this is skipped (thanks to the "?" in the matching string)
           var source = $f("script[src*='farfalla.js?']").attr('src');
-          var optStart = source.search('\\?');
-          var options = source.substr(optStart+1).replace(/&/g,'","');
+          var options = 0;
           if (source){
+            var optStart = source.search('\\?');
+            options = source.substr(optStart+1).replace(/&/g,'","');
             options = options.replace(/=/g,'":"');
             options = '{"'+options+'"}';
             options = $f.parseJSON(options);
-          } else { options = 0; }
+          }
           return options;
         };
 
@@ -332,8 +333,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
               .appendTo('#farfalla_toolbar');
-            $f('<div><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
-              .attr('id','farfalla_remember_profile')
+            $f('<div id="farfalla_remember_profile"><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
               .appendTo('#farfalla_toolbar');
 /*
             $f('<div></div>').attr({
@@ -379,19 +379,24 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               }
             });
 
-            $f('#farfalla_remember_profile')
-            .toggle(
-              function() {
-				$f.farfalla_remember_profile();
-				remember_profile = 1;
-//				$f(this).addClass('active');
-              },
-              function() {
-                $f.farfalla_forget_profile();
-                remember_profile = 0;
-//				$f(this).removeClass('active');
+            $f('#farfalla_remember_profile').click(function(){
+              console.log(iteration);
+              var iteration = $f(this).data('iteration')||1;
+              switch(iteration){
+                case 1:
+                  $f.farfalla_remember_profile();
+                  remember_profile = 1;
+                  break;
+                case 2:
+                  $f.farfalla_forget_profile();
+                  remember_profile = 0;
+                  break;
               }
-            )
+              iteration++;
+              if (iteration>2) iteration=1;
+              $f(this).data('iteration',iteration);
+            });
+/*
             .qtip({
               content :  $f.__('save_session'),
               position: {
@@ -411,6 +416,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 render : function() {$f.farfalla_toolbar_color();}
               }
              });
+*/
 /*
             $f('#farfalla_reset_dialog').dialog({
               autoOpen: false,
