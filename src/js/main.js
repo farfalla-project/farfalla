@@ -326,17 +326,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 });
 
             $f('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
-            $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
+            $f('<div class="farfalla_toolbar_separator"></div>').appendTo('#farfalla_toolbar');
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
-            $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
-            $f('<div><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
-              .attr('id','farfalla_remember_profile')
-              .appendTo('#farfalla_toolbar');
+            $f('<div class="farfalla_toolbar_separator"></div>').appendTo('#farfalla_toolbar');
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
               .appendTo('#farfalla_toolbar');
-
-
+            $f('<div><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
+              .attr('id','farfalla_remember_profile')
+              .appendTo('#farfalla_toolbar');
+/*
             $f('<div></div>').attr({
               'id': 'farfalla_reset_all_options',
               'class':'plugin_options ui-corner-all donttouchme'
@@ -345,7 +344,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               'id': 'farfalla_reset_all_options_custom',
               'class':'plugin_options_actions donttouchme'
             }).appendTo('#farfalla_reset_all_options');
-
+*/
             $f('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
 
             $f('#farfalla_badge')

@@ -32715,13 +32715,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 */
     $f.fn.farfalla_switch_on = function ( plugin_name ) {
       $f(this).addClass('farfalla_active');
-      $f('#'+plugin_name+'_options_switch').attr('value','h').addClass('plugin_options_switch_on');
+//      $f('#'+plugin_name+'_options_switch').attr('value','h').addClass('plugin_options_switch_on');
       $f.farfalla_track_plugins(plugin_name,1);
     };
 
     $f.fn.farfalla_switch_off = function ( plugin_name ) {
       $f(this).removeClass('farfalla_active');
-      $f('#'+plugin_name+'_options_switch').attr('value','i').removeClass('plugin_options_switch_on');
+  //    $f('#'+plugin_name+'_options_switch').attr('value','i').removeClass('plugin_options_switch_on');
       $f.farfalla_track_plugins(plugin_name,0);
     };
 
@@ -32779,7 +32779,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           $f.farfalla_forget_profile();
           remember_profile = 0;
-          $f('#farfalla_remember_profile').css('background','url("'+farfalla_path+'dist/images/save.png")');
         };
 
         // Creates the main toolbar
@@ -32792,8 +32791,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .prependTo('body');
 
 
-            $f('<div></div>').attr('id','farfalla_badge').addClass('donttouchme').prependTo('#farfalla_container');
+            $f('<div></div>')
+              .attr('id','farfalla_badge')
+              .css('color','#fff')
+              .addClass('donttouchme')
+              // translation needed over here
+              .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility_preferences')+'</span>')
+              .prependTo('#farfalla_container');
 
+/*
             $f('<img />').attr({
               'id':'farfalla_logo',
               'src':farfalla_path+'dist/images/farfalla_icon.png',
@@ -32802,7 +32808,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               'alt':'Farfalla logo'
               })
               .appendTo('#farfalla_badge');
-
+*/
             var farfalla_url = 'http://farfalla-project.org/';
             var farfalla_url_title = $f.__('ft_url_title');
 
@@ -32811,18 +32817,20 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               farfalla_url_title = $f.__('ft_url_title');
             }
 
+/*
             $f('<div><a>Farfalla project</a></div>')
               .attr('id','farfalla_lettering')
               .addClass('donttouchme')
               .hide()
               .appendTo('#farfalla_badge');
+*/
 
             $f('#farfalla_badge a').attr({
                'href': farfalla_url,
                'title': farfalla_url_title
             });
 
-            $f('<div></div>').html($f.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().prependTo('#farfalla_badge');
+//            $f('<div></div>').html($f.__('ft_accessibility')).attr('id','farfalla_badge_label').addClass('donttouchme').hide().prependTo('#farfalla_badge');
 
             $f('#farfalla_badge')
               .mouseover(
@@ -32837,12 +32845,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 });
 
             $f('<div></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
-            $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
+            $f('<div class="farfalla_toolbar_separator"></div>').appendTo('#farfalla_toolbar');
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
-            $f('<div class="farfalla_toolbar_separator"></div>').appendTo($f('#farfalla_toolbar'));
-            $f('<div></div>').attr('id','farfalla_remember_profile').css('background','url("'+farfalla_path+'dist/images/save.png") no-repeat').appendTo('#farfalla_toolbar');
-            $f('<div></div>').attr('id','farfalla_reset_all').css('background','url("'+farfalla_path+'dist/images/reset.png") no-repeat').appendTo('#farfalla_toolbar');
-
+            $f('<div class="farfalla_toolbar_separator"></div>').appendTo('#farfalla_toolbar');
+            $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
+              .attr('id','farfalla_reset_all')
+              .appendTo('#farfalla_toolbar');
+            $f('<div><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
+              .attr('id','farfalla_remember_profile')
+              .appendTo('#farfalla_toolbar');
+/*
             $f('<div></div>').attr({
               'id': 'farfalla_reset_all_options',
               'class':'plugin_options ui-corner-all donttouchme'
@@ -32851,20 +32863,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               'id': 'farfalla_reset_all_options_custom',
               'class':'plugin_options_actions donttouchme'
             }).appendTo('#farfalla_reset_all_options');
-            if(window.location.href.search('jobmetoo.com')=='-1'){
-              $f('<div></div>').attr('id','jobmetoo_logo').appendTo('#farfalla_toolbar');
-              $f('<p>Powered by</p>')
-              .appendTo($f('#jobmetoo_logo'));
-              $f('<img />').attr({
-                'id':'jobmetoo_logo_img',
-                'src':farfalla_path+'dist/images/jobmetoo_logo.png',
-                'alt':'logo di Jobmetoo', //localization needed
-                'width':'152px',
-                'height':'30px'
-              }).appendTo($f('#jobmetoo_logo'));
-              $f('#jobmetoo_logo_img').wrap('<a href="http://www.jobmetoo.com/" title="Jump to Jobmetoo website"></a>');
-            }
-
+*/
             $f('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
 
             $f('#farfalla_badge')
@@ -32875,10 +32874,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .mousedown(
                 function(){
                   $f(this).css('cursor','url(\''+farfalla_path+'dist/images/grab.png\'), auto');
-                });
-
-            $f('#farfalla_logo')
-            .click(
+                })
+              .click(
               function(){
                 $f('#farfalla_container').css('left','auto');
                 if($f('#farfalla_toolbar').hasClass('visible')){
@@ -32906,12 +32903,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               function() {
 				$f.farfalla_remember_profile();
 				remember_profile = 1;
-				$f(this).css('background','url("'+farfalla_path+'dist/images/save_selected.png")');
+//				$f(this).addClass('active');
               },
               function() {
                 $f.farfalla_forget_profile();
                 remember_profile = 0;
-				$f(this).css('background','url("'+farfalla_path+'dist/images/save.png")');
+//				$f(this).removeClass('active');
               }
             )
             .qtip({
@@ -33012,13 +33009,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                   $f.each(data.plugins, function(){
                       var plugin = this.Plugin;
                       if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
-                        $f('<div><span class="farfalla_plugin_icon">'+plugin.glyph+'</a></div>')
+                        $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
                           .attr({
                             'id':plugin.name+'Activator'
                           })
                           .addClass('plugin_activator ui-corner-all')
                           .appendTo('#farfalla_toolbar_plugins');
-
+/*
                         $f('<input />')
                          .attr({
                            'id':plugin.name+'_options_switch',
@@ -33031,7 +33028,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                             $f(this).attr('value','h').unbind('click'); // first click only!
                           })
                           .appendTo('#'+plugin.name+'Activator');
-
+*/
                         $f('#'+plugin.name+'Activator')
                         .qtip({
                           content :  $f.__(plugin.name),
@@ -33054,8 +33051,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           }
                         });
 
-                        $f('#'+plugin.name+'Activator span.farfalla_plugin_icon')
-                        .click(function(){ $f('#'+plugin.name+'_options_switch').click(); });
+                        $f('#'+plugin.name+'Activator i')
+                          .click( function(){
+                            head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+version);
+                            $f(this).attr('value','h').unbind('click'); // first click only!
+                          });
+
                     }
                   });
 
