@@ -132,16 +132,18 @@ i.fa {
 }
 
 .plugin_options {
-  background: #fff;
+  background: #000;
+  position:absolute;
   display:block;
   padding: 0 6px;
   text-align: left;
-/*  width: 174px; */
-  margin: 4px 2px;
-  position: relative;
-  clear: both;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
 }
 
+/*
 .plugin_options:before {
   content: "";
   display: block;
@@ -153,7 +155,7 @@ i.fa {
   border-style: solid;
   border-color: #fff transparent;
 }
-
+*/
 .plugin_options input{
   -webkit-box-sizing: border-box !important;
   -moz-box-sizing: border-box !important;
@@ -236,10 +238,9 @@ input[type="button"].plugin_options_switch{
 */
 
 .ui-tooltip-farfalla{
-  font-family: 'Exo', Helvetica, Arial, sans;
-  font-size: 12pt;
+  font-size: 12px;
   font-weight: bold;
-  line-height: 14pt;
+  line-height: 14px;
   border: 1px solid #000;
   color: #000;
   background: #fff;
