@@ -64,10 +64,10 @@ var version = '1.0.0';
   })();
 */
 
-  head.load(farfalla_path+'src/css/farfalla.css?v='+version, // this needs a better location
-            farfalla_path+'bower_components/jquery-ui/themes/base/jquery-ui.min.css?v='+version,
+  head.load(farfalla_path+'bower_components/jquery-ui/themes/base/jquery-ui.min.css?v='+version,
             farfalla_path+'bower_components/font-awesome/css/font-awesome.min.css?v='+version,
             farfalla_path+'bower_components/qtip2/jquery.qtip.min.css?v='+version,
+            farfalla_path+'src/css/farfalla.css?v='+version, // CSS needs to be merged in one file and minified...
             farfalla_path+'backend/pages/lang?v='+version,
 //            farfalla_path+'dist/farfalla.min.js?v='+version);
             farfalla_path+'src/js/vendor/bower.js?v='+version,
