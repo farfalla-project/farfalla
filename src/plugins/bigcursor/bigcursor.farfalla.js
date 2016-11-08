@@ -40,14 +40,12 @@
     }).appendTo($f('head'));
 
     $f.bigcursor_on = function () {
-      console.log('bigcursor activated');
       $f('#bigcursorActivator').farfalla_switch_on('bigcursor');
       $f('body').addClass('farfalla_bigcursor_arrow');
       $f('a, input, .plugin_activator, .plugin_options input').addClass('farfalla_bigcursor_pointer');
     };
 
     $f.bigcursor_off = function () {
-      console.log('bigcursor deactivated');
       $f('#bigcursorActivator').farfalla_switch_off('bigcursor');
       $f('body').removeClass('farfalla_bigcursor_arrow');
       $f('a, input, .plugin_activator, .plugin_options input').removeClass('farfalla_bigcursor_pointer');
