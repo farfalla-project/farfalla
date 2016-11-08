@@ -40,19 +40,21 @@
     }).appendTo($f('head'));
 
     $f.bigcursor_on = function () {
+      console.log('bigcursor activated');
       $f('#bigcursorActivator').farfalla_switch_on('bigcursor');
       $f('body').addClass('farfalla_bigcursor_arrow');
       $f('a, input, .plugin_activator, .plugin_options input').addClass('farfalla_bigcursor_pointer');
     };
 
     $f.bigcursor_off = function () {
-      $f('#bigcursorActivator').farfalla_switch_off('bigcursor')
+      console.log('bigcursor deactivated');
+      $f('#bigcursorActivator').farfalla_switch_off('bigcursor');
       $f('body').removeClass('farfalla_bigcursor_arrow');
       $f('a, input, .plugin_activator, .plugin_options input').removeClass('farfalla_bigcursor_pointer');
     };
 
-    $f('#bigcursor_options_switch').click( function(){
-      if($f(this).hasClass('plugin_options_switch_on')){
+    $f('#bigcursorActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
         $f.bigcursor_off()
       } else {
         $f.bigcursor_on()

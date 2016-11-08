@@ -44,11 +44,10 @@
 
       $f('#keyboardActivator').farfalla_switch_on('keyboard');
 
-      head.load(farfalla_path+'plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
+      head.load(farfalla_path+'src/plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
         $f('textarea, input[type=text], input[type=password], input[type=email], input[type=search], input:not([type])').click(function(){
           $f('#farfalla_keyboard_shade').css('top',$f(window).scrollTop()).show();
           $f(this).addClass('farfalla_keyboard_target');
-//          console.log($f('#farfalla_keyboard_monitor').length);
 
           if($f('#farfalla_keyboard_monitor').length != 1){
             $f('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
@@ -90,8 +89,8 @@
 
     $f.keyboard_on()
 
-    $f('#keyboard_options_switch').click( function(){
-      if($f(this).hasClass('plugin_options_switch_on')){
+    $f('#keyboardActivator').click( function(){
+      if($f(this).hasClass('farfala_active')){
         $f.keyboard_off()
       } else {
         $f.keyboard_on()

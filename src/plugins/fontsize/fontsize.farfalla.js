@@ -112,8 +112,7 @@
           $f.farfalla_change_size(data.value);
         }
 
-//        $f('.plugin_options').not('#fontsize_options').slideUp('fast');
-        $f('#fontsize_options').slideDown('fast');
+        $f('#fontsize_options').attr('aria-hidden','false').show();
 
       });
 
@@ -121,16 +120,18 @@
 
     $f.fontsize_off = function () {
 
-      $f('#fontsize_options').hide();
+      $f('#fontsize_options').attr('aria-hidden','true').hide();
       $f.farfalla_reset_size();
       $f('#fontsizeActivator').farfalla_switch_off('fontsize');
 
     }
 
-    $f('#fontsize_options_switch').click( function(){
-      if($f(this).hasClass('plugin_options_switch_on')){
+    $f('#fontsizeActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
+        console.log('hasclass')
         $f.fontsize_off()
       } else {
+        console.log('no it doesn\'t')
         $f.fontsize_on()
       }
     });

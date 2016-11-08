@@ -182,8 +182,8 @@ $f('#clarifierActivator').click( function(){
 
 }); */
 
-$f('#clarifier_options_switch').click( function(){
-  if($f(this).hasClass('plugin_options_switch_on')){
+$f('#clarifierActivator').click( function(){
+  if($f(this).hasClass('farfalla_active')){
 	$f.clarifier_off()
   } else {
 	$f.clarifier_on()

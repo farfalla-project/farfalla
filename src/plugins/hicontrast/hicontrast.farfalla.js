@@ -93,8 +93,8 @@
 
     }
 
-    $f('#hicontrast_options_switch').click( function(){
-      if($f(this).hasClass('plugin_options_switch_on')){
+    $f('#hicontrastActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
         $f.hicontrast_off()
       } else {
         $f.hicontrast_on()

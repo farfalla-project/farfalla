@@ -10,12 +10,10 @@
   box-shadow: -1px 2px 3px #999;
 */
   z-index: 100000;
-  background: #000;
-  border-left: 2px solid #fff;
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  background: transparent;
   color: #fff;
   font-size: 22px;
+  width: 180px;
 }
 
 #farfalla_container *{
@@ -32,11 +30,22 @@ i.fa {
   text-align: center;
   padding: 12px 0;
 }
+#farfalla_badge, #farfalla_toolbar{
+  background: #000;
+  width: 46px;
+  margin-left: 134px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+
+#farfalla_badge{
+  border-top: 1px solid #fff;
+}
 
 #farfalla_badge i.fa{
   padding: 12px;
 }
-
+/*
 #farfalla_badge_label{
   display:block;
   width: auto;
@@ -46,7 +55,7 @@ i.fa {
   padding-right: 12px;
   font-size: 18px;
 }
-
+*/
 
 #farfalla_toolbar_shade {
   position: absolute;
@@ -80,9 +89,9 @@ i.fa {
     position: relative;
   }
 
-  #farfalla_active{
-    display: block;
-    float: left;
+  .farfalla_active{
+    background: #fff;
+    color: #000;
   }
 
     #farfalla_active ul{
@@ -121,6 +130,9 @@ i.fa {
 
 .farfalla_button{
   border-radius: 50% !important;
+  width: 40px;
+  display: inline;
+  float: left;
 }
 
 .plugin_activator{
@@ -133,6 +145,8 @@ i.fa {
 
 .plugin_options {
   background: #000;
+  border: 2px solid #fff;
+  color: #fff;
   position:absolute;
   display:block;
   padding: 0 6px;
@@ -140,7 +154,6 @@ i.fa {
   top: 0;
   left: 0;
   width: 120px;
-  height: 120px;
 }
 
 /*
@@ -178,7 +191,7 @@ i.fa {
 }
 
 .plugin_options_actions h2{
-  color: #000 !important;
+  /* color: #000 !important; */
   margin: 0;
   font-size: 12pt;
   padding: 12px 0 0 12px;
@@ -217,7 +230,7 @@ input[type="button"].plugin_options_switch{
   color: #000;
   border-radius: 50% !important;
 }
-
+/*
 .farfalla_toolbar_separator{
   border-top: 2px solid #fff;
   width: 100%;
@@ -225,7 +238,7 @@ input[type="button"].plugin_options_switch{
   display:block;
   clear: both;
 }
-
+*/
 #farfalla_active_option{
   display: inline-block;
   margin: 0;
