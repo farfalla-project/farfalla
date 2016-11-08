@@ -10,7 +10,8 @@
   box-shadow: -1px 2px 3px #999;
 */
   z-index: 100000;
-  background: transparent;
+  background: transparent !important;
+  pointer-events: none;
   color: #fff;
   font-size: 22px;
   width: 180px;
@@ -22,6 +23,7 @@
   box-sizing: content-box;
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
+  pointer-events: all;
 }
 
 i.fa {
