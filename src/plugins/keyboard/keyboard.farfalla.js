@@ -27,6 +27,10 @@
         }).prependTo('body');
     }
 
+    $f.destroy_keyboard = function () {
+      $f('#farfalla_keyboard').remove();
+    }
+
     $f('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
       .css({
          'position':'absolute',
@@ -85,12 +89,13 @@
 
     $f.keyboard_off = function () {
       $f('#keyboardActivator').farfalla_switch_off('keyboard');
+      $f.destroy_keyboard();
     }
 
     $f.keyboard_on()
 
     $f('#keyboardActivator').click( function(){
-      if($f(this).hasClass('farfala_active')){
+      if($f(this).hasClass('farfalla_active')){
         $f.keyboard_off()
       } else {
         $f.keyboard_on()
