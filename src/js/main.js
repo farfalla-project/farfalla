@@ -101,7 +101,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Add plugin-specific UI
     // ...
 
-    $f.farfalla_add_ui = function( plugin_name, type, name, value, neutral_bg, callback ){
+    $f.farfalla_add_ui = function( plugin_name, type, name, faicon, value, neutral_bg, callback ){
       switch(type){
 /*
         case 'slider':
@@ -116,8 +116,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             if(options.background&&options.background!==null){bgcolor=options.background;}
             if(neutral_bg == 1){bgcolor='transparent';}
             $f('#'+plugin_name+'_options').append('<div id="'+name+'_button" class="farfalla_button"></div>');
-// TODO: substitute default cog with specific icons
-            $f('#'+name+'_button').addClass('donttouchme').html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+name+'</span>').click(callback);
+
+            $f('#'+name+'_button').addClass('donttouchme').html('<i class="fa fa-'+faicon+'" aria-hidden="true"></i><span class="sr-only">'+name+'</span>').click(callback);
             $f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
           }
         break;
