@@ -28527,121 +28527,160 @@ var widgetsTooltip = $.ui.tooltip;
 
 }));
 /*!
- * jQuery Cookie Plugin v1.4.1
- * https://github.com/carhartl/jquery-cookie
+ * JavaScript Cookie v2.1.3
+ * https://github.com/js-cookie/js-cookie
  *
- * Copyright 2013 Klaus Hartl
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
  * Released under the MIT license
  */
-(function (factory) {
+;(function (factory) {
+	var registeredInModuleLoader = false;
 	if (typeof define === 'function' && define.amd) {
-		// AMD
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		// CommonJS
-		factory(require('jquery'));
-	} else {
-		// Browser globals
-		factory(jQuery);
+		define(factory);
+		registeredInModuleLoader = true;
 	}
-}(function ($) {
-
-	var pluses = /\+/g;
-
-	function encode(s) {
-		return config.raw ? s : encodeURIComponent(s);
+	if (typeof exports === 'object') {
+		module.exports = factory();
+		registeredInModuleLoader = true;
 	}
-
-	function decode(s) {
-		return config.raw ? s : decodeURIComponent(s);
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
 	}
-
-	function stringifyCookieValue(value) {
-		return encode(config.json ? JSON.stringify(value) : String(value));
-	}
-
-	function parseCookieValue(s) {
-		if (s.indexOf('"') === 0) {
-			// This is a quoted cookie as according to RFC2068, unescape...
-			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
-		}
-
-		try {
-			// Replace server-side written pluses with spaces.
-			// If we can't decode the cookie, ignore it, it's unusable.
-			// If we can't parse the cookie, ignore it, it's unusable.
-			s = decodeURIComponent(s.replace(pluses, ' '));
-			return config.json ? JSON.parse(s) : s;
-		} catch(e) {}
-	}
-
-	function read(s, converter) {
-		var value = config.raw ? s : parseCookieValue(s);
-		return $.isFunction(converter) ? converter(value) : value;
-	}
-
-	var config = $.cookie = function (key, value, options) {
-
-		// Write
-
-		if (value !== undefined && !$.isFunction(value)) {
-			options = $.extend({}, config.defaults, options);
-
-			if (typeof options.expires === 'number') {
-				var days = options.expires, t = options.expires = new Date();
-				t.setTime(+t + days * 864e+5);
-			}
-
-			return (document.cookie = [
-				encode(key), '=', stringifyCookieValue(value),
-				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-				options.path    ? '; path=' + options.path : '',
-				options.domain  ? '; domain=' + options.domain : '',
-				options.secure  ? '; secure' : ''
-			].join(''));
-		}
-
-		// Read
-
-		var result = key ? undefined : {};
-
-		// To prevent the for loop in the first place assign an empty array
-		// in case there are no cookies at all. Also prevents odd result when
-		// calling $.cookie().
-		var cookies = document.cookie ? document.cookie.split('; ') : [];
-
-		for (var i = 0, l = cookies.length; i < l; i++) {
-			var parts = cookies[i].split('=');
-			var name = decode(parts.shift());
-			var cookie = parts.join('=');
-
-			if (key && key === name) {
-				// If second argument (value) is a function it's a converter...
-				result = read(cookie, value);
-				break;
-			}
-
-			// Prevent storing a cookie that we couldn't decode.
-			if (!key && (cookie = read(cookie)) !== undefined) {
-				result[name] = cookie;
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
 			}
 		}
-
 		return result;
-	};
+	}
 
-	config.defaults = {};
+	function init (converter) {
+		function api (key, value, attributes) {
+			var result;
+			if (typeof document === 'undefined') {
+				return;
+			}
 
-	$.removeCookie = function (key, options) {
-		if ($.cookie(key) === undefined) {
-			return false;
+			// Write
+
+			if (arguments.length > 1) {
+				attributes = extend({
+					path: '/'
+				}, api.defaults, attributes);
+
+				if (typeof attributes.expires === 'number') {
+					var expires = new Date();
+					expires.setMilliseconds(expires.getMilliseconds() + attributes.expires * 864e+5);
+					attributes.expires = expires;
+				}
+
+				try {
+					result = JSON.stringify(value);
+					if (/^[\{\[]/.test(result)) {
+						value = result;
+					}
+				} catch (e) {}
+
+				if (!converter.write) {
+					value = encodeURIComponent(String(value))
+						.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+				} else {
+					value = converter.write(value, key);
+				}
+
+				key = encodeURIComponent(String(key));
+				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
+				key = key.replace(/[\(\)]/g, escape);
+
+				return (document.cookie = [
+					key, '=', value,
+					attributes.expires ? '; expires=' + attributes.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+					attributes.path ? '; path=' + attributes.path : '',
+					attributes.domain ? '; domain=' + attributes.domain : '',
+					attributes.secure ? '; secure' : ''
+				].join(''));
+			}
+
+			// Read
+
+			if (!key) {
+				result = {};
+			}
+
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all. Also prevents odd result when
+			// calling "get()"
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = parts[0].replace(rdecode, decodeURIComponent);
+					cookie = converter.read ?
+						converter.read(cookie, name) : converter(cookie, name) ||
+						cookie.replace(rdecode, decodeURIComponent);
+
+					if (this.json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					if (key === name) {
+						result = cookie;
+						break;
+					}
+
+					if (!key) {
+						result[name] = cookie;
+					}
+				} catch (e) {}
+			}
+
+			return result;
 		}
 
-		// Must not alter options, thus extending a fresh object...
-		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
-		return !$.cookie(key);
-	};
+		api.set = api;
+		api.get = function (key) {
+			return api.call(api, key);
+		};
+		api.getJSON = function () {
+			return api.apply({
+				json: true
+			}, [].slice.call(arguments));
+		};
+		api.defaults = {};
 
+		api.remove = function (key, attributes) {
+			api(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
 }));
 
 /**
@@ -34681,7 +34720,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Add plugin-specific UI
     // ...
 
-    $f.farfalla_add_ui = function( plugin_name, type, name, faicon, value, neutral_bg, callback ){
+    $f.farfalla_add_ui = function( plugin_name, type, name, faicon, value, classes, callback ){
       switch(type){
 /*
         case 'slider':
@@ -34691,14 +34730,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 */
         case 'button':
           if($f('#'+name+'_button').length===0){
-		    neutral_bg = neutral_bg || 0;
-            var bgcolor = '#000';
-            if(options.background&&options.background!==null){bgcolor=options.background;}
-            if(neutral_bg == 1){bgcolor='transparent';}
-            $f('#'+plugin_name+'_options').append('<div id="'+name+'_button" class="farfalla_button"></div>');
 
+      //      if(options.background&&options.background!==null){bgcolor=options.background;}
+            $f('#'+plugin_name+'_options').append('<div id="'+name+'_button" class="farfalla_button '+classes+'"></div>');
             $f('#'+name+'_button').addClass('donttouchme').html('<i class="fa fa-'+faicon+'" aria-hidden="true"></i><span class="sr-only">'+name+'</span>').click(callback);
-            $f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
+            //$f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
           }
         break;
 
@@ -34940,8 +34976,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
               }
             );
-
+/*
             $f('#farfalla_container')
+
             .draggable({
               axis:'y',
               containment:'window',
@@ -34951,7 +34988,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 $f(this).css('height','auto');
               }
             });
-
+*/
             $f('#farfalla_remember_profile').click(function(){
               var iteration = $f(this).data('iteration')||1;
               switch(iteration){
@@ -35000,13 +35037,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Stores a cookie with the list of active plugins
 
         $f.farfalla_remember_profile = function() {
-          $f.cookie('farfalla_active_plugins', active_plugins, { expires: 7 });
+//          Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
         };
 
         // Deletes the cookie with the list of active plugins
 
         $f.farfalla_forget_profile = function() {
-          $f.cookie('farfalla_active_plugins',null);
+//          Cookies.set('farfalla_active_plugins',null);
         };
 
         // Adds the plugin icons
@@ -35027,6 +35064,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           .addClass('plugin_activator')
                           .appendTo('#farfalla_toolbar_plugins');
 
+/*
                         $f('#'+plugin.name+'Activator')
                         .qtip({
                           content :  $f.__(plugin.name),
@@ -35049,7 +35087,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           }
 
                         });
-
+*/
                         $f('#'+plugin.name+'Activator')
                           .click( function(){
                             $f('.plugin_options').attr('aria-hidden','true').hide();
@@ -35131,10 +35169,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Track activated/deactivated plugins for consistent browsing in different pages
 
         $f.farfalla_autoactivate_plugins = function() {
+/*
+          if(Cookies.get('farfalla_active_plugins') && Cookies.get('farfalla_active_plugins')!==null){
 
-          if($f.cookie('farfalla_active_plugins') && $f.cookie('farfalla_active_plugins')!==null){
-
-            var active = $f.cookie('farfalla_active_plugins').split(',');
+            var active = Cookies.get('farfalla_active_plugins').split(',');
 
             $f.each(active, function(index, value){
               $f('#'+value+'_options_switch').click();
@@ -35157,7 +35195,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             });
 
           }
-
+*/
         };
 
 /*
@@ -35174,11 +35212,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     var options = $f.farfalla_ui_options();
 
     var active_plugins = new Array([]);
-    if($f.cookie('farfalla_active_plugins')){
+/*
+    if(Cookies.get('farfalla_active_plugins')){
       var remember_profile = 1;
     } else {
+*/
       var remember_profile = 0;
-    }
+//    }
 
 
     // determine wether to add the toolbar or not

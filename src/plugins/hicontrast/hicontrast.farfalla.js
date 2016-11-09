@@ -41,7 +41,7 @@
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","blue_yellow","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
     $f.each(colorSchemes, function(index, value){
-      $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, index, 1, function(){
+      $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, 'adjust', index, value, function(){
 
         $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
         $f.farfalla_remove_plugin_css('hicontrast');
@@ -65,7 +65,7 @@
 
 //    $f.farfalla_add_ui_section('hicontrast',$f.__('Actions'));
 
-    $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'reset', 1, function(){
+    $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'refresh', 'reset', 1, function(){
 
       $f.farfalla_remove_plugin_css('hicontrast');
       $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');

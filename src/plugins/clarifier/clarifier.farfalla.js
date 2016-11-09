@@ -66,7 +66,7 @@ $f.clarifier_smallcaps_off = function () {
 
 // Adds an activation button for the global uppercase effect
 
-$f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'uppercase', 0, function(){
+$f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'cog', 'uppercase', 0, function(){
   $f.farfalla_get_option('uppercase', function(data){
 	if(data.value==1){
       $f.clarifier_uppercase_off();
@@ -79,7 +79,7 @@ $f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'uppercase', 0,
 
 // Adds an activation button for the global 'small caps' effect
 
-$f.farfalla_add_ui('clarifier', 'button', 'clarifier_smallcaps', 'smallcaps', 0, function(){
+$f.farfalla_add_ui('clarifier', 'button', 'clarifier_smallcaps', 'cog', 'smallcaps', 0, function(){
   $f.farfalla_get_option('smallcaps', function(data){
 	if(data.value==1){
       $f.clarifier_smallcaps_off();

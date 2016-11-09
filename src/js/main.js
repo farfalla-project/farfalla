@@ -101,7 +101,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Add plugin-specific UI
     // ...
 
-    $f.farfalla_add_ui = function( plugin_name, type, name, faicon, value, neutral_bg, callback ){
+    $f.farfalla_add_ui = function( plugin_name, type, name, faicon, value, classes, callback ){
       switch(type){
 /*
         case 'slider':
@@ -111,14 +111,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 */
         case 'button':
           if($f('#'+name+'_button').length===0){
-		    neutral_bg = neutral_bg || 0;
-            var bgcolor = '#000';
-            if(options.background&&options.background!==null){bgcolor=options.background;}
-            if(neutral_bg == 1){bgcolor='transparent';}
-            $f('#'+plugin_name+'_options').append('<div id="'+name+'_button" class="farfalla_button"></div>');
 
+      //      if(options.background&&options.background!==null){bgcolor=options.background;}
+            $f('#'+plugin_name+'_options').append('<div id="'+name+'_button" class="farfalla_button '+classes+'"></div>');
             $f('#'+name+'_button').addClass('donttouchme').html('<i class="fa fa-'+faicon+'" aria-hidden="true"></i><span class="sr-only">'+name+'</span>').click(callback);
-            $f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
+            //$f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
           }
         break;
 
@@ -360,8 +357,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
               }
             );
-
+/*
             $f('#farfalla_container')
+
             .draggable({
               axis:'y',
               containment:'window',
@@ -371,7 +369,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 $f(this).css('height','auto');
               }
             });
-
+*/
             $f('#farfalla_remember_profile').click(function(){
               var iteration = $f(this).data('iteration')||1;
               switch(iteration){
@@ -420,13 +418,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Stores a cookie with the list of active plugins
 
         $f.farfalla_remember_profile = function() {
-          $f.cookie('farfalla_active_plugins', active_plugins, { expires: 7 });
+//          Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
         };
 
         // Deletes the cookie with the list of active plugins
 
         $f.farfalla_forget_profile = function() {
-          $f.cookie('farfalla_active_plugins',null);
+//          Cookies.set('farfalla_active_plugins',null);
         };
 
         // Adds the plugin icons
@@ -447,6 +445,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           .addClass('plugin_activator')
                           .appendTo('#farfalla_toolbar_plugins');
 
+/*
                         $f('#'+plugin.name+'Activator')
                         .qtip({
                           content :  $f.__(plugin.name),
@@ -469,7 +468,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           }
 
                         });
-
+*/
                         $f('#'+plugin.name+'Activator')
                           .click( function(){
                             $f('.plugin_options').attr('aria-hidden','true').hide();
@@ -551,10 +550,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Track activated/deactivated plugins for consistent browsing in different pages
 
         $f.farfalla_autoactivate_plugins = function() {
+/*
+          if(Cookies.get('farfalla_active_plugins') && Cookies.get('farfalla_active_plugins')!==null){
 
-          if($f.cookie('farfalla_active_plugins') && $f.cookie('farfalla_active_plugins')!==null){
-
-            var active = $f.cookie('farfalla_active_plugins').split(',');
+            var active = Cookies.get('farfalla_active_plugins').split(',');
 
             $f.each(active, function(index, value){
               $f('#'+value+'_options_switch').click();
@@ -577,7 +576,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             });
 
           }
-
+*/
         };
 
 /*
@@ -594,11 +593,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     var options = $f.farfalla_ui_options();
 
     var active_plugins = new Array([]);
-    if($f.cookie('farfalla_active_plugins')){
+/*
+    if(Cookies.get('farfalla_active_plugins')){
       var remember_profile = 1;
     } else {
+*/
       var remember_profile = 0;
-    }
+//    }
 
 
     // determine wether to add the toolbar or not

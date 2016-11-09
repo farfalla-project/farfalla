@@ -1,8 +1,8 @@
 /* CORE */
 
 #farfalla_container{
-  position: absolute;
-  top: 30px;
+  position: fixed;
+  top: 120px;
   right: 0;
 /*
   -webkit-box-shadow: -1px 2px 3px #999;
@@ -131,8 +131,7 @@ i.fa {
   }
 
 .farfalla_button{
-  border-radius: 50% !important;
-  width: 40px;
+  width: 44px;
   display: inline;
   float: left;
 }
@@ -151,11 +150,10 @@ i.fa {
   color: #fff;
   position:absolute;
   display:block;
-  padding: 0 6px;
   text-align: left;
   top: 0;
   left: 0;
-  width: 120px;
+  width: 132px;
 }
 
 /*
@@ -301,3 +299,15 @@ input[type="button"].plugin_options_switch{
     clip: rect(0,0,0,0);
     border: 0;
 }
+
+.black_white { color: white; background:black;}
+.black_green { color: lime; background:black;}
+.black_lightblue { color: lightblue; background:black;}
+.black_yellow { color: yellow; background:black;}
+.blue_white { color:white; background:navy;}
+.blue_yellow { color:yellow; background:navy;}
+.cyan_black { color:black; background:cyan;}
+.lightblue_black { color:black; background:lightblue;}
+.lightyellow_black { color:black; background:lightyellow;}
+.white_black { color:black; background:white;}
+.yellow_black { color:black; background:yellow;}
