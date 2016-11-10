@@ -136,4 +136,4 @@
       }
     });
 
-    $f.fontsize_on();
+    // $f.fontsize_on();

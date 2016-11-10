@@ -34,13 +34,13 @@ i.fa {
 }
 #farfalla_badge, #farfalla_toolbar{
   background: #000;
-  width: 46px;
+  width: 48px;
   margin-left: 134px;
-  border-left: 2px solid #fff;
   border-bottom: 2px solid #fff;
 }
 
 #farfalla_badge{
+  width: 46px;
   border-top: 1px solid #fff;
 }
 
@@ -94,6 +94,7 @@ i.fa {
   .farfalla_active{
     background: #fff;
     color: #000;
+    border-left: 2px solid #000;
   }
 
     #farfalla_active ul{
@@ -138,6 +139,7 @@ i.fa {
 
 .plugin_activator{
   cursor: pointer;
+  border-left: 2px solid #fff;
 }
 
 .plugin_activator_label{

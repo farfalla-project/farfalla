@@ -190,4 +190,4 @@ $f('#clarifierActivator').click( function(){
   }
 });
 
-$f.clarifier_on();
+// $f.clarifier_on();

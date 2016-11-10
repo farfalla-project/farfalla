@@ -34829,6 +34829,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     $f.fn.farfalla_switch_on = function ( plugin_name ) {
       $f('.plugin_options').attr('aria-hidden','true').hide();
       $f('#'+plugin_name+'Activator').addClass('farfalla_active');
+      $f('#'+plugin_name+'_options').css('top',($f('#'+plugin_name+'Activator').position().top-2)+'px');
       $f.farfalla_track_plugins(plugin_name,1);
     };
 
@@ -35063,6 +35064,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           })
                           .addClass('plugin_activator')
                           .appendTo('#farfalla_toolbar_plugins');
+                          head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
 
 /*
                         $f('#'+plugin.name+'Activator')
@@ -35088,6 +35090,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
                         });
 */
+/*
                         $f('#'+plugin.name+'Activator')
                           .click( function(){
                             $f('.plugin_options').attr('aria-hidden','true').hide();
@@ -35095,7 +35098,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                             $f(this).unbind('click'); // first click only!
                             head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
                           });
-
+*/
                     }
                   });
 

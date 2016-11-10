@@ -92,7 +92,7 @@
       $f.destroy_keyboard();
     }
 
-    $f.keyboard_on()
+//    $f.keyboard_on()
 
     $f('#keyboardActivator').click( function(){
       if($f(this).hasClass('farfalla_active')){

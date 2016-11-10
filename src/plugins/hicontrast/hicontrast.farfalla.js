@@ -101,4 +101,4 @@
       }
     });
 
-    $f.hicontrast_on();
+//    $f.hicontrast_on();

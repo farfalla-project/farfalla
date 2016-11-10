@@ -59,4 +59,4 @@
       }
     });
 
-    $f.bigcursor_on();
+//    $f.bigcursor_on();
