@@ -208,6 +208,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     };
 */
     $f.fn.farfalla_switch_on = function ( plugin_name ) {
+      _gafarfalla('send', 'event', plugin_name, 'on');
       $f('.plugin_options').attr('aria-hidden','true').hide();
       $f('#'+plugin_name+'Activator').addClass('farfalla_active');
       $f('#'+plugin_name+'_options').css('top',($f('#'+plugin_name+'Activator').position().top-2)+'px');
@@ -215,6 +216,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     };
 
     $f.fn.farfalla_switch_off = function ( plugin_name ) {
+      _gafarfalla('send', 'event', plugin_name, 'off');
       $f('.plugin_options').attr('aria-hidden','true').hide();
       $f('#'+plugin_name+'Activator').removeClass('farfalla_active');
       $f.farfalla_track_plugins(plugin_name,0);
