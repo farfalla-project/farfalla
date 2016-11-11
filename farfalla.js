@@ -71,7 +71,7 @@ var version = '1.0.0';
             farfalla_path+'src/css/farfalla.css?v='+version, // CSS needs to be merged in one file and minified...
             farfalla_path+'backend/pages/lang?v='+version,
 
-            farfalla_path+'dist/farfalla.js?v='+Math.random());
+            farfalla_path+'dist/farfalla.min.js?v='+Math.random());
 
 //            farfalla_path+'src/js/vendor/bower.js?v='+version,
 //            farfalla_path+'src/js/main.js?v='+version);

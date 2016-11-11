@@ -71,29 +71,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         .css({
           'top':($f('#'+plugin_name+'Activator').position().top-2)+'px'
         })
-        /*
-        .position({
-          my: "right top",
-          at: "left top",
-          of: "#"+plugin_name+"Activator"
-        })
-        */
         .hide()
         .appendTo('#farfalla_container');
-        console.log($f('#'+plugin_name+'Activator').position().top);
 
-/*
-      $f('<div></div>')
-        .attr({
-          'id': plugin_name+'_options_custom',
-          'class':'plugin_options_actions donttouchme'
-        })
-        .appendTo('#'+plugin_name+'_options');
-*/
-/*
-        var position = $f('#'+plugin_name+'Activator').position();
-        var width = $f('#'+plugin_name+'_options').width();
-*/
       }
 
     };
@@ -208,7 +188,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     };
 */
     $f.fn.farfalla_switch_on = function ( plugin_name ) {
-      _gafarfalla('send', 'event', plugin_name, 'on');
+      _gafarfalla('send', 'event', plugin_name, 'on', window.location.hostname);
       $f('.plugin_options').attr('aria-hidden','true').hide();
       $f('#'+plugin_name+'Activator').addClass('farfalla_active');
       $f('#'+plugin_name+'_options').css('top',($f('#'+plugin_name+'Activator').position().top-2)+'px');
@@ -216,7 +196,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     };
 
     $f.fn.farfalla_switch_off = function ( plugin_name ) {
-      _gafarfalla('send', 'event', plugin_name, 'off');
+      _gafarfalla('send', 'event', plugin_name, 'off', window.location.hostname);
       $f('.plugin_options').attr('aria-hidden','true').hide();
       $f('#'+plugin_name+'Activator').removeClass('farfalla_active');
       $f.farfalla_track_plugins(plugin_name,0);
