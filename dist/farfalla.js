@@ -34871,7 +34871,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Resets all options and cookies
 
         $f.farfalla_reset_all = function() {
-          $f('.plugin_options_switch_on').click();
+          // $f('.plugin_options_switch_on').click();
           $f('.farfalla_active').click();
           $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           $f.farfalla_forget_profile();
@@ -34888,10 +34888,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .addClass('donttouchme')
               .prependTo('body');
 
+//            var badge_color = '#fff';
+//            if(options.color&&options.color!==null){badge_color = options.color; return badge_color;}
+
             // Creates the visible badge, with a cog icon
             $f('<div></div>')
               .attr('id','farfalla_badge')
-              .css('color','#fff')
+//              .css({
+//                'color': badge_color
+//                })
               .addClass('donttouchme')
               // translation needed
               .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility_preferences')+'</span>')
@@ -34992,11 +34997,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 // TODO: review this part
 
             $f('#farfalla_reset_all').click(function(){
-              if($f('#farfalla_reset_all_options').attr('aria-hidden')==='true'){
+              $f.farfalla_reset_all();
+/*              if($f('#farfalla_reset_all_options').attr('aria-hidden')==='true'){
                 $f('#farfalla_reset_all_options').attr('aria-hidden','false').hide();
               } else {
                 $f('#farfalla_reset_all_options').attr('aria-hidden','true').show();
               }
+*/
             });
 
 // TODO: review this part
