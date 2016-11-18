@@ -34688,9 +34688,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           'class':'plugin_options donttouchme',
           'aria-hidden':'true'
         })
-        .css({
-          //'top': $f('#'+plugin_name+'Activator').position().top-2+'px'
-        })
         .hide()
         .appendTo('#farfalla_container');
 
@@ -35054,7 +35051,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           })
                           .addClass('plugin_activator')
                           .appendTo('#farfalla_toolbar_plugins')
-                          //head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
+                          // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
                           .click( function(){
                             if($f(this).hasClass('farfalla_active')){
                               window[plugin.name+'_off']();
@@ -35183,12 +35180,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 */
             $f.farfalla_get_option('active_plugins', function(data){
               if(data.value){
-
+                $f('#farfalla_badge').click();
                 var active = data.value.split(',');
 
                 $f.each(active, function(index, value){
-                  $f('#'+value+'_options_switch').click();
+                  $f('#'+value+'Activator').click();
+                    //window[value+'_on']();
                 });
+                $f('#farfalla_badge').click();
+
               }
 
             });
