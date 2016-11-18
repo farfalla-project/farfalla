@@ -4,10 +4,10 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
       options: {
-        separator: ';'
+        //separator: ';'
       },
       dist: {
-        src: ['src/js/vendor/*.js','src/js/*.js'],
+        src: ['src/js/vendor/*.js','src/js/*.js','src/plugins/*/*.farfalla.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
     },
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       files: ['test/**/*.html']
     },
     jshint: {
-      files: ['Gruntfile.js', 'src/js/*.js', 'test/**/*.js'],
+      files: ['Gruntfile.js', 'src/js/*.js', 'test/**/*.js', 'src/plugins/*/*.farfalla.js'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -61,6 +61,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'qunit']);
 
-  grunt.registerTask('default', ['jshint', 'bower_concat', 'concat', 'uglify', 'qunit']);
+  grunt.registerTask('default', ['jshint', 'bower_concat', 'concat', 'uglify']);
 
 };

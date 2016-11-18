@@ -69,7 +69,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           'aria-hidden':'true'
         })
         .css({
-          'top':($f('#'+plugin_name+'Activator').position().top-2)+'px'
+          //'top': $f('#'+plugin_name+'Activator').position().top-2+'px'
         })
         .hide()
         .appendTo('#farfalla_container');
@@ -252,7 +252,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Resets all options and cookies
 
         $f.farfalla_reset_all = function() {
-          // $f('.plugin_options_switch_on').click();
           $f('.farfalla_active').click();
           $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           $f.farfalla_forget_profile();
@@ -427,15 +426,22 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 function(data) {
                   $f.each(data.plugins, function(){
                       var plugin = this.Plugin;
+
                       if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
                         $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
                           .attr({
                             'id' : plugin.name+'Activator'
                           })
                           .addClass('plugin_activator')
-                          .appendTo('#farfalla_toolbar_plugins');
-                          head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
-
+                          .appendTo('#farfalla_toolbar_plugins')
+                          //head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
+                          .click( function(){
+                            if($f(this).hasClass('farfalla_active')){
+                              window[plugin.name+'_off']();
+                            } else {
+                              window[plugin.name+'_on']();
+                            }
+                          });
 /*
                         $f('#'+plugin.name+'Activator')
                         .qtip({
@@ -554,7 +560,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('#farfalla_remember_profile').click();
 
           } else {
-
+*/
             $f.farfalla_get_option('active_plugins', function(data){
               if(data.value){
 
@@ -566,7 +572,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               }
 
             });
-
+/*
           }
 */
         };

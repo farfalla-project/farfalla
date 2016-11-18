@@ -21,7 +21,7 @@
 // Farfalla plugin: Font Size
 
 // Google analytics monitoring code
-
+/*
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -30,7 +30,7 @@
   _gaffontsize('create', 'UA-9777827-27', {'cookieName':'_gaffontsize'});
   _gaffontsize('set', 'anonymizeIp', true);
   _gaffontsize('send', 'pageview');
-
+*/
 
     $f.farfalla_create_plugin_options('fontsize');
 
@@ -45,7 +45,7 @@
       });
       $f('#farfalla-fontsize-container').width($f('body').width()/value);
       $f.farfalla_set_option('increase',val);
-    }
+    };
 
     $f.farfalla_reset_size = function () {
       $f('#farfalla-fontsize-container').css({
@@ -54,16 +54,16 @@
       });
       $f('#farfalla-fontsize-container').width($f('body').width());
       $f.farfalla_set_option('increase',0);
-    }
+    };
 
     $f.farfalla_get_option('increase', function(data){
 
-        var increase = 0
+        var increase = 0;
 
         var value = data.value;
 
         if(value){
-          var increase = parseFloat(data.value);
+          increase = parseFloat(data.value);
         }
 
         // Increase Font Size
@@ -96,9 +96,9 @@
 
       });
 
-    $f.fontsize_on = function () {
+    fontsize_on = function () {
 
-      if($f('#farfalla-fontsize-container').length==0){
+      if($f('#farfalla-fontsize-container').length===0){
         $f('body > *').not('#farfalla_container, script').wrapAll('<div id="farfalla-fontsize-container" />');
       }
 
@@ -116,24 +116,22 @@
 
       });
 
-    }
+    };
 
-    $f.fontsize_off = function () {
+    fontsize_off = function () {
 
       $f('#fontsize_options').attr('aria-hidden','true').hide();
       $f.farfalla_reset_size();
       $f('#fontsizeActivator').farfalla_switch_off('fontsize');
 
-    }
-
+    };
+/*
     $f('#fontsizeActivator').click( function(){
       if($f(this).hasClass('farfalla_active')){
-        console.log('hasclass')
-        $f.fontsize_off()
+        $f.fontsize_off();
       } else {
-        console.log('no it doesn\'t')
-        $f.fontsize_on()
+        $f.fontsize_on();
       }
     });
-
+*/
     // $f.fontsize_on();

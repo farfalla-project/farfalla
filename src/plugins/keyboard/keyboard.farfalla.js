@@ -1,7 +1,7 @@
 // Farfalla plugin: Virtual Keyboard
 
 // Google analytics monitoring code
-
+/*
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -10,7 +10,7 @@
   _gafkeyboard('create', 'UA-9777827-24', {'cookieName':'_gafkeyboard'});
   _gafkeyboard('set', 'anonymizeIp', true);
   _gafkeyboard('send', 'pageview');
-
+*/
 
     $f.create_keyboard = function () {
       $f('<div id="farfalla_keyboard"></div>')
@@ -25,11 +25,11 @@
           'margin':'auto',
           'z-index':100000
         }).prependTo('body');
-    }
+    };
 
     $f.destroy_keyboard = function () {
       $f('#farfalla_keyboard').remove();
-    }
+    };
 
     $f('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
       .css({
@@ -42,7 +42,7 @@
          'z-index':99999
       }).hide().appendTo('body');
 
-    $f.keyboard_on = function () {
+    keyboard_on = function () {
 
       $f.create_keyboard();
 
@@ -76,28 +76,29 @@
           $f('#farfalla_keyboard').click(function(){
             $f('.farfalla_keyboard_target').val(($f('#farfalla_keyboard_monitor').val()));
           });
-        })
+        });
         $f('#farfalla_keyboard_shade').click(function(){
           VirtualKeyboard.close();
           $f('#farfalla_keyboard_monitor').remove();
           $f('.farfalla_keyboard_target').removeClass('farfalla_keyboard_target');
           $f(this).hide();
-        })
+        });
       });
 
-    }
+    };
 
-    $f.keyboard_off = function () {
+    keyboard_off = function () {
       $f('#keyboardActivator').farfalla_switch_off('keyboard');
       $f.destroy_keyboard();
-    }
+    };
 
 //    $f.keyboard_on()
-
+/*
     $f('#keyboardActivator').click( function(){
       if($f(this).hasClass('farfalla_active')){
-        $f.keyboard_off()
+        $f.keyboard_off();
       } else {
-        $f.keyboard_on()
+        $f.keyboard_on();
       }
     });
+*/

@@ -34617,7 +34617,8 @@ QTIP.defaults = {
 };
 ;}));
 }( window, document ));
-;/*!
+
+/*!
  * Farfalla - Accessibility in the Cloud
  * http://farfalla-project.org/
  *
@@ -34688,7 +34689,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           'aria-hidden':'true'
         })
         .css({
-          'top':($f('#'+plugin_name+'Activator').position().top-2)+'px'
+          //'top': $f('#'+plugin_name+'Activator').position().top-2+'px'
         })
         .hide()
         .appendTo('#farfalla_container');
@@ -34871,7 +34872,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Resets all options and cookies
 
         $f.farfalla_reset_all = function() {
-          // $f('.plugin_options_switch_on').click();
           $f('.farfalla_active').click();
           $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           $f.farfalla_forget_profile();
@@ -35046,15 +35046,22 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 function(data) {
                   $f.each(data.plugins, function(){
                       var plugin = this.Plugin;
+
                       if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
                         $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
                           .attr({
                             'id' : plugin.name+'Activator'
                           })
                           .addClass('plugin_activator')
-                          .appendTo('#farfalla_toolbar_plugins');
-                          head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
-
+                          .appendTo('#farfalla_toolbar_plugins')
+                          //head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
+                          .click( function(){
+                            if($f(this).hasClass('farfalla_active')){
+                              window[plugin.name+'_off']();
+                            } else {
+                              window[plugin.name+'_on']();
+                            }
+                          });
 /*
                         $f('#'+plugin.name+'Activator')
                         .qtip({
@@ -35173,7 +35180,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('#farfalla_remember_profile').click();
 
           } else {
-
+*/
             $f.farfalla_get_option('active_plugins', function(data){
               if(data.value){
 
@@ -35185,7 +35192,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               }
 
             });
-
+/*
           }
 */
         };
@@ -35222,3 +35229,612 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         $f.farfalla_check_status();
 
     } // end "if" to determine wether to add the toolbar or not
+
+/*!
+ * Farfalla - Accessibility in the Cloud
+ * http://farfalla-project.org/
+ *
+ *  Copyright (C) 2010  Andrea Mangiatordi
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Farfalla plugin: Big Cursor. Changes the default mouse cursor to an enlarged one with high contrast.
+// To do: adding options for distinct cursors.
+
+// Google analytics monitoring code
+/*
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gafbigcursor');
+
+  _gafbigcursor('create', 'UA-9777827-29', {'cookieName':'_gafbigcursor'});
+  _gafbigcursor('set', 'anonymizeIp', true);
+  _gafbigcursor('send', 'pageview');
+*/
+
+    $f('<link></link>').attr({
+      "rel":"stylesheet",
+      "type":"text/css",
+      "href":farfalla_path+"src/plugins/bigcursor/bigcursor.farfalla.css"
+    }).appendTo($f('head'));
+
+    bigcursor_on = function () {
+      $f('#bigcursorActivator').farfalla_switch_on('bigcursor');
+      $f('body').addClass('farfalla_bigcursor_arrow');
+      $f('a, input, .plugin_activator, .plugin_options input').addClass('farfalla_bigcursor_pointer');
+    };
+
+    bigcursor_off = function () {
+      $f('#bigcursorActivator').farfalla_switch_off('bigcursor');
+      $f('body').removeClass('farfalla_bigcursor_arrow');
+      $f('a, input, .plugin_activator, .plugin_options input').removeClass('farfalla_bigcursor_pointer');
+    };
+/*
+    $f('#bigcursorActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
+        $f.bigcursor_off();
+      } else {
+        $f.bigcursor_on();
+      }
+    });
+*/
+//    $f.bigcursor_on();
+
+/*!
+ * Farfalla - Accessibility in the Cloud
+ * http://farfalla-project.org/
+ *
+ *  Copyright (C) 2010  Andrea Mangiatordi
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Farfalla plugin: Clarifier. Transforms the typography of a document in a Dyslexia-friendly fashion.
+
+// Google analytics monitoring code
+/*
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','_gafclarifier');
+
+_gafclarifier('create', 'UA-9777827-28', {'cookieName':'_gafclarifier'});
+_gafclarifier('set', 'anonymizeIp', true);
+_gafclarifier('send', 'pageview');
+*/
+
+$f.farfalla_create_plugin_options('clarifier');
+
+$f.farfalla_add_css('clarifier','clarifier');
+
+// Uppercase on
+
+$f.clarifier_uppercase_on = function () {
+  $f('*').not('.donttouchme').addClass('fontUppercase');
+  console.log($f('*').not('.plugin_options_switch'));
+  $f.farfalla_set_option('uppercase',1);
+};
+
+// Uppercase off
+
+$f.clarifier_uppercase_off = function () {
+  $f.farfalla_set_option('uppercase');
+  $f('.fontUppercase').removeClass('fontUppercase');
+};
+
+// Smallcaps on
+
+$f.clarifier_smallcaps_on = function () {
+  $f('*').not('.donttouchme').addClass('fontSmallcaps');
+  $f.farfalla_set_option('smallcaps',1);
+};
+
+// Smallcaps off
+
+$f.clarifier_smallcaps_off = function () {
+  $f.farfalla_set_option('smallcaps');
+  $f('.fontSmallcaps').removeClass('fontSmallcaps');
+};
+
+// Adds an activation button for the global uppercase effect
+
+$f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'text-height', 'uppercase', 0, function(){
+  $f.farfalla_get_option('uppercase', function(data){
+	if(data.value==1){
+      $f.clarifier_uppercase_off();
+    } else {
+      $f.clarifier_smallcaps_off();
+      $f.clarifier_uppercase_on();
+    }
+  });
+});
+
+// Adds an activation button for the global 'small caps' effect
+
+$f.farfalla_add_ui('clarifier', 'button', 'clarifier_smallcaps', 'text-width', 'smallcaps', 0, function(){
+  $f.farfalla_get_option('smallcaps', function(data){
+	if(data.value==1){
+      $f.clarifier_smallcaps_off();
+    } else {
+      $f.clarifier_uppercase_off();
+      $f.clarifier_smallcaps_on();
+    }
+  });
+});
+
+// Check if global uppercase setting is on and apply it if positive
+
+$f.clarifier_uppercase_init = function () {
+  $f.farfalla_get_option('uppercase', function(data){
+	if(data.value==1){
+      $f('*').addClass('fontUppercase');
+    }
+  });
+};
+
+// Check if global smallcaps setting is on and apply it if positive
+
+$f.clarifier_smallcaps_init = function () {
+  $f.farfalla_get_option('smallcaps', function(data){
+	if(data.value==1){
+      $f('*').addClass('fontSmallcaps');
+    }
+  });
+};
+
+clarifier_on = function () {
+  $f('#clarifierActivator').farfalla_switch_on('clarifier');
+  $f('#clarifier_options').slideDown('fast');
+  $f('#farfalla_container *').addClass('donttouchme');
+
+  // Set <html> background color to cream, but only in case it is white
+  if($f('html').css('background-color')=='transparent'||$f('html').css('background-color')=='rgba(0, 0, 0, 0)'){
+    $f('html').addClass('creamBackground');
+  }
+  $f('*').not('.donttouchme').each(function(){
+    if($f(this).css('background-color')=='rgb(255, 255, 255)'){
+      $f(this).addClass('creamBackground');
+    }
+  });
+
+  $f('input, textarea').not('.donttouchme').addClass('inputClarifier');
+
+  // Set fonts to Tahoma, Arial, sans
+
+  $f('*').not('.donttouchme').addClass('fontClarifier');
+
+  $f('h1').not('.donttouchme').addClass('h1Clarifier');
+
+  $f('h2').not('.donttouchme').addClass('h2Clarifier');
+
+  $f('h1, h2, h3, h4, h5, h6, h7, h8, h9, h10').not('.donttouchme').addClass('boldClarifier');
+
+  $f('*').not('.donttouchme').each(function(){
+    if($f(this).css('text-align')=='justify'){
+	  $f(this).addClass('leftAlignClarifier');
+    }
+  });
+
+  // Set line height to 200% in <p> and <li> elements only
+
+  $f('p, li').not('.donttouchme').each(function(){
+    $f(this).addClass('linespacingClarifier');
+  });
+
+  $f.clarifier_uppercase_init();
+  $f.clarifier_smallcaps_init();
+
+};
+
+clarifier_off = function () {
+  $f('#clarifierActivator').farfalla_switch_off('clarifier');
+  $f('#clarifier_options').hide();
+  $f('*').removeClass('creamBackground');
+  $f('input, textarea').removeClass('inputClarifier');
+  $f('*').removeClass('fontClarifier');
+  $f('h1').removeClass('h1Clarifier');
+  $f('h2').removeClass('h2Clarifier');
+  $f('h1, h2, h3, h4, h5, h6, h7, h8, h9, h10').removeClass('boldClarifier');
+  $f('*').removeClass('leftAlignClarifier');
+  $f('p, li').removeClass('linespacingClarifier');
+  $f('.fontUppercase').removeClass('fontUppercase');
+  $f('.fontSmallcaps').removeClass('fontSmallcaps');
+
+};
+/*
+$f('#clarifier_options_deactivate').click( function() {
+
+  $f.clarifier_off();
+
+});
+
+$f('#clarifierActivator').click( function(){
+
+  $f.clarifier_on()
+
+}); */
+/*
+$f('#clarifierActivator').click( function(){
+  if($f(this).hasClass('farfalla_active')){
+	$f.clarifier_off();
+  } else {
+	$f.clarifier_on();
+  }
+});
+*/
+// $f.clarifier_on();
+
+/*!
+ * Farfalla - Accessibility in the Cloud
+ * http://farfalla-project.org/
+ *
+ *  Copyright (C) 2010  Andrea Mangiatordi
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Farfalla plugin: Font Size
+
+// Google analytics monitoring code
+/*
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gaffontsize');
+
+  _gaffontsize('create', 'UA-9777827-27', {'cookieName':'_gaffontsize'});
+  _gaffontsize('set', 'anonymizeIp', true);
+  _gaffontsize('send', 'pageview');
+*/
+
+    $f.farfalla_create_plugin_options('fontsize');
+
+    $f.farfalla_change_size = function (val) {
+      var value = 1+val*0.1;
+      $f('#farfalla-fontsize-container').css({
+        'zoom': value,
+        '-moz-transform': 'scale('+value+')',
+        '-moz-transform-origin': 'top left',
+        'position':'absolute',
+        'z-index':0
+      });
+      $f('#farfalla-fontsize-container').width($f('body').width()/value);
+      $f.farfalla_set_option('increase',val);
+    };
+
+    $f.farfalla_reset_size = function () {
+      $f('#farfalla-fontsize-container').css({
+        'zoom': 1,
+        '-moz-transform': 'scale(1)'
+      });
+      $f('#farfalla-fontsize-container').width($f('body').width());
+      $f.farfalla_set_option('increase',0);
+    };
+
+    $f.farfalla_get_option('increase', function(data){
+
+        var increase = 0;
+
+        var value = data.value;
+
+        if(value){
+          increase = parseFloat(data.value);
+        }
+
+        // Increase Font Size
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', 'plus', '+', 1, function(){
+
+          increase+=1;
+          var value= increase;
+          $f.farfalla_change_size(value);
+          return increase;
+        });
+
+        // Decrease Font Size
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', 'minus', '-', 1, function(){
+
+          increase+=-1;
+          var value= increase;
+          $f.farfalla_change_size(value);
+          return increase;
+        });
+
+        // Reset Font Size
+
+        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'refresh', 'reset', 1, function(){
+
+          $f.farfalla_reset_size();
+          increase=0;
+          return increase;
+
+        });
+
+      });
+
+    fontsize_on = function () {
+
+      if($f('#farfalla-fontsize-container').length===0){
+        $f('body > *').not('#farfalla_container, script').wrapAll('<div id="farfalla-fontsize-container" />');
+      }
+
+      $f('#fontsizeActivator').farfalla_switch_on('fontsize');
+
+      $f.farfalla_get_option('increase', function(data){
+
+        // restore font size on plugin activation
+
+        if(data.value > 0){
+          $f.farfalla_change_size(data.value);
+        }
+
+        $f('#fontsize_options').attr('aria-hidden','false').show();
+
+      });
+
+    };
+
+    fontsize_off = function () {
+
+      $f('#fontsize_options').attr('aria-hidden','true').hide();
+      $f.farfalla_reset_size();
+      $f('#fontsizeActivator').farfalla_switch_off('fontsize');
+
+    };
+/*
+    $f('#fontsizeActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
+        $f.fontsize_off();
+      } else {
+        $f.fontsize_on();
+      }
+    });
+*/
+    // $f.fontsize_on();
+
+/*!
+ * Farfalla - Accessibility in the Cloud
+ * http://farfalla-project.org/
+ *
+ *  Copyright (C) 2010  Andrea Mangiatordi
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// Farfalla plugin: hicontrast
+// This plugin allows to change the background and foreground color on pages.
+
+// Google analytics monitoring code
+/*
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gafhicontrast');
+
+
+  _gafhicontrast('create', 'UA-9777827-26', {'cookieName':'_gafhicontrast'});
+  _gafhicontrast('set', 'anonymizeIp', true);
+  _gafhicontrast('send', 'pageview');
+*/
+//    $f('.farfalla_selected_plugin_option').css('background-color',options.background);
+
+    $f.farfalla_create_plugin_options('hicontrast');
+
+//    $f.farfalla_add_ui_section('hicontrast',$f.__('Color_schemes'));
+
+    var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","blue_yellow","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
+
+    $f.each(colorSchemes, function(index, value){
+      $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_'+value, 'adjust', index, value, function(){
+
+        $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
+        $f.farfalla_remove_plugin_css('hicontrast');
+        $f.farfalla_add_css('hicontrast','hicontrast_'+value);
+        $f.farfalla_set_option('colorscheme',value);
+        $f(this).addClass('farfalla_selected_plugin_option');
+//        $f('#hicontrast_'+value+'_button').wrap('<div id="farfalla_active_option" class="donttouchme"></div>');
+
+      });
+    });
+
+    $f.farfalla_get_option('colorscheme', function(data){
+
+      // restore color scheme on load
+
+      if(data.value){
+        $f('#hicontrast_'+data.value+'_button').click();
+      }
+
+    });
+
+//    $f.farfalla_add_ui_section('hicontrast',$f.__('Actions'));
+
+    $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'refresh', 'reset', 1, function(){
+
+      $f.farfalla_remove_plugin_css('hicontrast');
+      $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
+      $f.farfalla_set_option('colorscheme');
+
+
+    });
+
+    hicontrast_on = function () {
+
+      $f('#farfalla_container *').addClass('donttouchme');
+      $f('#hicontrastActivator').farfalla_switch_on('hicontrast');
+//      $f('.plugin_options').not('#hicontrast_options').slideUp('fast');
+      $f('#hicontrast_options').slideDown('fast');
+
+    };
+
+    hicontrast_off = function () {
+
+      $f('#hicontrastActivator').farfalla_switch_off('hicontrast');
+      $f('#hicontrast_options').hide();
+      $f.farfalla_remove_plugin_css('hicontrast');
+      $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
+      $f.farfalla_set_option('colorscheme');
+
+    };
+
+/*
+    $f('#hicontrastActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
+        $f.hicontrast_off();
+      } else {
+        $f.hicontrast_on();
+      }
+    });
+*/
+
+//    $f.hicontrast_on();
+
+// Farfalla plugin: Virtual Keyboard
+
+// Google analytics monitoring code
+/*
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','_gafkeyboard');
+
+  _gafkeyboard('create', 'UA-9777827-24', {'cookieName':'_gafkeyboard'});
+  _gafkeyboard('set', 'anonymizeIp', true);
+  _gafkeyboard('send', 'pageview');
+*/
+
+    $f.create_keyboard = function () {
+      $f('<div id="farfalla_keyboard"></div>')
+        .css({
+          'position':'fixed',
+          '_position':'absolute',
+          'display':'block',
+          'bottom':0,
+          'right':0,
+          'left':0,
+          'width':'608px',
+          'margin':'auto',
+          'z-index':100000
+        }).prependTo('body');
+    };
+
+    $f.destroy_keyboard = function () {
+      $f('#farfalla_keyboard').remove();
+    };
+
+    $f('<div id="farfalla_keyboard_shade" class="donttouchme"></div>')
+      .css({
+         'position':'absolute',
+         'display':'block',
+         'top':0,
+         'left':0,
+         'width':'100%',
+         'height':'100%',
+         'z-index':99999
+      }).hide().appendTo('body');
+
+    keyboard_on = function () {
+
+      $f.create_keyboard();
+
+      $f('#keyboardActivator').farfalla_switch_on('keyboard');
+
+      head.load(farfalla_path+'src/plugins/keyboard/virtualkeyboard/vk_loader.js?vk_layout=IT%20Italian&vk_skin=farfalla', function(){
+        $f('textarea, input[type=text], input[type=password], input[type=email], input[type=search], input:not([type])').click(function(){
+          $f('#farfalla_keyboard_shade').css('top',$f(window).scrollTop()).show();
+          $f(this).addClass('farfalla_keyboard_target');
+
+          if($f('#farfalla_keyboard_monitor').length != 1){
+            $f('<textarea id="farfalla_keyboard_monitor" class="ui-corner-top"></textarea>')
+              .val($f('.farfalla_keyboard_target').val())
+              .css({
+              'background':'#eee',
+              'color':'#000',
+              'font-size':'16px',
+              'line-height':'24px',
+              'display':'block',
+              'margin':0,
+              'width':'608px',
+              'border':'1px solid #666',
+              'height': 'auto'
+            })
+              .prependTo('#farfalla_keyboard')
+              .focusToEnd();
+          }
+          VirtualKeyboard.open('farfalla_keyboard_monitor','farfalla_keyboard');
+          VirtualKeyboard.attachInput('farfalla_keyboard_monitor');
+          $f('#farfalla_keyboard *').addClass('donttouchme');
+          $f('#farfalla_keyboard').click(function(){
+            $f('.farfalla_keyboard_target').val(($f('#farfalla_keyboard_monitor').val()));
+          });
+        });
+        $f('#farfalla_keyboard_shade').click(function(){
+          VirtualKeyboard.close();
+          $f('#farfalla_keyboard_monitor').remove();
+          $f('.farfalla_keyboard_target').removeClass('farfalla_keyboard_target');
+          $f(this).hide();
+        });
+      });
+
+    };
+
+    keyboard_off = function () {
+      $f('#keyboardActivator').farfalla_switch_off('keyboard');
+      $f.destroy_keyboard();
+    };
+
+//    $f.keyboard_on()
+/*
+    $f('#keyboardActivator').click( function(){
+      if($f(this).hasClass('farfalla_active')){
+        $f.keyboard_off();
+      } else {
+        $f.keyboard_on();
+      }
+    });
+*/

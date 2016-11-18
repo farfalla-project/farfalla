@@ -22,7 +22,7 @@
 // To do: adding options for distinct cursors.
 
 // Google analytics monitoring code
-
+/*
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -31,7 +31,7 @@
   _gafbigcursor('create', 'UA-9777827-29', {'cookieName':'_gafbigcursor'});
   _gafbigcursor('set', 'anonymizeIp', true);
   _gafbigcursor('send', 'pageview');
-
+*/
 
     $f('<link></link>').attr({
       "rel":"stylesheet",
@@ -39,24 +39,24 @@
       "href":farfalla_path+"src/plugins/bigcursor/bigcursor.farfalla.css"
     }).appendTo($f('head'));
 
-    $f.bigcursor_on = function () {
+    bigcursor_on = function () {
       $f('#bigcursorActivator').farfalla_switch_on('bigcursor');
       $f('body').addClass('farfalla_bigcursor_arrow');
       $f('a, input, .plugin_activator, .plugin_options input').addClass('farfalla_bigcursor_pointer');
     };
 
-    $f.bigcursor_off = function () {
+    bigcursor_off = function () {
       $f('#bigcursorActivator').farfalla_switch_off('bigcursor');
       $f('body').removeClass('farfalla_bigcursor_arrow');
       $f('a, input, .plugin_activator, .plugin_options input').removeClass('farfalla_bigcursor_pointer');
     };
-
+/*
     $f('#bigcursorActivator').click( function(){
       if($f(this).hasClass('farfalla_active')){
-        $f.bigcursor_off()
+        $f.bigcursor_off();
       } else {
-        $f.bigcursor_on()
+        $f.bigcursor_on();
       }
     });
-
+*/
 //    $f.bigcursor_on();
