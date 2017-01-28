@@ -34656,6 +34656,64 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     #######################################
 */
 
+    // Translations require improvement
+
+    var detected_language = navigator.language || navigator.userLanguage;
+
+    var strings = new Array(
+      "ft_farfalla_project",
+      "ft_accessibility",
+      "ft_accessibility_preferences",
+      "ft_actions",
+      "ft_url_title",
+      "ft_url_title_jm2",
+      "save_session",
+      "reset",
+      "hicontrast",
+      "fontsize",
+      "clarifier",
+      "magnifier",
+      "keyboard",
+      "bigcursor",
+      "Color_schemes",
+      "Actions" );
+
+    var translations_it = new Array(
+      "Farfalla project",
+      "Accessibilità",
+      "Preferenze dell'accessibilità",
+      "Azioni",
+      "Vai al sito di Farfalla project",
+      "Vai alla pagina sull'accessibilità",
+      "Salva le impostazioni correnti per il futuro",
+      "Azzera tutte le impostazioni",
+      "Controllo del contrasto e delle combinazioni dei colori",
+      "Controllo delle dimensioni del testo",
+      "Alta leggibilità",
+      "Ingrandimento selettivo",
+      "Tastiera virtuale su schermo",
+      "Puntatore del mouse ingrandito",
+      "Combinazioni cromatiche",
+      "Azioni" );
+
+    var translations = new Array(
+      "Farfalla project",
+      "Accessibility",
+      "Accessibility Preferences",
+      "Actions",
+      "Jump to the Farfalla project website",
+      "Jump to the web accessibility page",
+      "Save current settings for the future",
+      "Reset all settings",
+      "Contrast and color scheme control",
+      "Font size control",
+      "High readability",
+      "Selective magnification",
+      "Onscreen virtual keyboard",
+      "Larger mouse cursor",
+      "Color schemes",
+      "Actions" );
+
     // Bridge function for cakephp gettext translations
 
     $f.__ = function (string){
@@ -34979,10 +35037,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               switch(iteration){
                 case 1:
                   $f.farfalla_remember_profile();
+                  $f(this).addClass('farfalla_active');
                   remember_profile = 1;
                   break;
                 case 2:
                   $f.farfalla_forget_profile();
+                  $f(this).removeClass('farfalla_active');
                   remember_profile = 0;
                   break;
               }
@@ -35024,13 +35084,14 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Stores a cookie with the list of active plugins
 
         $f.farfalla_remember_profile = function() {
-//          Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
+          Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
         };
 
         // Deletes the cookie with the list of active plugins
 
         $f.farfalla_forget_profile = function() {
-//          Cookies.set('farfalla_active_plugins',null);
+          // $f('#farfalla_remember_profile').removeClass('farfalla_active');
+          Cookies.set('farfalla_active_plugins',null);
         };
 
         // Adds the plugin icons
@@ -35165,36 +35226,35 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Track activated/deactivated plugins for consistent browsing in different pages
 
         $f.farfalla_autoactivate_plugins = function() {
-/*
+
+          var active = '';
+
           if(Cookies.get('farfalla_active_plugins') && Cookies.get('farfalla_active_plugins')!==null){
-
-            var active = Cookies.get('farfalla_active_plugins').split(',');
-
-            $f.each(active, function(index, value){
-              $f('#'+value+'_options_switch').click();
-            });
-
+            active = Cookies.get('farfalla_active_plugins').replace('["','').replace('"]','').split('","');
             $f('#farfalla_remember_profile').click();
-
+            return active;
           } else {
-*/
+
             $f.farfalla_get_option('active_plugins', function(data){
+
               if(data.value){
-                $f('#farfalla_badge').click();
-                var active = data.value.split(',');
-
-                $f.each(active, function(index, value){
-                  $f('#'+value+'Activator').click();
-                    //window[value+'_on']();
-                });
-                $f('#farfalla_badge').click();
-
+                active = data.value.split(',');
               }
 
+              return active;
+
             });
-/*
+
           }
-*/
+          console.log(active);
+          $f('#farfalla_badge').click();
+
+          $f.each(active, function(index, value){
+            $f('#'+value+'Activator').click();
+          });
+
+          $f('#farfalla_badge').click();
+
         };
 
 /*
@@ -35210,7 +35270,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     var options = $f.farfalla_ui_options();
 
-    var active_plugins = new Array([]);
+    var active_plugins = [];
 /*
     if(Cookies.get('farfalla_active_plugins')){
       var remember_profile = 1;
