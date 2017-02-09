@@ -29,6 +29,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
    $f=jQuery.noConflict(true);
 
 /*
+   Initialize Persist-JS Store
+*/
+
+//   var store = new Persist.Store('farfalla');
+
+/*
     #######################################
     #                                     #
     #    Generic functions for plugins    #
@@ -210,23 +216,32 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     // A function for getting options from the Cakephp session array
 
-    $f.farfalla_get_option = function( option, callback ){
-
+    $f.farfalla_get_option = function( option ){
+/*
       $f.getJSON(
          farfalla_path+"backend/plugins/get_option/"+option+"/?callback=?",
          {}, callback
       );
+*/
+      var value = store.get(option);
+      console.log(option+' is set to '+store.get(option));
+//      $f(callback);
+      return value;
 
     };
 
     // A function for setting options in the Cakephp session array
 
     $f.farfalla_set_option = function( option, value ){
+/*
       if(value===null){
         $f.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
       } else {
         $f.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/"+value+"/?callback=?");
       }
+*/
+      store.set(option, value);
+      console.log(option+' set to '+store.get(option));
     };
 
     // A function that gets the XPath of an element
@@ -308,7 +323,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         $f.farfalla_reset_all = function() {
           $f('.farfalla_active').click();
-          $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
+//          $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
+          store.clear();
           $f.farfalla_forget_profile();
           remember_profile = 0;
         };
@@ -483,79 +499,46 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 {},
                 function(data) {
                   $f.each(data.plugins, function(){
-                      var plugin = this.Plugin;
+                    var plugin = this.Plugin;
 
-                      if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
-                        $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
-                          .attr({
-                            'id' : plugin.name+'Activator'
-                          })
-                          .addClass('plugin_activator')
-                          .appendTo('#farfalla_toolbar_plugins')
-                          // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
-                          .click( function(){
-                            if($f(this).hasClass('farfalla_active')){
-                              window[plugin.name+'_off']();
-                            } else {
-                              window[plugin.name+'_on']();
-                            }
-                          });
-/*
-                        $f('#'+plugin.name+'Activator')
-                        .qtip({
-                          content :  $f.__(plugin.name),
-                          position: {
-                            my: 'right center',
-                            at: 'center left',
-                            target: $f('#'+plugin.name+'Activator')
-                          },
-                          style: {
-                            classes: 'ui-tooltip-farfalla ui-tooltip-shadow',
-                            width: 'auto',
-                            tip: {
-                              corner: 'right center',
-                              width: 20,
-                              height: 12
-                            }
-                          },
-                          events: {
-                            render : function() {$f.farfalla_toolbar_color();}
+                    if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
+                      $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
+                        .attr({
+                          'id' : plugin.name+'Activator'
+                        })
+                        .addClass('plugin_activator')
+                        .appendTo('#farfalla_toolbar_plugins')
+                        // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
+                        .click( function(){
+                          if($f(this).hasClass('farfalla_active')){
+                            window[plugin.name+'_off']();
+                          } else {
+                            window[plugin.name+'_on']();
                           }
-
                         });
-*/
-/*
-                        $f('#'+plugin.name+'Activator')
-                          .click( function(){
-                            $f('.plugin_options').attr('aria-hidden','true').hide();
-                            console.log('first click on '+plugin.name);
-                            $f(this).unbind('click'); // first click only!
-                            head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
-                          });
-*/
                     }
                   });
 
                   $f.farfalla_autoactivate_plugins();
-                });
 
+                });
         };
 
         // Checks if a profile has already been selected, then initializes what is needed
 
         $f.farfalla_check_status = function() {
 
-          $f.getJSON(farfalla_path+"backend/profiles/status/?callback=?", {},
-            function(data){
-              if(data.top) {
-                $f.farfalla_set_top(data.top);
-              } else if (options.top) {
-                $f.farfalla_set_top(options.top);
-              }
-
+          // $f.getJSON(farfalla_path+"backend/profiles/status/?callback=?", {},
+          //   function(data){
+          //     if(data.top) {
+          //       $f.farfalla_set_top(data.top);
+          //     } else if (options.top) {
+          //       $f.farfalla_set_top(options.top);
+          //     }
+              console.log(store.getAll());
               $f.farfalla_toolbar_populate();
 
-            });
+          // });
           };
 
         // Adds the show/hide effect to the toolbar logo
@@ -565,12 +548,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('#farfalla_badge').toggle(
               function() {
                 $f('#farfalla_toolbar').show();
-                $f.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
+//                $f.getJSON(farfalla_path+"backend/profiles/show/1/?callback=?",{});
               },
               function() {
                 $f('#farfalla_badge_label').removeClass('blocked').hide();
                 $f('#farfalla_toolbar').hide();
-                $f.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
+//                $f.getJSON(farfalla_path+"backend/profiles/show/0/?callback=?",{});
               }
             );
 
@@ -607,26 +590,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         $f.farfalla_autoactivate_plugins = function() {
 
-          var active = '';
+          var active = store.get('active_plugins');
 
-          if(Cookies.get('farfalla_active_plugins') && Cookies.get('farfalla_active_plugins')!==null){
-            active = Cookies.get('farfalla_active_plugins').replace('["','').replace('"]','').split('","');
-            $f('#farfalla_remember_profile').click();
-            return active;
-          } else {
-
-            $f.farfalla_get_option('active_plugins', function(data){
-
-              if(data.value){
-                active = data.value.split(',');
-              }
-
-              return active;
-
-            });
-
-          }
-          console.log(active);
           $f('#farfalla_badge').click();
 
           $f.each(active, function(index, value){

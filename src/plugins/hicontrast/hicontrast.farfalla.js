@@ -33,11 +33,8 @@
   _gafhicontrast('set', 'anonymizeIp', true);
   _gafhicontrast('send', 'pageview');
 */
-//    $f('.farfalla_selected_plugin_option').css('background-color',options.background);
 
     $f.farfalla_create_plugin_options('hicontrast');
-
-//    $f.farfalla_add_ui_section('hicontrast',$f.__('Color_schemes'));
 
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","blue_yellow","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
@@ -49,22 +46,9 @@
         $f.farfalla_add_css('hicontrast','hicontrast_'+value);
         $f.farfalla_set_option('colorscheme',value);
         $f(this).addClass('farfalla_selected_plugin_option');
-//        $f('#hicontrast_'+value+'_button').wrap('<div id="farfalla_active_option" class="donttouchme"></div>');
 
       });
     });
-
-    $f.farfalla_get_option('colorscheme', function(data){
-
-      // restore color scheme on load
-
-      if(data.value){
-        $f('#hicontrast_'+data.value+'_button').click();
-      }
-
-    });
-
-//    $f.farfalla_add_ui_section('hicontrast',$f.__('Actions'));
 
     $f.farfalla_add_ui('hicontrast', 'button', 'hicontrast_reset', 'refresh', 'reset', 1, function(){
 
@@ -79,9 +63,11 @@
 
       $f('#farfalla_container *').addClass('donttouchme');
       $f('#hicontrastActivator').farfalla_switch_on('hicontrast');
-//      $f('.plugin_options').not('#hicontrast_options').slideUp('fast');
       $f('#hicontrast_options').slideDown('fast');
-
+      var active_colorscheme = $f.farfalla_get_option('colorscheme');
+      if (active_colorscheme!=='undefined'){
+          $f('#hicontrast_'+active_colorscheme+'_button').click();
+      }
     };
 
     hicontrast_off = function () {
@@ -93,15 +79,3 @@
       $f.farfalla_set_option('colorscheme');
 
     };
-
-/*
-    $f('#hicontrastActivator').click( function(){
-      if($f(this).hasClass('farfalla_active')){
-        $f.hicontrast_off();
-      } else {
-        $f.hicontrast_on();
-      }
-    });
-*/
-
-//    $f.hicontrast_on();

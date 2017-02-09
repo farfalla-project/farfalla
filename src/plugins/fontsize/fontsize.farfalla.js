@@ -56,45 +56,35 @@
       $f.farfalla_set_option('increase',0);
     };
 
-    $f.farfalla_get_option('increase', function(data){
+    var increase = 0;
 
-        var increase = 0;
+    // Increase Font Size
+    $f.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', 'plus', '+', 1, function(){
 
-        var value = data.value;
+      increase+=1;
+      var value= increase;
+      $f.farfalla_change_size(value);
+      return increase;
+    });
 
-        if(value){
-          increase = parseFloat(data.value);
-        }
+    // Decrease Font Size
+    $f.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', 'minus', '-', 1, function(){
 
-        // Increase Font Size
-        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_increase', 'plus', '+', 1, function(){
+      increase+=-1;
+      var value= increase;
+      $f.farfalla_change_size(value);
+      return increase;
+    });
 
-          increase+=1;
-          var value= increase;
-          $f.farfalla_change_size(value);
-          return increase;
-        });
+    // Reset Font Size
 
-        // Decrease Font Size
-        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_decrease', 'minus', '-', 1, function(){
+    $f.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'refresh', 'reset', 1, function(){
 
-          increase+=-1;
-          var value= increase;
-          $f.farfalla_change_size(value);
-          return increase;
-        });
+      $f.farfalla_reset_size();
+      increase=0;
+      return increase;
 
-        // Reset Font Size
-
-        $f.farfalla_add_ui('fontsize', 'button', 'fontsize_reset', 'refresh', 'reset', 1, function(){
-
-          $f.farfalla_reset_size();
-          increase=0;
-          return increase;
-
-        });
-
-      });
+    });
 
     fontsize_on = function () {
 
@@ -104,17 +94,11 @@
 
       $f('#fontsizeActivator').farfalla_switch_on('fontsize');
 
-      $f.farfalla_get_option('increase', function(data){
-
-        // restore font size on plugin activation
-
-        if(data.value > 0){
-          $f.farfalla_change_size(data.value);
-        }
-
-        $f('#fontsize_options').attr('aria-hidden','false').show();
-
-      });
+      var current_fontsize = $f.farfalla_get_option('increase');
+      if (current_fontsize !== 'undefined' && current_fontsize !== 0){
+          $f.farfalla_change_size(current_fontsize);
+      }
+      $f('#fontsize_options').attr('aria-hidden','false').show();
 
     };
 
