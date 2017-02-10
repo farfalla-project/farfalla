@@ -21,11 +21,21 @@ module.exports = function(grunt) {
         }
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
+    jasmine: {
+      src: ['farfalla.js', 'dist/farfalla.js'],
+      options: {
+        specs: ['specs/**/*.js'],
+        vendor: ['src/js/vendor/*.js', 'node_modules/jasmine-jquery/lib/jasmine-jquery.js', 'bower_components/jquery/dist/jquery.min.js'],
+        styles: [
+                  'bower_components/jquery-ui/themes/base/jquery-ui.min.css',
+                  'bower_components/font-awesome/css/font-awesome.min.css',
+                  'bower_components/qtip2/jquery.qtip.min.css',
+                  'src/css/farfalla.css'
+                ]
+      }
     },
     jshint: {
-      files: ['Gruntfile.js', 'src/js/*.js', 'test/**/*.js', 'src/plugins/*/*.farfalla.js'],
+      files: ['Gruntfile.js', 'src/js/*.js', 'test/**/*.js', 'src/plugins/*/*.farfalla.js', '<%= jasmine.options.specs %>'],
       options: {
         // options here to override JSHint defaults
         globals: {
@@ -37,15 +47,14 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'bower_concat', 'concat', 'uglify']
+      files: ['<%= jshint.files %>', '<%= jasmine.options.specs %>'],
+      tasks: ['jshint', 'bower_concat', 'concat', 'jasmine', 'uglify']
     },
     bower_concat:{
       all: {
         dest: "src/js/vendor/bower.js",
         destCss: "src/css/vendor/bower.css",
         exclude: [
-          'qunit',
           'font-awesome'
         ]
       }
@@ -58,6 +67,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-concat');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'qunit']);
 

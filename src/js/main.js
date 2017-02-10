@@ -116,7 +116,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     $f.fn.focusToEnd = function() {
         return this.each(function() {
-            var v = $f(this).val();
+            var v1 = $f(this).val();
             $f(this).focus().val("").val(v);
         });
     };
@@ -339,51 +339,14 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               .addClass('donttouchme')
               .prependTo('body');
 
-//            var badge_color = '#fff';
-//            if(options.color&&options.color!==null){badge_color = options.color; return badge_color;}
-
             // Creates the visible badge, with a cog icon
             $f('<div></div>')
               .attr('id','farfalla_badge')
-//              .css({
-//                'color': badge_color
-//                })
               .addClass('donttouchme')
               // translation needed
               .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility_preferences')+'</span>')
               .prependTo('#farfalla_container');
 
-/*
-            var farfalla_url = 'http://farfalla-project.org/';
-            var farfalla_url_title = $f.__('ft_url_title');
-
-            if(window.location.href.search('jobmetoo.com')>0){
-              farfalla_url = 'http://www.jobmetoo.com/page/accessibilita-web';
-              farfalla_url_title = $f.__('ft_url_title');
-            }
-
-            $f('#farfalla_badge a').attr({
-               'href': farfalla_url,
-               'title': farfalla_url_title
-            });
-*/
-
-/*
-
-            TODO: replace with qtip
-
-            $f('#farfalla_badge')
-              .mouseover(
-                function(){
-                  $f('#farfalla_badge_label').show();
-                })
-              .mouseleave(
-                function(){
-                  if($f('#farfalla_badge_label').hasClass('blocked')===false){
-                    $f('#farfalla_badge_label').hide();
-                  }
-                });
-*/
             $f('<div aria-hidden="true"></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
 
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');

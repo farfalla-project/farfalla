@@ -22,13 +22,12 @@
     "jquery": "^2.2.3",
     "jquery-ui": "^1.11.4",
     "qtip2": "^2.2.1",
-    "js-cookie": "^2.1.3",
     "detect-mobile-browser": "^0.0.1",
     "font-awesome": "^4.5.0",
-    "qunit": "^1.23.0",
     "store-js": "^1.3.20"
   },
   "resolutions": {
     "jquery": "^2.2.3"
-  }
+  },
+  "devDependencies": {}
 }
