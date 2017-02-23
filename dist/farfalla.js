@@ -35365,7 +35365,7 @@ $f.clarifier_uppercase_on = function () {
 // Uppercase off
 
 $f.clarifier_uppercase_off = function () {
-  $f.farfalla_set_option('uppercase');
+  $f.farfalla_set_option('uppercase',0);
   $f('.fontUppercase').removeClass('fontUppercase');
 };
 
@@ -35379,54 +35379,50 @@ $f.clarifier_smallcaps_on = function () {
 // Smallcaps off
 
 $f.clarifier_smallcaps_off = function () {
-  $f.farfalla_set_option('smallcaps');
+  $f.farfalla_set_option('smallcaps',0);
   $f('.fontSmallcaps').removeClass('fontSmallcaps');
 };
 
 // Adds an activation button for the global uppercase effect
 
 $f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'text-height', 'uppercase', 0, function(){
-  $f.farfalla_get_option('uppercase', function(data){
-	if(data.value==1){
+var uppercase = $f.farfalla_get_option('uppercase');
+	if(uppercase==1){
       $f.clarifier_uppercase_off();
     } else {
       $f.clarifier_smallcaps_off();
       $f.clarifier_uppercase_on();
     }
-  });
 });
 
 // Adds an activation button for the global 'small caps' effect
 
 $f.farfalla_add_ui('clarifier', 'button', 'clarifier_smallcaps', 'text-width', 'smallcaps', 0, function(){
-  $f.farfalla_get_option('smallcaps', function(data){
-	if(data.value==1){
+  var smallcaps = $f.farfalla_get_option('smallcaps');
+	if(smallcaps==1){
       $f.clarifier_smallcaps_off();
     } else {
       $f.clarifier_uppercase_off();
       $f.clarifier_smallcaps_on();
     }
-  });
 });
 
 // Check if global uppercase setting is on and apply it if positive
 
 $f.clarifier_uppercase_init = function () {
-  $f.farfalla_get_option('uppercase', function(data){
-	if(data.value==1){
+  var uppercase = $f.farfalla_get_option('uppercase');
+	if(uppercase==1){
       $f('*').addClass('fontUppercase');
-    }
-  });
+  }
 };
 
 // Check if global smallcaps setting is on and apply it if positive
 
 $f.clarifier_smallcaps_init = function () {
-  $f.farfalla_get_option('smallcaps', function(data){
-	if(data.value==1){
+  var smallcaps = $f.farfalla_get_option('smallcaps');
+	if(smallcaps==1){
       $f('*').addClass('fontSmallcaps');
-    }
-  });
+  }
 };
 
 clarifier_on = function () {
