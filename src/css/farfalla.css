@@ -179,7 +179,7 @@ i.fa {
 }
 
 .farfalla_selected_plugin_option{
-  background-color: #000 !important;
+  background-color: red !important;
 }
 
 input[type="button"].plugin_options_switch{

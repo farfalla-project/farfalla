@@ -35360,6 +35360,7 @@ $f.clarifier_uppercase_on = function () {
   $f('*').not('.donttouchme').addClass('fontUppercase');
   console.log($f('*').not('.plugin_options_switch'));
   $f.farfalla_set_option('uppercase',1);
+  $f('#clarifier_uppercase_button').addClass('farfalla_selected_plugin_option');
 };
 
 // Uppercase off
@@ -35367,6 +35368,7 @@ $f.clarifier_uppercase_on = function () {
 $f.clarifier_uppercase_off = function () {
   $f.farfalla_set_option('uppercase',0);
   $f('.fontUppercase').removeClass('fontUppercase');
+  $f('#clarifier_uppercase_button').removeClass('farfalla_selected_plugin_option');
 };
 
 // Smallcaps on
@@ -35374,6 +35376,7 @@ $f.clarifier_uppercase_off = function () {
 $f.clarifier_smallcaps_on = function () {
   $f('*').not('.donttouchme').addClass('fontSmallcaps');
   $f.farfalla_set_option('smallcaps',1);
+  $f('#clarifier_smallcaps_button').addClass('farfalla_selected_plugin_option');
 };
 
 // Smallcaps off
@@ -35381,6 +35384,7 @@ $f.clarifier_smallcaps_on = function () {
 $f.clarifier_smallcaps_off = function () {
   $f.farfalla_set_option('smallcaps',0);
   $f('.fontSmallcaps').removeClass('fontSmallcaps');
+  $f('#clarifier_smallcaps_button').removeClass('farfalla_selected_plugin_option');
 };
 
 // Adds an activation button for the global uppercase effect
@@ -35389,10 +35393,12 @@ $f.farfalla_add_ui('clarifier', 'button', 'clarifier_uppercase', 'text-height', 
 var uppercase = $f.farfalla_get_option('uppercase');
 	if(uppercase==1){
       $f.clarifier_uppercase_off();
+      $f(this).removeClass('farfalla_selected_plugin_option');
     } else {
       $f.clarifier_smallcaps_off();
       $f.clarifier_uppercase_on();
     }
+
 });
 
 // Adds an activation button for the global 'small caps' effect
@@ -35404,6 +35410,8 @@ $f.farfalla_add_ui('clarifier', 'button', 'clarifier_smallcaps', 'text-width', '
     } else {
       $f.clarifier_uppercase_off();
       $f.clarifier_smallcaps_on();
+      $f(this).addClass('farfalla_selected_plugin_option');
+
     }
 });
 
