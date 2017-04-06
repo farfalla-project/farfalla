@@ -34772,7 +34772,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     $f.fn.focusToEnd = function() {
         return this.each(function() {
             var v1 = $f(this).val();
-            $f(this).focus().val("").val(v);
+            $f(this).focus().val("").val(v1);
         });
     };
 
@@ -35009,7 +35009,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
               .appendTo('#farfalla_toolbar');
-            /* Saving preferenes is temporarily unavailable
+            /* Saving preferences is temporarily unavailable
              $f('<div id="farfalla_remember_profile"><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
               .appendTo('#farfalla_toolbar');
               */
@@ -35100,14 +35100,14 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Stores a cookie with the list of active plugins
 
         $f.farfalla_remember_profile = function() {
-          Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
+    //      Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
         };
 
         // Deletes the cookie with the list of active plugins
 
         $f.farfalla_forget_profile = function() {
           // $f('#farfalla_remember_profile').removeClass('farfalla_active');
-          Cookies.set('farfalla_active_plugins',null);
+      //    Cookies.set('farfalla_active_plugins',null);
         };
 
         // Adds the plugin icons

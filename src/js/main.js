@@ -117,7 +117,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     $f.fn.focusToEnd = function() {
         return this.each(function() {
             var v1 = $f(this).val();
-            $f(this).focus().val("").val(v);
+            $f(this).focus().val("").val(v1);
         });
     };
 
@@ -445,14 +445,14 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Stores a cookie with the list of active plugins
 
         $f.farfalla_remember_profile = function() {
-          Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
+    //      Cookies.set('farfalla_active_plugins', active_plugins, { expires: 7 });
         };
 
         // Deletes the cookie with the list of active plugins
 
         $f.farfalla_forget_profile = function() {
           // $f('#farfalla_remember_profile').removeClass('farfalla_active');
-          Cookies.set('farfalla_active_plugins',null);
+      //    Cookies.set('farfalla_active_plugins',null);
         };
 
         // Adds the plugin icons
