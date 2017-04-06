@@ -354,8 +354,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
               .appendTo('#farfalla_toolbar');
-            $f('<div id="farfalla_remember_profile"><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
+            /* Saving preferences is temporarily unavailable
+             $f('<div id="farfalla_remember_profile"><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
               .appendTo('#farfalla_toolbar');
+              */
             $f('<div></div>').attr('id','farfalla_toolbar_shade').addClass('donttouchme').hide().appendTo('body');
 
             $f('#farfalla_badge')
