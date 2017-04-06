@@ -37,6 +37,7 @@ i.fa {
   background: #000;
   width: 48px;
   margin-left: 134px;
+  border-bottom: 2px solid #fff;
 }
 
 #farfalla_badge, #farfalla_reset_all{
@@ -47,7 +48,6 @@ i.fa {
 
 #farfalla_badge, #farfalla_remember_profile{
   border-left: 2px solid #fff;
-  border-bottom: 2px solid #fff;
 }
 
 #farfalla_badge i.fa{
