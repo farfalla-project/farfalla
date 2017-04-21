@@ -34958,8 +34958,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           if(options.background){
             if(options.background.match(/^#([A-Fa-f0-9]{6})$/i)!==null){
               $f('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
-              $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
-              $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
+              // $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
+              // $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
             }
           }
         };
@@ -35001,6 +35001,17 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               // translation needed
               .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility_preferences')+'</span>')
               .prependTo('#farfalla_container');
+
+            $f('#farfalla_badge').qtip({
+              content:
+              {
+                text: $f.__('ft_accessibility_preferences')
+              },
+              position:{
+                my: 'center right',
+                at: 'center left'
+              }
+            });
 
             $f('<div aria-hidden="true"></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
 
@@ -35127,6 +35138,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                           'id' : plugin.name+'Activator'
                         })
                         .addClass('plugin_activator')
+                        .qtip({
+                          content:
+                          {
+                            text: "pippo"
+                          },
+                          position:{
+                            my: 'center right',
+                            at: 'center left'
+                          }
+                        })
                         .appendTo('#farfalla_toolbar_plugins')
                         // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
                         .click( function(){
