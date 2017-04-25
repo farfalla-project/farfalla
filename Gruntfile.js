@@ -6,7 +6,17 @@ module.exports = function(grunt) {
       options: {
         //separator: ';'
       },
-      dist: {
+      bowercss: { // to be run before every cssmin
+        src: [
+          'bower_components/**/*.min.css'
+        ],
+        dest: 'src/css/vendor/bower.css',
+      },
+      distcss:{
+        src: ['src/css/vendor/bower.css', 'src/css/farfalla.css'],
+        dest: 'dist/farfalla.css'
+      },
+      distjs: {
         src: ['src/js/vendor/*.js','src/js/*.js','src/plugins/*/*.farfalla.js'],
         dest: 'dist/<%= pkg.name %>.js'
       }
@@ -17,7 +27,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+          'dist/<%= pkg.name %>.min.js': ['<%= concat.distjs.dest %>']
         }
       }
     },
@@ -53,10 +63,12 @@ module.exports = function(grunt) {
     bower_concat:{
       all: {
         dest: "src/js/vendor/bower.js",
-        destCss: "src/css/vendor/bower.css",
+//        destCss: "src/css/vendor/bower.css",
+        /*
         exclude: [
           'font-awesome'
         ]
+        */
       }
     }
   });
@@ -68,6 +80,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'qunit']);
 
