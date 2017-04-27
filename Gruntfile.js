@@ -8,7 +8,9 @@ module.exports = function(grunt) {
       },
       bowercss: { // to be run before every cssmin
         src: [
-          'bower_components/**/*.min.css'
+          'bower_components/jquery-ui/themes/base/jquery-ui.min.css',
+          'bower_components/font-awesome/css/font-awesome.min.css',
+          'bower_components/qtip2/jquery.qtip.min.css'
         ],
         dest: 'src/css/vendor/bower.css',
       },
@@ -57,7 +59,7 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= jshint.files %>', '<%= jasmine.options.specs %>'],
+      files: ['<%= jshint.files %>', '<%= concat.distcss.src %>', '<%= jasmine.options.specs %>'],
       tasks: ['jshint', 'bower_concat', 'concat', 'jasmine', 'uglify']
     },
     bower_concat:{
@@ -80,7 +82,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-bower-concat');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+//  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'qunit']);
 

@@ -35019,6 +35019,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
+              .qtip({
+                content:
+                {
+                  text: $f.__("reset")
+                },
+                position:{
+                  my: 'center right',
+                  at: 'center left'
+                }
+              })
               .appendTo('#farfalla_toolbar');
             /* Saving preferences is temporarily unavailable
              $f('<div id="farfalla_remember_profile"><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
@@ -35135,13 +35145,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                     if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
                       $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
                         .attr({
-                          'id' : plugin.name+'Activator'
+                            'id' : plugin.name+'Activator'
                         })
                         .addClass('plugin_activator')
                         .qtip({
                           content:
                           {
-                            text: "pippo"
+                            text: $f.__(plugin.name)
                           },
                           position:{
                             my: 'center right',
