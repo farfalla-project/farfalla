@@ -34759,6 +34759,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     $f.__ = function (string){
       index = $f.inArray(string,strings);
+      switch (detected_language) {
+        case 'it-IT':
+            translations = translations_it;
+          break;
+        default:
+          return none;
+      }
       if(index>=0){
         return translations[index];
       } else {
