@@ -22,32 +22,11 @@ option:not(.donttouchme) {color: #33FF33 !important}
 textarea:not(.donttouchme) {color: #33FF33 !important}
 h1,h2,h3,h4,h5,h6:not(.donttouchme) {color: #33FF33 !important}
 h1 font,h2 font,h3 font,h4 font,h5 font,h6 font:not(.donttouchme) {color: #33FF33 !important}
-/*
-body:not(.donttouchme) {font-family: Arial, Verdana, Helvetica, sans-serif !important}
-body *:not(.donttouchme) {font-family: Arial, Verdana, Helvetica, sans-serif !important}
-*/
-/*
-body:not(.donttouchme) {font-size: 14pt}
-body *:not(.donttouchme) {font-size: 14pt}
-h1:not(.donttouchme) {font-size: 1.50em}
-h2:not(.donttouchme) {font-size: 1.25em}
-h3:not(.donttouchme) {font-size: 1.15em}
-h4,h5,h6:not(.donttouchme) {font-size: 1.0em}
-h1 font:not(.donttouchme) {font-size: 1.0em}
-h2 font:not(.donttouchme) {font-size: 1.0em}
-h3 font:not(.donttouchme) {font-size: 1.0em}
-h4 font,h5 font,h6 font:not(.donttouchme) {font-size: 1.0em}
-*/
-*:not(.donttouchme) {font-style: normal !important}
-*:not(.donttouchme) {line-height: 1.3 !important}
-*:not(.donttouchme) {text-decoration: none !important}
-input:not(.donttouchme) {height: 1.6em !important}
-option:not(.donttouchme) {height: 1.6em !important}
-textarea:not(.donttouchme) {height:       !important}
-
 
 /* Keyboard specific CSS */
+/*
 #farfalla_keyboard_shade{background-color: #000000 !important;}
 #farfalla_keyboard_monitor {background-color: #000000 !important; border: 2px solid #33FF33 !important; color: #33FF33 !important;}
 #virtualKeyboard {background-color: #000000 !important; color: #33FF33 !important;}
 .kbButton a span {color: #33FF33 !important;}
+*/
