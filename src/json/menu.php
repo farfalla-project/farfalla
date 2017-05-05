@@ -1,4 +1,6 @@
-<?php echo($_GET['callback']); ?>({
+<?php
+header('Content-Type: application/json');
+echo($_GET['callback']); ?>({
     "plugins": [{
         "Plugin": {
             "name": "fontsize",
