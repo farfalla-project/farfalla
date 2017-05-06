@@ -1,7 +1,7 @@
 /*Copyright 2002 One Format Design - 051400 - version 0903*/
 /*Code:*/
 body:not(.donttouchme) {background: none #99FFFF !important}
-body *:not(.donttouchme) {background-color: #99FFFF !important; text-shadow: none !important;}
+body *:not(.farfalla-transparent-bg):not(.donttouchme) {background-color: #99FFFF !important; text-shadow: none !important;}
 img:not(.donttouchme) {background-color: #FFFFFF !important}
 input:not(.donttouchme) {background-color: #FFFF99 !important}
 option:not(.donttouchme) {background-color: #FFFF99 !important}

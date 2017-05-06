@@ -35715,6 +35715,12 @@ $f('#clarifierActivator').click( function(){
 
     $f.farfalla_create_plugin_options('hicontrast');
 
+    $f('*').each(function(){
+      if($f(this).css('background-color')=="transparent"){
+        $f(this).addClass('farfalla-transparent-bg');
+      }
+    });
+
     var colorSchemes = new Array("black_white","black_green","black_lightblue","black_yellow","blue_white","blue_yellow","cyan_black","lightblue_black","lightyellow_black","white_black","yellow_black");
 
     $f.each(colorSchemes, function(index, value){
@@ -35734,7 +35740,6 @@ $f('#clarifierActivator').click( function(){
       $f.farfalla_remove_plugin_css('hicontrast');
       $f('.farfalla_selected_plugin_option').removeClass('farfalla_selected_plugin_option');
       $f.farfalla_set_option('colorscheme');
-
 
     });
 
