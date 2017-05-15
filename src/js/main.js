@@ -159,11 +159,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 */
         case 'button':
           if($f('#'+name+'_button').length===0){
-
-      //      if(options.background&&options.background!==null){bgcolor=options.background;}
             $f('#'+plugin_name+'_options').append('<div id="'+name+'_button" class="farfalla_button '+classes+'"></div>');
             $f('#'+name+'_button').addClass('donttouchme').html('<i class="fa fa-'+faicon+'" aria-hidden="true"></i><span class="sr-only">'+name+'</span>').click(callback);
-            //$f('.farfalla_selected_plugin_option').css('background-color',bgcolor);
           }
         break;
 
@@ -231,24 +228,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
       );
 */
       var value = store.get(option);
-      console.log(option+' is set to '+store.get(option));
-//      $f(callback);
+//      console.log(option+' is set to '+store.get(option));
       return value;
 
     };
 
-    // A function for setting options in the Cakephp session array
+    // A function that stores an option locally
 
     $f.farfalla_set_option = function( option, value ){
-/*
-      if(value===null){
-        $f.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/?callback=?");
-      } else {
-        $f.getJSON(farfalla_path+"backend/plugins/set_option/"+option+"/"+value+"/?callback=?");
-      }
-*/
       store.set(option, value);
-      console.log(option+' set to '+store.get(option));
+//      console.log(option+' set to '+store.get(option));
     };
 
     // A function that gets the XPath of an element
@@ -301,6 +290,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             options = '{"'+options+'"}';
             options = $f.parseJSON(options);
           }
+//          console.log(options);
           return options;
         };
 
@@ -308,10 +298,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         $f.farfalla_toolbar_color = function() {
           if(options.background){
-            if(options.background.match(/^#([A-Fa-f0-9]{6})$/i)!==null){
-              $f('#farfalla_container, #farfalla_toolbar, .ui-widget-content').css('background',options.background);
-              // $f('div.ui-tooltip-farfalla, #farfalla_reset_all_button').css('color',options.background);
-              // $f('<style id="tooltip_colors">div.ui-tooltip-farfalla{border: 2px solid '+options.background+';}</style>').appendTo('head');
+            if(options.background.match(/^#[A-Fa-f0-9]{6}$/i)!==null){
+              // Background
+              $f('#farfalla_container, #farfalla_badge, #farfalla_toolbar, .plugin_options, .ui-widget-content').css('background-color',options.background);
+              // Text
+              $f('.farfalla_active').css('color',options.background);
             }
           }
         };
@@ -320,7 +311,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         $f.farfalla_toolbar_top = function() {
           if(options.top){
-            if(options.top.match(/[0-9]+$f/i)!==null){
+            if(options.top.match(/^[0-9]+$/i)!==null){
               $f.farfalla_set_top(options.top);
             }
           }
@@ -408,7 +399,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
               }
             );
-/*
+
             $f('#farfalla_container')
 
             .draggable({
@@ -420,7 +411,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 $f(this).css('height','auto');
               }
             });
-*/
+
             $f('#farfalla_remember_profile').click(function(){
               var iteration = $f(this).data('iteration')||1;
               switch(iteration){
@@ -465,6 +456,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               $f('#farfalla_container').css('margin-right',0-$f(window).scrollLeft());
             });
 */
+
             $f.farfalla_toolbar_color();
             $f.farfalla_toolbar_top();
 
@@ -538,7 +530,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           //     } else if (options.top) {
           //       $f.farfalla_set_top(options.top);
           //     }
-              console.log(store.getAll());
+
               $f.farfalla_toolbar_populate();
 
           // });
@@ -630,10 +622,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     // determine wether to add the toolbar or not
 
-    if(window.location.href.search(farfalla_path)=='-1'){
+//    if(window.location.href.search(farfalla_path)=='-1'){
 
         $f.farfalla_toolbar_create();
 
         $f.farfalla_check_status();
 
-    } // end "if" to determine wether to add the toolbar or not
+  //  } // end "if" to determine wether to add the toolbar or not
