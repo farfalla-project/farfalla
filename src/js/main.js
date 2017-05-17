@@ -265,8 +265,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     $f.fn.farfalla_switch_off = function ( plugin_name ) {
       _gafarfalla('send', 'event', plugin_name, 'off', window.location.hostname);
       $f('.plugin_options').attr('aria-hidden','true').hide();
-      $f('#'+plugin_name+'Activator').css('color','unset').removeClass('farfalla_active');
+      if(options.background){$f('#'+plugin_name+'Activator').css('color','unset');}
+      if(options.color){$f('#'+plugin_name+'Activator').css('background','unset');}
+      $f('#'+plugin_name+'Activator').removeClass('farfalla_active');
       $f.farfalla_track_plugins(plugin_name,0);
+
+//      $f.farfalla_toolbar_color();
     };
 
 /*
@@ -291,22 +295,55 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             options = '{"'+options+'"}';
             options = $f.parseJSON(options);
           }
-//          console.log(options);
           return options;
         };
 
-        // Applies custom colors to the toolbar
+        // Applies custom colors to the toolbar background and text
 
         $f.farfalla_toolbar_color = function() {
-          if(options.background){
-            if(options.background.match(/^#[A-Fa-f0-9]{6}$/i)!==null){
-              // Background
-              $f('#farfalla_container, #farfalla_badge, #farfalla_toolbar, .plugin_options, .ui-widget-content').css('background',options.background);
-              // Text
-              $f('.farfalla_active').css('color',options.background);
-            }
+
+          if(options.background && options.background.match(/^#[A-Fa-f0-9]{6}$/i)!==null){
+
+            $f('#farfalla_container, #farfalla_badge, #farfalla_toolbar, .plugin_options, .ui-widget-content')
+              .css({
+                'background':options.background
+              });
+            $f('.farfalla_active')
+              .css({
+                'color':options.background
+              });
           }
+
+          if(options.color && options.color.match(/^#[A-Fa-f0-9]{6}$/i)!==null){
+            $f('#farfalla_container, #farfalla_badge, #farfalla_toolbar, .plugin_options, .ui-widget-content')
+              .css({
+                'color':options.color
+              });
+            $f('#farfalla_badge, #farfalla_reset_all, .plugin_activator, .plugin_options, .ui-widget-content')
+              .css({
+                'border-left': '2px solid '+options.color,
+              });
+            $f('#farfalla_badge, #farfalla_reset_all, .plugin_options, .ui-widget-content')
+              .css({
+                'border-top': '2px solid '+options.color,
+              });
+            $f('#farfalla_badge, #farfalla_toolbar, .plugin_options, .ui-widget-content')
+              .css({
+                'border-bottom': '2px solid '+options.color,
+              });
+            $f('.plugin_options')
+              .css({
+              'border-right': '2px solid '+options.color,
+              });
+            // Text
+            $f('.farfalla_active')
+              .css({
+                'background':options.color,
+              });
+          }
+
         };
+
 
         // Applies custom top positioning to the toolbar
 
@@ -394,6 +431,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 if($f('#farfalla_toolbar').attr('aria-hidden')==='false'){
                   $f('.plugin_options').attr('aria-hidden','true').hide();
                   $f('#farfalla_toolbar, #farfalla_lettering').attr('aria-hidden','true').hide();
+                  $f.farfalla_toolbar_color();
                 } else {
                   $f('#farfalla_toolbar, #farfalla_lettering').attr('aria-hidden','false').show();
                 }
@@ -407,11 +445,14 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               axis:'y',
               containment:'window',
 //              handle:'#farfalla_badge',
+/*
               stop: function(event, ui) {
                 $f.getJSON(farfalla_path+"backend/profiles/top/"+$f(this).position().top+"/?callback=?",{});
                 $f(this).css('height','auto');
               }
+*/
             });
+
 
             $f('#farfalla_remember_profile').click(function(){
               var iteration = $f(this).data('iteration')||1;
