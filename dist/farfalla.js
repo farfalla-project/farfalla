@@ -34737,7 +34737,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
       "Combinazioni cromatiche",
       "Azioni" );
 
-    var translations = new Array(
+    var translations_en = new Array(
       "Farfalla project",
       "Accessibility",
       "Accessibility Preferences",
@@ -34758,19 +34758,23 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Bridge function for cakephp gettext translations
 
     $f.__ = function (string){
+
       index = $f.inArray(string,strings);
+      console.log("Detected language is: "+detected_language);
+
       switch (detected_language) {
         case 'it-IT':
             translations = translations_it;
           break;
         default:
-          return none;
+           translations = translations_en;
       }
       if(index>=0){
         return translations[index];
       } else {
         return string;
       }
+
     };
 
     // A function to move focus and caret to the end of textareas and input elements.
