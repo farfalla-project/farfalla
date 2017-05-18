@@ -22,3 +22,4 @@ option:not(.donttouchme) {color: #000000 !important}
 textarea:not(.donttouchme) {color: #000000 !important}
 h1,h2,h3,h4,h5,h6:not(.donttouchme) {color: #000000 !important}
 h1 font,h2 font,h3 font,h4 font,h5 font,h6 font:not(.donttouchme) {color: #000000 !important}
+.qtip{border: 2px solid #000000 !important}
