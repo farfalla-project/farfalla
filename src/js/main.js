@@ -111,6 +111,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         case 'it-IT':
             translations = translations_it;
           break;
+        case 'it':
+            translations = translations_it;
+          break;
         default:
            translations = translations_en;
       }
@@ -395,6 +398,9 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               position:{
                 my: 'center right',
                 at: 'center left'
+              },
+              hide:{
+                inactive:3000
               }
             });
 
