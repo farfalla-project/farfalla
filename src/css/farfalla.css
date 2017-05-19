@@ -1,0 +1,327 @@
+/* CORE */
+
+@font-face {
+  font-family: 'farfalla-project';
+  src:  url('fonts/farfalla-project.eot?iti9yc');
+  src:  url('fonts/farfalla-project.eot?iti9yc#iefix') format('embedded-opentype'),
+    url('fonts/farfalla-project.ttf?iti9yc') format('truetype'),
+    url('fonts/farfalla-project.woff?iti9yc') format('woff'),
+    url('fonts/farfalla-project.svg?iti9yc#farfalla-project') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'farfalla-project' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fp-logo:before {
+  content: "\e900";
+}
+
+body{
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+}
+
+#farfalla_container{
+  position: fixed;
+  top: 120px;
+  right: 0;
+  z-index: 100000;
+  background: transparent !important;
+  pointer-events: none;
+  color: #fff;
+  font-size: 22px;
+  width: 180px;
+}
+
+#farfalla_container *{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  pointer-events: all;
+}
+
+#farfalla_container i.fa {
+  display: block;
+  font-size: 22px;
+  text-align: center;
+  padding: 12px 0;
+}
+
+#farfalla_badge, #farfalla_toolbar{
+  background: #000;
+  width: 48px;
+  margin-left: 134px;
+  border-bottom: 2px solid #fff;
+}
+
+#farfalla_badge, #farfalla_reset_all{
+  width: 46px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+
+#farfalla_badge, #farfalla_remember_profile{
+  border-left: 2px solid #fff;
+}
+
+#farfalla_badge i.fa{
+  padding: 12px;
+}
+
+#farfalla_toolbar_shade {
+  position: absolute;
+  z-index: 999;
+  margin: 0;
+  background: red !important;
+  padding: 0;
+  display:block;
+  width: 100%;
+  height: 100%;
+  float:left;
+  margin: 0;
+  margin-left: -14px;
+  top: 0;
+  -moz-opacity:.80; filter:alpha(opacity=80); opacity:.80;
+}
+
+  #farfalla_toolbar_margin{
+    display:block;
+    width:4px;
+  }
+
+  #farfalla_logo a:link, #farfalla_logo a:visited{
+    color: #fff;
+    text-decoration: none;
+  }
+
+  #farfalla_logo{
+    border-left: 2px solid #fff;
+    color: #fff;
+    padding: 12px 0;
+    font-size: 80%;
+    text-align: center;
+  }
+
+  .farfalla_active{
+    background: #fff;
+    color: #000;
+    border-left: 2px solid #000;
+  }
+
+    #farfalla_active ul{
+      list-style: none;
+      display: block;
+      float: left;
+      padding: 0;
+      margin:0;
+      top:0;
+    }
+
+    #farfalla_active ul li{
+      display: inline;
+      float: left;
+      padding: 1ex;
+      margin:0;
+      color: #fff;
+    }
+
+  #farfalla_buttons ul, #farfalla_buttons ul li{
+      list-style: none;
+      display: inline;
+      padding: 0;
+      float: left;
+  }
+
+  #farfalla_buttons ul li input{
+      margin: 3px 2px;
+      background: #fff !important;
+      border: 0;
+      font-size: 18pt !important;
+      font-weight: bold;
+      width: auto !important;
+      height: auto;
+  }
+
+.farfalla_button{
+  width: 44px;
+  display: inline;
+  float: left;
+}
+
+.plugin_activator{
+  cursor: pointer;
+  border-left: 2px solid #fff;
+}
+
+.plugin_activator_label{
+  display:none;
+}
+
+.plugin_options {
+  background: #000;
+  border: 2px solid #fff;
+  color: #fff;
+  position:absolute;
+  display:block;
+  text-align: left;
+  top: 0;
+  left: 0;
+  width: 132px;
+}
+
+.plugin_options input{
+  -webkit-box-sizing: border-box !important;
+  -moz-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+  display:block;
+  border: none;
+  color: transparent !important;
+  font-size:0px !important;
+  text-shadow: none;
+  margin: 3px;
+  padding: 0;
+  cursor: pointer;
+  display: inline;
+}
+
+.plugin_options_actions{
+  display:inline;
+}
+
+.plugin_options_actions h2{
+  margin: 0;
+  font-size: 12pt;
+  padding: 12px 0 0 12px;
+}
+
+.farfalla_selected_plugin_option{
+  background-color: red !important;
+}
+
+input[type="button"].plugin_options_switch{
+  font-family: "farfalla-icons";
+  text-transform: none !important;
+  font-variant: none !important;
+  box-sizing: border-box !important;
+/*  width: 80px !important; */
+  height: 48px !important;
+  border: medium none !important;
+  color: #FFF !important;
+  font-size: 70px !important;
+  text-shadow: none !important;
+  margin: 0px;
+  float: right;
+  cursor: pointer;
+  background: transparent none repeat scroll 0% 0%;
+  padding: 0px;
+  line-height: 48px;
+}
+
+.plugin_options_switch_on{
+  font-family: "farfalla-icons";
+/*  background: url('../images/switch-on.png') no-repeat !important; */
+}
+
+.farfalla_active span.farfalla_plugin_icon{
+  background: #fff;
+  color: #000;
+  border-radius: 50% !important;
+}
+/*
+.farfalla_toolbar_separator{
+  border-top: 2px solid #fff;
+  width: 100%;
+  margin: 0;
+  display:block;
+  clear: both;
+}
+*/
+#farfalla_active_option{
+  display: inline-block;
+  margin: 0;
+  background: url('../images/farfalla_active_option.png') no-repeat;
+  background-position: -4px;
+}
+
+/*
+    qTip2 overrides
+*/
+
+.qtip{
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  border: 2px solid #000;
+  color: #000;
+  background: #fff;
+  z-index: 10001;
+}
+
+.ui-tooltip-farfalla .ui-tooltip-titlebar{
+  background-color:#f1f1f1;
+}
+
+/*
+    Dialog ovverrides
+*/
+
+.ui-dialog{
+  z-index: 10000;
+}
+
+.ui-widget-overlay{
+  z-index: 9999;
+}
+
+/*
+  Jobmetoo logo
+*/
+
+#jobmetoo_logo p{
+  padding-left: 16px;
+  margin: 0;
+}
+
+#jobmetoo_logo_img{
+  margin: 0 12px 12px 12px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.black_white { color: white; background:black;}
+.black_green { color: lime; background:black;}
+.black_lightblue { color: lightblue; background:black;}
+.black_yellow { color: yellow; background:black;}
+.blue_white { color:white; background:navy;}
+.blue_yellow { color:yellow; background:navy;}
+.cyan_black { color:black; background:cyan;}
+.lightblue_black { color:black; background:lightblue;}
+.lightyellow_black { color:black; background:lightyellow;}
+.white_black { color:black; background:white;}
+.yellow_black { color:black; background:yellow;}

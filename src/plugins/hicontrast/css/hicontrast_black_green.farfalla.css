@@ -1,0 +1,33 @@
+/*Copyright 2002 One Format Design - 101400 - version 0903*/
+/*Code:*/
+body:not(.donttouchme) {background: none #000000 !important}
+body *:not(.donttouchme):not(.farfalla-transparent-bg) {background-color: #000000 !important; text-shadow: none !important;}
+img:not(.donttouchme) {background-color: #FFFFFF !important}
+input:not(.donttouchme) {background-color: #303030 !important}
+option:not(.donttouchme) {background-color: #303030 !important}
+textarea:not(.donttouchme) {background-color: #303030 !important}
+body:not(.donttouchme) {color: #33FF33 !important}
+body *:not(.donttouchme) {color: #33FF33 !important}
+font:not(.donttouchme) {color: #33FF33 !important}
+a:link:not(.donttouchme) {color: #FFFF33 !important}
+a:link *:not(.donttouchme) {color: #FFFF33 !important}
+a:visited:not(.donttouchme) {color: #FFFF33 !important}
+a:visited *:not(.donttouchme) {color: #FFFF33 !important}
+a:hover:not(.donttouchme) {color: #5FFFFD !important}
+a:hover *:not(.donttouchme) {color: #5FFFFD !important}
+a:active:not(.donttouchme) {color: #5FFFFD !important}
+a:active *:not(.donttouchme) {color: #5FFFFD !important}
+input:not(.donttouchme) {color: #33FF33 !important}
+option:not(.donttouchme) {color: #33FF33 !important}
+textarea:not(.donttouchme) {color: #33FF33 !important}
+h1,h2,h3,h4,h5,h6:not(.donttouchme) {color: #33FF33 !important}
+h1 font,h2 font,h3 font,h4 font,h5 font,h6 font:not(.donttouchme) {color: #33FF33 !important}
+.qtip{border: 2px solid #33FF33 !important}
+
+/* Keyboard specific CSS */
+/*
+#farfalla_keyboard_shade{background-color: #000000 !important;}
+#farfalla_keyboard_monitor {background-color: #000000 !important; border: 2px solid #33FF33 !important; color: #33FF33 !important;}
+#virtualKeyboard {background-color: #000000 !important; color: #33FF33 !important;}
+.kbButton a span {color: #33FF33 !important;}
+*/

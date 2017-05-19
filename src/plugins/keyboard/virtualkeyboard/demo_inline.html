@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+ <head>
+  <title>Virtual Keyboard</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+
+  <script type="text/javascript" src="vk_loader.js?vk_layout=IT%20Italian&vk_skin=small" ></script>
+ </head>
+ <body><!-- test -->
+Demos: [<a>Plain text</a>] |
+[<a href="demo_popup.html">Popup mode</a>] |
+[<a href="demo_iframe.html">IFrame mode (isolated from page)</a>] |
+[<a href="richedit/tinymce/plugins/Jsvk/examples/simple.html">TinyMCE</a>] |
+[<a href="richedit/tinymce3/plugins/Jsvk/examples/simple.html">TinyMCE 3</a>] |
+[<a href="richedit/xinha/plugins/Jsvk/examples/simple.html">Xinha</a>]
+  <h1 align="center">VirtualKeyboard demo page</h1>
+  <table cellpadding="0" cellspacing="0" border="0">
+   <tr>
+    <td valign="top">
+     <form action="no.cgi" method="get">
+      <div>
+       Subject:<br />
+       <input name="testa" id="testa" type="text" onfocus="VirtualKeyboard.attachInput(this)" /><br />
+       Password (has keyboard animation disabled):<br />
+       <input name="test_pwd" id="test_pwd" type="password" class="VK_no_animate" onfocus="VirtualKeyboard.attachInput(this)" /><br />
+       Text:<br />
+       <textarea name="testb" id="testb" type="text" style="font-size:1.5em" cols="40" rows="6" wrap="soft" onfocus="VirtualKeyboard.attachInput(this)"></textarea>
+       <br />
+       <br />
+       <div id="td"></div>
+       <br />
+       <input id="showkb" type="button" value="Keyboard" onclick="VirtualKeyboard.toggle('testb','td'); return false;" />
+      </div>
+      <div id="dbg">
+      </div>
+     </form>
+    </td>
+    <td valign="top">
+     <ul><strong>Resources:</strong>
+      <li><a href="http://bts.debugger.ru/index.php?tasks=all&project=5">Bugtracker</a></li>
+      <li><a href="http://debugger.ru/projects/virtualkeyboard">Russian article</a></li>
+      <li><a href="http://forum.dklab.ru/js/advises/VirtualKeyboard.html">Support forum</a></li>
+      <li><a href="http://www.codeproject.com/jscript/jsvk.asp">English article @CodeProject</a></li>
+     </ul>
+     <ol id="sul"><strong>Supported languagues:</strong><br /><em>Links are persistent</em>
+     </ol>
+     <script type="text/javascript">
+         EM.addEventListener(window,'domload',function(){
+             /*
+             *  open the keyboard
+             */
+             VirtualKeyboard.toggle('testb','td');
+             var el = document.getElementById('sul')
+                ,lt = VirtualKeyboard.getLayouts()
+                ,dl = window.location.href.replace(/[?#].+/,"")
+             for (var i=0,lL=lt.length; i<lL; i++) {
+                 var cl = lt[i];
+                 cl = cl[0]+" "+cl[1];
+                 lt[i] = "<a href=\""+dl+"?vk_layout="+cl+"\" onclick=\"VirtualKeyboard.switchLayout(this.title);return false;\" title=\""+cl+"\" alt=\""+cl+"\" >"+cl+"</a>"
+             }
+             el.innerHTML += "<li>"+lt.join("</li><li>")+"</li>";
+         });
+     </script>
+    </td>
+   </tr>
+
+  </table>
+ </body>
+</html>

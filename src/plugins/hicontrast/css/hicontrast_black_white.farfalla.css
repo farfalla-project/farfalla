@@ -1,0 +1,25 @@
+/*Copyright 2002 One Format Design - 071400 - version 0703*/
+/*Code:*/
+body:not(.donttouchme) {background: none #000000 !important}
+body *:not(.farfalla-transparent-bg):not(.donttouchme) {background-color: #000000 !important; text-shadow: none !important;}
+img:not(.donttouchme) {background-color: #FFFFFF !important}
+input:not(.donttouchme) {background-color: #303030 !important}
+option:not(.donttouchme) {background-color: #303030 !important}
+textarea:not(.donttouchme) {background-color: #303030 !important}
+body:not(.donttouchme) {color: #FFFFFF !important}
+body *:not(.donttouchme) {color: #FFFFFF !important}
+font:not(.donttouchme) {color: #FFFFFF !important}
+a:link:not(.donttouchme) {color: #B9BCFF !important}
+a:link *:not(.donttouchme) {color: #B9BCFF !important}
+a:visited:not(.donttouchme) {color: #B9BCFF !important}
+a:visited *:not(.donttouchme) {color: #B9BCFF !important}
+a:hover:not(.donttouchme) {color: #FF9B5F !important}
+a:hover *:not(.donttouchme) {color: #FF9B5F !important}
+a:active:not(.donttouchme) {color: #FF9B5F !important}
+a:active *:not(.donttouchme) {color: #FF9B5F !important}
+input:not(.donttouchme) {color: #FFFFFF !important}
+option:not(.donttouchme) {color: #FFFFFF !important}
+textarea:not(.donttouchme) {color: #FFFFFF !important}
+h1,h2,h3,h4,h5,h6:not(.donttouchme) {color: #FFFFFF !important}
+h1 font,h2 font,h3 font,h4 font,h5 font,h6 font:not(.donttouchme) {color: #FFFFFF !important}
+.qtip{border: 2px solid #FFFFFF !important}
