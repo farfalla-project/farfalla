@@ -35020,7 +35020,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Resets all options and cookies
 
         $f.farfalla_reset_all = function() {
-          $f('.farfalla_active').click();
+//          $f('.farfalla_active').click();
 //          $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           store.clear();
           $f.farfalla_forget_profile();
@@ -35203,11 +35203,49 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         $f.farfalla_toolbar_populate = function() {
 
+          var data = {"plugins": [{
+              "Plugin": {
+                  "name": "fontsize",
+                  "visible": true,
+                  "icon":"search-plus",
+                  "mobile": true
+              }
+          }, {
+              "Plugin": {
+                  "name": "hicontrast",
+                  "visible": true,
+                  "icon":"adjust",
+                  "mobile": true
+              }
+          }, {
+              "Plugin": {
+                  "name": "bigcursor",
+                  "visible": true,
+                  "icon":"mouse-pointer",
+                  "mobile": false
+              }
+          }, {
+              "Plugin": {
+                  "name": "clarifier",
+                  "visible": true,
+                  "icon":"lightbulb-o",
+                  "mobile": true
+              }
+          }, {
+              "Plugin": {
+                  "name": "keyboard",
+                  "visible": true,
+                  "icon":"keyboard-o",
+                  "mobile": false
+              }
+          }]};
+/*
             $f.getJSON(
               farfalla_path+"src/json/menu.php?callback=?",
                 {},
                 function(data) {
-                  $f.each(data.plugins, function(){
+*/
+                $f.each(data.plugins, function(){
                     var plugin = this.Plugin;
 
                     if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
@@ -35231,16 +35269,16 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                         .click( function(){
                           if($f(this).hasClass('farfalla_active')){
                             window[plugin.name+'_off']();
+//                            console.log(store.get('active_plugins'));
                           } else {
                             window[plugin.name+'_on']();
+//                            console.log(store.get('active_plugins'));
                           }
                         });
                     }
-                  });
-
-                  $f.farfalla_autoactivate_plugins();
-
                 });
+//                $f.farfalla_autoactivate_plugins();
+
         };
 
         // Checks if a profile has already been selected, then initializes what is needed
@@ -35296,7 +35334,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             if(active_plugins.indexOf(name)==-1){
               active_plugins.push(name);
             }
-          } else {
+          } else if(value===0) {
             active_plugins.splice(active_plugins.indexOf(name),1);
           }
           if(remember_profile==1){
@@ -35305,8 +35343,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           $f.farfalla_set_option('active_plugins',active_plugins);
         };
 
-        // Track activated/deactivated plugins for consistent browsing in different pages
-
+/*
         $f.farfalla_autoactivate_plugins = function() {
 
           var active = store.get('active_plugins');
@@ -35320,7 +35357,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           $f('#farfalla_badge').click();
 
         };
-
+*/
 /*
     #######################################
     #                                     #
@@ -35334,7 +35371,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     var options = $f.farfalla_ui_options();
 
-    var active_plugins = [];
+    if (store.get('active_plugins')){
+      var active_plugins = store.get('active_plugins');
+    } else {
+      var active_plugins = [];
+    }
+
 /*
     if(Cookies.get('farfalla_active_plugins')){
       var remember_profile = 1;
@@ -35416,6 +35458,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     });
 */
 //    $f.bigcursor_on();
+
+  if($f.inArray('bigcursor',store.get('active_plugins'))>=0){
+    bigcursor_on();
+    $f('.plugin_options').hide();
+  }
 
 /*!
  * Farfalla - Accessibility in the Cloud
@@ -35616,6 +35663,11 @@ $f('#clarifierActivator').click( function(){
 */
 // $f.clarifier_on();
 
+  if($f.inArray('clarifier',store.get('active_plugins'))>=0){
+    clarifier_on();
+    $f('.plugin_options').hide();
+  }
+
 /*!
  * Farfalla - Accessibility in the Cloud
  * http://farfalla-project.org/
@@ -35738,6 +35790,11 @@ $f('#clarifierActivator').click( function(){
 */
     // $f.fontsize_on();
 
+    if($f.inArray('fontsize',store.get('active_plugins'))>=0){
+      fontsize_on();
+      $f('.plugin_options').hide();
+    }
+
 /*!
  * Farfalla - Accessibility in the Cloud
  * http://farfalla-project.org/
@@ -35824,6 +35881,11 @@ $f('#clarifierActivator').click( function(){
       $f.farfalla_set_option('colorscheme');
 
     };
+
+    if($f.inArray('hicontrast',store.get('active_plugins'))>=0){
+      hicontrast_on();
+      $f('.plugin_options').hide();
+    }
 
 // Farfalla plugin: Virtual Keyboard
 
@@ -35929,4 +35991,9 @@ $f('#clarifierActivator').click( function(){
       }
     });
 */
+
+if($f.inArray('keyboard',store.get('active_plugins'))>=0){
+  keyboard_on();
+  $f('.plugin_options').hide();
+}
 

@@ -84,3 +84,8 @@
       $f.farfalla_set_option('colorscheme');
 
     };
+
+    if($f.inArray('hicontrast',store.get('active_plugins'))>=0){
+      hicontrast_on();
+      $f('.plugin_options').hide();
+    }

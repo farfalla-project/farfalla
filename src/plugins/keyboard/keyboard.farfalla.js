@@ -102,3 +102,8 @@
       }
     });
 */
+
+if($f.inArray('keyboard',store.get('active_plugins'))>=0){
+  keyboard_on();
+  $f('.plugin_options').hide();
+}
