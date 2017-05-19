@@ -34697,6 +34697,41 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     #######################################
 */
 
+    // Plugins list in json
+
+    var plugins = { "plugins" : [
+            {
+                "name": "fontsize",
+                "visible": true,
+                "icon":"search-plus",
+                "mobile": true
+              },
+            {
+                "name": "hicontrast",
+                "visible": true,
+                "icon":"adjust",
+                "mobile": true
+              },
+            {
+                "name": "bigcursor",
+                "visible": true,
+                "icon":"mouse-pointer",
+                "mobile": false
+              },
+            {
+                "name": "clarifier",
+                "visible": true,
+                "icon":"lightbulb-o",
+                "mobile": true
+              },
+            {
+                "name": "keyboard",
+                "visible": true,
+                "icon":"keyboard-o",
+                "mobile": false
+              }
+            ]};
+
     // Translations require improvement
 
     var detected_language = navigator.language || navigator.userLanguage;
