@@ -105,7 +105,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     $f.__ = function (string){
 
       index = $f.inArray(string,strings);
-      console.log("Detected language is: "+detected_language);
+      //console.log("Detected language is: "+detected_language);
 
       switch (detected_language) {
         case 'it-IT':
@@ -322,11 +322,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           }
 
           if(options.color && options.color.match(/^#[A-Fa-f0-9]{6}$/i)!==null){
-            $f('#farfalla_container, #farfalla_badge, #farfalla_toolbar, .plugin_options, .ui-widget-content')
+            $f('#farfalla_container, #farfalla_badge, #farfalla_toolbar, #farfalla_logo a:link, #farfalla_logo a:visited, .plugin_options, .ui-widget-content')
               .css({
                 'color':options.color
               });
-            $f('#farfalla_badge, #farfalla_reset_all, .plugin_activator, .plugin_options, .ui-widget-content')
+            $f('#farfalla_badge, #farfalla_reset_all, #farfalla_logo, .plugin_activator, .plugin_options, .ui-widget-content')
               .css({
                 'border-left': '2px solid '+options.color,
               });
@@ -408,6 +408,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
 
+            // Add the "reset all" button
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
               .qtip({
@@ -421,6 +422,22 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 }
               })
               .appendTo('#farfalla_toolbar');
+
+            // Add Farfalla project logo and link to main website
+            $f('<div><a href="https://farfalla-project.org"><i class="icon-fp-logo" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_url_title')+'</span></a></div>')
+                .attr('id','farfalla_logo')
+                .qtip({
+                  content:
+                  {
+                    text: $f.__("ft_url_title")
+                  },
+                  position:{
+                    my: 'center right',
+                    at: 'center left'
+                  }
+                })
+                .appendTo('#farfalla_toolbar');
+
             /* Saving preferences is temporarily unavailable
              $f('<div id="farfalla_remember_profile"><i class="fa fa-star" aria-hidden="true"></i><span class="sr-only">'+$f.__('save_session')+'</span></div>')
               .appendTo('#farfalla_toolbar');
