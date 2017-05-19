@@ -400,7 +400,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         // Resets all options and cookies
 
         $f.farfalla_reset_all = function() {
-//          $f('.farfalla_active').click();
+          $f('.farfalla_active').click();
 //          $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
           store.clear();
           $f.farfalla_forget_profile();
