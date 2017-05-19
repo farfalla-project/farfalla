@@ -34697,6 +34697,41 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     #######################################
 */
 
+    // Plugins list in json
+
+    var plugins = { "plugins" : [
+            {
+                "name": "fontsize",
+                "visible": true,
+                "icon":"search-plus",
+                "mobile": true
+              },
+            {
+                "name": "hicontrast",
+                "visible": true,
+                "icon":"adjust",
+                "mobile": true
+              },
+            {
+                "name": "bigcursor",
+                "visible": true,
+                "icon":"mouse-pointer",
+                "mobile": false
+              },
+            {
+                "name": "clarifier",
+                "visible": true,
+                "icon":"lightbulb-o",
+                "mobile": true
+              },
+            {
+                "name": "keyboard",
+                "visible": true,
+                "icon":"keyboard-o",
+                "mobile": false
+              }
+            ]};
+
     // Translations require improvement
 
     var detected_language = navigator.language || navigator.userLanguage;
@@ -35203,44 +35238,47 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         $f.farfalla_toolbar_populate = function() {
 
-            $f.getJSON(
-              farfalla_path+"src/json/menu.php?callback=?",
-                {},
-                function(data) {
-                  $f.each(data.plugins, function(){
-                    var plugin = this.Plugin;
+//            $f.getJSON(
+//                farfalla_path+"src/json/menu.php?callback=?",
+//                {},
+//                function(data) {
 
-                    if(plugin.visible==1&&($f.browser.mobile===false||plugin.mobile)){
-                      $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
-                        .attr({
-                            'id' : plugin.name+'Activator'
-                        })
-                        .addClass('plugin_activator')
-                        .qtip({
-                          content:
-                          {
-                            text: $f.__(plugin.name)
-                          },
-                          position:{
-                            my: 'center right',
-                            at: 'center left'
-                          }
-                        })
-                        .appendTo('#farfalla_toolbar_plugins')
-                        // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
-                        .click( function(){
-                          if($f(this).hasClass('farfalla_active')){
-                            window[plugin.name+'_off']();
-                          } else {
-                            window[plugin.name+'_on']();
-                          }
-                        });
-                    }
-                  });
+          $f.each(plugins.plugins, function(index, data){
 
-                  $f.farfalla_autoactivate_plugins();
+            var plugin = this;
 
+            if(plugin.visible===true&&($f.browser.mobile===false||plugin.mobile)){
+              $f('<div><i class="fa fa-'+plugin.icon+' farfalla_plugin_icon" aria-hidden="true"></i><span class="sr-only">'+$f.__(plugin.name)+'</span></div>')
+                .attr({
+                    'id' : plugin.name+'Activator'
+                })
+                .addClass('plugin_activator')
+                .qtip({
+                  content:
+                  {
+                    text: $f.__(plugin.name)
+                  },
+                  position:{
+                    my: 'center right',
+                    at: 'center left'
+                  }
+                })
+                .appendTo('#farfalla_toolbar_plugins')
+                // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
+                .click( function(){
+                  if($f(this).hasClass('farfalla_active')){
+                    window[plugin.name+'_off']();
+                  } else {
+                    window[plugin.name+'_on']();
+                  }
                 });
+
+              }
+
+
+            $f.farfalla_autoactivate_plugins();
+          });
+
         };
 
         // Checks if a profile has already been selected, then initializes what is needed
