@@ -106,10 +106,13 @@ body{
   }
 
   #farfalla_logo a:link, #farfalla_logo a:visited{
+    color: #fff;
     text-decoration: none;
   }
 
   #farfalla_logo{
+    border-left: 2px solid #fff;
+    color: #fff;
     padding: 12px 0;
     font-size: 80%;
     text-align: center;
