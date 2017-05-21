@@ -42,13 +42,16 @@
     bigcursor_on = function () {
       $f('#bigcursorActivator').farfalla_switch_on('bigcursor');
       $f('body').addClass('farfalla_bigcursor_arrow');
-      $f('a, input, .plugin_activator, .plugin_options input').addClass('farfalla_bigcursor_pointer');
+      $f('a, input[type=button], input[type=submit], .plugin_activator, .plugin_options input').addClass('farfalla_bigcursor_pointer');
+      $f('input, textarea').addClass('farfalla_bigcursor_text');
+
     };
 
     bigcursor_off = function () {
       $f('#bigcursorActivator').farfalla_switch_off('bigcursor');
       $f('body').removeClass('farfalla_bigcursor_arrow');
-      $f('a, input, .plugin_activator, .plugin_options input').removeClass('farfalla_bigcursor_pointer');
+      $f('.farfalla_bigcursor_pointer').removeClass('farfalla_bigcursor_pointer');
+      $f('.farfalla_bigcursor_text').removeClass('farfalla_bigcursor_text');
     };
 /*
     $f('#bigcursorActivator').click( function(){

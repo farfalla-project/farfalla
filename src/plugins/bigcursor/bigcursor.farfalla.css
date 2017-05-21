@@ -1,2 +1,3 @@
-.farfalla_bigcursor_arrow{ cursor:url(Arrow.png),url('http://code.farfalla-project.org/farfalla/plugins/bigcursor/Arrow.cur'),auto !important;}
-.farfalla_bigcursor_pointer{ cursor:url(Pointer.png),url('http://code.farfalla-project.org/farfalla/plugins/bigcursor/Pointer.cur'),auto !important;}
+.farfalla_bigcursor_arrow{ cursor:url(cursors/Arrow.png),url('//code.farfalla-project.org/farfalla/plugins/bigcursor/cursors/Arrow.cur'),auto !important;}
+.farfalla_bigcursor_pointer{ cursor:url(cursors/Pointer.png),url('//code.farfalla-project.org/farfalla/plugins/bigcursor/cursors/Pointer.cur'),auto !important;}
+.farfalla_bigcursor_text{ cursor:url(cursors/Text.png),url('//code.farfalla-project.org/farfalla/plugins/bigcursor/cursors/Text.cur'),auto !important;}
