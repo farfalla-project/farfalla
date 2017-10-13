@@ -64,6 +64,25 @@ var version = '1.0.0';
   })();
 */
 
+// Parses the options passed along while including farfalla.js
+
+var options = "pippo";
+
+farfalla_ui_options = function() {
+  // if no options are passed, this is skipped (thanks to the "?" in the matching string)
+  var source = "farfalla.js?fp_token=12345";
+  if (source){
+    var optStart = source.search('\\?');
+    options = source.substr(optStart+1).replace(/&/g,'","');
+    options = options.replace(/=/g,'":"');
+    options = '{"'+options+'"}';
+  }
+  return options;
+};
+
+farfalla_ui_options();
+
+console.log(options);
 
   head.load(farfalla_path+'dist/farfalla.css?v='+Math.random(),
             farfalla_path+'dist/farfalla.min.js?v='+Math.random());
