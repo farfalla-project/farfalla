@@ -66,26 +66,53 @@ var version = '1.0.0';
 
 // Parses the options passed along while including farfalla.js
 
-var options = "pippo";
+var scriptnodes = document.getElementsByTagName('script');
+var scriptnode;
+var source;
+var fpc_token;
+
+for (var i = 0; i < scriptnodes.length; i++) {
+  scriptnode = scriptnodes[i];
+  if (scriptnode.src == /farfalla\.js/) break;
+}
+
+if(scriptnode){source=scriptnode.src};
 
 farfalla_ui_options = function() {
   // if no options are passed, this is skipped (thanks to the "?" in the matching string)
-  var source = "farfalla.js?fp_token=12345";
   if (source){
     var optStart = source.search('\\?');
     options = source.substr(optStart+1).replace(/&/g,'","');
     options = options.replace(/=/g,'":"');
     options = '{"'+options+'"}';
   }
-  return options;
+  console.log(options);
+
+  var fp_token = JSON.parse(options).fp_token;
+  var url = "http://192.168.2.57:3000/profiles/status";
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+// console.log(fp_token);
+  if(fp_token) xhr.setRequestHeader('fp_token',fp_token);
+  xhr.send();
+
+  xhr.onreadystatechange = function() {//Call a function when the state changes.
+      if(this.readyState == this.HEADERS_RECEIVED) {
+            console.log(xhr.getResponseHeader("Content-Type"));
+
+      }
+  }
+
+
 };
 
 farfalla_ui_options();
 
-console.log(options);
-
+if(fpc_token){
   head.load(farfalla_path+'dist/farfalla.css?v='+Math.random(),
             farfalla_path+'dist/farfalla.min.js?v='+Math.random());
+}
+
 
 // Google analytics monitoring code
 
