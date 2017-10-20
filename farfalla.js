@@ -66,7 +66,7 @@ var version = '1.0.0';
 
 
   head.load(farfalla_path+'dist/farfalla.css?v='+Math.random(),
-            farfalla_path+'dist/farfalla.min.js?v='+Math.random());
+            farfalla_path+'dist/farfalla.js?v='+Math.random());
 
 // Google analytics monitoring code
 

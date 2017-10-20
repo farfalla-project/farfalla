@@ -1,0 +1,9 @@
+#blink{
+  background: #000;
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  border: 5px solid lime;
+  padding: 1em;
+  width: 50%;
+}

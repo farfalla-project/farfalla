@@ -46,6 +46,12 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     var plugins = { "plugins" : [
             {
+              "name": "blink",
+              "visible": true,
+              "icon":"eye-slash",
+              "mobile": true
+            },
+            {
                 "name": "fontsize",
                 "visible": true,
                 "icon":"search-plus",

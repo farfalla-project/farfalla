@@ -29,5 +29,7 @@
   "resolutions": {
     "jquery": "^2.2.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "html2canvas": "^0.4.1"
+  }
 }

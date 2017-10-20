@@ -64,13 +64,9 @@ module.exports = function(grunt) {
     },
     bower_concat:{
       all: {
-        dest: "src/js/vendor/bower.js",
-//        destCss: "src/css/vendor/bower.css",
-        /*
-        exclude: [
-          'font-awesome'
-        ]
-        */
+        dest: {
+          js: "src/js/vendor/bower.js"
+        }
       }
     }
   });
