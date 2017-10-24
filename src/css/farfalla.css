@@ -125,6 +125,10 @@ body{
     border-left: 2px solid #000;
   }
 
+  #farfalla_container .farfalla_active i.fa{
+    color: #000;
+  }
+
     #farfalla_active ul{
       list-style: none;
       display: block;
