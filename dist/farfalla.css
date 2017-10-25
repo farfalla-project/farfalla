@@ -334,14 +334,14 @@ input[type="button"].plugin_options_switch{
     border: 0;
 }
 
-.black_white { color: white; background:black;}
-.black_green { color: lime; background:black;}
-.black_lightblue { color: lightblue; background:black;}
-.black_yellow { color: yellow; background:black;}
-.blue_white { color:white; background:navy;}
-.blue_yellow { color:yellow; background:navy;}
-.cyan_black { color:black; background:cyan;}
-.lightblue_black { color:black; background:lightblue;}
-.lightyellow_black { color:black; background:lightyellow;}
-.white_black { color:black; background:white;}
-.yellow_black { color:black; background:yellow;}
+.black_white { color: white !important; background:black !important;}
+.black_green { color: lime !important; background:black !important;}
+.black_lightblue { color: lightblue !important; background:black !important;}
+.black_yellow { color: yellow !important; background:black !important;}
+.blue_white { color:white !important; background:navy !important;}
+.blue_yellow { color:yellow !important; background:navy !important;}
+.cyan_black { color:black !important; background:cyan !important;}
+.lightblue_black { color:black !important; background:lightblue !important;}
+.lightyellow_black { color:black !important; background:lightyellow !important;}
+.white_black { color:black !important; background:white !important;}
+.yellow_black { color:black !important; background:yellow !important;}
