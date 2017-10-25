@@ -319,14 +319,14 @@ input[type="button"].plugin_options_switch{
     border: 0;
 }
 
-.black_white { color: white !important; background:black !important;}
-.black_green { color: lime !important; background:black !important;}
-.black_lightblue { color: lightblue !important; background:black !important;}
-.black_yellow { color: yellow !important; background:black !important;}
-.blue_white { color:white !important; background:navy !important;}
-.blue_yellow { color:yellow !important; background:navy !important;}
-.cyan_black { color:black !important; background:cyan !important;}
-.lightblue_black { color:black !important; background:lightblue !important;}
-.lightyellow_black { color:black !important; background:lightyellow !important;}
-.white_black { color:black !important; background:white !important;}
-.yellow_black { color:black !important; background:yellow !important;}
+.black_white, .black_white i.fa { color: white !important; background:black !important;}
+.black_green, .black_green i.fa { color: lime !important; background:black !important;}
+.black_lightblue, .black_lightblue i.fa { color: lightblue !important; background:black !important;}
+.black_yellow, .black_yellow i.fa { color: yellow !important; background:black !important;}
+.blue_white, .blue_white i.fa { color:white !important; background:navy !important;}
+.blue_yellow, .blue_yellow  i.fa { color:yellow !important; background:navy !important;}
+.cyan_black, .cyan_black i.fa { color:black !important; background:cyan !important;}
+.lightblue_black, .lightblue_black i.fa { color:black !important; background:lightblue !important;}
+.lightyellow_black, .lightyellow_black i.fa { color:black !important; background:lightyellow !important;}
+.white_black, .white_black i.fa { color:black !important; background:white !important;}
+.yellow_black, .yellow_black i.fa { color:black !important; background:yellow !important;}
