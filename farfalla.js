@@ -89,29 +89,30 @@ farfalla_ui_options = function() {
   console.log(options);
 
   var fp_token = JSON.parse(options).fp_token;
-  var url = "http://192.168.2.57:3000/profiles/status";
+  var url = "http://api2.farfalla-project.org/profiles/status";
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
-// console.log(fp_token);
   if(fp_token) xhr.setRequestHeader('fp_token',fp_token);
   xhr.send();
 
   xhr.onreadystatechange = function() {//Call a function when the state changes.
       if(this.readyState == this.HEADERS_RECEIVED) {
-            console.log(xhr.getResponseHeader("Content-Type"));
-
+        var fpc_token = xhr.getResponseHeader("Fpc_token");
+        if(fpc_token){
+          farfalla_activate_toolbar()
+        }
       }
   }
 
+};
 
+farfalla_activate_toolbar = function() {
+          head.load(farfalla_path+'dist/farfalla.css?v='+Math.random(),
+                    farfalla_path+'dist/farfalla.min.js?v='+Math.random());
 };
 
 farfalla_ui_options();
 
-if(fpc_token){
-  head.load(farfalla_path+'dist/farfalla.css?v='+Math.random(),
-            farfalla_path+'dist/farfalla.min.js?v='+Math.random());
-}
 
 
 // Google analytics monitoring code
