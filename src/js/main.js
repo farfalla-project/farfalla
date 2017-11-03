@@ -751,9 +751,11 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // Main variables
 
     // var options = $f.farfalla_ui_options();
-
-    options = $f.parseJSON(options);
-
+    if(options.substring(0, 6) != '{"http'){
+      options = $f.parseJSON(options);
+    } else {
+      options = "";
+    }
 
     if (store.get('active_plugins')){
       var active_plugins = store.get('active_plugins');

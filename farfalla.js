@@ -69,7 +69,7 @@ var scriptnodes = document.getElementsByTagName('script');
 var scriptnode;
 var source;
 var fpc_token;
-var options;
+var options = "";
 
 for (var i = 0; i < scriptnodes.length; i++) {
   scriptnode = scriptnodes[i];
@@ -87,8 +87,9 @@ farfalla_ui_options = function() {
     options = '{"'+options+'"}';
   }
 
-
-  var fp_token = JSON.parse(options).fp_token;
+  if(options != "" && options.substring(0, 6) != '{"http'){
+    var fp_token = JSON.parse(options).fp_token;
+  }
   var url = "http://api2.farfalla-project.org/profiles/status";
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
