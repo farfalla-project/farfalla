@@ -23,7 +23,6 @@ if (!Array.prototype.indexOf)
 
 var retrieveURL = function(filename) {
     var scripts = document.getElementsByTagName('script');
-//    console.log(scripts);
     if (scripts && scripts.length > 0) {
         for (var i in scripts) {
             if (scripts[i].src && scripts[i].src.match(new RegExp(filename+'\\.js'))) {
@@ -70,6 +69,7 @@ var scriptnodes = document.getElementsByTagName('script');
 var scriptnode;
 var source;
 var fpc_token;
+var options;
 
 for (var i = 0; i < scriptnodes.length; i++) {
   scriptnode = scriptnodes[i];
@@ -86,7 +86,7 @@ farfalla_ui_options = function() {
     options = options.replace(/=/g,'":"');
     options = '{"'+options+'"}';
   }
-  console.log(options);
+
 
   var fp_token = JSON.parse(options).fp_token;
   var url = "http://api2.farfalla-project.org/profiles/status";

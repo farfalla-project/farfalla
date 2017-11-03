@@ -326,6 +326,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
         // Parses the options passed along while including farfalla.js
 
+/* MOVED TO farfalla.js AND REWRITTEN IN BAREMETAL JS
         $f.farfalla_ui_options = function() {
           // if no options are passed, this is skipped (thanks to the "?" in the matching string)
           var source = $f("script[src*='farfalla.js?']").attr('src');
@@ -339,7 +340,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
           }
           return options;
         };
-
+*/
         // Applies custom colors to the toolbar background and text
 
         $f.farfalla_toolbar_color = function() {
@@ -749,7 +750,10 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
     // Main variables
 
-    var options = $f.farfalla_ui_options();
+    // var options = $f.farfalla_ui_options();
+
+    options = $f.parseJSON(options);
+
 
     if (store.get('active_plugins')){
       var active_plugins = store.get('active_plugins');
