@@ -76,6 +76,7 @@ body{
   font-size: 22px;
   text-align: center;
   padding: 12px 0;
+  color: #fff;
 }
 
 #farfalla_badge, #farfalla_toolbar{
@@ -137,6 +138,10 @@ body{
     background: #fff;
     color: #000;
     border-left: 2px solid #000;
+  }
+
+  #farfalla_container .farfalla_active i.fa{
+    color: #000;
   }
 
     #farfalla_active ul{
@@ -329,14 +334,14 @@ input[type="button"].plugin_options_switch{
     border: 0;
 }
 
-.black_white { color: white; background:black;}
-.black_green { color: lime; background:black;}
-.black_lightblue { color: lightblue; background:black;}
-.black_yellow { color: yellow; background:black;}
-.blue_white { color:white; background:navy;}
-.blue_yellow { color:yellow; background:navy;}
-.cyan_black { color:black; background:cyan;}
-.lightblue_black { color:black; background:lightblue;}
-.lightyellow_black { color:black; background:lightyellow;}
-.white_black { color:black; background:white;}
-.yellow_black { color:black; background:yellow;}
+.black_white, .black_white i.fa { color: white !important; background:black !important;}
+.black_green, .black_green i.fa { color: lime !important; background:black !important;}
+.black_lightblue, .black_lightblue i.fa { color: lightblue !important; background:black !important;}
+.black_yellow, .black_yellow i.fa { color: yellow !important; background:black !important;}
+.blue_white, .blue_white i.fa { color:white !important; background:navy !important;}
+.blue_yellow, .blue_yellow  i.fa { color:yellow !important; background:navy !important;}
+.cyan_black, .cyan_black i.fa { color:black !important; background:cyan !important;}
+.lightblue_black, .lightblue_black i.fa { color:black !important; background:lightblue !important;}
+.lightyellow_black, .lightyellow_black i.fa { color:black !important; background:lightyellow !important;}
+.white_black, .white_black i.fa { color:black !important; background:white !important;}
+.yellow_black, .yellow_black i.fa { color:black !important; background:yellow !important;}
