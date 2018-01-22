@@ -90,7 +90,7 @@ farfalla_ui_options = function() {
   if(options != "" && options.substring(0, 6) != '{"http'){
     var fp_token = JSON.parse(options).fp_token;
   }
-  var url = "http://api2.farfalla-project.org/profiles/status";
+  var url = "https://farfallaproject.herokuapp.com/profiles/status";
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
   if(fp_token) xhr.setRequestHeader('fp_token',fp_token);
