@@ -11,4 +11,3 @@ backend/app/tmp/
 bower_components/
 node_modules/
 backups/
-dist/
