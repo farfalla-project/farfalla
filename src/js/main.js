@@ -28,11 +28,6 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
    $f=jQuery.noConflict(true);
 
-/*
-   Initialize Persist-JS Store
-*/
-
-//   var store = new Persist.Store('farfalla');
 
 /*
     #######################################
@@ -269,7 +264,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
          {}, callback
       );
 */
-      var value = store.get(option);
+      var value = store(option);
 //      console.log(option+' is set to '+store.get(option));
       return value;
 
@@ -278,7 +273,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     // A function that stores an option locally
 
     $f.farfalla_set_option = function( option, value ){
-      store.set(option, value);
+      store(option, value);
 //      console.log(option+' set to '+store.get(option));
     };
 
@@ -403,7 +398,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
         $f.farfalla_reset_all = function() {
           $f('.farfalla_active').click();
 //          $f.getJSON(farfalla_path+"backend/profiles/reset/?callback=?",{});
-          store.clear();
+          store(false); // clears all items from storage
           $f.farfalla_forget_profile();
           remember_profile = 0;
         };
@@ -757,8 +752,8 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
       options = "";
     }
 
-    if (store.get('active_plugins')){
-      var active_plugins = store.get('active_plugins');
+    if (store){
+      var active_plugins = store('active_plugins');
     } else {
       var active_plugins = [];
     }

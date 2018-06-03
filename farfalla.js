@@ -92,24 +92,25 @@ farfalla_ui_options = function() {
   }
   var url = "https://farfallaproject.herokuapp.com/profiles/status";
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  if(fp_token) xhr.setRequestHeader('fp_token',fp_token);
-  xhr.send();
+//  xhr.open("GET", url, true);
+//  if(fp_token) xhr.setRequestHeader('fp_token',fp_token);
+//  xhr.send();
 
-  xhr.onreadystatechange = function() {//Call a function when the state changes.
-      if(this.readyState == this.HEADERS_RECEIVED) {
-        var fpc_token = xhr.getResponseHeader("Fpc_token");
-        if(fpc_token){
-          farfalla_activate_toolbar()
-        }
-      }
-  }
+//  xhr.onreadystatechange = function() {//Call a function when the state changes.
+//      if(this.readyState == this.HEADERS_RECEIVED) {
+//        var fpc_token = xhr.getResponseHeader("Fpc_token");
+//        if(fpc_token){
+          farfalla_activate_toolbar();
+//        }
+//      }
+//  }
 
 };
 
 farfalla_activate_toolbar = function() {
           head.load(farfalla_path+'dist/farfalla.css?v='+Math.random(),
-                    farfalla_path+'dist/farfalla.min.js?v='+Math.random());
+                    farfalla_path+'bower_components/store2/dist/store2.js',
+                    farfalla_path+'dist/farfalla.js?v='+Math.random());
 };
 
 farfalla_ui_options();

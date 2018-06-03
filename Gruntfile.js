@@ -60,17 +60,11 @@ module.exports = function(grunt) {
     },
     watch: {
       files: ['<%= jshint.files %>', '<%= concat.distcss.src %>', '<%= jasmine.options.specs %>'],
-      tasks: ['jshint', 'bower_concat', 'concat', 'jasmine', 'uglify']
+      tasks: ['jshint', 'bower_concat', 'concat', 'uglify']
     },
     bower_concat:{
       all: {
-        dest: "src/js/vendor/bower.js",
-//        destCss: "src/css/vendor/bower.css",
-        /*
-        exclude: [
-          'font-awesome'
-        ]
-        */
+        dest: "src/js/vendor/bower.js"
       }
     }
   });
