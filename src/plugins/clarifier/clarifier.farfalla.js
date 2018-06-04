@@ -196,8 +196,9 @@ $f('#clarifierActivator').click( function(){
 });
 */
 // $f.clarifier_on();
-
-  if($f.inArray('clarifier',store.get('active_plugins'))>=0){
+/*
+  if($f.inArray('clarifier',fstore.find('active_plugins'))>=0){
     clarifier_on();
     $f('.plugin_options').hide();
   }
+*/

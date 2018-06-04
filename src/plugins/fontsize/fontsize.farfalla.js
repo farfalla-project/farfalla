@@ -119,8 +119,9 @@
     });
 */
     // $f.fontsize_on();
-
-    if($f.inArray('fontsize',store.get('active_plugins'))>=0){
+/*
+    if($f.inArray('fontsize',fstore.find('active_plugins'))>=0){
       fontsize_on();
       $f('.plugin_options').hide();
     }
+*/

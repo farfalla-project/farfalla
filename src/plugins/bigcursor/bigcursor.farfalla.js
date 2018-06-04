@@ -63,8 +63,9 @@
     });
 */
 //    $f.bigcursor_on();
-
-  if($f.inArray('bigcursor',store.get('active_plugins'))>=0){
+/*
+  if($f.inArray('bigcursor',fstore.find('active_plugins'))>=0){
     bigcursor_on();
     $f('.plugin_options').hide();
   }
+*/

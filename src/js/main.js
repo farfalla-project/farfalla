@@ -28,6 +28,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
    $f=jQuery.noConflict(true);
 
+//   var store = store.namespace('store');
 
 /*
     #######################################
@@ -264,16 +265,15 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
          {}, callback
       );
 */
-      var value = store(option);
-//      console.log(option+' is set to '+store.get(option));
-      return value;
+//      var value = fstore.find(option);
+//      return value;
 
     };
 
     // A function that stores an option locally
 
     $f.farfalla_set_option = function( option, value ){
-      store(option, value);
+//      fstore.insert(option, value);
 //      console.log(option+' set to '+store.get(option));
     };
 
@@ -420,7 +420,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
               // translation needed
               .html('<i class="fa fa-cog" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_accessibility_preferences')+'</span>')
               .prependTo('#farfalla_container');
-
+/*
             $f('#farfalla_badge').qtip({
               content:
               {
@@ -434,7 +434,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                 inactive:3000
               }
             });
-
+*/
             $f('<div aria-hidden="true"></div>').attr('id','farfalla_toolbar').appendTo('#farfalla_container').hide();
 
             $f('<div></div>').attr('id','farfalla_toolbar_plugins').appendTo('#farfalla_toolbar');
@@ -442,7 +442,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
             // Add the "reset all" button
             $f('<div><i class="fa fa-refresh" aria-hidden="true"></i><span class="sr-only">'+$f.__('reset')+'</span></div>')
               .attr('id','farfalla_reset_all')
-              .qtip({
+/*              .qtip({
                 content:
                 {
                   text: $f.__("reset")
@@ -451,13 +451,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                   my: 'center right',
                   at: 'center left'
                 }
-              })
+              })*/
               .appendTo('#farfalla_toolbar');
 
             // Add Farfalla project logo and link to main website
             $f('<div><a href="https://farfalla-project.org"><i class="icon-fp-logo" aria-hidden="true"></i><span class="sr-only">'+$f.__('ft_url_title')+'</span></a></div>')
                 .attr('id','farfalla_logo')
-                .qtip({
+/*                .qtip({
                   content:
                   {
                     text: $f.__("ft_url_title")
@@ -466,7 +466,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                     my: 'center right',
                     at: 'center left'
                   }
-                })
+                })*/
                 .appendTo('#farfalla_toolbar');
 
             /* Saving preferences is temporarily unavailable
@@ -496,21 +496,21 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
 
               }
             );
-
+/*
             $f('#farfalla_container')
 
             .draggable({
               axis:'y',
               containment:'window',
 //              handle:'#farfalla_badge',
-/*
-              stop: function(event, ui) {
-                $f.getJSON(farfalla_path+"backend/profiles/top/"+$f(this).position().top+"/?callback=?",{});
-                $f(this).css('height','auto');
-              }
-*/
-            });
 
+//              stop: function(event, ui) {
+//                $f.getJSON(farfalla_path+"backend/profiles/top/"+$f(this).position().top+"/?callback=?",{});
+//                $f(this).css('height','auto');
+//              }
+
+            });
+*/
 
             $f('#farfalla_remember_profile').click(function(){
               var iteration = $f(this).data('iteration')||1;
@@ -630,7 +630,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                             'id' : plugin.name+'Activator'
                         })
                         .addClass('plugin_activator')
-                        .qtip({
+/*                        .qtip({
                           content:
                           {
                             text: $f.__(plugin.name)
@@ -639,7 +639,7 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
                             my: 'center right',
                             at: 'center left'
                           }
-                        })
+                        })*/
                         .appendTo('#farfalla_toolbar_plugins')
                         // head.load(farfalla_path+'src/plugins/'+plugin.name+'/'+plugin.name+'.farfalla.js?v='+Math.random());
                         .click( function(){
@@ -751,12 +751,13 @@ Main Farfalla Library: includes the functions used to draw the toolbar and the r
     } else {
       options = "";
     }
-
-    if (store){
-      var active_plugins = store('active_plugins');
+/*
+    if (fstore.find('active_plugins')){
+      var active_plugins = fstore.find('active_plugins');
     } else {
+*/
       var active_plugins = [];
-    }
+//    }
 
 /*
     if(Cookies.get('farfalla_active_plugins')){
